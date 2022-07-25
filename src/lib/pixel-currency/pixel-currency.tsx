@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 export interface CurrencyProps {
-  className: string
+  className?: string
   value: any
   currency?: string
   hideSymbol?: boolean
@@ -18,7 +18,8 @@ const formatCurrency = (value: any, currency?: string) => {
   }
   var formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: currency
+    currency: `${currency}`,
+    currencyDisplay: 'narrowSymbol'
   })
   return formatter.format(value)
 }
@@ -40,7 +41,7 @@ export const PixelCurrency = React.forwardRef<HTMLDivElement, CurrencyProps>(
             {formatCurrency(
               value,
               tenant_info?.default_currency || 'PKR'
-            ).replace(tenant_info?.default_currency || 'PKR', '')}
+            ).replace('Rs', '')}
           </React.Fragment>
         )}
       </StyledPixelCurrency>
