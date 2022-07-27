@@ -64,7 +64,8 @@ const tagColors = {
   completed: '#2196f3',
   partial_paid: '#4caf50',
   unpaid: '#f44336',
-  paid: '#4caf50'
+  paid: '#4caf50',
+  refund_return: '#3f51b5'
 }
 
 const getColor = (children, customBackgroundColor) => {
