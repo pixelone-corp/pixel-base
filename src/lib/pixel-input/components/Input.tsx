@@ -35,7 +35,7 @@ const InputContainer = styled.div<{ display?: boolean }>`
     background-repeat: no-repeat no-repeat;
     background-position: center center;
     background-size: cover;
-    top: 11px;
+    top: 10px;
     left: 10px;
     display: ${(props) => (props.display ? 'block' : 'none')};
   }
@@ -44,7 +44,7 @@ const StyledPixelInput = styled(FormControl)`
   ${(props) =>
     props.showSearchIcon &&
     css`
-      padding-left: 30px !important;
+      padding-left: 35px !important;
     `}
   background-color: #f7f7f7 !important;
   ${(props) =>
