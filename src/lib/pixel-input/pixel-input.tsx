@@ -151,7 +151,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
       labelKey,
       noPadding = false,
       invalid = false,
-      showSearchIcon = true,
+      showSearchIcon = false,
       ...rest
     },
     ref
