@@ -1,8 +1,9 @@
+import { $secondaryWithAlpha } from '../styleGuide'
 import { DateRangeInput } from '@datepicker-react/styled'
 import cn from 'classnames'
 import React, { InputHTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
-import { $secondaryWithAlpha } from '../styleGuide'
+
 import Datepicker from './components/Datepicker'
 import Input from './components/Input'
 import Inputmask from './components/Inputmask'
@@ -30,6 +31,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   noPadding?: boolean
   children?: any
   invalid?: boolean
+  showSearchIcon?: boolean
 }
 
 const variantClasses = {
@@ -42,6 +44,7 @@ const variantClasses = {
 }
 
 const PixelInputContainer = styled.div`
+  position: relative;
   width: 100%;
   &.overFlowCustom {
     overflow: visible !important;
@@ -148,6 +151,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
       labelKey,
       noPadding = false,
       invalid = false,
+      showSearchIcon = true,
       ...rest
     },
     ref
@@ -282,6 +286,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
               />
             ) : (
               <Input
+                showSearchIcon={showSearchIcon}
                 id={name}
                 name={name}
                 type={type}
