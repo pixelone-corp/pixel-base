@@ -12,7 +12,7 @@ npm install --save pixelone-ui-libs
 
 ## Usage
 
-DEMO: https://muffrank.github.io/pixelone-ui-libs/
+DEMO: https://pixelone-corp.github.io/pixelone-ui-libs/
 
 ```tsx
 import React, { Component } from 'react'
