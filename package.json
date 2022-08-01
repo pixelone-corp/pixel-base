@@ -24,7 +24,7 @@
     "storybook": "start-storybook -p 6006",
     "predeploy": "npm run build-storybook",
     "deploy-storybook": "gh-pages -d docs",
-    "build-storybook": "build-storybook -o docs -s ./src"
+    "build-storybook": "build-storybook -o docs"
   },
   "homepage": "https://pixelone-corp.github.io/pixelone-ui-libs/",
   "peerDependencies": {
