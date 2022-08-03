@@ -201,7 +201,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
 
             <TagInput
               onBlur={() => {}}
-              width={filterText.length > 8 ? '30%' : '20%'}
+              width={filterText.length > 8 ? '40%' : '40%'}
               placeholder={placeholder}
               className={invalid ? 'invalid' : ''}
               value={filterText || ''}

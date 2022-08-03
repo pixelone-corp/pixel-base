@@ -2,7 +2,6 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import PixelDropzone from './pixel-dropzone'
-import moment from 'moment'
 
 export default {
   title: 'Pixel Dropzone',
