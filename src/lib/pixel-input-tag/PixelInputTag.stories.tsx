@@ -2,6 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import PixelInputTag from './PixelInputTag'
+import { Section, SectionActions } from '../common-styled-component'
 
 export default {
   title: 'Pixel Input Tag',
@@ -9,16 +10,33 @@ export default {
 } as ComponentMeta<typeof PixelInputTag>
 
 const Template: ComponentStory<typeof PixelInputTag> = (args) => {
-  //   const [value, setValue] = React.useState('')
-  //   const onChangeHandler = (e) => {
-  //     setValue(e.target.value)
-  //   }
-  //   args.onChange = onChangeHandler
+  const [tags, setTags] = React.useState([])
+  // do not add the same tag twice
+  const handleTagAdd = (tag) => {
+    if (tags.find((t) => t.value === tag.value)) {
+      return
+    }
+    setTags([...tags, tag])
+  }
+  const handleTagDelete = (tag) => {
+    setTags(tags.filter((t) => t.value !== tag.value))
+  }
+  const handleClearAll = () => {
+    setTags([])
+  }
+
   return (
     <React.Fragment>
       <h2>Pixel Input Tag</h2>
 
-      <PixelInputTag {...args} placeholder='Select Tags...' />
+      <PixelInputTag
+        {...args}
+        placeholder='Select Tags...'
+        tags={tags}
+        handleTagAdd={handleTagAdd}
+        handleTagDelete={handleTagDelete}
+        clearAll={handleClearAll}
+      />
     </React.Fragment>
   )
 }
