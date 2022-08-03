@@ -2,6 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import PixelDropDown from './pixel-select-drop-down'
+import PixelButton from '../pixel-button/pixel-button'
 
 export default {
   title: 'Pixel Select Dropdown',
@@ -19,7 +20,12 @@ const Template: ComponentStory<typeof PixelDropDown> = (args) => {
   args.onChange = onChangeHandler
   return (
     <React.Fragment>
-      <PixelDropDown value={value} {...args} />
+      <PixelDropDown
+        value={value}
+        {...args}
+        placeholder='Pixel DropDown'
+        required
+      />
     </React.Fragment>
   )
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import PixelInputTag from './PixelInputTag'
-import { Section, SectionActions } from '../common-styled-component'
 
 export default {
   title: 'Pixel Input Tag',
@@ -11,7 +10,6 @@ export default {
 
 const Template: ComponentStory<typeof PixelInputTag> = (args) => {
   const [tags, setTags] = React.useState([])
-  // do not add the same tag twice
   const handleTagAdd = (tag) => {
     if (tags.find((t) => t.value === tag.value)) {
       return
