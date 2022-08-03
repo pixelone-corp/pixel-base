@@ -8,7 +8,7 @@ export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   error?: 'string'
   isgrouped?: boolean
   groupOptionData?: any
-  selectlabel?: string
+  placeholder?: string
   onChange: any
 }
 interface OptionsData {
@@ -65,8 +65,9 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       error,
       groupOptionData = {},
       isgrouped = false,
-      selectlabel = 'Please select',
+      placeholder = '',
       value = '',
+
       ...rest
     },
     ref
@@ -125,7 +126,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
               isgrouped ? groupOptionData : options,
               value,
               isgrouped
-            ) || selectlabel}
+            ) || placeholder}
           </OptionLabel>
           <FontAwesomeIcon icon={faAngleDown} />
         </Toggler>
