@@ -103,7 +103,7 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
       return (
         <SearchPixelInput>
           <PixelInput
-            showsearchicon={true}
+            showsearchicon={0}
             placeholder='Search'
             name='search'
             onChange={(e) => setFilterText(e.target.value)}
