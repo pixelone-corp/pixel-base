@@ -31,7 +31,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   noPadding?: boolean
   children?: any
   invalid?: boolean
-  showSearchIcon?: boolean
+  showsearchicon?: boolean
 }
 
 const variantClasses = {
@@ -151,7 +151,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
       labelKey,
       noPadding = false,
       invalid = false,
-      showSearchIcon = false,
+      showsearchicon = false,
       ...rest
     },
     ref
@@ -286,7 +286,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
               />
             ) : (
               <Input
-                showSearchIcon={showSearchIcon}
+                showsearchicon={showsearchicon}
                 id={name}
                 name={name}
                 type={type}

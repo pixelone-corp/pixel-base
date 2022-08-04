@@ -5,9 +5,9 @@ import styled, { css } from 'styled-components'
 const Input = (props) => {
   return (
     <React.Fragment>
-      <InputContainer display={props.showSearchIcon}>
+      <InputContainer display={props.showsearchicon}>
         <StyledPixelInput
-          showSearchIcon={props.showSearchIcon}
+          showsearchicon={props.showsearchicon}
           id={props.id}
           name={props.name}
           type={props.type}
@@ -42,7 +42,7 @@ const InputContainer = styled.div<{ display?: boolean }>`
 `
 const StyledPixelInput = styled(FormControl)`
   ${(props) =>
-    props.showSearchIcon &&
+    props.showsearchicon &&
     css`
       padding-left: 35px !important;
     `}
