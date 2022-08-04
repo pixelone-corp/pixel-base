@@ -31,7 +31,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   noPadding?: boolean
   children?: any
   invalid?: boolean
-  showsearchicon?: boolean
+  showsearchicon?: any
 }
 
 const variantClasses = {
