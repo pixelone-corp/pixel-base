@@ -119,6 +119,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     }, [])
 
     return (
+      <React.Fragment>
       <DropDown ref={toggleRef} {...rest} className={className}>
         <Toggler onClick={toggleOptions}>
           <OptionLabel>
@@ -219,6 +220,10 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
           </React.Fragment>
         )}
       </DropDown>
+      {error && (
+          <InputError className='my-2 text-xs text-red-500'>{error}</InputError>
+        )}
+      </React.Fragment>
     )
   }
 )
@@ -294,5 +299,9 @@ const Search = styled.input`
 
     outline: none;
   }
+`
+const InputError = styled.span`
+  font-size: 90%;
+  color: rgb(255 0 0 / 64%);
 `
 export default PixelDropDown
