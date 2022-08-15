@@ -5,7 +5,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   className?: string
   options?: OptionsData[]
-  error?: 'string'
+  error?: string
   isgrouped?: boolean
   groupOptionData?: any
   placeholder?: string
@@ -62,7 +62,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     {
       className,
       options = [],
-      error,
+      error = '',
       groupOptionData = {},
       isgrouped = false,
       placeholder = '',
@@ -119,109 +119,117 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     }, [])
 
     return (
-      <DropDown ref={toggleRef} {...rest} className={className}>
-        <Toggler onClick={toggleOptions}>
-          <OptionLabel>
-            {getValue(
-              isgrouped ? groupOptionData : options,
-              value,
-              isgrouped
-            ) || placeholder}
-          </OptionLabel>
-          <FontAwesomeIcon icon={faAngleDown} />
-        </Toggler>
-        {isOptionsOpen && (
-          <React.Fragment>
-            {isgrouped ? (
-              <React.Fragment>
-                <DropDownList position={position}>
-                  <SearchPixelInput>
-                    <Search
-                      placeholder='Search'
-                      name='search'
-                      onChange={(e) => setFilterText(e.target.value)}
-                      value={filterText}
-                    />
-                  </SearchPixelInput>
-                  {Object.keys(groupData).map((key) => {
-                    if (groupData[key].length == 0) return null
+      <Mainconatiner>
+        <DropDown ref={toggleRef} {...rest} className={className}>
+          <Toggler onClick={toggleOptions}>
+            <OptionLabel>
+              {getValue(
+                isgrouped ? groupOptionData : options,
+                value,
+                isgrouped
+              ) || placeholder}
+            </OptionLabel>
+            <FontAwesomeIcon icon={faAngleDown} />
+          </Toggler>
+          {isOptionsOpen && (
+            <React.Fragment>
+              {isgrouped ? (
+                <React.Fragment>
+                  <DropDownList position={position}>
+                    <SearchPixelInput>
+                      <Search
+                        placeholder='Search'
+                        name='search'
+                        onChange={(e) => setFilterText(e.target.value)}
+                        value={filterText}
+                      />
+                    </SearchPixelInput>
+                    {Object.keys(groupData).map((key) => {
+                      if (groupData[key].length == 0) return null
 
-                    return (
-                      <OptGroup label={key}>
-                        {groupData[key].map((option) => {
-                          return (
-                            <Option
-                              onClick={() => {
-                                rest.onChange &&
-                                  rest.onChange({
-                                    target: {
-                                      value: option.value,
-                                      options: [{ text: option.label }],
-                                      selectedIndex: 0
-                                    }
-                                  }),
-                                  setIsOptionsOpen(false)
-                              }}
-                              key={option.value}
-                              value={option.value}
-                              disabled={option.disabled}
-                              className={
-                                option.value === value ? 'selected' : ''
-                              }
-                            >
-                              {option.label}
-                            </Option>
-                          )
-                        })}
-                      </OptGroup>
-                    )
-                  })}
-                </DropDownList>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                {' '}
-                <DropDownList position={position}>
-                  <SearchPixelInput>
-                    <Search
-                      placeholder='Search'
-                      name='search'
-                      onChange={(e) => setFilterText(e.target.value)}
-                      value={filterText}
-                    />
-                  </SearchPixelInput>
-                  {filterData(options, filterText)?.map((option) => {
-                    return (
-                      <Option
-                        key={option.value}
-                        className={option.value === value ? 'selected' : ''}
-                        value={option.value}
-                        disabled={option.disabled}
-                        onClick={() => {
-                          rest.onChange &&
-                            rest.onChange({
-                              target: {
-                                value: option.value,
-                                options: [{ text: option.label }],
-                                selectedIndex: 0
-                              }
-                            }),
-                            setIsOptionsOpen(false)
-                        }}
-                      >
-                        {option.label}
-                      </Option>
-                    )
-                  })}
-                </DropDownList>
-              </React.Fragment>
-            )}
-          </React.Fragment>
-        )}
-      </DropDown>
+                      return (
+                        <OptGroup label={key}>
+                          {groupData[key].map((option) => {
+                            return (
+                              <Option
+                                onClick={() => {
+                                  rest.onChange &&
+                                    rest.onChange({
+                                      target: {
+                                        value: option.value,
+                                        options: [{ text: option.label }],
+                                        selectedIndex: 0
+                                      }
+                                    }),
+                                    setIsOptionsOpen(false)
+                                }}
+                                key={option.value}
+                                value={option.value}
+                                disabled={option.disabled}
+                                className={
+                                  option.value === value ? 'selected' : ''
+                                }
+                              >
+                                {option.label}
+                              </Option>
+                            )
+                          })}
+                        </OptGroup>
+                      )
+                    })}
+                  </DropDownList>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  {' '}
+                  <DropDownList position={position}>
+                    <SearchPixelInput>
+                      <Search
+                        placeholder='Search'
+                        name='search'
+                        onChange={(e) => setFilterText(e.target.value)}
+                        value={filterText}
+                      />
+                    </SearchPixelInput>
+                    {filterData(options, filterText)?.map((option) => {
+                      return (
+                        <Option
+                          key={option.value}
+                          className={option.value === value ? 'selected' : ''}
+                          value={option.value}
+                          disabled={option.disabled}
+                          onClick={() => {
+                            rest.onChange &&
+                              rest.onChange({
+                                target: {
+                                  value: option.value,
+                                  options: [{ text: option.label }],
+                                  selectedIndex: 0
+                                }
+                              }),
+                              setIsOptionsOpen(false)
+                          }}
+                        >
+                          {option.label}
+                        </Option>
+                      )
+                    })}
+                  </DropDownList>
+                </React.Fragment>
+              )}
+            </React.Fragment>
+          )}
+        </DropDown>
+        {error !== '' && <Error>{error}</Error>}
+      </Mainconatiner>
     )
   }
 )
+const Mainconatiner = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`
 const Toggler = styled.div`
   display: flex;
   align-items: center;
@@ -294,5 +302,9 @@ const Search = styled.input`
 
     outline: none;
   }
+`
+const Error = styled.span`
+  font-size: 90%;
+  color: rgb(255 0 0 / 64%);
 `
 export default PixelDropDown
