@@ -2,6 +2,7 @@ import React, { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { NavItem } from 'react-bootstrap'
 export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   className?: string
   options?: OptionsData[]
@@ -10,6 +11,7 @@ export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   groupOptionData?: any
   placeholder?: string
   onChange: any
+  required?: any
 }
 interface OptionsData {
   value: string
@@ -67,6 +69,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       isgrouped = false,
       placeholder = '',
       value = '',
+      required = false,
 
       ...rest
     },
@@ -81,6 +84,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     }
 
     const toggleRef = React.useRef(null)
+    const inputRef = React.useRef(null)
 
     const groupData = filterGroupedData(groupOptionData, filterText)
 
@@ -90,12 +94,31 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       }
       setIsOptionsOpen(false)
     }
+    const getValues = async () => {
+      return new Promise((resolve) => {
+        resolve(value)
+      })
+    }
+
     React.useEffect(() => {
+      const parent = toggleRef.current?.closest('form')
+      if (parent) {
+        parent.addEventListener('submit', async (e) => {
+          const val = toggleRef.current.getAttribute('data-value')
+
+          if (`${val}`.length === 0) {
+            e.preventDefault()
+            // e.stopPropagation()
+            parent.reportValidity()
+          }
+        })
+      }
+
       document.addEventListener('click', handleClickOutside)
       return () => {
         document.removeEventListener('click', handleClickOutside)
       }
-    }, [])
+    }, [value])
     const handleMouseMove = () => {
       if (toggleRef?.current) {
         setPosition(toggleRef?.current.getBoundingClientRect())
@@ -120,7 +143,18 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
 
     return (
       <Mainconatiner>
-        <DropDown ref={toggleRef} {...rest} className={className}>
+        <HiddenInput
+          type='text'
+          ref={inputRef}
+          value={value}
+          required={required}
+        />
+        <DropDown
+          ref={toggleRef}
+          {...rest}
+          className={className}
+          data-value={value}
+        >
           <Toggler onClick={toggleOptions}>
             <OptionLabel>
               {getValue(
@@ -229,6 +263,7 @@ const Mainconatiner = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 `
 const Toggler = styled.div`
   display: flex;
@@ -307,4 +342,20 @@ const Error = styled.span`
   font-size: 90%;
   color: rgb(255 0 0 / 64%);
 `
+const HiddenInput = styled.input`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+`
+
 export default PixelDropDown
