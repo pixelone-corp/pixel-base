@@ -148,6 +148,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
           ref={inputRef}
           value={value}
           required={required}
+          onChange={() => {}}
         />
         <DropDown
           ref={toggleRef}
