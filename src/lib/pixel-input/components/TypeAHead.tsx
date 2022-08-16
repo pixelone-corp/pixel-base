@@ -16,6 +16,7 @@ const TypeAHead = (props) => {
 
   return (
     <AsyncTypeahead
+      autoComplete='off'
       style={{ overflow: 'visible' }}
       filterBy={filterBy}
       id='async-example'
