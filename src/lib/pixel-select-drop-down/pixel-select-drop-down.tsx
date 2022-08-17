@@ -184,7 +184,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
 
                       return (
                         <OptGroup label={key}>
-                          {groupData[key].map((option) => {
+                          {groupData[key].map((option, index) => {
                             return (
                               <Option
                                 onClick={() => {
@@ -198,7 +198,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                     }),
                                     setIsOptionsOpen(false)
                                 }}
-                                key={option.value}
+                                key={index}
                                 value={option.value}
                                 disabled={option.disabled}
                                 className={
@@ -226,10 +226,10 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                         value={filterText}
                       />
                     </SearchPixelInput>
-                    {filterData(options, filterText)?.map((option) => {
+                    {filterData(options, filterText)?.map((option, index) => {
                       return (
                         <Option
-                          key={option.value}
+                          key={index}
                           className={option.value === value ? 'selected' : ''}
                           value={option.value}
                           disabled={option.disabled}
