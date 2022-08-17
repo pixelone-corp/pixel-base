@@ -1,34 +1,34 @@
-import React from "react";
-import { Dropdown } from "react-bootstrap";
-import styled, { css } from "styled-components";
-import { $primaryColor, $secondaryColor } from "../styleGuide";
-import { PixelTag } from "../pixel-tag/pixel-tag";
+import React from 'react'
+import { Dropdown } from 'react-bootstrap'
+import styled, { css } from 'styled-components'
+import { $primaryColor, $secondaryColor } from '../styleGuide'
+import { PixelTag } from '../pixel-tag/pixel-tag'
 export interface MenuProps {
-  className?: string;
-  variant?: "outline" | "primary" | "secondary" | "link" | "tag" | string;
-  size?: "lg" | "sm";
-  active?: boolean;
-  disabled?: boolean;
-  margin?: string;
-  padding?: string;
-  tooltip?: string;
-  toggleText?: boolean;
-  options?: OptionsData[];
+  className?: string
+  variant?: 'outline' | 'primary' | 'secondary' | 'link' | 'tag' | string
+  size?: 'lg' | 'sm'
+  active?: boolean
+  disabled?: boolean
+  margin?: string
+  padding?: string
+  tooltip?: string
+  toggleText?: boolean
+  options?: OptionsData[]
 }
 interface OptionsData {
-  label: string;
-  disabled?: boolean;
-  clickHandler: any;
-  children?: OptionsData[];
-  formatter?: any;
+  label: string
+  disabled?: boolean
+  clickHandler: any
+  children?: OptionsData[]
+  formatter?: any
 }
-const StyledInnerLine = styled(Dropdown.Toggle)``;
+const StyledInnerLine = styled(Dropdown.Toggle)``
 const StyledPixelButton = styled(Dropdown.Toggle)`
   &:focus {
     outline: none !important;
     box-shadow: none !important;
   }
-  margin: ${(props: MenuProps) => props.margin || "0px"};
+  margin: ${(props: MenuProps) => props.margin || '0px'};
   a {
     color: white;
     text-decoration: none;
@@ -37,7 +37,7 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
     }
   }
   ${(props: MenuProps) =>
-    props.variant === "outline" &&
+    props.variant === 'outline' &&
     css`
       background-color: transparent;
       border-color: ${$primaryColor} !important;
@@ -45,7 +45,7 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
       outline: none;
     `}
   ${(props: MenuProps) =>
-    props.variant === "primary" &&
+    props.variant === 'primary' &&
     css`
       background-color: ${$primaryColor} !important;
       border-color: ${$primaryColor} !important;
@@ -58,12 +58,12 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
       }
     `}
     ${(props: MenuProps) =>
-    props.variant === "link" &&
+    props.variant === 'link' &&
     css`
       background-color: transparent;
       border-color: transparent;
       color: ${$primaryColor};
-      padding: ${(props: MenuProps) => props.padding || "0.375rem 0.75rem"};
+      padding: ${(props: MenuProps) => props.padding || '0.375rem 0.75rem'};
       &:hover,
       &:hover a,
       &:active,
@@ -83,37 +83,37 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
       border-color: ${$secondaryColor} !important;
     `}
     ${(props: MenuProps) =>
-    props.variant === "tag" &&
+    props.variant === 'tag' &&
     css`
       &::after {
         display: none;
       }
     `}
-`;
-const StyledPixelDropDownMenu = styled.div``;
+`
+const StyledPixelDropDownMenu = styled.div``
 
 export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
   (
     {
       className,
-      toggleText = "drop-down-button",
+      toggleText = 'drop-down-button',
       options,
       active,
-      variant = "primary",
+      variant = 'primary',
       disabled = false,
-      margin = "0px",
+      margin = '0px',
       tooltip = false,
       ...rest
     },
     ref
   ) => {
-    const [show, setShow] = React.useState<any>(false);
+    const [show, setShow] = React.useState<any>(false)
     const showDropdown = (e) => {
-      setShow(!show);
-    };
+      setShow(!show)
+    }
     const hideDropdown = (e) => {
-      setShow(false);
-    };
+      setShow(false)
+    }
     return (
       <StyledPixelDropDownMenu>
         <Dropdown>
@@ -126,21 +126,22 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
             margin={margin}
             {...rest}
           >
-            {variant === "tag" ? (
+            {variant === 'tag' ? (
               <PixelTag>{toggleText}</PixelTag>
             ) : (
               <React.Fragment>{toggleText}</React.Fragment>
             )}
           </StyledPixelButton>
           <Dropdown.Menu>
-            {options?.map((data) => (
+            {options?.map((data, index) => (
               <Dropdown.Item
+                key={index}
                 disabled={data.disabled}
                 onClick={data.clickHandler}
                 onMouseEnter={() => setShow(data.label)}
                 onMouseLeave={() => setShow(false)}
               >
-                {data.children ? "" : data.label}
+                {data.children ? '' : data.label}
                 {data.children && (
                   <StyledSubDropdown show={show === data.label}>
                     <StyledInnerLine
@@ -153,8 +154,9 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                       {data.formatter ? data.formatter(data) : data.label}
                     </StyledInnerLine>
                     <Dropdown.Menu>
-                      {data.children?.map((data) => (
+                      {data.children?.map((data, index) => (
                         <Dropdown.Item
+                          key={index}
                           disabled={data.disabled}
                           onClick={data.clickHandler}
                         >
@@ -169,9 +171,9 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
           </Dropdown.Menu>
         </Dropdown>
       </StyledPixelDropDownMenu>
-    );
+    )
   }
-);
+)
 
 const StyledSubDropdown = styled(Dropdown)`
   width: 200px;
@@ -189,5 +191,5 @@ const StyledSubDropdown = styled(Dropdown)`
   .dropdown-menu {
     transform: translateX(80%) !important;
   }
-`;
-export default PixelDropDownMenu;
+`
+export default PixelDropDownMenu
