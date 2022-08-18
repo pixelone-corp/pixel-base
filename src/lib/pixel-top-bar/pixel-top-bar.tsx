@@ -1,5 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { BrowserView, MobileView } from 'react-device-detect'
 
 export interface TopBarProps {
   className: string
@@ -20,11 +21,25 @@ const StyledPixelTopBar = styled.div`
   align-items: center;
   padding: 0 20px;
   border-bottom: 1px solid #e6e6e6;
+  ${({ isMobile }) =>
+    isMobile &&
+    css`
+      padding-left: 80px;
+    `}
 `
 
 export const PixelTopBar = React.forwardRef<HTMLDivElement, TopBarProps>(
   ({ className, children, ...rest }, ref) => {
-    return <StyledPixelTopBar>{children}</StyledPixelTopBar>
+    return (
+      <React.Fragment>
+        <BrowserView>
+          <StyledPixelTopBar>{children}</StyledPixelTopBar>
+        </BrowserView>
+        <MobileView>
+          <StyledPixelTopBar isMobile>{children}</StyledPixelTopBar>
+        </MobileView>
+      </React.Fragment>
+    )
   }
 )
 export default PixelTopBar
