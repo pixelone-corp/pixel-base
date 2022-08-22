@@ -239,6 +239,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                 target: {
                                   value: option.value,
                                   options: [{ text: option.label }],
+                                  label: option.label,
                                   selectedIndex: 0
                                 }
                               }),
