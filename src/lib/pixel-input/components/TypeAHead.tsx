@@ -9,8 +9,6 @@ const TypeAHead = (props) => {
   const ref: any = React.useRef()
 
   React.useEffect(() => {
-    console.log(data)
-
     setOptions(data)
   }, [data])
 
