@@ -50,34 +50,44 @@ export const PixelBreadcrumbs = React.forwardRef<
   BreadcrumbsProps
 >(({ className, data, ...rest }, ref) => {
   return (
-    <StyledPixelBreadcrumbs>
+    <>
       <BrowserView>
-        {data.length &&
-          data.map((item, index) => (
-            <Breadcrumb.Item
-              linkAs={item.link ? Link : undefined}
-              key={index}
-              active={item.active}
-              linkProps={{ to: item.link }}
-            >
-              {item.name}
-            </Breadcrumb.Item>
-          ))}
+        <StyledPixelBreadcrumbs>
+          {data.length &&
+            data.map((item, index) => (
+              <Breadcrumb.Item
+                linkAs={item.link ? Link : undefined}
+                key={index}
+                active={item.active}
+                linkProps={{ to: item.link }}
+              >
+                {item.name}
+              </Breadcrumb.Item>
+            ))}
+        </StyledPixelBreadcrumbs>
       </BrowserView>
       <MobileView>
-        <Row>
-          <FontAwesomeIcon icon={faArrowLeftLong} />
-          <Breadcrumb.Item
-            linkAs={data[data.length - 1].link ? Link : undefined}
-            key={1}
-            active={data[data.length - 1].active}
-            linkProps={{ to: data[data.length - 1].link }}
-          >
-            {data[data.length - 1].name}
-          </Breadcrumb.Item>
-        </Row>
+        <StyledPixelBreadcrumbs>
+          <Row>
+            {data.length > 2 && (
+              <>
+                <Link to={data[data.length - 2].link}>
+                  <FontAwesomeIcon icon={faArrowLeftLong} />
+                </Link>
+              </>
+            )}
+            <Breadcrumb.Item
+              linkAs={data[data.length - 1].link ? Link : undefined}
+              key={1}
+              active={data[data.length - 1].active}
+              linkProps={{ to: data[data.length - 1].link }}
+            >
+              {data[data.length - 1].name}
+            </Breadcrumb.Item>
+          </Row>
+        </StyledPixelBreadcrumbs>
       </MobileView>
-    </StyledPixelBreadcrumbs>
+    </>
   )
 })
 
