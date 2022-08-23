@@ -33,6 +33,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   invalid?: boolean
   showsearchicon?: any
   placeholder?: string
+  isShowLabel?: boolean
 }
 
 const variantClasses = {
@@ -179,6 +180,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
       invalid = false,
       showsearchicon = 1,
       placeholder = '',
+      isShowLabel = true,
 
       ...rest
     },
@@ -214,13 +216,16 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
           setFocus(false)
         }}
       >
-        <StyledLabel
-          focus={focus ? 'true' : 'false'}
-          className={showLabel ? 'showLabell' : 'testing'}
-          showsearchicon={showsearchicon}
-        >
-          {placeholder}
-        </StyledLabel>
+        {isShowLabel && (
+          <StyledLabel
+            focus={focus ? 'true' : 'false'}
+            className={showLabel ? 'showLabell' : 'testing'}
+            showsearchicon={showsearchicon}
+          >
+            {placeholder}
+          </StyledLabel>
+        )}
+
         {isMakingInput ? (
           <Inputmask
             value={value}
