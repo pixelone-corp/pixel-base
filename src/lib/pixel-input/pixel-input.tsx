@@ -32,6 +32,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   children?: any
   invalid?: boolean
   showsearchicon?: any
+  placeholder?: string
 }
 
 const variantClasses = {
@@ -43,6 +44,31 @@ const variantClasses = {
   line: 'ps-0 border-b border-border-base rounded-none focus:border-accent'
 }
 
+const StyledLabel = styled.div<{ focus?: string; showsearchicon: any }>`
+  &.showLabell {
+    background: ${(props) =>
+      props.focus === 'true'
+        ? 'linear-gradient(180deg, #fff 70%, transparent 30%);'
+        : props.focus === 'false' &&
+          'linear-gradient(180deg, #fff 52%, transparent 48%);'};
+    top: ${(props) =>
+      props.focus === 'true' ? '-10px' : props.focus === 'false' && '-8px'};
+    opacity: 1;
+    z-index: 99999999999999;
+  }
+  padding-left: 5px;
+  padding-right: 5px;
+  font-weight: 400;
+  opacity: 0;
+  color: #737373;
+  position: absolute;
+  width: auto;
+  top: -10px;
+  left: ${(props) => (props.showsearchicon === 0 ? '27px' : '13px')};
+  font-size: 11px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px !important;
+`
 const PixelInputContainer = styled.div`
   position: relative;
   width: 100%;
@@ -152,6 +178,8 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
       noPadding = false,
       invalid = false,
       showsearchicon = 1,
+      placeholder = '',
+
       ...rest
     },
     ref
@@ -159,6 +187,18 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
     const [showDatePicker, setShowDatePicker] = React.useState<any>(
       as === 'dateRange' ? null : false
     )
+    const [showLabel, setShowLabel] = React.useState<any>(false)
+    const [focus, setFocus] = React.useState<any>(false)
+    console.log(focus)
+
+    React.useEffect(() => {
+      if (value) {
+        setShowLabel(true)
+      } else if (value === '' || value === null || value === undefined) {
+        setShowLabel(false)
+      }
+    }, [value])
+
     if (as === 'textarea') {
       rest['as'] = as
     }
@@ -167,15 +207,20 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
         invalid={invalid}
         className={'overFlowCustom'}
         style={parentStyle}
+        onFocus={() => {
+          setFocus(true)
+        }}
+        onBlur={() => {
+          setFocus(false)
+        }}
       >
-        {label && (
-          <label
-            htmlFor={name}
-            className='block text-body-dark font-semibold text-sm leading-none mb-3'
-          >
-            {label}
-          </label>
-        )}
+        <StyledLabel
+          focus={focus ? 'true' : 'false'}
+          className={showLabel ? 'showLabell' : 'testing'}
+          showsearchicon={showsearchicon}
+        >
+          {placeholder}
+        </StyledLabel>
         {isMakingInput ? (
           <Inputmask
             value={value}
@@ -263,6 +308,9 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
               />
             ) : as === 'typeahead' ? (
               <TypeAHead
+                setFocus={setFocus}
+                setShowLabel={setShowLabel}
+                placeholder={placeholder}
                 id={name}
                 name={name}
                 type={type}
@@ -287,6 +335,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
             ) : (
               <Input
                 showsearchicon={showsearchicon}
+                placeholder={placeholder}
                 id={name}
                 name={name}
                 type={type}

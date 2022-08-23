@@ -8,6 +8,7 @@ const Input = (props) => {
       <InputContainer display={props.showsearchicon === 0 ? 'true' : ''}>
         <StyledPixelInput
           showsearchicon={props.showsearchicon}
+          placeholder={props.placeholder}
           id={props.id}
           name={props.name}
           type={props.type}

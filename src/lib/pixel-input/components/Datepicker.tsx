@@ -1,11 +1,11 @@
-import React from "react";
-import { DateSingleInput } from "@datepicker-react/styled";
-import styled from "styled-components";
-import moment from "moment";
+import React from 'react'
+import { DateSingleInput } from '@datepicker-react/styled'
+import styled from 'styled-components'
+import moment from 'moment'
 const Datepicker = (props) => {
   return (
     <Date>
-      {" "}
+      {' '}
       <StyledDatePicker
         ref={props.ref}
         className={props.className}
@@ -21,19 +21,18 @@ const Datepicker = (props) => {
         date={props.date} // Date or null
         showDatepicker={props.showDatepicker}
         displayFormat={(date) => {
-          console.log();
-          return moment(date).utc().format("YYYY-MM-DD");
+          return moment(date).utc().format('YYYY-MM-DD')
         }}
       />
     </Date>
-  );
-};
-const StyledDatePicker = styled(DateSingleInput)``;
+  )
+}
+const StyledDatePicker = styled(DateSingleInput)``
 const Date = styled.div`
   .sc-iBkjds {
     min-height: 38px !important;
     border-radius: 0.25rem !important;
     overflow: hidden;
   }
-`;
-export default Datepicker;
+`
+export default Datepicker
