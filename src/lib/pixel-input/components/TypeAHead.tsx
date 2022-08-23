@@ -3,7 +3,8 @@ import { AsyncTypeahead } from 'react-bootstrap-typeahead'
 import 'react-bootstrap-typeahead/css/Typeahead.css'
 
 const TypeAHead = (props) => {
-  const { handleSearch, isLoading, data, labelKey, ...rest } = props
+  const { handleSearch, isLoading, data, labelKey, placeholder, ...rest } =
+    props
   const filterBy = () => true
   const [options, setOptions] = React.useState(data)
   const ref: any = React.useRef()

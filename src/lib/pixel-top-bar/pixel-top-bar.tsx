@@ -24,7 +24,7 @@ const StyledPixelTopBar = styled.div`
   ${({ isMobile }) =>
     isMobile &&
     css`
-      padding-left: 80px;
+      padding-left: 50px;
     `}
 `
 
