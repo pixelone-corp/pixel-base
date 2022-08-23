@@ -50,7 +50,7 @@ export const PixelBreadcrumbs = React.forwardRef<
   BreadcrumbsProps
 >(({ className, data, ...rest }, ref) => {
   return (
-    <>
+    <React.Fragment>
       <BrowserView>
         <StyledPixelBreadcrumbs>
           {data.length &&
@@ -87,7 +87,7 @@ export const PixelBreadcrumbs = React.forwardRef<
           </Row>
         </StyledPixelBreadcrumbs>
       </MobileView>
-    </>
+    </React.Fragment>
   )
 })
 
