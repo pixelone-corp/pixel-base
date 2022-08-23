@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { isBrowser, isMobile } from 'react-device-detect'
 
 import DataTable, { createTheme } from 'react-data-table-component'
 interface PixelTableProps {
@@ -49,8 +50,9 @@ const StyledLoaderContainer = styled.div`
   height: 100%;
   min-height: 500px;
 `
-const SearchPixelInput = styled.div`
+const SearchPixelInput = styled.div<{ isMobile?: boolean }>`
   width: 30%;
+  ${(props) => props.isMobile && 'width: 100%;'}
 `
 const CustomLoader = () => {
   const ref = React.useRef<HTMLDivElement>(null)
@@ -101,7 +103,7 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
       }
 
       return (
-        <SearchPixelInput>
+        <SearchPixelInput isMobile={isMobile}>
           <PixelInput
             showsearchicon={0}
             placeholder='Search'
