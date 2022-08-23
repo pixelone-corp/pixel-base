@@ -70,11 +70,11 @@ export const PixelBreadcrumbs = React.forwardRef<
         <StyledPixelBreadcrumbs>
           <Row>
             {data.length > 2 && (
-              <>
+              <React.Fragment>
                 <Link to={data[data.length - 2].link}>
                   <FontAwesomeIcon icon={faArrowLeftLong} />
                 </Link>
-              </>
+              </React.Fragment>
             )}
             <Breadcrumb.Item
               linkAs={data[data.length - 1].link ? Link : undefined}
