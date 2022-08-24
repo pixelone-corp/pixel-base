@@ -55,6 +55,7 @@ const StyledLabel = styled.div<{ focus?: string; showsearchicon: any }>`
     top: ${(props) =>
       props.focus === 'true' ? '-10px' : props.focus === 'false' && '-8px'};
     opacity: 1;
+    z-index: 1;
   }
   font-weight: 400;
   opacity: 0;
