@@ -12,6 +12,7 @@ export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   placeholder?: string
   onChange: any
   required?: any
+  isShowLabel?: boolean
 }
 interface OptionsData {
   value: string
@@ -29,6 +30,7 @@ const getGroupedValue = (options, value) => {
   })
   return groupedValue
 }
+
 const getValue = (options, value, isgrouped) => {
   const filteredValue = isgrouped
     ? getGroupedValue(options, value)
@@ -70,6 +72,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       placeholder = '',
       value = '',
       required = false,
+      isShowLabel = true,
 
       ...rest
     },
@@ -78,10 +81,19 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     const [isOptionsOpen, setIsOptionsOpen] = React.useState(false)
     const [filterText, setFilterText] = React.useState('')
     const [position, setPosition] = React.useState({})
+    const [showLabel, setShowLabel] = React.useState<any>(false)
     const toggleOptions = () => {
       setIsOptionsOpen(!isOptionsOpen)
       handleMouseMove()
     }
+    React.useEffect(() => {
+      const Value = getValue(options, value, isgrouped)
+      if (Value) {
+        setShowLabel(true)
+      } else if (Value === '' || Value === null || Value === undefined) {
+        setShowLabel(false)
+      }
+    }, [getValue(options, value, isgrouped)])
 
     const toggleRef = React.useRef(null)
     const inputRef = React.useRef(null)
@@ -150,6 +162,11 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
           required={required}
           onChange={() => {}}
         />
+        {isShowLabel && (
+          <StyledLabel className={showLabel ? 'showLabell' : 'testing'}>
+            {placeholder}
+          </StyledLabel>
+        )}
         <DropDown
           ref={toggleRef}
           {...rest}
@@ -360,4 +377,23 @@ const HiddenInput = styled.input`
   opacity: 0;
 `
 
+const StyledLabel = styled.div`
+  &.showLabell {
+    background: linear-gradient(180deg, #fff 52%, transparent 48%);
+    top: -8px;
+    opacity: 1;
+    left: 13px;
+    z-index: 1;
+  }
+  font-weight: 400;
+  opacity: 0;
+  color: #737373;
+  position: absolute;
+  width: auto;
+  top: -10px;
+  left: '15px';
+  font-size: 11px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px !important;
+`
 export default PixelDropDown
