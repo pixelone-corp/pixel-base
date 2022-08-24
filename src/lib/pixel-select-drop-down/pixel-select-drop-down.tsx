@@ -13,6 +13,7 @@ export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   onChange: any
   required?: any
   isShowLabel?: boolean
+  label?: string
 }
 interface OptionsData {
   value: string
@@ -73,6 +74,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       value = '',
       required = false,
       isShowLabel = true,
+      label = '',
 
       ...rest
     },
@@ -164,7 +166,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         />
         {isShowLabel && (
           <StyledLabel className={showLabel ? 'showLabell' : 'testing'}>
-            {placeholder}
+            {label}
           </StyledLabel>
         )}
         <DropDown
