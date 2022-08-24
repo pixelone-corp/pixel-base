@@ -56,8 +56,6 @@ const StyledLabel = styled.div<{ focus?: string; showsearchicon: any }>`
       props.focus === 'true' ? '-10px' : props.focus === 'false' && '-8px'};
     opacity: 1;
   }
-  padding-left: 5px;
-  padding-right: 5px;
   font-weight: 400;
   opacity: 0;
   color: #737373;
@@ -190,7 +188,6 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
     )
     const [showLabel, setShowLabel] = React.useState<any>(false)
     const [focus, setFocus] = React.useState<any>(false)
-    console.log(focus)
 
     React.useEffect(() => {
       if (value) {
