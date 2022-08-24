@@ -95,7 +95,6 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       }
     }, [getValue(options, value, isgrouped)])
 
-    console.log(getValue(options, value, isgrouped), placeholder)
     const toggleRef = React.useRef(null)
     const inputRef = React.useRef(null)
 
