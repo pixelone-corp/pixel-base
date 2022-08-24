@@ -13,7 +13,6 @@ export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   onChange: any
   required?: any
   isShowLabel?: boolean
-  label?: string
 }
 interface OptionsData {
   value: string
@@ -74,7 +73,6 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       value = '',
       required = false,
       isShowLabel = true,
-      label = '',
 
       ...rest
     },
@@ -90,10 +88,15 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     }
     React.useEffect(() => {
       const Value = getValue(options, value, isgrouped)
-      if (Value) {
-        setShowLabel(true)
-      } else if (Value === '' || Value === null || Value === undefined) {
+
+      if (placeholder === Value) {
         setShowLabel(false)
+      } else {
+        if (Value) {
+          setShowLabel(true)
+        } else if (Value === '' || Value === null || Value === undefined) {
+          setShowLabel(false)
+        }
       }
     }, [getValue(options, value, isgrouped)])
 
@@ -166,7 +169,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         />
         {isShowLabel && (
           <StyledLabel className={showLabel ? 'showLabell' : 'testing'}>
-            {label}
+            {placeholder}
           </StyledLabel>
         )}
         <DropDown
