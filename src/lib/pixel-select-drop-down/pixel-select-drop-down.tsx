@@ -13,6 +13,7 @@ export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   onChange: any
   required?: any
   isShowLabel?: boolean
+  disabled?: boolean
 }
 interface OptionsData {
   value: string
@@ -73,6 +74,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       value = '',
       required = false,
       isShowLabel = true,
+      disabled = false,
 
       ...rest
     },
@@ -178,7 +180,15 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
           className={className}
           data-value={value}
         >
-          <Toggler onClick={toggleOptions}>
+          <Toggler
+            disable={disabled}
+            onClick={() => {
+              if (disabled) {
+                return
+              }
+              toggleOptions()
+            }}
+          >
             <OptionLabel>
               {getValue(
                 isgrouped ? groupOptionData : options,
@@ -289,13 +299,15 @@ const Mainconatiner = styled.div`
   flex-direction: column;
   position: relative;
 `
-const Toggler = styled.div`
+const Toggler = styled.div<{ disable: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.375rem 0.75rem;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
+  cursor: ${(props) => (props.disable ? 'not-allowed' : 'pointer')};
+  background: ${(props) => (props.disable ? '#f7f7f7' : 'none')};
 `
 const DropDown = styled.div`
   position: relative;
