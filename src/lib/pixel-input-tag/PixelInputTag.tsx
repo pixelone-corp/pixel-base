@@ -17,6 +17,8 @@ export interface InputTagProps {
   clearAll?: any
   noDataText?: string
   isAllClearable?: boolean
+  isShowLabel?: boolean
+  inputLabel?: string
 }
 export interface options {
   label: string
@@ -74,6 +76,8 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
       clearAll = {},
       noDataText = 'No data found',
       isAllClearable = true,
+      isShowLabel = true,
+      inputLabel = 'label',
 
       ...rest
     },
@@ -85,6 +89,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
     const inputTagref = React.useRef(null)
     const optionsref = React.useRef(null)
     const [invalid, setInvalid] = React.useState(false)
+
     const handleDelete = (value) => {
       setLocalTags(localTags.filter((t) => t.value !== value))
       handleTagDelete &&
@@ -178,6 +183,9 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
               toggleOptions()
             }}
           >
+            {isShowLabel && (
+              <StyledLabel className={'showLabell'}>{inputLabel}</StyledLabel>
+            )}
             {localTags.length > 0 && (
               <React.Fragment>
                 {localTags?.map((tag, i) => {
@@ -279,6 +287,7 @@ const ClearAll = styled.div`
   display: none;
 `
 const Container = styled.div`
+  position: relative;
   min-height: 38px;
   border-radius: 4px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -330,6 +339,25 @@ const Option = styled.option`
     background-color: #136acd;
     color: #ffffff;
   }
+`
+const StyledLabel = styled.div`
+  &.showLabell {
+    background: linear-gradient(180deg, #fff 52%, transparent 48%);
+    top: -9px;
+    opacity: 1;
+    left: 13px;
+    z-index: 1;
+  }
+  font-weight: 400;
+  opacity: 0;
+  color: #737373;
+  position: absolute;
+  width: auto;
+  top: -10px;
+  left: '15px';
+  font-size: 11px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px !important;
 `
 
 export default PixelInputTag
