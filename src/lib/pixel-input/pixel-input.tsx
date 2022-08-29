@@ -2,7 +2,7 @@ import { $secondaryWithAlpha } from '../styleGuide'
 import { DateRangeInput } from '@datepicker-react/styled'
 import cn from 'classnames'
 import React, { InputHTMLAttributes } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, ThemeProvider } from 'styled-components'
 
 import Datepicker from './components/Datepicker'
 import Input from './components/Input'
@@ -264,7 +264,10 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
                   inputId={name}
                   onChange={onChange}
                   onDateChange={(data) =>
-                    onChange({ target: { value: data.date } })
+                    onChange(
+                      { target: { value: data.date } },
+                      setShowDatePicker(false)
+                    )
                   }
                   onFocusChange={(focusedInput) =>
                     setShowDatePicker(focusedInput)
@@ -274,40 +277,51 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
                 />
               </React.Fragment>
             ) : as === 'dateRange' ? (
-              <StyledDateRangePicker
-                ref={ref}
-                className={cn(
-                  ' px-4 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
-                  shadow && 'focus:shadow',
-                  variantClasses[variant],
-                  sizeClasses[dimension],
-                  disabled && 'bg-gray-100 cursor-not-allowed',
-                  inputClassName
-                )}
-                disabled={disabled}
-                aria-invalid={error ? 'true' : 'false'}
-                {...rest}
-                showResetDate={false}
-                showSelectedDates={false}
-                showClose={false}
-                exactMinBookingDays={false}
-                rtl={false}
-                vertical={false}
-                inputId={name}
-                onDatesChange={(data: any) => {
-                  onChange({
-                    startDate: data.startDate,
-                    endDate: data.endDate
-                  })
-                  setShowDatePicker(data.focusedInput)
-                }}
-                onFocusChange={(focusedInput) => {
-                  setShowDatePicker(focusedInput)
-                }}
-                focusedInput={showDatePicker}
-                endDate={value.endDate}
-                startDate={value.startDate}
-              />
+              <React.Fragment>
+                <ThemeProvider
+                  theme={{
+                    breakpoints: ['32em', '48em', '64em'],
+                    reactDatepicker: {
+                      dateRangeZIndex: -99999
+                    }
+                  }}
+                ></ThemeProvider>
+                <StyledDateRangePicker
+                  ref={ref}
+                  className={cn(
+                    ' px-4 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
+                    shadow && 'focus:shadow',
+                    variantClasses[variant],
+                    sizeClasses[dimension],
+                    disabled && 'bg-gray-100 cursor-not-allowed',
+                    inputClassName
+                  )}
+                  style={{ display: 'none' }}
+                  disabled={disabled}
+                  aria-invalid={error ? 'true' : 'false'}
+                  {...rest}
+                  showResetDate={false}
+                  showSelectedDates={false}
+                  showClose={false}
+                  exactMinBookingDays={false}
+                  rtl={false}
+                  vertical={false}
+                  inputId={name}
+                  onDatesChange={(data: any) => {
+                    onChange({
+                      startDate: data.startDate,
+                      endDate: data.endDate
+                    })
+                    setShowDatePicker(data.focusedInput)
+                  }}
+                  onFocusChange={(focusedInput) => {
+                    setShowDatePicker(focusedInput)
+                  }}
+                  focusedInput={showDatePicker}
+                  endDate={value.endDate}
+                  startDate={value.startDate}
+                />
+              </React.Fragment>
             ) : as === 'typeahead' ? (
               <TypeAHead
                 setFocus={setFocus}
