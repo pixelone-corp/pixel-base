@@ -22,7 +22,7 @@ Simple.args = {
   subTitle: 'Sub Title',
   children: (
     <React.Fragment>
-      Pixel React Components Libray By PixelOne Software Solutions
+      Pixel React Components Libray By Pixel Software Solutions
     </React.Fragment>
   ),
   headerActions: (

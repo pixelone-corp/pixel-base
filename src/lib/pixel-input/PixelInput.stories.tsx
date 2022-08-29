@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import PixelInput from './pixel-input'
 import moment from 'moment'
+import PixelTable from '../pixel-table/pixel-table'
 
 export default {
   title: 'Pixel Input',
@@ -20,6 +21,7 @@ const Template: ComponentStory<typeof PixelInput> = (args) => {
         }}
         value={value}
       />
+      <PixelTable data={[]} columns={[]}></PixelTable>
     </React.Fragment>
   )
 }
