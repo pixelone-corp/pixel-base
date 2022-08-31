@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Block, Confirm, Loading, Notify } from 'notiflix'
 import { $primaryColor, $secondaryColor } from '../styleGuide'
+import { NONAME } from 'dns'
 interface IContextProps {
   showLoader: Function
   hideLoader: Function
@@ -128,10 +129,11 @@ export default React.memo(({ children }: any) => {
       messageMaxLength: 99999,
       buttonsFontSize: '15px',
       buttonsMaxLength: 34,
+      buttonTextDacoration: 'none',
       okButtonColor: '#ffffff',
       okButtonBackground: $primaryColor,
-      cancelButtonColor: '#ffffff',
-      cancelButtonBackground: $secondaryColor
+      cancelButtonColor: $primaryColor,
+      cancelButtonBackground: '#ffffff'
     })
   }, [])
   const showPageLoader = () => {
