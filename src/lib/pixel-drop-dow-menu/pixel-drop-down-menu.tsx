@@ -137,7 +137,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
           </StyledPixelButton>
 
           <DropdownMenu maxHeight={maxHeight}>
-            {options?.map((data) => (
+            {options?.map((data, index) => (
               <Dropdown.Item
                 key={index}
                 disabled={data.disabled}
@@ -159,9 +159,9 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                     </StyledInnerLine>
 
                     <DropdownMenu maxHeight={maxHeight}>
-                      {data.children?.map((data) => (
+                      {data.children?.map((data, i) => (
                         <Dropdown.Item
-                          key={index}
+                          key={i}
                           disabled={data.disabled}
                           onClick={data.clickHandler}
                         >
