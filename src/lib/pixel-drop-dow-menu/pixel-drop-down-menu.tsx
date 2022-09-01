@@ -12,6 +12,8 @@ export interface MenuProps {
   margin?: string
   padding?: string
   tooltip?: string
+
+  maxHeight?: string
   toggleText?: boolean
   options?: OptionsData[]
 }
@@ -103,6 +105,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
       disabled = false,
       margin = '0px',
       tooltip = false,
+      maxHeight = '250px',
       ...rest
     },
     ref
@@ -132,8 +135,9 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
               <React.Fragment>{toggleText}</React.Fragment>
             )}
           </StyledPixelButton>
-          <Dropdown.Menu>
-            {options?.map((data, index) => (
+
+          <DropdownMenu maxHeight={maxHeight}>
+            {options?.map((data) => (
               <Dropdown.Item
                 key={index}
                 disabled={data.disabled}
@@ -153,8 +157,9 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                     >
                       {data.formatter ? data.formatter(data) : data.label}
                     </StyledInnerLine>
-                    <Dropdown.Menu>
-                      {data.children?.map((data, index) => (
+
+                    <DropdownMenu maxHeight={maxHeight}>
+                      {data.children?.map((data) => (
                         <Dropdown.Item
                           key={index}
                           disabled={data.disabled}
@@ -163,12 +168,12 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                           {data.formatter ? data.formatter(data) : data.label}
                         </Dropdown.Item>
                       ))}
-                    </Dropdown.Menu>
+                    </DropdownMenu>
                   </StyledSubDropdown>
                 )}
               </Dropdown.Item>
             ))}
-          </Dropdown.Menu>
+          </DropdownMenu>
         </Dropdown>
       </StyledPixelDropDownMenu>
     )
@@ -177,6 +182,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
 
 const StyledSubDropdown = styled(Dropdown)`
   width: 200px;
+
   .dropdown-toggle {
     width: 100%;
     // display: flex;
@@ -184,12 +190,20 @@ const StyledSubDropdown = styled(Dropdown)`
     // justify-content: flex-start;
     // align-items: flex-start;
     text-align: left;
+
     &::after {
       display: none;
     }
   }
-  .dropdown-menu {
-    transform: translateX(80%) !important;
+  & .dropdown-menu {
+    // transform: translateX(80%) !important;
+    max-height: 200px !important;
+    overflow: auto !important;
   }
+`
+
+const DropdownMenu = styled(Dropdown.Menu)`
+  max-height: ${(props: MenuProps) => props.maxHeight || '250px'};
+  overflow: auto !important;
 `
 export default PixelDropDownMenu
