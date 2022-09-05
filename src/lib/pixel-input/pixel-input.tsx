@@ -197,7 +197,9 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
         setShowLabel(false)
       }
     }, [value])
-
+    const truncate = (label, max) => {
+      return label?.length > max ? label.substr(0, max - 1) + '...' : label
+    }
     if (as === 'textarea') {
       rest['as'] = as
     }
@@ -219,7 +221,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
             className={showLabel ? 'showLabell' : 'testing'}
             showsearchicon={showsearchicon}
           >
-            {placeholder}
+            {truncate(placeholder, 25)}
           </StyledLabel>
         )}
 

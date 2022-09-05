@@ -159,7 +159,9 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         window.removeEventListener('scroll', handleScroll)
       }
     }, [])
-
+    const truncate = (label, max) => {
+      return label?.length > max ? label.substr(0, max - 1) + '...' : label
+    }
     return (
       <Mainconatiner>
         <HiddenInput
@@ -171,7 +173,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         />
         {isShowLabel && (
           <StyledLabel className={showLabel ? 'showLabell' : 'testing'}>
-            {placeholder}
+            {truncate(placeholder, 25)}
           </StyledLabel>
         )}
         <DropDown
