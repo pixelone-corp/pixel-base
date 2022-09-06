@@ -8,6 +8,7 @@ import Datepicker from './components/Datepicker'
 import Input from './components/Input'
 import Inputmask from './components/Inputmask'
 import TypeAHead from './components/TypeAHead'
+import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 
 export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
@@ -221,7 +222,18 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
             className={showLabel ? 'showLabell' : 'testing'}
             showsearchicon={showsearchicon}
           >
-            {truncate(placeholder, 25)}
+            {placeholder?.length > 25 ? (
+              <OverlayTrigger
+                placement={'top'}
+                overlay={
+                  <Tooltip id={`tooltip-top`}>{`${placeholder} `}</Tooltip>
+                }
+              >
+                <div> {truncate(placeholder, 25)}</div>
+              </OverlayTrigger>
+            ) : (
+              `${truncate(placeholder, 25)}`
+            )}
           </StyledLabel>
         )}
 

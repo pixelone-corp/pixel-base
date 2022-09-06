@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
-import { NavItem } from 'react-bootstrap'
+import { NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap'
 export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   className?: string
   options?: OptionsData[]
@@ -173,7 +173,18 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         />
         {isShowLabel && (
           <StyledLabel className={showLabel ? 'showLabell' : 'testing'}>
-            {truncate(placeholder, 25)}
+            {placeholder?.length > 25 ? (
+              <OverlayTrigger
+                placement={'top'}
+                overlay={
+                  <Tooltip id={`tooltip-top`}>{`${placeholder} `}</Tooltip>
+                }
+              >
+                <div> {truncate(placeholder, 25)}</div>
+              </OverlayTrigger>
+            ) : (
+              `${truncate(placeholder, 25)}`
+            )}
           </StyledLabel>
         )}
         <DropDown

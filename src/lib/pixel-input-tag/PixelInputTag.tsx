@@ -4,6 +4,7 @@ import { $primaryColor } from '../styleGuide'
 import { ActionIcon } from '../common-styled-component/section'
 import ClickOutside from 'rechat-react-click-outside'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 
 export interface InputTagProps {
   className?: string
@@ -171,8 +172,8 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
         setIsOptionsOpen(true)
       }
     }, [filterText])
-    const truncate = (lable, max) => {
-      return lable?.length > max ? lable.substr(0, max - 1) + '...' : label
+    const truncate = (label, max) => {
+      return label?.length > max ? label.substr(0, max - 1) + '...' : label
     }
     return (
       <ClickOutside
@@ -188,7 +189,18 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
           >
             {isShowLabel && (
               <StyledLabel className={'showLabell'}>
-                {truncate(inputLabel, 25)}
+                {inputLabel?.length > 25 ? (
+                  <OverlayTrigger
+                    placement={'top'}
+                    overlay={
+                      <Tooltip id={`tooltip-top`}>{`${inputLabel} `}</Tooltip>
+                    }
+                  >
+                    <div> {truncate(inputLabel, 25)}</div>
+                  </OverlayTrigger>
+                ) : (
+                  `${truncate(inputLabel, 25)}`
+                )}
               </StyledLabel>
             )}
             {localTags.length > 0 && (
