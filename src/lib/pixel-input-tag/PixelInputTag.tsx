@@ -171,8 +171,8 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
         setIsOptionsOpen(true)
       }
     }, [filterText])
-    const truncate = (lable, max) => {
-      return lable?.length > max ? lable.substr(0, max - 1) + '...' : label
+    const truncate = (label, max) => {
+      return label?.length > max ? label.substr(0, max - 1) + '...' : label
     }
     return (
       <ClickOutside
