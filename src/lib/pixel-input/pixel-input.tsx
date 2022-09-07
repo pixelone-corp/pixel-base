@@ -1,4 +1,5 @@
 import { $secondaryWithAlpha } from '../styleGuide'
+
 import { DateRangeInput } from '@datepicker-react/styled'
 import cn from 'classnames'
 import React, { InputHTMLAttributes } from 'react'
@@ -34,6 +35,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   showsearchicon?: any
   placeholder?: string
   isShowLabel?: boolean
+  customLabel?: string
 }
 
 const variantClasses = {
@@ -179,6 +181,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
       showsearchicon = 1,
       placeholder = '',
       isShowLabel = true,
+      customLabel = '',
 
       ...rest
     },
@@ -189,15 +192,16 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
     )
     const [showLabel, setShowLabel] = React.useState<any>(false)
     const [focus, setFocus] = React.useState<any>(false)
-
     React.useEffect(() => {
-      if (value) {
+      if (value || customLabel !== '') {
         setShowLabel(true)
       } else if (value === '' || value === null || value === undefined) {
         setShowLabel(false)
       }
     }, [value])
-
+    const truncate = (label, max) => {
+      return label?.length > max ? label.substr(0, max - 1) + '...' : label
+    }
     if (as === 'textarea') {
       rest['as'] = as
     }
@@ -219,7 +223,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
             className={showLabel ? 'showLabell' : 'testing'}
             showsearchicon={showsearchicon}
           >
-            {placeholder}
+            {truncate(customLabel !== '' ? customLabel : placeholder, 25)}
           </StyledLabel>
         )}
 

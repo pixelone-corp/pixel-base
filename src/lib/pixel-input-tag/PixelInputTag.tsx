@@ -171,6 +171,9 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
         setIsOptionsOpen(true)
       }
     }, [filterText])
+    const truncate = (label, max) => {
+      return label?.length > max ? label.substr(0, max - 1) + '...' : label
+    }
     return (
       <ClickOutside
         style={{ width: '100%' }}
@@ -184,7 +187,9 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
             }}
           >
             {isShowLabel && (
-              <StyledLabel className={'showLabell'}>{inputLabel}</StyledLabel>
+              <StyledLabel className={'showLabell'}>
+                {truncate(inputLabel, 25)}
+              </StyledLabel>
             )}
             {localTags.length > 0 && (
               <React.Fragment>

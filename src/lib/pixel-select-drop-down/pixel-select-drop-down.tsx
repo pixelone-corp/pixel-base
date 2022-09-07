@@ -14,6 +14,7 @@ export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   required?: any
   isShowLabel?: boolean
   disabled?: boolean
+  customLabel: string
 }
 interface OptionsData {
   value: string
@@ -75,7 +76,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       required = false,
       isShowLabel = true,
       disabled = false,
-
+      customLabel = '',
       ...rest
     },
     ref
@@ -94,7 +95,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       if (placeholder === Value) {
         setShowLabel(false)
       } else {
-        if (Value) {
+        if (Value || customLabel !== '') {
           setShowLabel(true)
         } else if (Value === '' || Value === null || Value === undefined) {
           setShowLabel(false)
@@ -159,7 +160,9 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         window.removeEventListener('scroll', handleScroll)
       }
     }, [])
-
+    const truncate = (label, max) => {
+      return label?.length > max ? label.substr(0, max - 1) + '...' : label
+    }
     return (
       <Mainconatiner>
         <HiddenInput
@@ -171,7 +174,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         />
         {isShowLabel && (
           <StyledLabel className={showLabel ? 'showLabell' : 'testing'}>
-            {placeholder}
+            {truncate(customLabel !== '' ? customLabel : placeholder, 25)}
           </StyledLabel>
         )}
         <DropDown
