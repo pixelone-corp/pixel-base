@@ -96,6 +96,7 @@ const PixelInputContainer = styled.div`
     resize: none;
     height: 150px;
     min-width: 100%;
+    outline: none;
     &::placeholder {
       font-size: 16px;
       padding: 2px;
