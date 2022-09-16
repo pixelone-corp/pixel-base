@@ -36,6 +36,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string
   isShowLabel?: boolean
   customLabel?: string
+  isClearOnSelection?: boolean
 }
 
 const variantClasses = {
@@ -183,7 +184,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
       placeholder = '',
       isShowLabel = true,
       customLabel = '',
-
+      isClearOnSelection = false,
       ...rest
     },
     ref
@@ -329,8 +330,9 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
               </React.Fragment>
             ) : as === 'typeahead' ? (
               <TypeAHead
-                setFocus={setFocus}
-                setShowLabel={setShowLabel}
+                isClearOnSelection={isClearOnSelection}
+                customLabel={customLabel}
+                isShowLabel={isShowLabel}
                 placeholder={placeholder}
                 id={name}
                 name={name}
