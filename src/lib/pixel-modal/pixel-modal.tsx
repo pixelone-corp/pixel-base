@@ -101,6 +101,10 @@ export const PixelModal = React.forwardRef<ModalProps>(
   }
 )
 const ModalBody = styled(Modal.Body)`
+  & > div {
+    overflow-x: inherit !important;
+    overflow-y: inherit !important;
+  }
   ${(props) =>
     props.overflow === true &&
     css`
