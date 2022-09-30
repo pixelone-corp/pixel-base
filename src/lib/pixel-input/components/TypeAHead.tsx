@@ -14,6 +14,8 @@ const TypeAHead = (props) => {
     onChange,
     isClearOnSelection,
     value,
+    invalid,
+    onSelectedOption,
     ...rest
   } = props
 
@@ -23,10 +25,12 @@ const TypeAHead = (props) => {
   React.useEffect(() => {
     setOptions(data)
   }, [data])
+
   return (
     <AsyncTypeahead
       renderInput={({ inputRef, referenceElementRef, ...inputProps }) => (
         <CustomInput
+          invalid={invalid}
           {...inputProps}
           ref={(input) => {
             inputRef(input)
@@ -46,9 +50,9 @@ const TypeAHead = (props) => {
       options={options}
       placeholder={props.placeholder}
       renderMenuItemChildren={props.formatter}
-      invalid={props.invalid}
       onChange={(d) => {
         props.onChange(d)
+        onSelectedOption(d)
         if (isClearOnSelection) {
           if (ref && ref.current) {
             ref?.current?.clear()
@@ -76,6 +80,14 @@ const CustomInput = styled(FormControl)`
     box-shadow: 0 0 0 0.25rem ${$secondaryWithAlpha('0.15')} !important;
     border: 1px solid #dee2e6 !important;
   }
+  ${(props) =>
+    props.invalid &&
+    css`
+      color: red;
+      &:focus {
+        color: red;
+      }
+    `}
 `
 
 export default TypeAHead

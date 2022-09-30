@@ -37,6 +37,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   isShowLabel?: boolean
   customLabel?: string
   isClearOnSelection?: boolean
+  onSelectedOption?: () => {}
 }
 
 const variantClasses = {
@@ -185,6 +186,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
       isShowLabel = true,
       customLabel = '',
       isClearOnSelection = false,
+      onSelectedOption = () => {},
       ...rest
     },
     ref
@@ -330,6 +332,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
               </React.Fragment>
             ) : as === 'typeahead' ? (
               <TypeAHead
+                onSelectedOption={onSelectedOption}
                 isClearOnSelection={isClearOnSelection}
                 customLabel={customLabel}
                 isShowLabel={isShowLabel}
