@@ -28,6 +28,8 @@ const TypeAHead = (props) => {
 
   return (
     <AsyncTypeahead
+      positionFixed={true}
+      flip={true}
       renderInput={({ inputRef, referenceElementRef, ...inputProps }) => (
         <CustomInput
           invalid={invalid}
