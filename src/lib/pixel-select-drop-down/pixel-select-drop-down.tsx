@@ -2,7 +2,6 @@ import React, { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
-import { NavItem } from 'react-bootstrap'
 export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   className?: string
   options?: OptionsData[]
@@ -32,7 +31,6 @@ const getGroupedValue = (options, value) => {
   })
   return groupedValue
 }
-
 const getValue = (options, value, isgrouped) => {
   const filteredValue = isgrouped
     ? getGroupedValue(options, value)
@@ -45,7 +43,7 @@ const getValue = (options, value, isgrouped) => {
 const filterData = (options, filterText) => {
   if (filterText) {
     return options.filter((option) =>
-      option.label.toLowerCase().includes(filterText.toLowerCase())
+      option?.label?.toLowerCase()?.includes(filterText?.toLowerCase())
     )
   }
   return options
@@ -77,13 +75,28 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       isShowLabel = true,
       disabled = false,
       customLabel = '',
+
       ...rest
     },
     ref
   ) => {
     const [isOptionsOpen, setIsOptionsOpen] = React.useState(false)
     const [filterText, setFilterText] = React.useState('')
-    const [position, setPosition] = React.useState({})
+    const [position, setPosition] = React.useState({
+      bottom: 0,
+      height: 0,
+      left: 0,
+      right: 0,
+      top: 0,
+      width: 0,
+      x: 0,
+      y: 0
+    })
+    const [dropdownPosition, setDropdownPosition] = React.useState({
+      top: '',
+      left: '-500px',
+      width: ''
+    })
     const [showLabel, setShowLabel] = React.useState<any>(false)
     const toggleOptions = () => {
       setIsOptionsOpen(!isOptionsOpen)
@@ -105,14 +118,45 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
 
     const toggleRef = React.useRef(null)
     const inputRef = React.useRef(null)
+    const dropdownRef = React.useRef(null)
 
+    const requriedHeight = () => {
+      const windowheight = window.innerHeight
+      const dropdownHeight = dropdownRef?.current?.offsetHeight
+      const dropdownToTop = position?.top
+      const neededHeight = windowheight - dropdownToTop - dropdownHeight
+      return neededHeight
+    }
     const groupData = filterGroupedData(groupOptionData, filterText)
-
+    React.useEffect(() => {
+      const height = requriedHeight()
+      const topPosition =
+        height > 0
+          ? `${position.top + position.height}px`
+          : `${position.top - dropdownRef?.current?.offsetHeight}px`
+      if (isOptionsOpen) {
+        setDropdownPosition({
+          top: topPosition,
+          left: `${position?.left === 0 ? '-500' : position?.left}px`,
+          width: `${position?.width}px`
+        })
+      } else {
+        setDropdownPosition({
+          top: '',
+          left: '-500px',
+          width: ''
+        })
+      }
+    }, [position, filterText])
     const handleClickOutside = (e: any) => {
       if (toggleRef?.current?.contains(e.target)) {
         return
       }
       setIsOptionsOpen(false)
+      setDropdownPosition({
+        ...dropdownPosition,
+        left: '-500px'
+      })
     }
     const getValues = async () => {
       return new Promise((resolve) => {
@@ -153,6 +197,10 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
 
     const handleScroll = () => {
       setIsOptionsOpen(false)
+      setDropdownPosition({
+        ...dropdownPosition,
+        left: '-500px'
+      })
     }
     React.useEffect(() => {
       window.addEventListener('scroll', handleScroll)
@@ -201,19 +249,24 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
             </OptionLabel>
             <FontAwesomeIcon icon={faAngleDown} />
           </Toggler>
-          {isOptionsOpen && (
-            <React.Fragment>
-              {isgrouped ? (
-                <React.Fragment>
-                  <DropDownList position={position}>
-                    <SearchPixelInput>
-                      <Search
-                        placeholder='Search'
-                        name='search'
-                        onChange={(e) => setFilterText(e.target.value)}
-                        value={filterText}
-                      />
-                    </SearchPixelInput>
+          <React.Fragment>
+            {isgrouped ? (
+              <React.Fragment>
+                <DropDownList
+                  ref={dropdownRef}
+                  display={isOptionsOpen}
+                  position={dropdownPosition}
+                  inputPosition={requriedHeight() < 0}
+                >
+                  <SearchPixelInput>
+                    <Search
+                      placeholder='Search'
+                      name='search'
+                      onChange={(e) => setFilterText(e.target.value)}
+                      value={filterText}
+                    />
+                  </SearchPixelInput>
+                  <OptionalContainer>
                     {Object.keys(groupData).map((key) => {
                       if (groupData[key].length == 0) return null
 
@@ -232,6 +285,10 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                       }
                                     }),
                                     setIsOptionsOpen(false)
+                                  setDropdownPosition({
+                                    ...dropdownPosition,
+                                    left: '-500px'
+                                  })
                                 }}
                                 key={index}
                                 value={option.value}
@@ -247,20 +304,36 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                         </OptGroup>
                       )
                     })}
-                  </DropDownList>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  {' '}
-                  <DropDownList position={position}>
-                    <SearchPixelInput>
+                  </OptionalContainer>
+                </DropDownList>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <DropDownList
+                  ref={dropdownRef}
+                  display={isOptionsOpen}
+                  position={dropdownPosition}
+                  inputPosition={requriedHeight() < 0}
+                >
+                  <SearchPixelInput>
+                    <InputContainer>
                       <Search
                         placeholder='Search'
                         name='search'
                         onChange={(e) => setFilterText(e.target.value)}
                         value={filterText}
                       />
-                    </SearchPixelInput>
+                      {filterText?.length > 0 && (
+                        <React.Fragment>
+                          {filterData(options, filterText)?.length === 0 && (
+                            <NoFoundError>No Data Found</NoFoundError>
+                          )}
+                        </React.Fragment>
+                      )}
+                    </InputContainer>
+                  </SearchPixelInput>
+
+                  <OptionalContainer>
                     {filterData(options, filterText)?.map((option, index) => {
                       return (
                         <Option
@@ -277,19 +350,23 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                   label: option.label,
                                   selectedIndex: 0
                                 }
-                              }),
-                              setIsOptionsOpen(false)
+                              })
+                            setIsOptionsOpen(false)
+                            setDropdownPosition({
+                              ...dropdownPosition,
+                              left: '-500px'
+                            })
                           }}
                         >
                           {option.label}
                         </Option>
                       )
                     })}
-                  </DropDownList>
-                </React.Fragment>
-              )}
-            </React.Fragment>
-          )}
+                  </OptionalContainer>
+                </DropDownList>
+              </React.Fragment>
+            )}
+          </React.Fragment>
         </DropDown>
         {error !== '' && <Error>{error}</Error>}
       </Mainconatiner>
@@ -322,19 +399,27 @@ const DropDown = styled.div`
     margin-bottom: 0;
   }
 `
+const OptionalContainer = styled.div`
+  width: 100%;
+  max-height: 250px;
+  overflow: auto;
+`
 const OptionLabel = styled.div``
-const DropDownList = styled.div`
+const DropDownList = styled.div<{
+  position?: any
+  display: boolean
+  inputPosition?: boolean
+}>`
+  display: flex;
+  flex-direction: ${(props) =>
+    props.inputPosition ? 'column-reverse' : 'column'};
+  opacity: ${(props) => (props.display ? 1 : 0)};
   background-color: #fff;
   border: 1px solid #ced4da;
-  border-top: none;
-  width: ${(props) => props.position.width}px;
-  min-width: 300px;
-  max-height: 300px;
-  overflow: auto;
-  padding-top: 60px;
+  width: ${(props) => props.position.width};
   position: fixed;
-  top: ${(props) => props.position.top + props.position.height}px;
-  left: ${(props) => props.position.left}px;
+  top: ${(props) => props.position?.top};
+  left: ${(props) => props.position?.left};
   z-index: 99;
 `
 const Option = styled.option`
@@ -356,24 +441,34 @@ const OptGroup = styled.optgroup`
   border-top: 1px solid #ced4da;
   padding: 0.375rem 0.75rem;
 `
+const InputContainer = styled.div`
+  position: relative;
+`
+const NoFoundError = styled.div`
+  font-size: 11px;
+  position: absolute;
+  top: 21px;
+  right: 6px;
+  color: red;
+`
 const SearchPixelInput = styled.div`
   padding: 0.375rem 0.75rem;
   box-sizing: border-box;
-  position: absolute;
   width: 100%;
   top: 0;
   left: 0;
 `
 const Search = styled.input`
-  background-color: #ffffff; !important;
+  background-color: #ffffff !important;
   width: 100%;
   border: 1px solid #ced4da;
   padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
-  box-sizeing: border-box;
+  /* box-sizeing: border-box; */
 
-  &:focus, &:active, &:focus-visible {
-
+  &:focus,
+  &:active,
+  &:focus-visible {
     outline: none;
   }
 `
