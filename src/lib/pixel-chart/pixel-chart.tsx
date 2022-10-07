@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
+import noData from 'highcharts/modules/no-data-to-display'
 
+noData(Highcharts)
 export interface ChartProps {
   className: string
   options: Highcharts.Options
