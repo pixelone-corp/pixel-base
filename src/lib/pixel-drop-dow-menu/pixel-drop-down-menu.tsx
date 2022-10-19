@@ -196,14 +196,11 @@ const StyledSubDropdown = styled(Dropdown)`
     }
   }
   & .dropdown-menu {
-    // transform: translateX(80%) !important;
+    transform: translateX(80%) !important;
     max-height: 200px !important;
     overflow: auto !important;
   }
 `
 
-const DropdownMenu = styled(Dropdown.Menu)`
-  max-height: ${(props: MenuProps) => props.maxHeight || '250px'};
-  overflow: auto !important;
-`
+const DropdownMenu = styled(Dropdown.Menu)``
 export default PixelDropDownMenu
