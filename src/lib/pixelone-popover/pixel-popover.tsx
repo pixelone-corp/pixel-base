@@ -6,13 +6,28 @@ import { PixelButton } from '../pixel-button/pixel-button'
 export interface NAMEHEREProps {
   className?: string
   PopoverContent: any
-  popoverPlacement?: string
+  popoverPlacement?: placements
   overlayButton?: any
   styledPopover?: object
   hideOnClickoutside?: boolean
   onPopoverExit?: () => {}
 }
-
+type placements =
+  | 'auto-start'
+  | 'auto'
+  | 'auto-end'
+  | 'top-start'
+  | 'top'
+  | 'top-end'
+  | 'right-start'
+  | 'right'
+  | 'right-end'
+  | 'bottom-end'
+  | 'bottom'
+  | 'bottom-start'
+  | 'left-end'
+  | 'left'
+  | 'left-start'
 const StyledPixelPopover = styled(Popover)``
 
 export const PixelPopover = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
