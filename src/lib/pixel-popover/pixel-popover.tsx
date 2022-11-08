@@ -13,12 +13,7 @@ export interface PixelPopoverProps {
   hideOnClickOutside?: boolean
   onPopoverExit?: () => {}
 }
-interface Position {
-  left: Number
-  right: Number
-  bottom: Number
-  top: Number
-}
+
 const StyledPixelPopover = styled(Popover)<{ position: any }>`
   top: ${(props) =>
     props.position.top !== 0 ? `${props.position.top}px !important` : 'none'};
@@ -56,7 +51,7 @@ export const PixelPopover = React.forwardRef<HTMLDivElement, PixelPopoverProps>(
     },
     ref
   ) => {
-    const [popoverPosition, setPopoverPosition] = React.useState<Position>({
+    const [popoverPosition, setPopoverPosition] = React.useState({
       left: 0,
       right: 0,
       bottom: 0,
@@ -71,7 +66,12 @@ export const PixelPopover = React.forwardRef<HTMLDivElement, PixelPopoverProps>(
     const newRef = React.useRef(null)
     const buttonRef = React.useRef(null)
     const popoverNewPosition = (triggerSize, popoverPlacement) => {
-      let position = {}
+      let position = {
+        left: 0,
+        right: 0,
+        bottom: 0,
+        top: 0
+      }
       switch (popoverPlacement) {
         case 'left':
           position = {
@@ -119,6 +119,7 @@ export const PixelPopover = React.forwardRef<HTMLDivElement, PixelPopoverProps>(
     const handleClick = (event) => {
       setShow(!show)
       setTarget(event.target)
+
       const setPosition = popoverNewPosition(triggerSize, popoverPlacement)
       setPopoverPosition({
         left: setPosition.left,
