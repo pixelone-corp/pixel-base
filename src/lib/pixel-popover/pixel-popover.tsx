@@ -11,6 +11,7 @@ export interface PixelPopoverProps {
   overlayButton?: any
   styledPopover?: object
   hideOnClickOutside?: boolean
+  closePopover?: boolean
   onPopoverExit?: () => {}
 }
 
@@ -47,6 +48,7 @@ export const PixelPopover = React.forwardRef<HTMLDivElement, PixelPopoverProps>(
       styledPopover = {},
       hideOnClickOutside = true,
       onPopoverExit = () => {},
+      closePopover = false,
       ...rest
     },
     ref
@@ -108,6 +110,11 @@ export const PixelPopover = React.forwardRef<HTMLDivElement, PixelPopoverProps>(
       }
       return position
     }
+    React.useEffect(() => {
+      if (closePopover) {
+        setShow(false)
+      }
+    }, [closePopover])
     React.useEffect(() => {
       const height = buttonRef.current.offsetHeight
       const width = buttonRef.current.offsetWidth
