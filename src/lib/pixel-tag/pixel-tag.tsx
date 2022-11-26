@@ -91,6 +91,7 @@ export const PixelTag = React.forwardRef<HTMLDivElement, TagProps>(
     return (
       <PixelTagStyled>
         <StyledBadge
+          data-tag='allowRowEvents'
           className={className}
           bg={className}
           pill
