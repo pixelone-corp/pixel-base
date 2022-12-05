@@ -11,7 +11,7 @@ const Section = styled.div<{ noPadding?: boolean; isMobile?: boolean }>`
   &.fullheight {
     height: 100%;
   }
-`
+`;
 const SectionTitle = styled.div<{ color?: string }>`
   font-size: 20px;
   font-weight: bold;
@@ -74,7 +74,7 @@ const ActionIcon = styled(FontAwesomeIcon)<{ size?: string; color?: string }>`
   font-size: ${(props) => props.size || '14px'};
   cursor: pointer;
 `
-const ButtonsGorup = styled(ButtonGroup)``
+
 const ButtonsGroup = styled(ButtonGroup)``
 const Link = styled.a<{ decoration: boolean }>`
   color: ${$primaryColor};
@@ -97,7 +97,6 @@ export {
   SectionActions,
   ActionIconSection,
   ActionIcon,
-  ButtonsGorup,
   ButtonsGroup,
   Link
 }
