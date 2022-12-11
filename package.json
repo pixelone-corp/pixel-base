@@ -5,7 +5,8 @@
   "author": "muffrank",
   "license": "MIT",
   "repository": "https://github.com/pixelone-corp/pixelone-ui-libs",
-  "main": "dist/index.js",
+  "main": "dist/index",
+  "typings": "dist/index",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
   "engines": {
