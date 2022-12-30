@@ -7,7 +7,6 @@ const Section = styled.div<{ noPadding?: boolean; isMobile?: boolean }>`
   width: 100%;
   height: auto;
   padding: ${(props) => (props.noPadding ? '0 8px' : ' 10px 20px')};
-
   &.fullheight {
     height: 100%;
   }
@@ -69,12 +68,14 @@ const ActionIconSection = styled.div`
     cursor: pointer;
   }
 `
-const ActionIcon = styled(FontAwesomeIcon)<{ size?: string; color?: string }>`
+const ActionIcon = styled(FontAwesomeIcon)<{
+  IconSize?: string
+  color?: string
+}>`
   color: ${(props) => props.color || $primaryColor};
   font-size: ${(props) => props.size || '14px'};
   cursor: pointer;
 `
-const ButtonsGorup = styled(ButtonGroup)``
 const ButtonsGroup = styled(ButtonGroup)``
 const Link = styled.a<{ decoration: boolean }>`
   color: ${$primaryColor};
@@ -97,7 +98,6 @@ export {
   SectionActions,
   ActionIconSection,
   ActionIcon,
-  ButtonsGorup,
   ButtonsGroup,
   Link
 }
