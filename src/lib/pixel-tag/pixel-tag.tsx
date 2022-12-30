@@ -96,7 +96,7 @@ export const PixelTag = React.forwardRef<HTMLDivElement, TagProps>(
           bg={className}
           pill
           ref={ref}
-          color={getColor(children, customBackgroundColor)}
+          color={`${getColor(children, customBackgroundColor)}`}
         >
           {children}
         </StyledBadge>
