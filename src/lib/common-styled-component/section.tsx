@@ -69,7 +69,7 @@ const ActionIconSection = styled.div`
   }
 `
 const ActionIcon = styled(FontAwesomeIcon)<{
-  IconSize?: string
+  icon_size?: string
   color?: string
 }>`
   color: ${(props) => props.color || $primaryColor};
