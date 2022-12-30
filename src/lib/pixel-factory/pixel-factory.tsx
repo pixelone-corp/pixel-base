@@ -145,13 +145,14 @@ export default React.memo(({ children }: any) => {
   const showLoader = (ref) => {
     try {
       const className = ref?.current?.className
+      if (!document.querySelector(`.${className?.replace(/ /g, '.')}`)) return
       Block.circle(`.${className?.replace(/ /g, '.')}`)
     } catch (error) {}
   }
   const hideLoader = (ref) => {
     try {
       const className = ref?.current?.className
-
+      if (!document.querySelector(`.${className?.replace(/ /g, '.')}`)) return
       Block.remove(`.${className?.replace(/ /g, '.')}`)
     } catch (error) {}
   }
