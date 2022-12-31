@@ -32,7 +32,7 @@ const TypeAHead = (props) => {
       flip={true}
       renderInput={({ inputRef, referenceElementRef, ...inputProps }) => (
         <CustomInput
-          invalid={invalid}
+          invalid={`${invalid}`}
           {...inputProps}
           ref={(input) => {
             inputRef(input)
