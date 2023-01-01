@@ -13,7 +13,7 @@ export interface MenuProps {
   padding?: string
   tooltip?: string
 
-  maxHeight?: string
+  maxheight?: string
   toggleText?: boolean
   options?: OptionsData[]
 }
@@ -105,7 +105,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
       disabled = false,
       margin = '0px',
       tooltip = false,
-      maxHeight = '250px',
+      maxheight = '250px',
       ...rest
     },
     ref
@@ -136,7 +136,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
             )}
           </StyledPixelButton>
 
-          <DropdownMenu maxHeight={maxHeight}>
+          <DropdownMenu maxheight={maxheight}>
             {options?.map((data, index) => (
               <Dropdown.Item
                 key={index}
@@ -158,7 +158,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                       {data.formatter ? data.formatter(data) : data.label}
                     </StyledInnerLine>
 
-                    <DropdownMenu maxHeight={maxHeight}>
+                    <DropdownMenu maxheight={maxheight}>
                       {data.children?.map((data, i) => (
                         <Dropdown.Item
                           key={i}

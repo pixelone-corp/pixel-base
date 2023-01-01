@@ -9,7 +9,7 @@ export interface ModalCustomSize {
   maxWidth?: string
   minWidth?: string
   height?: string
-  maxHeight?: string
+  maxheight?: string
   minHeight?: string
 }
 
@@ -35,7 +35,7 @@ const StyledModal = styled(Modal)<{ size: ModalCustomSize }>`
       max-width: ${size?.maxWidth || 'auto'};
       min-width: ${size?.minWidth || 'auto'};
       height: ${size?.height || 'auto'};
-      max-height: ${size?.maxHeight || 'auto'};
+      max-height: ${size?.maxheight || 'auto'};
       min-height: ${size?.minHeight || 'auto'};
     }
     `
