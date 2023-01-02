@@ -71,7 +71,7 @@ const tagColors = {
 const getColor = (children, customBackgroundColor) => {
   if (!customBackgroundColor) {
     if (typeof children === 'string') {
-      return tagColors[children.toLowerCase()] || false
+      return tagColors[children.toLowerCase()] || '#2e7d32'
     }
   } else {
     return customBackgroundColor
