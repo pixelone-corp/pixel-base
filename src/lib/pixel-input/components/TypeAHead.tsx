@@ -4,6 +4,7 @@ import { AsyncTypeahead } from 'react-bootstrap-typeahead'
 import 'react-bootstrap-typeahead/css/Typeahead.css'
 import styled, { css } from 'styled-components'
 import { $secondaryWithAlpha } from '../../styleGuide'
+
 const TypeAHead = (props) => {
   const {
     handleSearch,
@@ -32,7 +33,7 @@ const TypeAHead = (props) => {
       flip={true}
       renderInput={({ inputRef, referenceElementRef, ...inputProps }) => (
         <CustomInput
-          invalid={invalid}
+          invalid={invalid.toString()}
           {...inputProps}
           ref={(input) => {
             inputRef(input)
@@ -83,7 +84,7 @@ const CustomInput = styled(FormControl)`
     border: 1px solid #dee2e6 !important;
   }
   ${(props) =>
-    props.invalid &&
+    props.invalid === 'true' &&
     css`
       color: red;
       &:focus {
