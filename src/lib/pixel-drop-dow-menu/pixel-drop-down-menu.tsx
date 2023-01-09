@@ -87,6 +87,7 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
     ${(props: MenuProps) =>
     props.variant === 'tag' &&
     css`
+      border: none;
       &::after {
         display: none;
       }
