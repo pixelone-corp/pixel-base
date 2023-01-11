@@ -240,7 +240,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
               toggleOptions()
             }}
           >
-            <OptionLabel>
+            <OptionLabel color={showLabel ? "" : "#6c757d"}>
               {getValue(
                 isgrouped ? groupOptionData : options,
                 value,
@@ -404,7 +404,10 @@ const OptionalContainer = styled.div`
   max-height: 250px;
   overflow: auto;
 `
-const OptionLabel = styled.div``
+const OptionLabel = styled.div<{color?:string}>`
+   color : ${(props) => props.color ? props.color : "black"}
+`
+
 const DropDownList = styled.div<{
   position?: any
   display: boolean
