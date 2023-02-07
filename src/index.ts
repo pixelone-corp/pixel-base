@@ -18,6 +18,7 @@ export * from './lib/pixel-drop-dow-menu/pixel-drop-down-menu'
 export * from './lib/pixel-dropzone/pixel-dropzone'
 export * from './lib/pixel-date/pixel-date'
 export * from './lib/pixel-input-tag/PixelInputTag'
+export * from './lib/pixel-text/pixel-text'
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'
