@@ -43,7 +43,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
       children = children && children.toString().slice(0, charLimit) + '...'
     }
     return (
-      <StyledPixelText>
+      <StyledPixelText data-tag='allowRowEvents'>
         {showToolTip ? (
           <OverlayTrigger
             placement={tooltipPlacement}
@@ -55,6 +55,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
           >
             <div>
               <Text
+                data-tag='allowRowEvents'
                 className={multiLine ? 'multiLine' : ''}
                 ref={ref}
                 {...rest}
@@ -65,7 +66,12 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
           </OverlayTrigger>
         ) : (
           <div>
-            <Text className={multiLine ? 'multiLine' : ''} ref={ref} {...rest}>
+            <Text
+              data-tag='allowRowEvents'
+              className={multiLine ? 'multiLine' : ''}
+              ref={ref}
+              {...rest}
+            >
               {children}
             </Text>
           </div>
