@@ -22,6 +22,8 @@ const StyledPixelButton = styled(Button)`
     box-shadow: none !important;
   }
   margin: ${(props: PixelButtonProps) => props.margin || "0px"};
+  padding: ${(props: PixelButtonProps) => props.padding || "0.375rem 0.75rem"};
+
   a {
     color: white;
     text-decoration: none;
