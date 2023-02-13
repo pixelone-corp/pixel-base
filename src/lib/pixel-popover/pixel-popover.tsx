@@ -38,11 +38,17 @@ const PixelPopoverContainer = styled.div`
 `
 const PopoverButtonContainer = styled.div``
 
+const DefaultContent = styled.div`
+  display: center;
+  width: 200px;
+  height: 150px;
+`;
+
 export const PixelPopover = React.forwardRef<HTMLDivElement, PixelPopoverProps>(
   (
     {
       className,
-      PopoverContent = 'Popover Content',
+      PopoverContent = <DefaultContent>'Popover Content'</DefaultContent>,
       popoverPlacement = 'bottom',
       overlayButton = <PixelButton>Overlay</PixelButton>,
       styledPopover = {},
