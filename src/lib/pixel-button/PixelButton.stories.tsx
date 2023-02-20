@@ -49,3 +49,12 @@ export const Disabled = Template.bind({})
 Disabled.args = {
   disabled: true
 }
+export const Padding = Template.bind({})
+Padding.args = {
+  padding: '10px'
+}
+export const Margin = Template.bind({})
+Margin.args = {
+  margin: '10px'
+}
+
