@@ -1,20 +1,75 @@
-import React from 'react';
-import styled  from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-export interface PixelFlexBoxProps{}
+export interface PixelFlexBoxProps {
+  flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse' | string
+  flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | string
+  justifyContent?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly'
+    | string
+  alignItems?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'baseline'
+    | 'stretch'
+    | string
+  alignContent?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'stretch'
+    | string
+  gap?: string
+  width?: string
+  height?: string
+  position?: string
+  top?: string
+  bottom?: string
+  left?: string
+  right?: string
+  children?: React.ReactNode
+}
 
 export function PixelFlexBox(props: PixelFlexBoxProps) {
-  return(
+  return (
     <React.Fragment>
-      <FlexBoxContainer>
-        <h1>Pixel Flex Box</h1>
-      </FlexBoxContainer>
+      <FlexBoxContainer {...props}>{props.children}</FlexBoxContainer>
     </React.Fragment>
   )
-};
+}
 
-const FlexBoxContainer = styled.div`
-  color: #9B02FD !important;
+const FlexBoxContainer = styled.div<
+  Pick<
+    PixelFlexBoxProps,
+    | 'flexDirection'
+    | 'flexWrap'
+    | 'justifyContent'
+    | 'alignItems'
+    | 'alignContent'
+  >
+>`
+  display: flex;
+  flex-direction: ${(props) => props.flexDirection || 'row'};
+  flex-wrap: ${(props) => props.flexWrap || 'nowrap'};
+  justify-content: ${(props) => props.justifyContent || 'flex-start'};
+  align-items: ${(props) => props.alignItems || 'stretch'};
+  align-content: ${(props) => props.alignContent || 'stretch'};
+  gap: ${(props) => props.gap || '0px'};
+  width: ${(props) => props.width || '100%'};
+  height: ${(props) => props.height || '100%'};
+  position: ${(props) => props.position};
+  top: ${(props) => props.top};
+  bottom: ${(props) => props.bottom};
+  left: ${(props) => props.left};
+  right: ${(props) => props.right};
 `
 
-export default PixelFlexBox;
+export default PixelFlexBox
