@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { StyledComponent } from 'styled-components'
-import dummyImage from './dummyImage.jpg'
+import dummyImage from './dummyImage.svg'
 
 export interface PixelImageProps {
   src?: string
@@ -52,6 +52,7 @@ export function PixelImage({
           backgroundColor={backgroundColor}
           borderRadius={borderRadius}
           boxShadow={boxShadow}
+          padding={padding}
         />
       )}
     </ImageContainer>
