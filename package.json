@@ -4,7 +4,7 @@
   "description": "Common UI components for pixelone.app, Based on React Bootstrap",
   "author": "muffrank",
   "license": "MIT",
-  "repository": "https://github.com/pixelone-corp/pixelone-ui-libs",
+  "repository": "https://github.com/pixelone-corp/pixel-base",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
@@ -26,7 +26,7 @@
     "deploy-storybook": "gh-pages -d docs",
     "build-storybook": "build-storybook -o docs"
   },
-  "homepage": "https://pixelone-corp.github.io/pixelone-ui-libs/",
+  "homepage": "https://pixelone-corp.github.io/pixel-base/",
   "peerDependencies": {
     "@datepicker-react/styled": "^2.8.4",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -39,7 +39,7 @@
     "highcharts-react-official": "^3.1.0",
     "moment": "^2.29.1",
     "notiflix": "^3.2.4",
-    "react": "18.1.0",
+    "react": "^18.2.0",
     "react-bootstrap": "^2.2.2",
     "react-bootstrap-typeahead": "^6.0.0-alpha.11",
     "react-data-table-component": "^7.4.7",
@@ -86,7 +86,7 @@
     "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
-    "react": "18.1.0",
+    "react": "^18.2.0",
     "react-dom": "^18.0.5",
     "sass": "^1.53.0",
     "sass-loader": "10.1.1",
@@ -108,7 +108,6 @@
     "highcharts-react-official": "^3.1.0",
     "moment": "^2.29.1",
     "notiflix": "^3.2.4",
-    "react": "^18.2.0",
     "react-bootstrap": "^2.2.2",
     "react-bootstrap-typeahead": "^6.0.0-alpha.11",
     "react-data-table-component": "^7.4.7",
@@ -117,6 +116,7 @@
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.3.0",
     "rechat-react-click-outside": "^1.1.1",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "react": "^18.2.0"
   }
 }
