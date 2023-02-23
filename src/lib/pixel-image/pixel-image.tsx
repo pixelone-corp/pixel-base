@@ -113,3 +113,4 @@ const DummyImage = styled.img<
   box-shadow: ${(props) => props.boxShadow ?? 'none'};
   padding: ${(props) => props.padding ?? '0'};
 `
+export default PixelImage
