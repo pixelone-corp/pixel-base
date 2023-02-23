@@ -15,49 +15,55 @@ export interface PixelImageProps {
   style?: React.CSSProperties
   hoverStyle?: StyledComponent<typeof PixelImage>
 }
-export function PixelImage({
-  src,
-  alt = 'Image not available',
-  width,
-  height,
-  objectFit,
-  padding,
-  backgroundColor,
-  borderRadius,
-  boxShadow,
-  style,
-  hoverStyle
-}: PixelImageProps) {
-  return (
-    <ImageContainer hoverStyle={hoverStyle} style={style}>
-      {src || src === null ? (
-        <ImageElement
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          objectFit={objectFit}
-          backgroundColor={backgroundColor}
-          borderRadius={borderRadius}
-          boxShadow={boxShadow}
-          padding={padding}
-        />
-      ) : (
-        <DummyImage
-          src={dummyImage}
-          alt={alt}
-          width={width}
-          height={height}
-          objectFit={objectFit}
-          backgroundColor={backgroundColor}
-          borderRadius={borderRadius}
-          boxShadow={boxShadow}
-          padding={padding}
-        />
-      )}
-    </ImageContainer>
-  )
-}
+export const PixelImage = React.forwardRef<HTMLDivElement, PixelImageProps>(
+  (
+    {
+      src,
+      alt = 'Image not available',
+      width,
+      height,
+      objectFit,
+      padding,
+      backgroundColor,
+      borderRadius,
+      boxShadow,
+      style,
+      hoverStyle,
+      ...rest
+    },
+    ref
+  ) => {
+    return (
+      <ImageContainer hoverStyle={hoverStyle} style={style}>
+        {src || src === null ? (
+          <ImageElement
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            objectFit={objectFit}
+            backgroundColor={backgroundColor}
+            borderRadius={borderRadius}
+            boxShadow={boxShadow}
+            padding={padding}
+          />
+        ) : (
+          <DummyImage
+            src={dummyImage}
+            alt={alt}
+            width={width}
+            height={height}
+            objectFit={objectFit}
+            backgroundColor={backgroundColor}
+            borderRadius={borderRadius}
+            boxShadow={boxShadow}
+            padding={padding}
+          />
+        )}
+      </ImageContainer>
+    )
+  }
+)
 
 const ImageContainer = styled.div<
   Pick<PixelImageProps, 'hoverStyle' | 'style'>
