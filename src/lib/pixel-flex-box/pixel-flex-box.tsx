@@ -37,14 +37,17 @@ export interface PixelFlexBoxProps {
   right?: string
   children?: React.ReactNode
 }
-
-export function PixelFlexBox(props: PixelFlexBoxProps) {
-  return (
-    <React.Fragment>
-      <FlexBoxContainer {...props}>{props.children}</FlexBoxContainer>
-    </React.Fragment>
-  )
-}
+export const PixelFlexBox = React.forwardRef<HTMLDivElement, PixelFlexBoxProps>(
+  (props, ref) => {
+    return (
+      <React.Fragment>
+        <FlexBoxContainer {...props} ref={ref}>
+          {props.children}
+        </FlexBoxContainer>
+      </React.Fragment>
+    )
+  }
+)
 
 const FlexBoxContainer = styled.div<
   Pick<
