@@ -122,7 +122,9 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
       headCells: {
         style: {
           borderBottom: '1px solid #212529',
+          borderTop: '1px solid #212529',
           backgroundColor: headerBackgroundColor,
+
         },
       },
     };
