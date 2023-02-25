@@ -9,6 +9,8 @@ interface PixelTableProps {
   progressPending?: boolean
   isSearchable?: boolean
   paginationPerPage?: number
+  headerBackgroundColor?: string
+  customStyles?: Object
 }
 import './table.scss'
 import { PixelFactoryContext } from '../pixel-factory/pixel-factory'
@@ -86,6 +88,8 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
       data = [],
       progressPending,
       isSearchable = false,
+      headerBackgroundColor = "#ffffff",
+      customStyles = {},
       ...rest
     },
     ref
@@ -114,7 +118,14 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
         </SearchPixelInput>
       )
     }, [filterText, resetPaginationToggle])
-
+    const defaultCustomStyles = {
+      headCells: {
+        style: {
+          borderBottom: '1px solid #212529',
+          backgroundColor: headerBackgroundColor,
+        },
+      },
+    };
     return (
       <StyledBootstrapTable
         keyField='id'
@@ -132,6 +143,7 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
         subHeaderComponent={subHeaderComponentMemo}
         progressPending={progressPending}
         progressComponent={<CustomLoader />}
+        customStyles={{ ...defaultCustomStyles, ...customStyles }}
         ref={ref}
         {...rest}
       />
