@@ -38,7 +38,7 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
       color: white;
     }
   }
-  padding: ${(props: MenuProps) => props.padding || '0.375rem 0.75rem'};
+  padding: ${(props: MenuProps) => props.padding};
   ${(props: MenuProps) =>
     props.variant === 'outline' &&
     css`
