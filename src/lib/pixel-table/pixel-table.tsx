@@ -46,6 +46,7 @@ const StyledBootstrapTable = styled(DataTable)`
   header {
     display: none !important;
   }
+ 
 `
 const StyledLoaderContainer = styled.div`
   width: 100%;
@@ -122,35 +123,41 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
       headCells: {
         style: {
           borderBottom: '1px solid #212529',
-          borderTop: '1px solid #212529',
+          borderTop: '1px solid #cecece',
           backgroundColor: headerBackgroundColor,
-
         },
       },
+
     };
     return (
-      <StyledBootstrapTable
-        keyField='id'
-        classes='pixeltable'
-        headerClasses='tableheader'
-        bordered={false}
-        columns={columns}
-        pagination={true}
-        paginationPerPage={paginationPerPage}
-        theme='solarized'
-        data={customFilter(filterText, data)}
-        bootstrap4
-        responsive
-        subHeader={isSearchable}
-        subHeaderComponent={subHeaderComponentMemo}
-        progressPending={progressPending}
-        progressComponent={<CustomLoader />}
-        customStyles={{ ...defaultCustomStyles, ...customStyles }}
-        ref={ref}
-        {...rest}
-      />
+      <RdtClasses>
+        <StyledBootstrapTable
+          keyField='id'
+          classes='pixeltable'
+          headerClasses='tableheader '
+          bordered={false}
+          columns={columns}
+          pagination={true}
+          paginationPerPage={paginationPerPage}
+          theme='solarized'
+          data={customFilter(filterText, data)}
+          bootstrap4
+          responsive
+          subHeader={isSearchable}
+          subHeaderComponent={subHeaderComponentMemo}
+          progressPending={progressPending}
+          progressComponent={<CustomLoader />}
+          customStyles={{ ...defaultCustomStyles, ...customStyles }}
+          ref={ref}
+          {...rest}
+        />
+      </RdtClasses>
     )
   }
 )
-
+const RdtClasses = styled.div`
+  .rdt_TableHeadRow {
+   border-bottom: none;
+  }
+`;
 export default PixelTable
