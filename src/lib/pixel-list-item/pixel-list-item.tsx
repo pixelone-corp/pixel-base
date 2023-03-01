@@ -22,7 +22,7 @@ export function PixelListItem({
   onChange
 }: PixelListItemProps) {
   return (
-    <>
+    <React.Fragment>
       <ListItemContainer
         onClick={() => {
           onChange(value)
@@ -33,7 +33,7 @@ export function PixelListItem({
         <PixelText>{label}</PixelText>
         <Link to={link} />
       </ListItemContainer>
-    </>
+    </React.Fragment>
   )
 }
 
