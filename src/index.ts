@@ -18,10 +18,10 @@ export * from './lib/pixel-drop-dow-menu/pixel-drop-down-menu'
 export * from './lib/pixel-dropzone/pixel-dropzone'
 export * from './lib/pixel-date/pixel-date'
 export * from './lib/pixel-input-tag/PixelInputTag'
-export * from './lib/pixel-list/pixel-list'
 export * from './lib/pixel-list-item/pixel-list-item'
 export * from './lib/pixel-image/pixel-image'
 export * from './lib/pixel-flex-box/pixel-flex-box'
+export * from './lib/pixel-list/pixel-list'
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'
