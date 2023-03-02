@@ -156,8 +156,10 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
   }
 )
 const RdtClasses = styled.div`
-  .rdt_TableHeadRow {
+   .rdt_TableHeadRow {
    border-bottom: none;
+   width : 100%;
   }
+ width: 100%;
 `;
 export default PixelTable
