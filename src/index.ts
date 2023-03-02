@@ -22,6 +22,7 @@ export * from './lib/pixel-list-item/pixel-list-item'
 export * from './lib/pixel-image/pixel-image'
 export * from './lib/pixel-flex-box/pixel-flex-box'
 export * from './lib/pixel-list/pixel-list'
+export * from './lib/pixel-text/pixel-text'
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'
