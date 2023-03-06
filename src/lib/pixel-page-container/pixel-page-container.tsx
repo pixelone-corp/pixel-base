@@ -2,6 +2,7 @@ import React, { Children } from 'react';
 import styled from 'styled-components'
 export interface PixelPageContainerProps {
   width?: string
+  maxHeight?: string
   height?: string
   backgroundColor?: string
   overflow?: string
@@ -32,7 +33,8 @@ const StyledPixelPageContainer = styled.div<
   >
   >`
   width: ${props => props.width || '100%'};
-  height: ${props => props.height || 'calc(100vh - 50px)'};
+  max-height: ${props => props.maxHeight || 'calc(100vh - 50px)'};
+  height: ${props => props.height || '100%'};
   background-color: ${props => props.backgroundColor || '#f2f7f8'};
   padding: ${props => props.padding || '20px'};
   overflow: ${props => props.overflow || 'auto'};
