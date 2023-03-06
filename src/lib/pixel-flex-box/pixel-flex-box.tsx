@@ -5,28 +5,28 @@ export interface PixelFlexBoxProps {
   flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse' | string
   flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | string
   justifyContent?:
-    | 'flex-start'
-    | 'flex-end'
-    | 'center'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly'
-    | string
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly'
+  | string
   alignItems?:
-    | 'flex-start'
-    | 'flex-end'
-    | 'center'
-    | 'baseline'
-    | 'stretch'
-    | string
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'baseline'
+  | 'stretch'
+  | string
   alignContent?:
-    | 'flex-start'
-    | 'flex-end'
-    | 'center'
-    | 'space-between'
-    | 'space-around'
-    | 'stretch'
-    | string
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'space-between'
+  | 'space-around'
+  | 'stretch'
+  | string
   gap?: string
   width?: string
   height?: string
@@ -36,6 +36,9 @@ export interface PixelFlexBoxProps {
   left?: string
   right?: string
   children?: React.ReactNode
+  backgroundColor?: string
+  padding?: string
+  margin?: string
 }
 export const PixelFlexBox = React.forwardRef<HTMLDivElement, PixelFlexBoxProps>(
   (props, ref) => {
@@ -58,7 +61,7 @@ const FlexBoxContainer = styled.div<
     | 'alignItems'
     | 'alignContent'
   >
->`
+  >`
   display: flex;
   flex-direction: ${(props) => props.flexDirection || 'row'};
   flex-wrap: ${(props) => props.flexWrap || 'nowrap'};
@@ -73,6 +76,9 @@ const FlexBoxContainer = styled.div<
   bottom: ${(props) => props.bottom};
   left: ${(props) => props.left};
   right: ${(props) => props.right};
+  background-color: ${(props) => props.backgroundColor};
+  padding: ${(props) => props.padding};
+  margin: ${(props) => props.margin};
 `
 
 export default PixelFlexBox
