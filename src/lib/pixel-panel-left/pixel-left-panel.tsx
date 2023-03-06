@@ -1,20 +1,52 @@
 import React from 'react';
-import styled  from 'styled-components';
+import PixelFlexBox from '../pixel-flex-box/pixel-flex-box';
+export interface PixelLeftPanelProps {
+  flexDirection?: string
+  flexWrap?: string
+  justifyContent?: string
+  alignItems?: string
+  alignContent?: string
+  gap?: string
+  width?: string
+  height?: string
+  position?: string
+  top?: string
+  bottom?: string
+  left?: string
+  right?: string
+  children?: React.ReactNode
+  backgroundColor?: string
+  padding?: string
+  margin?: string
+}
+export const PixelLeftPanel = React.forwardRef<HTMLDivElement, PixelLeftPanelProps>(
+  (props, ref) => {
+    return (
+      <React.Fragment>
+        <PixelFlexBox
+          flexDirection={props.flexDirection}
+          flexWrap={props.flexWrap}
+          justifyContent={props.justifyContent || "flex-end"}
+          alignItems={props.alignItems || "center"}
+          alignContent={props.alignContent}
+          gap={props.gap}
+          width={props.width}
+          height={props.height}
+          position={props.position}
+          top={props.top}
+          bottom={props.bottom}
+          left={props.left}
+          right={props.right}
+          backgroundColor={props.backgroundColor}
+          padding={props.padding}
+          margin={props.margin}
+          ref={ref}
+        >
+          {props.children}
+        </PixelFlexBox>
+      </React.Fragment >
+    )
+  }
+)
 
-export interface PixelLeftPanelProps{}
-
-export function PixelLeftPanel(props: PixelLeftPanelProps) {
-  return(
-    <React.Fragment>
-      <LeftPanelContainer>
-        <h1>Pixel Left Panel</h1>
-      </LeftPanelContainer>
-    </React.Fragment>
-  )
-};
-
-const LeftPanelContainer = styled.div`
-  color: #9B02FD !important;
-`
-
-export default PixelLeftPanel;
+export default PixelLeftPanel
