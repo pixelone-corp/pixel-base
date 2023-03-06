@@ -23,6 +23,11 @@ export * from './lib/pixel-image/pixel-image'
 export * from './lib/pixel-flex-box/pixel-flex-box'
 export * from './lib/pixel-list/pixel-list'
 export * from './lib/pixel-text/pixel-text'
+export * from './lib/pixel-page-container/pixel-page-container'
+export * from './lib/pixel-panel-footer/pixel-footer-panel'
+export * from './lib/pixel-panel-header/pixel-header-panel'
+export * from './lib/pixel-panel-left/pixel-left-panel'
+export * from './lib/pixel-panel-right/pixel-right-panel'
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'

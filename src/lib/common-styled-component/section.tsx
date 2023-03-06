@@ -89,13 +89,6 @@ const Link = styled.a<{ decoration: boolean }>`
     text-decoration: ${(props) => (props.decoration ? 'none' : 'underline')};
   }
 `
-const PixelPageContainer = styled.div`
-  width: 100%;
-  height: calc(100vh - 50px);
-  background-color: #f2f7f8;
-  padding: 20px;
-  overflow: auto;
-  `
 export {
   Section,
   SectionTitle,
@@ -107,5 +100,4 @@ export {
   ActionIcon,
   ButtonsGroup,
   Link,
-  PixelPageContainer
 }
