@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Block, Confirm, Loading, Notify } from 'notiflix'
 import { $primaryColor, $secondaryColor } from '../styleGuide'
+import { faInfo } from '@fortawesome/free-solid-svg-icons'
 interface IContextProps {
   showLoader: Function
   hideLoader: Function
@@ -14,11 +15,32 @@ interface IContextProps {
   removeNotification: Function
   pixelConfirm: Function
   pixelPrompt: Function
+  bannerInfo: IBannerInfo
+  showPixelBanner: Function
 }
-
+interface IBannerInfo {
+  label: React.ReactNode | string
+  type: 'info' | 'warning' | 'error' | 'primary'
+  isDismissible: boolean
+  icon: string | any
+  dismissAfter?: number
+  onDismiss?: () => void
+}
 export const PixelFactoryContext = React.createContext({} as IContextProps)
-
 export default React.memo(({ children }: any) => {
+  const [bannerInfo, setBannerInfo] = React.useState<IBannerInfo>({
+    label: 'Pixel Banner',
+    type: 'info',
+    isDismissible: false,
+    icon: faInfo,
+    dismissAfter: -1,
+    onDismiss: () => { },
+  });
+
+  const showPixelBanner = (bannerInfo: IBannerInfo) => {
+    setBannerInfo(bannerInfo)
+  }
+
   React.useEffect(() => {
     Block.init({
       querySelectorLimit: 200,
@@ -147,14 +169,14 @@ export default React.memo(({ children }: any) => {
       const className = ref?.current?.className
       if (!document.querySelector(`.${className?.replace(/ /g, '.')}`)) return
       Block.circle(`.${className?.replace(/ /g, '.')}`)
-    } catch (error) {}
+    } catch (error) { }
   }
   const hideLoader = (ref) => {
     try {
       const className = ref?.current?.className
       if (!document.querySelector(`.${className?.replace(/ /g, '.')}`)) return
       Block.remove(`.${className?.replace(/ /g, '.')}`)
-    } catch (error) {}
+    } catch (error) { }
   }
 
   const showSuccess = (message = '') => {
@@ -217,7 +239,9 @@ export default React.memo(({ children }: any) => {
     showWarning,
     removeNotification,
     pixelConfirm,
-    pixelPrompt
+    pixelPrompt,
+    bannerInfo,
+    showPixelBanner
   }
 
   return (

@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { $primaryColor, $secondaryColor } from '../styleGuide'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ButtonGroup } from 'react-bootstrap'
 
 const Section = styled.div<{ noPadding?: boolean; isMobile?: boolean }>`
@@ -68,14 +67,7 @@ const ActionIconSection = styled.div`
     cursor: pointer;
   }
 `
-const ActionIcon = styled(FontAwesomeIcon) <{
-  icon_size?: string
-  color?: string
-}>`
-  color: ${(props) => props.color || $primaryColor};
-  font-size: ${(props) => props.size || '14px'};
-  cursor: pointer;
-`
+
 const ButtonsGroup = styled(ButtonGroup)``
 const Link = styled.a<{ decoration: boolean }>`
   color: ${$primaryColor};
@@ -97,7 +89,6 @@ export {
   SectionHeader,
   SectionActions,
   ActionIconSection,
-  ActionIcon,
   ButtonsGroup,
   Link,
 }

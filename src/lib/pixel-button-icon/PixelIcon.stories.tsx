@@ -1,6 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import PixelIcon from './pixel-icon'
+import { faTrademark } from '@fortawesome/free-solid-svg-icons'
 
 export default {
     title: 'Pixel Icon',
@@ -10,7 +11,7 @@ export default {
 const Template: ComponentStory<typeof PixelIcon> = (args) => {
     return (
         <React.Fragment>
-            <PixelIcon {...args}/>
+            <PixelIcon icon={faTrademark} {...args} />
         </React.Fragment>
     )
 }

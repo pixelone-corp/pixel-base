@@ -1,6 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { $primaryColor } from '../styleGuide'
 
 export interface PixelTextProps {
   className?: string
@@ -9,8 +10,9 @@ export interface PixelTextProps {
   showToolTip?: boolean
   children?: React.ReactNode
   textSize?: string
-  tooltipPlacement?: 'top' | 'bottom' | 'left' | 'right'
+  tooltipPlacement?: 'top' | 'bottom' | 'left' | 'right' | string
   toolTipText?: string
+  variant?: 'light' | 'default' | 'dark' | 'pixelPrimary'
 }
 
 const StyledPixelText = styled.div``
@@ -23,6 +25,40 @@ const Text = styled.div`
     white-space: pre-line !important;
     word-break: normal;
   }
+  ${(props: PixelTextProps) =>
+    props.variant === "light" &&
+    css`
+    font-size: ${(props: PixelTextProps) => props.textSize || "12px"};
+     color: #a3a3a3;
+     &.multiLine {
+    display: inline-block;
+    white-space: pre-line !important;
+    word-break: normal;
+  }
+    `}
+    ${(props: PixelTextProps) =>
+    props.variant === "pixelPrimary" &&
+    css`
+    font-size: ${(props: PixelTextProps) => props.textSize || "16px"};
+     color: ${$primaryColor};
+     &.multiLine {
+    display: inline-block;
+    white-space: pre-line !important;
+    word-break: normal;
+  }
+    `}
+    ${(props: PixelTextProps) =>
+    props.variant === "dark" &&
+    css`
+    font-size: ${(props: PixelTextProps) => props.textSize || "16px"};
+     color: 'black';
+     font-weight: 700;
+     &.multiLine {
+    display: inline-block;
+    white-space: pre-line !important;
+    word-break: normal;
+  }
+    `}
 `
 export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
   (

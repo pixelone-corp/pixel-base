@@ -1,8 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Section, SectionActions,ActionIcon } from '../common-styled-component'
-
+import { Section, SectionActions } from '../common-styled-component'
 import {
     faCoffee
 } from '@fortawesome/free-solid-svg-icons'
