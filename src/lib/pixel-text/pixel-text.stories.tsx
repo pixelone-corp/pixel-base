@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory } from '@storybook/react';
 
-import PixelText from "./pixel-text";
+import { PixelText } from "./pixel-text";
 import { Section, SectionActions } from "../common-styled-component";
 
 export default {
@@ -9,8 +9,8 @@ export default {
   component: PixelText,
 }
 
-const Template:ComponentStory<typeof PixelText> = (args) => {
-  return(
+const Template: ComponentStory<typeof PixelText> = (args) => {
+  return (
     <React.Fragment>
       <Section>
         <SectionActions>
