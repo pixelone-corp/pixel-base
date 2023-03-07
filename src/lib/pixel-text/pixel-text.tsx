@@ -10,7 +10,7 @@ export interface PixelTextProps {
   showToolTip?: boolean
   children?: React.ReactNode
   textSize?: string
-  tooltipPlacement?: 'top' | 'bottom' | 'left' | 'right' | string
+  tooltipPlacement?: 'top' | 'bottom' | 'left' | 'right'
   toolTipText?: string
   variant?: 'light' | 'default' | 'dark' | 'pixelPrimary'
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { PixelText } from '../pixel-text/pixel-text'
-import { ActionIcon } from '../common-styled-component/section'
 import { $grey_accent } from '../styleGuide'
 import styled from 'styled-components'
+import PixelIcon from '../pixel-button-icon/pixel-icon'
 export interface PixelListItemProps {
   label?: string
   icon?: React.ReactNode
@@ -29,7 +29,7 @@ export function PixelListItem({
         }}
         className={activeTab === value ? 'active' : ''}
       >
-        <ActionIcon icon={icon} />
+        <PixelIcon icon={icon} />
         <PixelText>{label}</PixelText>
         <Link to={link} />
       </ListItemContainer>
