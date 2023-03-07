@@ -28,17 +28,21 @@ interface IBannerInfo {
 }
 export const PixelFactoryContext = React.createContext({} as IContextProps)
 export default React.memo(({ children }: any) => {
-  const [bannerInfo, setBannerInfo] = React.useState<IBannerInfo>({
-    label: 'Pixel Banner',
-    type: 'info',
-    isDismissible: false,
-    icon: faInfo,
-    dismissAfter: -1,
-    onDismiss: () => { },
-  });
-
+  // const [bannerInfo, setBannerInfo] = React.useState<IBannerInfo>(null)
+  //   label: 'Pixel Banner',
+  //   type: 'info',
+  //   isDismissible: false,
+  //   icon: faInfo,
+  //   dismissAfter: -1,
+  //   onDismiss: () => { },
+  // });
+  let bannerInfo = null
+  console.log('bannerInfo', bannerInfo)
   const showPixelBanner = (bannerInfo: IBannerInfo) => {
-    setBannerInfo(bannerInfo)
+    console.log('bannerInfo', bannerInfo)
+    if (bannerInfo) {
+      bannerInfo = bannerInfo
+    }
   }
 
   React.useEffect(() => {

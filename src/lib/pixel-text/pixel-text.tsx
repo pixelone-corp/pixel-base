@@ -13,13 +13,15 @@ export interface PixelTextProps {
   tooltipPlacement?: 'top' | 'bottom' | 'left' | 'right'
   toolTipText?: string
   variant?: 'light' | 'default' | 'dark' | 'pixelPrimary'
+  customColor?: string
 }
 
 const StyledPixelText = styled.div``
-const Text = styled.div`
+const Text = styled.div<{ color: string }> `
   font-size: ${(props: PixelTextProps) => props.textSize};
   max-width: 100%;
   width: 100%;
+  color: ${(props) => props.color};
   &.multiLine {
     display: inline-block;
     white-space: pre-line !important;
@@ -29,7 +31,7 @@ const Text = styled.div`
     props.variant === "light" &&
     css`
     font-size: ${(props: PixelTextProps) => props.textSize || "12px"};
-     color: #a3a3a3;
+     color: ${(props: PixelTextProps) => props.customColor || "#a3a3a3"};
      &.multiLine {
     display: inline-block;
     white-space: pre-line !important;
@@ -40,7 +42,7 @@ const Text = styled.div`
     props.variant === "pixelPrimary" &&
     css`
     font-size: ${(props: PixelTextProps) => props.textSize || "16px"};
-     color: ${$primaryColor};
+     color: ${(props: PixelTextProps) => props.customColor || $primaryColor};
      &.multiLine {
     display: inline-block;
     white-space: pre-line !important;
@@ -51,7 +53,7 @@ const Text = styled.div`
     props.variant === "dark" &&
     css`
     font-size: ${(props: PixelTextProps) => props.textSize || "16px"};
-     color: 'black';
+     color:   ${(props: PixelTextProps) => props.customColor || "#000000"};
      font-weight: 700;
      &.multiLine {
     display: inline-block;
@@ -70,6 +72,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
       tooltipPlacement = 'top',
       toolTipText = '',
       children = '',
+      customColor,
       ...rest
     },
     ref
@@ -95,6 +98,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
                 className={multiLine ? 'multiLine' : ''}
                 ref={ref}
                 {...rest}
+                color={customColor}
               >
                 {children}
               </Text>
@@ -107,6 +111,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
               className={multiLine ? 'multiLine' : ''}
               ref={ref}
               {...rest}
+              color={customColor}
             >
               {children}
             </Text>
