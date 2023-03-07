@@ -19,7 +19,7 @@ interface IContextProps {
   showPixelBanner: Function
 }
 interface IBannerInfo {
-  label: React.ReactNode | string
+  label: any
   type: 'info' | 'warning' | 'error' | 'primary'
   isDismissible: boolean
   icon: string | any

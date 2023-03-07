@@ -2,6 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import PixelBanner from './pixel-banner'
 import { faTractor } from '@fortawesome/free-solid-svg-icons'
+import PixelFactory from '../pixel-factory/pixel-factory'
 
 export default {
     title: 'Pixel Banner',
@@ -11,7 +12,9 @@ export default {
 const Template: ComponentStory<typeof PixelBanner> = (args) => {
     return (
         <React.Fragment>
-            <PixelBanner {...args} />
+            <PixelFactory>
+                <PixelBanner {...args} />
+            </PixelFactory>
         </React.Fragment>
     )
 }
