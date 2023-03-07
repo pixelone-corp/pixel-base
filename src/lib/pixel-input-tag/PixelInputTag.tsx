@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { $primaryColor } from '../styleGuide'
-import { ActionIcon } from '../common-styled-component/section'
+import { PixelIcon } from '../pixel-button-icon/pixel-icon'
 import ClickOutside from 'rechat-react-click-outside'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -67,7 +67,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
     {
       className,
       tags = [],
-      onTagUpdate = () => {},
+      onTagUpdate = () => { },
       options = [],
       placeholder,
       handleTagDelete = {},
@@ -213,7 +213,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
             )}
 
             <TagInput
-              onBlur={() => {}}
+              onBlur={() => { }}
               width={filterText.length > 8 ? '40%' : '40%'}
               placeholder={placeholder}
               className={invalid ? 'invalid' : ''}
@@ -274,7 +274,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
                     clearAll && clearAll()
                   }}
                 >
-                  <ActionIcon size='28px' icon={faXmark} />
+                  <PixelIcon fontSize='28px' icon={faXmark} />
                 </ClearAll>
               )}
             </React.Fragment>
