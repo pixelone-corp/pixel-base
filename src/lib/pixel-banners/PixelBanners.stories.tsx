@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import PixelBanner from './pixel-banner'
-import { faTractor } from '@fortawesome/free-solid-svg-icons'
+import { faTractor, faTrash } from '@fortawesome/free-solid-svg-icons'
 import PixelFactory, { PixelFactoryContext } from '../pixel-factory/pixel-factory'
 
 export default {
@@ -26,19 +26,20 @@ const Template: ComponentStory<typeof PixelBanner> = (args) => {
     }, [])
     return (
         <React.Fragment>
-            <PixelFactory>
-                <PixelBanner {...args} />
-            </PixelFactory>
+            <PixelBanner />
         </React.Fragment>
     )
 }
-// set the args to the default values
 
 export const Simple = Template.bind({})
 Simple.args = {
-    label: "Pixel Banner",
+    label: "Pixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoya",
     dismissAfter: 5000,
-    type: 'primary',
-    isDismissible: false,
-    icon: faTractor,
+    type: 'info',
+    isDismissible: true,
+    icon: faTrash,
+    onDismiss: () => {
+        console.log('dismissed')
+    },
+    isShowBanner: true,
 }
