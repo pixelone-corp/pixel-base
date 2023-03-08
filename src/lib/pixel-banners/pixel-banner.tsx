@@ -17,10 +17,10 @@ export interface PixelBannerProps {
 }
 const StyledPixelBanner = styled.div<{ isShow: boolean, bgColor: string, color: string, type: string }>`
 display: ${(props) => (props.isShow ? "flex" : "none")};
-align-items: flex-start;
+align-items: center;
 justify-content: space-between;
 width: 100%;
-min-height: 40px;
+min-height: 30px;
 padding: 0 10px;
 position: fixed;
 top: 0;
@@ -119,7 +119,7 @@ export const PixelBanner = React.forwardRef<
             <PixelIcon padding="5px 0px 0px 0px" icon={properties.icon} color={colorScheme.color} /> &nbsp;
             <PixelText multiLine customColor={colorScheme.color}>{properties.label}</PixelText>
           </PixelFlexBox>
-          {properties.isDismissible && <PixelIcon icon={faXmark} fontSize={"20px"} color={colorScheme.color} onClick={() => setIsShow(false)} />}
+          {properties.isDismissible && <PixelIcon style={{ alignSelf: "flex-start" }} padding={"4px 0px 0px 0px"} icon={faXmark} fontSize={"20px"} color={colorScheme.color} onClick={() => setIsShow(false)} />}
         </StyledPixelBanner>
       </React.Fragment>
     )

@@ -33,8 +33,8 @@ const Template: ComponentStory<typeof PixelBanner> = (args) => {
 
 export const Simple = Template.bind({})
 Simple.args = {
-    label: "Pixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoyaPixel Banner change hoya",
-    dismissAfter: 5000,
+    label: "Pixel Banner.",
+    dismissAfter: 0,
     type: 'info',
     isDismissible: true,
     icon: faTrash,

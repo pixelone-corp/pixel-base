@@ -64,7 +64,6 @@ const ActionIcon = styled(FontAwesomeIcon) <Pick<
   color: ${(props) => props.color || $primaryColor};
   font-size: ${(props) => props.fontSize || '14px'};
   cursor: pointer;
-  display: inherit;
   padding: ${(props) => props.padding || '0px'};
   margin: ${(props) => props.margin || '0px'};
 `
