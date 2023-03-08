@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { PixelFactoryContext } from '../src/lib/pixel-factory/pixel-factory'
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -9,9 +8,3 @@ export const parameters = {
     }
   }
 }
-
-export const withPixelFactoryContext = (Story, context = {}) => (
-  <PixelFactoryContext value={context}>
-    <Story />
-  </PixelFactoryContext>
-)

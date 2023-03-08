@@ -6,27 +6,27 @@ import { faTShirt, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { PixelText } from "../pixel-text/pixel-text";
 import { PixelFactoryContext } from "../pixel-factory/pixel-factory";
 import PixelFlexBox from "../pixel-flex-box/pixel-flex-box";
-/* eslint-disable-next-line */
 export interface PixelBannerProps {
-  label: any
-  type: 'info' | 'warning' | 'error' | 'primary'
-  isDismissible: boolean
-  icon: string | any
-  dismissAfter: number
+  label?: any
+  type?: 'info' | 'warning' | 'error' | 'primary'
+  isDismissible?: boolean
+  icon?: string | any
+  dismissAfter?: number
   onDismiss?: () => void
+  isShowBanner?: boolean
 }
 const StyledPixelBanner = styled.div<{ isShow: boolean, bgColor: string, color: string, type: string }>`
-  display: ${(props) => (props.isShow ? "flex" : "none")};
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 40px;
-  padding: 0 10px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 230;
-  background-color: ${(props) => props.bgColor};
+display: ${(props) => (props.isShow ? "flex" : "none")};
+align-items: flex-start;
+justify-content: space-between;
+width: 100%;
+min-height: 40px;
+padding: 0 10px;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 230;
+background-color: ${(props) => props.bgColor};
 `;
 
 
@@ -36,30 +36,23 @@ export const PixelBanner = React.forwardRef<
   ((props, ref) => {
     const {
       label = 'Pixel Banner',
-      type = 'primary',
+      type,
       isDismissible = false,
-      icon = faTShirt,
+      icon,
       dismissAfter,
       onDismiss,
+      isShowBanner,
       ...rest
     } = props;
-    const [properties, setProperties] = React.useState<PixelBannerProps>({
-      label: 'Pixel Banner',
-      type: 'primary',
-      isDismissible: false,
-      icon: faTShirt,
-      dismissAfter: 0,
-      onDismiss: () => { },
-    });
     const { bannerInfo } = React.useContext(PixelFactoryContext)
-
+    const [properties, setProperties] = React.useState<PixelBannerProps>({});
     const [isShow, setIsShow] = React.useState(true);
     const [colorScheme, setColorScheme] = React.useState({
-      color: 'black',
-      bgColor: $primaryColor
+      color: '',
+      bgColor: ''
     });
     React.useEffect(() => {
-      switch (type) {
+      switch (properties.type) {
         case 'primary':
           setColorScheme({
             color: 'black',
@@ -86,43 +79,49 @@ export const PixelBanner = React.forwardRef<
           break;
         default:
           setColorScheme({
-            color: 'black',
-            bgColor: $primaryColor,
+            color: colorScheme.color,
+            bgColor: colorScheme.bgColor,
           });
           break;
       }
-    }, [type]);
+    }, [properties.type]);
 
     React.useEffect(() => {
-      if (bannerInfo) {
+      if (bannerInfo && bannerInfo != properties) {
         setProperties({
           label: bannerInfo.label,
           type: bannerInfo.type,
           isDismissible: bannerInfo.isDismissible,
           icon: bannerInfo.icon,
           dismissAfter: bannerInfo.dismissAfter,
-          onDismiss: bannerInfo.onDismiss
+          onDismiss: bannerInfo.onDismiss,
+          isShowBanner: bannerInfo.isShowBanner
         })
+        setIsShow(bannerInfo.isShowBanner);
+      } else {
+        setIsShow(false);
       }
-
-      // console.log(bannerInfo);
     }, [bannerInfo]);
     React.useEffect(() => {
-      if (dismissAfter > 0) {
+      if (properties.dismissAfter > 0) {
         setTimeout(() => {
           setIsShow(false);
-          onDismiss && onDismiss();
-        }, dismissAfter);
+          properties.onDismiss && properties.onDismiss();
+        }, properties.dismissAfter);
       }
-    }, [dismissAfter]);
+    }, [properties.dismissAfter]);
 
 
     return (
-      <StyledPixelBanner color={colorScheme.color} bgColor={colorScheme.bgColor} isShow={isDismissible ? isShow : true} type={properties.type}>
-        <PixelFlexBox alignContent="center" alignItems="center" justifyContent="flex-start"><PixelIcon icon={properties.icon} color={colorScheme.color} /> &nbsp;
-          <PixelText multiLine customColor={colorScheme.color}>{properties.label}</PixelText></PixelFlexBox>
-        {properties.isDismissible && <PixelIcon icon={faXmark} fontSize={"20px"} color={colorScheme.color} onClick={() => setIsShow(false)} />}
-      </StyledPixelBanner>
+      <React.Fragment>
+        <StyledPixelBanner color={colorScheme.color} bgColor={colorScheme.bgColor} isShow={isShow} type={properties.type}>
+          <PixelFlexBox alignContent="center" alignItems="flex-start" justifyContent="flex-start">
+            <PixelIcon padding="5px 0px 0px 0px" icon={properties.icon} color={colorScheme.color} /> &nbsp;
+            <PixelText multiLine customColor={colorScheme.color}>{properties.label}</PixelText>
+          </PixelFlexBox>
+          {properties.isDismissible && <PixelIcon icon={faXmark} fontSize={"20px"} color={colorScheme.color} onClick={() => setIsShow(false)} />}
+        </StyledPixelBanner>
+      </React.Fragment>
     )
   })
 

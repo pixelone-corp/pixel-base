@@ -14,6 +14,8 @@ export interface PixelIconProps {
   tooltip?: string
   onClick?: () => void
   tooltipPlacement?: 'top' | 'bottom' | 'left' | 'right'
+  padding?: string
+  margin?: string
 }
 
 
@@ -56,10 +58,15 @@ const ActionIcon = styled(FontAwesomeIcon) <Pick<
   PixelIconProps,
   | 'color'
   | 'fontSize'
+  | 'padding'
+  | 'margin'
 >>`
   color: ${(props) => props.color || $primaryColor};
   font-size: ${(props) => props.fontSize || '14px'};
   cursor: pointer;
+  display: inherit;
+  padding: ${(props) => props.padding || '0px'};
+  margin: ${(props) => props.margin || '0px'};
 `
 export default PixelIcon;
 
