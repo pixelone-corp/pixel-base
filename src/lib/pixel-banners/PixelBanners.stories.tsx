@@ -26,7 +26,7 @@ const Template: ComponentStory<typeof PixelBanner> = (args) => {
     }, [])
     return (
         <React.Fragment>
-            <PixelBanner />
+            <PixelBanner {...args} />
         </React.Fragment>
     )
 }

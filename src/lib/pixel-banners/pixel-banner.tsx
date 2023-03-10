@@ -22,7 +22,7 @@ justify-content: space-between;
 width: 100%;
 min-height: 30px;
 padding: 0 10px;
-position: fixed;
+position: relative;
 top: 0;
 left: 0;
 z-index: 230;
@@ -51,6 +51,19 @@ export const PixelBanner = React.forwardRef<
       color: '',
       bgColor: ''
     });
+    React.useEffect(() => {
+      const customProperties = {
+        label: label,
+        type: type,
+        isDismissible: isDismissible,
+        icon: icon,
+        dismissAfter: dismissAfter,
+        onDismiss: onDismiss,
+        isShowBanner: isShowBanner
+      }
+      setProperties(customProperties);
+    }, [label, type, isDismissible, icon, dismissAfter, onDismiss, isShowBanner])
+
     React.useEffect(() => {
       switch (properties.type) {
         case 'primary':
