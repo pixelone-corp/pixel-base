@@ -72,6 +72,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
       tooltipPlacement = 'top',
       toolTipText = '',
       children = '',
+      variant,
       customColor,
       ...rest
     },
@@ -99,6 +100,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
                 ref={ref}
                 {...rest}
                 color={customColor}
+                variant={variant}
               >
                 {children}
               </Text>
@@ -112,6 +114,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
               ref={ref}
               {...rest}
               color={customColor}
+              variant={variant}
             >
               {children}
             </Text>
