@@ -4,7 +4,8 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { $primaryColor } from '../styleGuide'
 import PixelFlexBox from '../pixel-flex-box/pixel-flex-box'
 import PixelIcon from '../pixel-button-icon/pixel-icon'
-import { faCheckDouble, faCopy } from '@fortawesome/free-solid-svg-icons'
+import { faCheckDouble } from '@fortawesome/free-solid-svg-icons'
+import { faPaste } from '@fortawesome/free-regular-svg-icons'
 export interface PixelTextProps {
   className?: string
   multiLine?: boolean
@@ -132,7 +133,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
               <PixelIcon
                 className='animation'
                 onClick={() => CopyOnclick()}
-                icon={copied ? faCheckDouble : faCopy}
+                icon={copied ? faCheckDouble : faPaste}
                 fontSize={'12px'}
                 color={'#505050'}
               />
@@ -164,7 +165,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
                 <PixelIcon
                   className='animation'
                   onClick={() => CopyOnclick()}
-                  icon={copied ? faCheckDouble : faCopy}
+                  icon={copied ? faCheckDouble : faPaste}
                   fontSize={'12px'}
                   color={'#505050'}
                 />
