@@ -2,9 +2,9 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { $primaryColor } from '../styleGuide'
-import CopyImg from './copy.svg'
-import CheckImg from './check.svg'
 import PixelFlexBox from '../pixel-flex-box/pixel-flex-box'
+import PixelIcon from '../pixel-button-icon/pixel-icon'
+import { faCheckDouble, faCopy } from '@fortawesome/free-solid-svg-icons'
 export interface PixelTextProps {
   className?: string
   multiLine?: boolean
@@ -128,7 +128,15 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
               </Tooltip>
             }
           >
-            <CopyImage onClick={() => CopyOnclick()} src={copied ? CheckImg : CopyImg} />
+            <span>
+              <PixelIcon
+                className='animation'
+                onClick={() => CopyOnclick()}
+                icon={copied ? faCheckDouble : faCopy}
+                fontSize={'12px'}
+                color={'#505050'}
+              />
+            </span>
           </OverlayTrigger>}
           </PixelFlexBox>
 
@@ -152,7 +160,15 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
                 </Tooltip>
               }
             >
-              <CopyImage onClick={() => CopyOnclick()} src={copied ? CheckImg : CopyImg} />
+              <span>
+                <PixelIcon
+                  className='animation'
+                  onClick={() => CopyOnclick()}
+                  icon={copied ? faCheckDouble : faCopy}
+                  fontSize={'12px'}
+                  color={'#505050'}
+                />
+              </span>
             </OverlayTrigger>}
           </PixelFlexBox>
         )}
@@ -160,14 +176,5 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
     )
   }
 )
-const CopyImage = styled.img`
-  width:12px;
-  height: 12px;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    transform: scale(1.2);
-  }
-  `
+
 export default PixelText
