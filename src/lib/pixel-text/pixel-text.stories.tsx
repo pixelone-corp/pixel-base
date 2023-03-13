@@ -22,3 +22,10 @@ const Template: ComponentStory<typeof PixelText> = (args) => {
 }
 
 export const Simple = Template.bind({});
+Simple.args = {
+  multiLine: false,
+  charLimit: 500,
+  showToolTip: false,
+  tooltipPlacement: 'top',
+  copyToClipboard: false,
+}
