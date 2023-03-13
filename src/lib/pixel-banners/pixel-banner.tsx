@@ -22,7 +22,7 @@ justify-content: space-between;
 width: 100%;
 min-height: 30px;
 padding: 0 10px;
-position: relative;
+position: fixed;
 top: 0;
 left: 0;
 z-index: 230;
@@ -75,19 +75,19 @@ export const PixelBanner = React.forwardRef<
         case 'warning':
           setColorScheme({
             color: '#856404',
-            bgColor: '#fff3cd'
+            bgColor: 'rgba(255, 243, 205, 0.5)'
           });
           break;
         case 'info':
           setColorScheme({
             color: '#004085',
-            bgColor: '#cce5ff'
+            bgColor: 'rgba(204, 229, 255, 0.5)'
           });
           break;
         case 'error':
           setColorScheme({
             color: '#721c24',
-            bgColor: '#f8d7da'
+            bgColor: 'rgba(248, 215, 218, 0.5);'
           });
           break;
         default:
