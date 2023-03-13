@@ -40,13 +40,13 @@ export const PixelIcon = React.forwardRef<
           <OverlayTrigger
             placement={tooltipPlacement}
             overlay={<Tooltip id={`tooltip-${tooltipPlacement}`}>{tooltip}</Tooltip>}
-          ><span> <ActionIcon icon={icon} color={color} fontSize={fontSize} onClick={() =>
+          ><span> <ActionIcon className={className} icon={icon} color={color} fontSize={fontSize} onClick={() =>
             onClick()
           } ref={ref} {...rest} /></span>
 
           </OverlayTrigger>
         ) : (
-          <ActionIcon icon={icon} color={color} fontSize={fontSize} onClick={() =>
+          <ActionIcon className={className} icon={icon} color={color} fontSize={fontSize} onClick={() =>
             onClick()
           } ref={ref} {...rest} />
         )}
@@ -66,6 +66,12 @@ const ActionIcon = styled(FontAwesomeIcon) <Pick<
   cursor: pointer;
   padding: ${(props) => props.padding || '0px'};
   margin: ${(props) => props.margin || '0px'};
+  &.animation {
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 `
 export default PixelIcon;
 
