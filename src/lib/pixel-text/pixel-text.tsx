@@ -121,7 +121,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
                 {children}
               </Text>
             </div>
-          </OverlayTrigger>{copyToClipboard && children !== '' && <OverlayTrigger
+          </OverlayTrigger>{copyToClipboard && children !== '' && children !== '--' && <OverlayTrigger
             placement={'right'}
             overlay={
               <Tooltip style={{ zIndex: '9999999999' }} id={`tooltip-top`}>
@@ -153,7 +153,7 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
             >
               {children}
             </Text>
-            {copyToClipboard && children !== '' && <OverlayTrigger
+            {copyToClipboard && children !== '' && children !== '--' && <OverlayTrigger
               placement={'right'}
               overlay={
                 <Tooltip style={{ zIndex: '9999999999' }} id={`tooltip-top`}>
