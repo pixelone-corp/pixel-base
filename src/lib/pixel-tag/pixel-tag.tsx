@@ -4,14 +4,14 @@ import styled, { css } from 'styled-components'
 
 export interface TagProps extends React.HTMLProps<HTMLDivElement> {
   className?:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'light'
-    | 'dark'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'light'
+  | 'dark'
   textColor?: string
   customBackgroundColor?: boolean
 }
@@ -65,7 +65,8 @@ const tagColors = {
   partial_paid: '#4caf50',
   unpaid: '#f44336',
   paid: '#4caf50',
-  refund_return: '#3f51b5'
+  refund_return: '#3f51b5',
+  shopify: '#95BF47'
 }
 
 const getColor = (children, customBackgroundColor) => {
@@ -110,7 +111,7 @@ const PixelTagStyled = styled.div`
   }
 `
 
-const StyledBadge = styled(Badge)<{ color?: string }>`
+const StyledBadge = styled(Badge) <{ color?: string }>`
   background-color: ${({ color }) => color || '#2e7d32'} !important;
 `
 export default PixelTag
