@@ -16,3 +16,10 @@ const Template: ComponentStory<typeof PixelIcon> = (args) => {
     )
 }
 export const Simple = Template.bind({})
+Simple.args = {
+    color: 'red',
+    icon: faTrademark,
+    showTooltip: false,
+    onClick: () => { },
+}
+
