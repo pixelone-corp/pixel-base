@@ -3,7 +3,6 @@ import styled from "styled-components";
 import React from "react";
 import { $primaryColor } from "../styleGuide";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTractor } from "@fortawesome/free-solid-svg-icons";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 export interface PixelIconProps {
   className?: string
@@ -27,7 +26,7 @@ export const PixelIcon = React.forwardRef<
       className,
       fontSize = "16px",
       color,
-      icon = faTractor,
+      icon,
       showTooltip = false,
       tooltip = 'ToolTip',
       tooltipPlacement = 'top',
