@@ -18,6 +18,8 @@ export interface PixelTextProps {
   variant?: 'light' | 'default' | 'dark' | 'pixelPrimary'
   customColor?: string
   copyToClipboard?: boolean
+  copiedText?: string
+  copyTooltipPlacement?: 'top' | 'bottom' | 'left' | 'right'
 }
 
 const StyledPixelText = styled.div``
@@ -79,6 +81,8 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
       variant,
       customColor,
       copyToClipboard = false,
+      copyTooltipPlacement = 'right',
+      copiedText = 'copiedText',
       ...rest
     },
     ref
@@ -88,8 +92,8 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
       children = children && children.toString().slice(0, charLimit) + '...'
     }
     const [copied, setCopied] = React.useState(false)
-    const CopyOnclick = () => {
-      navigator.clipboard.writeText(children.toString())
+    const CopyOnclick = (text: string) => {
+      navigator.clipboard.writeText(text.toString())
       setCopied(true)
       setTimeout(() => {
         setCopied(false)
@@ -118,27 +122,27 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
                 color={customColor}
                 variant={variant}
               >
-                {children}
+                {children}{copyToClipboard && children !== '' && children !== '--' && <OverlayTrigger
+                  placement={copyTooltipPlacement}
+                  overlay={
+                    <Tooltip style={{ zIndex: '9999999999' }} id={`tooltip-top`}>
+                      {copied ? 'Copied' : 'Copy to clipboard'}
+                    </Tooltip>
+                  }
+                >
+                  <span>
+                    <PixelIcon
+                      className='animation'
+                      onClick={() => CopyOnclick(copiedText === 'copiedText' ? `${children}` : copiedText)}
+                      icon={copied ? faCheckDouble : faPaste}
+                      fontSize={'12px'}
+                      color={'#505050'}
+                    />
+                  </span>
+                </OverlayTrigger>}
               </Text>
             </div>
-          </OverlayTrigger>{copyToClipboard && children !== '' && children !== '--' && <OverlayTrigger
-            placement={'right'}
-            overlay={
-              <Tooltip style={{ zIndex: '9999999999' }} id={`tooltip-top`}>
-                {copied ? 'Copied' : 'Copy to clipboard'}
-              </Tooltip>
-            }
-          >
-            <span>
-              <PixelIcon
-                className='animation'
-                onClick={() => CopyOnclick()}
-                icon={copied ? faCheckDouble : faPaste}
-                fontSize={'12px'}
-                color={'#505050'}
-              />
-            </span>
-          </OverlayTrigger>}
+          </OverlayTrigger>
           </PixelFlexBox>
 
         ) : (
@@ -151,26 +155,26 @@ export const PixelText = React.forwardRef<HTMLDivElement, PixelTextProps>(
               color={customColor}
               variant={variant}
             >
-              {children}
+              {children} {copyToClipboard && children !== '' && children !== '--' && <OverlayTrigger
+                placement={copyTooltipPlacement}
+                overlay={
+                  <Tooltip style={{ zIndex: '9999999999' }} id={`tooltip-top`}>
+                    {copied ? 'Copied' : 'Copy to clipboard'}
+                  </Tooltip>
+                }
+              >
+                <span>
+                  <PixelIcon
+                    className='animation'
+                    onClick={() => CopyOnclick(copiedText === 'copiedText' ? `${children}` : copiedText)}
+                    icon={copied ? faCheckDouble : faPaste}
+                    fontSize={'12px'}
+                    color={'#505050'}
+                  />
+                </span>
+              </OverlayTrigger>}
             </Text>
-            {copyToClipboard && children !== '' && children !== '--' && <OverlayTrigger
-              placement={'right'}
-              overlay={
-                <Tooltip style={{ zIndex: '9999999999' }} id={`tooltip-top`}>
-                  {copied ? 'Copied' : 'Copy to clipboard'}
-                </Tooltip>
-              }
-            >
-              <span>
-                <PixelIcon
-                  className='animation'
-                  onClick={() => CopyOnclick()}
-                  icon={copied ? faCheckDouble : faPaste}
-                  fontSize={'12px'}
-                  color={'#505050'}
-                />
-              </span>
-            </OverlayTrigger>}
+
           </PixelFlexBox>
         )}
       </StyledPixelText>
