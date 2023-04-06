@@ -159,6 +159,10 @@ const RdtClasses = styled.div`
    .rdt_TableHeadRow {
    border-bottom: none;
    width : 100%;
+   > div {
+    border-bottom: 1px solid #212529;
+    border-top: 1px solid #cecece;
+  }
   }
  width: 100%;
 `;
