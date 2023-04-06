@@ -1,19 +1,21 @@
-import styled from "styled-components";
-
-import React from "react";
-
-export interface PixelLinkProps {}
-
-const StyledPixelLink = styled.div`
-  color: #1328a0;
-`;
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+export interface PixelLinkProps {
+  url: ''
+  text: ''
+}
 
 export function PixelLink(props: PixelLinkProps) {
   return (
-    <StyledPixelLink>
-      <h1>Welcome to PixelLink</h1>
-    </StyledPixelLink>
-  );
+    <Link style={{ textDecoration: 'none' }} to={props.url}>
+      <StyledPixelLink>{props.text}</StyledPixelLink>
+    </Link>
+  )
 }
-
-export default PixelLink;
+const StyledPixelLink = styled.p`
+  text-decoration: none;
+  font-size: 12px;
+  color: #1328a0;
+`
+export default PixelLink

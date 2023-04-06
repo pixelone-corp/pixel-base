@@ -28,6 +28,7 @@ export * from './lib/pixel-panel-footer/pixel-footer-panel'
 export * from './lib/pixel-panel-header/pixel-header-panel'
 export * from './lib/pixel-panel-left/pixel-left-panel'
 export * from './lib/pixel-panel-right/pixel-right-panel'
+export * from './lib/pixel-form/pixel-form'
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'
