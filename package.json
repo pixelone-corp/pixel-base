@@ -1,7 +1,7 @@
 {
-  "name": "pixelone-ui-libs",
+  "name": "pixel-base",
   "version": "1.0.6",
-  "description": "Common UI components for pixelone.app, Based on React Bootstrap",
+  "description": "Common UI components for web.pixelone.app, Based on React Bootstrap",
   "author": "muffrank",
   "license": "MIT",
   "repository": "https://github.com/pixelone-corp/pixel-base",
@@ -118,6 +118,7 @@
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.3.0",
     "rechat-react-click-outside": "^1.1.1",
+    "scss": "^0.2.4",
     "styled-components": "^5.3.3"
   }
 }

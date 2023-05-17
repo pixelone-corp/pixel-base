@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import React, { ButtonHTMLAttributes } from "react";
 import { $primaryColor, $secondaryColor } from "../styleGuide";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
-
+import './index.scss'
 export interface PixelButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
