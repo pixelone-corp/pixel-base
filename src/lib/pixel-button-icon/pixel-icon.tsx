@@ -15,6 +15,7 @@ export interface PixelIconProps {
   tooltipPlacement?: 'top' | 'bottom' | 'left' | 'right'
   padding?: string
   margin?: string
+  style?: React.CSSProperties
 }
 
 

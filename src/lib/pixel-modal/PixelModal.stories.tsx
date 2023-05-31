@@ -27,6 +27,7 @@ const Template: ComponentStory<typeof PixelModal> = (args) => {
             <PixelButton onClick={() => setShowModal(false)}>Close</PixelButton>
           }
           show={showModal}
+
         >
           <p>Modal Body</p>
         </PixelModal>

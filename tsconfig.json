@@ -2,25 +2,19 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "esnext",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
+    "typeRoots": ["./node_modules/@types"],
     "moduleResolution": "node",
     "jsx": "react",
     "strict": false,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "declaration": false,
-    "incremental": true,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "suppressExcessPropertyErrors": true,
     "noImplicitAny": false,
     "importHelpers": true,
-    "strictNullChecks": false,
-    "strictFunctionTypes": false,
     "target": "es5",
     "allowJs": true,
     "skipLibCheck": true,
@@ -29,16 +23,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    // "exactOptionalPropertyTypes": false,
-    // "noPropertyAccessFromIndexSignature": true,
-    "checkJs": false,
+    "checkJs": false
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "example"
-  ]
+  "include": ["src", "pixel-base.d.ts"],
+  "exclude": ["node_modules", "dist", "example"]
 }
