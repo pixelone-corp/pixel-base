@@ -1,8 +1,8 @@
 # pixelone-base
 
-> React based UI components library 
+> React based UI components library
 
-[![NPM](https://img.shields.io/npm/v/pixelone-ui-libs.svg)](https://www.npmjs.com/package/pixelone-ui-libs) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/pixel-bases.svg)](https://www.npmjs.com/package/pixel-bases) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 

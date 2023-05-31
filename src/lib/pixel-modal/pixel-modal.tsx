@@ -1,8 +1,21 @@
-import React, { Children, InputHTMLAttributes } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
 import { $primaryColor } from '../styleGuide'
 import { PixelButton } from '../pixel-button/pixel-button'
 import { Modal } from 'react-bootstrap'
+
+
+export interface ModalProps {
+  className?: string
+  title?: string
+  footer?: any
+  size?: ModalCustomSize
+  error?: string
+  handleClose?: any
+  show?: any
+  children?: React.ReactNode
+  overFlow?: boolean
+}
 
 export interface ModalCustomSize {
   width?: string
@@ -13,19 +26,8 @@ export interface ModalCustomSize {
   minHeight?: string
 }
 
-export interface ModalProps {
-  className?: string
-  title?: string
-  footer?: any
-  size?: ModalCustomSize
-  error?: string
-  handleClose?: any
-  show?: any
-  children?: any
-  overFlow?: boolean
-}
 
-const StyledModal = styled(Modal)<{ size: ModalCustomSize }>`
+const StyledModal = styled(Modal) <{ size: ModalCustomSize }>`
   z-index: 99999999999999999999999;
   ${(props) => {
     const { size } = props
@@ -64,8 +66,7 @@ const StyledLabel = styled.span`
   color: #171717;
   margin-right: 5px;
 `
-
-export const PixelModal = React.forwardRef<ModalProps>(
+export const PixelModal = React.forwardRef<typeof Modal, ModalProps>(
   (
     {
       className,
@@ -94,7 +95,7 @@ export const PixelModal = React.forwardRef<ModalProps>(
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
-        <ModalBody overFlow={overFlow}>{children}</ModalBody>
+        <ModalBody overflow={overFlow}>{children}</ModalBody>
         {footer && <Modal.Footer>{footer}</Modal.Footer>}
       </StyledModal>
     )
