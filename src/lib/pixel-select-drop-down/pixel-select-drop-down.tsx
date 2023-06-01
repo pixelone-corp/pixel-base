@@ -427,7 +427,7 @@ const DropDownList = styled.div<{
   left: ${(props) => props.position?.left};
   z-index: 99;
 `
-const Option = styled.option`
+const Option = styled.div`
   background-color: #ffffff;
   height: 40px;
   padding: 5px 5px 5px 25px;

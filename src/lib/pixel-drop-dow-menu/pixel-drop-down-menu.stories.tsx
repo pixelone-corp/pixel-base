@@ -2,6 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import PixelDropDown from './pixel-drop-down-menu'
+import PixelProfile from '../pixel-user-profile/pixel-profile'
 
 export default {
   title: 'Pixel Dropdown Menu',
@@ -28,7 +29,7 @@ Simple.args = {
   toggleText: 'Dropdown Button',
   options: [
     {
-      label: 'Child 1'
+      label: <PixelProfile user={{ first_name: 'ALI', last_name: 'Hassan' }} />
     },
     {
       label: 'Child 2'

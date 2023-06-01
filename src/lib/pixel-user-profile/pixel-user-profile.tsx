@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PixelImage from '../pixel-image/pixel-image'
 import PixelText from '../pixel-text/pixel-text'
+import PixelFlexBox from '../pixel-flex-box/pixel-flex-box'
 export interface NAMEHEREProps {
   user: {}
 }
@@ -28,12 +29,20 @@ const StyledPixelImageContainer = styled.div`
   border: 1px solid lightgray;
   overflow: hidden;
 `
+const TextContainer = styled.div`
+  height: 35px;
+  width: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid lightgray;
+  overflow: hidden;
+`
 
-export const PixelProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
+export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
   ({ user, ...rest }, ref) => {
-    console.clear()
-    console.log(user.firstName.split('')[0])
-
     function getRandomColor() {
       // Generate a random color
       const letters = '0123456789ABCDEF'
@@ -53,15 +62,21 @@ export const PixelProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
             <PixelImage src={user.img} />
           ) : (
             <PixelText style={{ color: firstLetterColor }}>
-              {user.firstName.split('')[0]}
+              {user.first_name.split('')[0]}
             </PixelText>
           )}
         </StyledPixelImageContainer>
-        <PixelText>
-          {user.firstName} {user.secondName}
-        </PixelText>
+        <PixelFlexBox
+          width='calc(100% - 35px)'
+          gap='0px'
+          flexDirection='column'
+        >
+          <PixelText style={{ padding: 0, lineHeight: '15px' }}>
+            {user.first_name} {user.last_name}
+          </PixelText>
+        </PixelFlexBox>
       </StyledPixelProfile>
     )
   }
 )
-export default PixelProfile
+export default PixelUserProfile
