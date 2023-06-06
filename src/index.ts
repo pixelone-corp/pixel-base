@@ -47,3 +47,4 @@ export const getAddressByType = (type: string, arr) => {
 export const getAddressByID = (id: number, arr) => {
   return arr.find((item) => item.address_id === id)
 }
+declare module 'pixel-base'

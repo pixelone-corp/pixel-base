@@ -25,6 +25,8 @@ class Example extends Component {
     return <MyComponent />
   }
 }
+
+// Note: If you are using TypeScript, make sure to add a declaration for the 'pixel-base' module in your project's type declarations
 ```
 
 ## License
