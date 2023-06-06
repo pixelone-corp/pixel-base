@@ -39,6 +39,7 @@ export interface PixelFlexBoxProps {
   backgroundColor?: string
   padding?: string
   margin?: string
+  style?: React.CSSProperties
 }
 export const PixelFlexBox = React.forwardRef<HTMLDivElement, PixelFlexBoxProps>(
   (props, ref) => {

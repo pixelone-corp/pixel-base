@@ -3,6 +3,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import PixelDropDown from './pixel-select-drop-down'
 import PixelButton from '../pixel-button/pixel-button'
+import PixelProfile from '../pixel-user-profile/pixel-user-profile'
+import PixelTag from '../pixel-tag/pixel-tag'
 
 export default {
   title: 'Pixel Select Dropdown',
@@ -35,11 +37,21 @@ Simple.args = {
   options: [
     {
       value: '1',
-      label: 'Please select'
+      label: (
+        <PixelProfile user={{ first_name: 'Saif Ur', last_name: 'Rehman',role:'Engineer',  manager:'Muhammad Usman',user_type:'FUll Time',  created_at: {
+          date: "2023-01-21 03:53:42.000000",
+         
+      },
+      profile: {  email: "jawad@pixelone.app"},
+      photo: {attachment_path: "https:\/\/storage.googleapis.com\/pixelone\/global\/default-employee-photo.png"
+    }
+
+      }} />
+      )
     },
     {
       value: '2',
-      label: 'Option 1'
+      label: <PixelTag customBackgroundColor={'red'}>red</PixelTag>
     },
     {
       value: '3',
