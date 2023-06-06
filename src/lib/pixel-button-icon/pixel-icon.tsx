@@ -16,6 +16,7 @@ export interface PixelIconProps {
   padding?: string
   margin?: string
   style?: React.CSSProperties
+  children?:any
 }
 
 

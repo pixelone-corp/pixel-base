@@ -20,6 +20,8 @@ export interface PixelTextProps {
   copyToClipboard?: boolean
   copiedText?: string
   copyTooltipPlacement?: 'top' | 'bottom' | 'left' | 'right'
+  style?: React.CSSProperties
+
 }
 
 const StyledPixelText = styled.div``
