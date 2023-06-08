@@ -30,6 +30,7 @@ export * from './lib/pixel-panel-left/pixel-left-panel'
 export * from './lib/pixel-panel-right/pixel-right-panel'
 export * from './lib/pixel-button-icon/pixel-icon'
 export * from './lib/pixel-banners/pixel-banner'
+export * from './lib/pixel-user-profile/pixel-user-profile'
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'
