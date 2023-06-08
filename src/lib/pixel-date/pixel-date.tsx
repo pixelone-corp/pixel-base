@@ -6,7 +6,7 @@ export interface PixelDateprops {
   value: string
   format?: string
   size?: string
-}
+ style?: React.CSSProperties}
 const Date = styled.span`
   ${(props: PixelDateprops) =>
     props.size &&
@@ -21,7 +21,7 @@ const Date = styled.span`
 const StyledPixelDate = styled.div``
 
 export const PixelDate = React.forwardRef<HTMLDivElement, PixelDateprops>(
-  ({ className, value, format, size, ...rest }, ref) => {
+  ({ className, value, format, size,style, ...rest }, ref) => {
     return (
       <StyledPixelDate>
         <Date data-tag='allowRowEvents' className={className} size={size}>

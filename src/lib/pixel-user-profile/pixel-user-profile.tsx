@@ -103,7 +103,7 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
        </PixelFlexBox>
        <PixelFlexBox padding='20px 0 0 10px' height='12%'width='100%' gap='10px'>
         <PixelIcon style={{marginTop:'2px'}} icon={faTimeline}>{}</PixelIcon>
-         <PixelText style={{  fontWeight:400, fontSize:'18px', display:'inline-block' }} variant='dark'>Hired On</PixelText><PixelText style={{ display:'inline-block' }} variant="pixelPrimary"><PixelDate style={{color: $primaryColor}} value={user.created_at.date}/> </PixelText>
+         <PixelText style={{  fontWeight:400, fontSize:'18px', display:'inline-block' }} variant='dark'>Hired On</PixelText><PixelText style={{ display:'inline-block' }} variant="pixelPrimary"><PixelDate style={{ color: $primaryColor }} value={user.created_at.date} className={''}/> </PixelText>
        </PixelFlexBox>
        <PixelFlexBox padding='20px 0 0 10px' height='12%'width='100%' gap='10px'>
         <PixelIcon style={{marginTop:'2px'}} icon={faSms}>{}</PixelIcon>
@@ -119,8 +119,7 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
 
     {isShow ?
       <OverlayTrigger  
-      style={{height:'120px',width:'auto'}
-      }   placement="bottom"  overlay={popOver}>
+        placement="bottom"  overlay={popOver}>
       <StyledPixelProfile>
         <StyledPixelImageContainer>
           {user.photo ? (

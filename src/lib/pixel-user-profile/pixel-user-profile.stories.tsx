@@ -21,7 +21,7 @@ const Template: ComponentStory<typeof PixelUserProfile> = (arg) => {
   return (
     <React.Fragment>
       <div style={{ padding: '200px', width: '100%', height: '100%' }}>
-        <PixelUserProfile user={user} {...arg} />
+        <PixelUserProfile isShow={true} user={user} {...arg} />
       </div>
     </React.Fragment>
   )
