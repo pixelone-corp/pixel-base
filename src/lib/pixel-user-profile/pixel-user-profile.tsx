@@ -5,6 +5,7 @@ import PixelText from '../pixel-text/pixel-text'
 import PixelFlexBox from '../pixel-flex-box/pixel-flex-box'
 import {Popover,OverlayTrigger} from 'react-bootstrap'
 import PixelIcon from '../pixel-button-icon/pixel-icon'
+import ProfileImg from './profile.png'
 import { faFileArchive, faLocation, faLocationArrow, faSms, faStarAndCrescent, faStarHalfAlt, faTimeline } from '@fortawesome/free-solid-svg-icons'
 import PixelDate from '../pixel-date/pixel-date'
 import { $primaryColor } from '../styleGuide'
@@ -22,7 +23,7 @@ export interface NAMEHEREProps {
     profile: {email: string},
     photo: {attachment_path: string}
   }
-  isShow: boolean
+  isShowPopup: boolean
 }
 
 const StyledPixelProfile = styled.div`
@@ -63,7 +64,7 @@ const PixelImageContainer = styled.div`
 
 
 export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
-  ({ user,isShow, ...rest }, ref) => {
+  ({ user, isShowPopup , ...rest }, ref) => {
     function getRandomColor() {
       // Generate a random color
       const letters = '0123456789ABCDEF'
@@ -77,8 +78,8 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
   <StyledPopOver> 
     <PixelFlexBox style={{ flexDirection:'row',height:'40%', }}>
      <PixelFlexBox style={{ flexDirection:'column',height:'50%', width:'50%'}}>
-       <PixelText style={{ padding: '10px 0 0 10px', fontWeight:800, fontSize:'24px' }} variant='pixelPrimary'> {user.first_name} {user.last_name}</PixelText>
-       <PixelText style={{ padding: '2px 0 0 10px', fontWeight:400, fontSize:'18px' }} variant='light'> {user.first_name}{user.last_name}</PixelText>
+       <PixelText style={{ padding: '10px 0 0 10px', fontWeight:800, fontSize:'24px' }} variant='pixelPrimary'> {user?.first_name} {user?.last_name}</PixelText>
+       <PixelText style={{ padding: '2px 0 0 10px', fontWeight:400, fontSize:'18px' }} variant='light'> {user?.first_name}{user?.last_name}</PixelText>
 
        <PixelFlexBox padding='20px 0 0 10px' gap='10px'>
         <PixelIcon style={{marginTop:'2px'}} icon={faStarHalfAlt}>{}</PixelIcon>
@@ -89,25 +90,29 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
 
      <PixelFlexBox  style={{ justifyContent:'flex-end',height:'30%', width:'50%'}}>
        <PixelImageContainer>
-         <PixelImage src={user.photo.attachment_path}/> 
+        {user.photo ?  
+        <PixelImage src={user?.photo?.attachment_path}/> 
+        :  
+        <PixelImage src={ProfileImg}/> 
+      }
        </PixelImageContainer>
      </PixelFlexBox>
     </PixelFlexBox>
        <PixelFlexBox padding='20px 0 0 10px' height='12%'width='100%' gap='10px'>
         <PixelIcon style={{marginTop:'2px'}} icon={faFileArchive}>{}</PixelIcon>
-         <PixelText style={{  fontWeight:400, fontSize:'18px', display:'inline-block' }} variant='dark'>Report to </PixelText><PixelText style={{ display:'inline-block' }} variant="pixelPrimary"> {user.manager} </PixelText>
+         <PixelText style={{  fontWeight:400, fontSize:'18px', display:'inline-block' }} variant='dark'>Report to </PixelText><PixelText style={{ display:'inline-block' }} variant="pixelPrimary"> {user?.manager} </PixelText>
        </PixelFlexBox>
        <PixelFlexBox padding='20px 0 0 10px' height='12%'width='100%' gap='10px'>
         <PixelIcon style={{marginTop:'2px'}} icon={faLocationArrow}>{}</PixelIcon>
-         <PixelText style={{  fontWeight:400, fontSize:'18px', display:'inline-block' }} variant='dark'>Employment type</PixelText><PixelText style={{ display:'inline-block' }} variant="pixelPrimary"> {user.user_type} ( PK - remote ) </PixelText>
+         <PixelText style={{  fontWeight:400, fontSize:'18px', display:'inline-block' }} variant='dark'>Employment type</PixelText><PixelText style={{ display:'inline-block' }} variant="pixelPrimary"> {user?.user_type} ( PK - remote ) </PixelText>
        </PixelFlexBox>
        <PixelFlexBox padding='20px 0 0 10px' height='12%'width='100%' gap='10px'>
         <PixelIcon style={{marginTop:'2px'}} icon={faTimeline}>{}</PixelIcon>
-         <PixelText style={{  fontWeight:400, fontSize:'18px', display:'inline-block' }} variant='dark'>Hired On</PixelText><PixelText style={{ display:'inline-block' }} variant="pixelPrimary"><PixelDate style={{ color: $primaryColor }} value={user.created_at.date} className={''}/> </PixelText>
+         <PixelText style={{  fontWeight:400, fontSize:'18px', display:'inline-block' }} variant='dark'>Hired On</PixelText><PixelText style={{ display:'inline-block' }} variant="pixelPrimary"><PixelDate style={{ color: $primaryColor }} value={user?.created_at?.date} className={''}/> </PixelText>
        </PixelFlexBox>
        <PixelFlexBox padding='20px 0 0 10px' height='12%'width='100%' gap='10px'>
         <PixelIcon style={{marginTop:'2px'}} icon={faSms}>{}</PixelIcon>
-         <PixelText style={{  fontWeight:400, fontSize:'18px', display:'inline-block' }} variant='dark'>Email</PixelText><PixelText style={{ display:'inline-block' }} variant="pixelPrimary"> {user.profile.email} </PixelText>
+         <PixelText style={{  fontWeight:400, fontSize:'18px', display:'inline-block' }} variant='dark'>Email</PixelText><PixelText style={{ display:'inline-block' }} variant="pixelPrimary"> {user?.profile?.email} </PixelText>
        </PixelFlexBox>
   
  </StyledPopOver>
@@ -117,16 +122,16 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
     return (
       <React.Fragment> 
 
-    {isShow ?
+    {isShowPopup ?
       <OverlayTrigger  
         placement="bottom"  overlay={popOver}>
       <StyledPixelProfile>
         <StyledPixelImageContainer>
-          {user.photo ? (
-            <PixelImage src={user.photo.attachment_path} />
+          {user?.photo ? (
+            <PixelImage src={user?.photo?.attachment_path} />
           ) : (
             <PixelText style={{ color: firstLetterColor }}>
-              {user.first_name.split('')[0]}
+              {user?.first_name.split('')[0]}
             </PixelText>
           )}
         </StyledPixelImageContainer>
@@ -136,7 +141,7 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
           flexDirection='column'
         >
           <PixelText style={{ padding: 0, lineHeight: '15px' }}>
-            {user.first_name} {user.last_name}
+            {user?.first_name} {user?.last_name}
           </PixelText>
         </PixelFlexBox>
       </StyledPixelProfile>
@@ -144,11 +149,11 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
     :
     <StyledPixelProfile>
     <StyledPixelImageContainer>
-      {user.photo ? (
-        <PixelImage src={user.photo.attachment_path} />
+      {user?.photo ? (
+        <PixelImage src={user?.photo?.attachment_path} />
       ) : (
         <PixelText style={{ color: firstLetterColor }}>
-          {user.first_name.split('')[0]}
+          {user?.first_name.split('')[0]}
         </PixelText>
       )}
     </StyledPixelImageContainer>
@@ -158,7 +163,7 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
       flexDirection='column'
     >
       <PixelText style={{ padding: 0, lineHeight: '15px' }}>
-        {user.first_name} {user.last_name}
+        {user?.first_name} {user?.last_name}
       </PixelText>
     </PixelFlexBox>
   </StyledPixelProfile>
