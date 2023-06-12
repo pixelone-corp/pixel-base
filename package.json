@@ -14,7 +14,7 @@
   "types": "pixel-base.d.ts",
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs --jsxFragment React.Fragment",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs --jsxFragment React.Fragment",
+    "start": "react-scripts start --openssl-legacy-provider",
     "prepare": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
