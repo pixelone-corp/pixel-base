@@ -11,13 +11,15 @@ jobs:
         uses: actions/checkout@v2.3.1
         with:
           persist-credentials: false
-      - name: Set up Node.js # New step to update Node.js and npm
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14' # Update to the desired Node.js version
+      - name: Set up Node.js
+         uses: actions/setup-node@v2
+          with:
+           node-version: '16.16.0'
+           registry-url: 'https://registry.npmjs.org/'
+      - name: Update npm
+         run: npm install -g npm@8.11.0
       - name: Install and Build 🔧
         run: | # Install npm packages and build the Storybook files
-          npm install -g npm@latest
           npm install
           npm run build-storybook
       - name: Deploy 🚀
