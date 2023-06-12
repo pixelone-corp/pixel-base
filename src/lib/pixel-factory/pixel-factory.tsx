@@ -147,12 +147,10 @@ export default React.memo(({ children }: any) => {
       messageMaxLength: 99999,
       buttonsFontSize: '15px',
       buttonsMaxLength: 34,
-      buttonTextDacoration: 'none',
       okButtonColor: '#ffffff',
       okButtonBackground: $primaryColor,
       cancelButtonColor: $primaryColor,
       cancelButtonBackground: '#ffffff',
-      cancelButtonBorder: `1px solid ${$primaryColor}`
     })
   }, [])
   const showPageLoader = () => {
