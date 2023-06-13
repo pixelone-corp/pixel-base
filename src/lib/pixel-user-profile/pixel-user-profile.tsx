@@ -79,7 +79,6 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
     }
  const popOver = (
   <StyledPopOver> 
-    {/* <PixelFlexBox style={{ flexDirection:'row',height:'40%', }}> */}
      <PixelFlexBox style={{ flexDirection:'column',height:'35%',width:'100%',}}>
        <PixelText style={{ padding: '10px 0 0 10px', fontWeight:800, fontSize:'24px' }} variant='pixelPrimary'> {user?.first_name} {user?.last_name}</PixelText>
        <PixelText style={{ padding: '2px 0 0 10px', fontWeight:400, fontSize:'18px' }} variant='light'> {user?.first_name}{user?.last_name}</PixelText>
@@ -91,7 +90,6 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
        </PixelFlexBox>
     
 
-     {/* <PixelFlexBox  style={{ justifyContent:'flex-end',height:'30%', width:'50%'}}> */}
        <PixelImageContainer>
         {user?.photo ?  
         <PixelImage src={user?.photo?.attachment_path}/> 
@@ -99,8 +97,7 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
         <PixelImage src={ProfileImg}/> 
       }
        </PixelImageContainer>
-     {/* </PixelFlexBox> */}
-    {/* </PixelFlexBox> */}
+    
        <PixelFlexBox padding='20px 0 0 10px' height='15%'width='100%' gap='10px'>
         <PixelIcon style={{marginTop:'12px'}} icon={faFileArchive}>{}</PixelIcon>
          <PixelText style={{ padding:'0 0 0 9px',  fontWeight:400, fontSize:'18px', display:'inline-block' }} variant='dark'>Report to </PixelText><PixelText style={{ display:'inline-block' }} variant="pixelPrimary"> {user?.manager} </PixelText>
