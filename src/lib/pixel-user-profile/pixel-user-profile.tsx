@@ -59,6 +59,10 @@ const PixelImageContainer = styled.div`
   border: 1px solid lightgray;
   overflow: hidden;
   margin: 10px 10px 0 0 ;
+  position: absolute;
+  left:250px;
+  top:5px;
+  
 `
 
 
@@ -177,6 +181,7 @@ top: -5px;
  .popover-arrow{
    display: none;
   }
+  position: relative;
 
 `
 export default PixelUserProfile
