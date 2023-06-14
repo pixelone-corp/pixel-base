@@ -91,11 +91,9 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
     
 
        <PixelImageContainer>
-        {user?.photo ?  
+    
         <PixelImage src={user?.photo?.attachment_path}/> 
-        :  
-        <PixelImage src={ProfileImg}/> 
-      }
+
        </PixelImageContainer>
     
        <PixelFlexBox padding='20px 0 0 10px' height='15%'width='100%' gap='10px'>
