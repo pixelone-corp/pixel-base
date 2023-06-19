@@ -24,7 +24,7 @@ export const PixelDate = React.forwardRef<HTMLDivElement, PixelDateprops>(
   ({ className, value, format, size,style, ...rest }, ref) => {
     return (
       <StyledPixelDate>
-        <Date data-tag='allowRowEvents' className={className} size={size}>
+        <Date data-tag='allowRowEvents' className={className} style={style} size={size}>
           {moment(value).format(
             format === 'pixelStandard'
               ? 'll'
