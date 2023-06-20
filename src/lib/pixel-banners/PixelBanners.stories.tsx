@@ -35,7 +35,7 @@ export const Simple = Template.bind({})
 Simple.args = {
     label: "Pixel Banner.",
     dismissAfter: 0,
-    type: 'info',
+    type: 'error',
     isDismissible: true,
     icon: faTrash,
     onDismiss: () => {
