@@ -66,7 +66,27 @@ const tagColors = {
   unpaid: '#f44336',
   paid: '#4caf50',
   refund_return: '#3f51b5',
-  shopify: '#95BF47'
+  shopify: '#95BF47',
+  low:'#00bcd4',
+  Medium:'#3f51b5',
+  High:'#f44336',
+  Blocker:'#9e9e9e',
+  terminated:'#f44336',
+  overdue:  '#cc01fa',
+  running:'#9e9e9e',
+  todo:'#9e9e9e',
+  inprogress:'#3f51b5',
+  current:'#4caf50',
+  suspended:'#f44336',
+  trial:'#3f51b5',
+  engaged:'#cc01fa',
+  duplicate:'#9e9e9e',
+  active:'green',
+  series:'#ffeb3b',
+  internal:'#ff9800',
+  api:'green',
+  sync:'#ffeb3b',
+  manual:'#f44336',
 }
 
 const getColor = (children, customBackgroundColor) => {
