@@ -276,7 +276,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                         <OptGroup label={key}>
                           {groupData[key].map((option, index) => {
                             return (
-                              <Option
+                              <Options
                                 onClick={() => {
                                   rest.onChange &&
                                     rest.onChange({
@@ -300,7 +300,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                 }
                               >
                                 {option.label}
-                              </Option>
+                              </Options>
                             )
                           })}
                         </OptGroup>
@@ -428,6 +428,20 @@ const DropDownList = styled.div<{
   z-index: 99;
 `
 const Option = styled.div`
+  background-color: #ffffff;
+  height: 40px;
+  padding: 5px 5px 5px 25px;
+  max-width: 100% !important;
+  cursor: pointer;
+  &:hover {
+    background-color: #f0f4fa;
+  }
+  &.selected {
+    background-color: #136acd;
+    color: #ffffff;
+  }
+`
+const Options = styled.option`
   background-color: #ffffff;
   height: 40px;
   padding: 5px 5px 5px 25px;
