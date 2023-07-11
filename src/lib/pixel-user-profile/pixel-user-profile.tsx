@@ -94,7 +94,7 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
 
        <PixelImageContainer>
     
-        <PixelImage height='115px' width='115px' src={user?.photo ? user?.photo?.attachment_path : ProfileImg}/> 
+        <PixelImage height='125px' width='125px' src={user?.photo ? user?.photo?.attachment_path : ProfileImg}/> 
 
        </PixelImageContainer>
     
@@ -128,7 +128,7 @@ export const PixelUserProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
             <StyledPixelProfile>
               <StyledPixelImageContainer>
                 {user?.photo ? (
-                  <PixelImage src={user?.photo?.attachment_path} />
+                  <PixelImage height='35px' width='35px' src={user?.photo?.attachment_path} />
                 ) : (
                   <PixelText style={{ color: firstLetterColor }}>
                     {user?.first_name.split('')[0]}
