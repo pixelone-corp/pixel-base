@@ -14,11 +14,15 @@ export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   isShowLabel?: boolean
   disabled?: boolean
   customLabel: string
+  isShowCheckbox?: boolean
+  isShowRadio?: boolean
+  onSelectedOptions: any
 }
 interface OptionsData {
   value: string
   label: string
   disabled?: boolean
+  checked: boolean[]
 }
 const getGroupedValue = (options, value) => {
   let groupedValue = ''
@@ -75,7 +79,9 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       isShowLabel = true,
       disabled = false,
       customLabel = '',
-
+      isShowCheckbox = true,
+      isShowRadio = false,
+      onSelectedOptions = false,
       ...rest
     },
     ref
@@ -94,7 +100,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     })
     const [dropdownPosition, setDropdownPosition] = React.useState({
       top: '',
-      left: '-500px',
+      left: '',
       width: ''
     })
     const [showLabel, setShowLabel] = React.useState<any>(false)
@@ -137,13 +143,13 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       if (isOptionsOpen) {
         setDropdownPosition({
           top: topPosition,
-          left: `${position?.left === 0 ? '-500' : position?.left}px`,
+          left: `${position?.left === 0 ? '' : position?.left}px`,
           width: `${position?.width}px`
         })
       } else {
         setDropdownPosition({
           top: '',
-          left: '-500px',
+          left: '',
           width: ''
         })
       }
@@ -155,7 +161,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(false)
       setDropdownPosition({
         ...dropdownPosition,
-        left: '-500px'
+        left: ''
       })
     }
     const getValues = async () => {
@@ -199,7 +205,8 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(false)
       setDropdownPosition({
         ...dropdownPosition,
-        left: '-500px'
+
+        left: ''
       })
     }
     React.useEffect(() => {
@@ -211,6 +218,47 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     const truncate = (label, max) => {
       return label?.length > max ? label.substr(0, max - 1) + '...' : label
     }
+
+    const [selectedOption, setSelectedOption] = React.useState([])
+
+    const handleRadioClick = (option) => {
+      rest.onChange &&
+        rest.onChange({
+          target: {
+            value: option.value,
+            options: [{ text: option.label }],
+            selectedIndex: 0
+          }
+        })
+      setIsOptionsOpen(isShowRadio ? true : false)
+      setDropdownPosition({
+        ...dropdownPosition,
+        left: ''
+      })
+      setSelectedOption(option.value)
+    }
+
+    const handleCheckboxClick = (option) => {
+      const isSelected = selectedOption.includes(option)
+
+      if (isSelected) {
+        setSelectedOption(selectedOption.filter((item) => item !== option))
+      } else {
+        setSelectedOption([...selectedOption, option])
+      }
+
+      const isChecked = !rest.isChecked
+
+      rest.onChange({
+        target: {
+          value: option.value,
+          options: [{ text: option.label }],
+          selectedIndex: 0,
+          isChecked: isChecked
+        }
+      })
+    }
+
     return (
       <Mainconatiner>
         <HiddenInput
@@ -278,6 +326,8 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                             return (
                               <Options
                                 onClick={() => {
+                                  handleRadioClick(option)
+
                                   rest.onChange &&
                                     rest.onChange({
                                       target: {
@@ -286,10 +336,12 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                         selectedIndex: 0
                                       }
                                     }),
-                                    setIsOptionsOpen(false)
+                                    setIsOptionsOpen(
+                                      isShowCheckbox ? true : false
+                                    )
                                   setDropdownPosition({
                                     ...dropdownPosition,
-                                    left: '-500px'
+                                    left: ''
                                   })
                                 }}
                                 key={index}
@@ -299,6 +351,21 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                   option.value === value ? 'selected' : ''
                                 }
                               >
+                                {isShowRadio && (
+                                  <Radio
+                                    type='radio'
+                                    checked={option.value === selectedOption}
+                                    onChange={() => handleRadioClick(option)}
+                                  />
+                                )}
+                                {isShowCheckbox && (
+                                  <Checkbox
+                                    type='checkbox'
+                                    checked={selectedOption.includes(option)}
+                                    onChange={() => handleCheckboxClick(option)}
+                                  />
+                                )}
+
                                 {option.label}
                               </Options>
                             )
@@ -344,6 +411,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                           value={option.value}
                           disabled={option.disabled}
                           onClick={() => {
+                            handleRadioClick(option)
                             rest.onChange &&
                               rest.onChange({
                                 target: {
@@ -353,13 +421,28 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                   selectedIndex: 0
                                 }
                               })
-                            setIsOptionsOpen(false)
+                            setIsOptionsOpen(isShowCheckbox ? true : false)
                             setDropdownPosition({
                               ...dropdownPosition,
-                              left: '-500px'
+                              left: ''
                             })
                           }}
                         >
+                          {isShowRadio && (
+                            <Radio
+                              type='radio'
+                              checked={option.value === selectedOption}
+                              onChange={() => handleRadioClick(option)}
+                            />
+                          )}
+                          {isShowCheckbox && (
+                            <Checkbox
+                              type='checkbox'
+                              checked={selectedOption.includes(option)}
+                              onChange={() => handleCheckboxClick(option)}
+                            />
+                          )}
+
                           {option.label}
                         </Option>
                       )
@@ -433,6 +516,9 @@ const Option = styled.div`
   padding: 5px 5px 5px 25px;
   max-width: 100% !important;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   &:hover {
     background-color: #f0f4fa;
   }
@@ -530,4 +616,16 @@ const StyledLabel = styled.div`
   transition: all 0.2s ease-in-out;
   border-radius: 4px !important;
 `
+
+const Radio = styled.input`
+  width: 15px;
+  height: 15px;
+  margin: 0 5px 0 0;
+`
+
+const Checkbox = styled.input`
+  width: 15px;
+  margin: 0 5px 0 0;
+`
+
 export default PixelDropDown

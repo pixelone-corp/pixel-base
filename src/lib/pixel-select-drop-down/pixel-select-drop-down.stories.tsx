@@ -38,15 +38,23 @@ Simple.args = {
     {
       value: '1',
       label: (
-        <PixelProfile user={{ first_name: 'Saif Ur', last_name: 'Rehman',role:'Engineer',  manager:'Muhammad Usman',user_type:'FUll Time',  created_at: {
-          date: "2023-01-21 03:53:42.000000",
-         
-      },
-      profile: {  email: "jawad@pixelone.app"},
-      photo: {attachment_path: "https:\/\/storage.googleapis.com\/pixelone\/global\/default-employee-photo.png"
-    }
-
-      }} />
+        <PixelProfile
+          user={{
+            first_name: 'Saif Ur',
+            last_name: 'Rehman',
+            role: 'Engineer',
+            manager: 'Muhammad Usman',
+            user_type: 'FUll Time',
+            created_at: {
+              date: '2023-01-21 03:53:42.000000'
+            },
+            profile: { email: 'jawad@pixelone.app' },
+            photo: {
+              attachment_path:
+                'https://storage.googleapis.com/pixelone/global/default-employee-photo.png'
+            }
+          }}
+        />
       )
     },
     {
@@ -126,7 +134,9 @@ Simple.args = {
       label: 'Option 15'
     }
   ],
-  isgrouped: false
+  isgrouped: false,
+  isShowCheckbox: false,
+  isShowRedio: false
 }
 export const Grouped = Template.bind({})
 Grouped.args = {
@@ -155,4 +165,91 @@ Grouped.args = {
     ]
   },
   isgrouped: true
+}
+
+export const Checkbox = Template.bind({})
+Checkbox.args = {
+  label: 'PixelDropDown',
+  options: [
+    {
+      value: '1',
+      label: 'Option 1',
+      isChecked: false
+    },
+    {
+      value: '2',
+      label: 'Option 2',
+      isChecked: false
+    },
+    {
+      value: '3',
+      label: 'option 3',
+      isChecked: false
+    },
+    {
+      value: '4',
+      label: 'Option 4',
+      isChecked: false
+    },
+
+    {
+      value: '5',
+      label: 'Option 5',
+      isChecked: false
+    },
+
+    {
+      value: '6',
+      label: 'Option 6',
+      isChecked: false
+    },
+
+    {
+      value: '7',
+      label: 'Option 7',
+      isChecked: false
+    }
+  ],
+  isShowCheckbox: true,
+  isShowRedio: false
+}
+
+export const Radio = Template.bind({})
+Radio.args = {
+  label: 'PixelDropDown',
+  options: [
+    {
+      value: '1',
+      label: 'Option 1'
+    },
+    {
+      value: '2',
+      label: 'Option 2'
+    },
+    {
+      value: '3',
+      label: 'option 3'
+    },
+    {
+      value: '4',
+      label: 'Option 4'
+    },
+
+    {
+      value: '5',
+      label: 'Option 5'
+    },
+
+    {
+      value: '6',
+      label: 'Option 6'
+    },
+
+    {
+      value: '7',
+      label: 'Option 7'
+    }
+  ],
+  isShowCheckbox: false,
+  isShowRadio: true
 }
