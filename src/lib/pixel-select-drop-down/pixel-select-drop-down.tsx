@@ -247,7 +247,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         setSelectedOption([...selectedOption, option])
       }
 
-      const isChecked = !rest.isChecked
+      const isChecked = !rest.checked
 
       rest.onChange({
         target: {
