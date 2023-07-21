@@ -21,7 +21,7 @@ const Template: ComponentStory<typeof PixelInput> = (args) => {
         }}
         value={value}
       />
-      <PixelTable data={[]} columns={[]}></PixelTable>
+
     </React.Fragment>
   )
 }
