@@ -2,6 +2,7 @@ import React, { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { Form } from 'react-bootstrap'
 export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   className?: string
   options?: OptionsData[]
@@ -22,7 +23,7 @@ interface OptionsData {
   value: string
   label: string
   disabled?: boolean
-  checked: boolean[]
+  checked: boolean
 }
 const getGroupedValue = (options, value) => {
   let groupedValue = ''
@@ -100,7 +101,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     })
     const [dropdownPosition, setDropdownPosition] = React.useState({
       top: '',
-      left: '',
+      left: '-500px',
       width: ''
     })
     const [showLabel, setShowLabel] = React.useState<any>(false)
@@ -143,13 +144,13 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       if (isOptionsOpen) {
         setDropdownPosition({
           top: topPosition,
-          left: `${position?.left === 0 ? '' : position?.left}px`,
+          left: `${position?.left === 0 ? '-500' : position?.left}px`,
           width: `${position?.width}px`
         })
       } else {
         setDropdownPosition({
           top: '',
-          left: '',
+          left: '-500px',
           width: ''
         })
       }
@@ -161,7 +162,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(false)
       setDropdownPosition({
         ...dropdownPosition,
-        left: ''
+        left: '-500px'
       })
     }
     const getValues = async () => {
@@ -206,7 +207,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setDropdownPosition({
         ...dropdownPosition,
 
-        left: ''
+        left: '-500px'
       })
     }
     React.useEffect(() => {
@@ -230,11 +231,8 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
             selectedIndex: 0
           }
         })
-      setIsOptionsOpen(isShowRadio ? true : false)
-      setDropdownPosition({
-        ...dropdownPosition,
-        left: ''
-      })
+      setIsOptionsOpen(true)
+
       setSelectedOption(option.value)
     }
 
@@ -336,13 +334,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                         selectedIndex: 0
                                       }
                                     }),
-                                    setIsOptionsOpen(
-                                      isShowCheckbox ? true : false
-                                    )
-                                  setDropdownPosition({
-                                    ...dropdownPosition,
-                                    left: ''
-                                  })
+                                    setIsOptionsOpen(true)
                                 }}
                                 key={index}
                                 value={option.value}
@@ -352,17 +344,21 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                 }
                               >
                                 {isShowRadio && (
-                                  <Radio
+                                  <CustomCheck
                                     type='radio'
+                                    aria-label='radio 1'
                                     checked={option.value === selectedOption}
                                     onChange={() => handleRadioClick(option)}
+                                    paddingRight='5px'
                                   />
                                 )}
+
                                 {isShowCheckbox && (
-                                  <Checkbox
-                                    type='checkbox'
+                                  <CustomCheck
+                                    aria-label='option 1'
                                     checked={selectedOption.includes(option)}
                                     onChange={() => handleCheckboxClick(option)}
+                                    paddingRight='5px'
                                   />
                                 )}
 
@@ -421,25 +417,25 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                   selectedIndex: 0
                                 }
                               })
-                            setIsOptionsOpen(isShowCheckbox ? true : false)
-                            setDropdownPosition({
-                              ...dropdownPosition,
-                              left: ''
-                            })
+                            setIsOptionsOpen(true)
                           }}
                         >
                           {isShowRadio && (
-                            <Radio
+                            <CustomCheck
                               type='radio'
+                              aria-label='radio 1'
                               checked={option.value === selectedOption}
                               onChange={() => handleRadioClick(option)}
+                              paddingRight='5px'
                             />
                           )}
+
                           {isShowCheckbox && (
-                            <Checkbox
-                              type='checkbox'
+                            <CustomCheck
+                              aria-label='option 1'
                               checked={selectedOption.includes(option)}
                               onChange={() => handleCheckboxClick(option)}
+                              paddingRight='5px'
                             />
                           )}
 
@@ -541,6 +537,7 @@ const Options = styled.option`
     color: #ffffff;
   }
 `
+
 const OptGroup = styled.optgroup`
   width: 100%;
   border-top: 1px solid #ced4da;
@@ -617,15 +614,8 @@ const StyledLabel = styled.div`
   border-radius: 4px !important;
 `
 
-const Radio = styled.input`
-  width: 15px;
-  height: 15px;
-  margin: 0 5px 0 0;
-`
-
-const Checkbox = styled.input`
-  width: 15px;
-  margin: 0 5px 0 0;
+const CustomCheck = styled(Form.Check)`
+  padding-right: ${(props) => props.paddingRight || '0px'};
 `
 
 export default PixelDropDown
