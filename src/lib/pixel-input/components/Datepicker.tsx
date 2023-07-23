@@ -9,13 +9,20 @@ import { Popover } from 'react-bootstrap'
 import { PixelIcon } from '../../pixel-button-icon/pixel-icon'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 import * as locales from 'react-date-range/dist/locale'
+import PixelFlexBox from '../../pixel-flex-box/pixel-flex-box'
 
 
 const Datepicker = (props) => {
+  console.log(props.label)
+  console.log(props.placeholder)
   const [newDate, setNewDate] = useState(moment().format('DD MMM YYYY'))
   const [showPopOver, setShowPopOver] = useState(false)
+  const [label, setLabel] = useState("")
 
   const datePickerRef = useRef<HTMLDivElement>(null)
+  useEffect(()=>{ if(props.label == props.placeholder){
+    setLabel(props.label )
+  }},[props.label,props.placeholder])
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
@@ -35,8 +42,8 @@ const Datepicker = (props) => {
   }, [])
 
   return (
-    <Div ref={datePickerRef}>
-      {props.isShowLabel && <Label>Date</Label>}
+    <PixelFlexBox justifyContent="flex-end" ref={datePickerRef}>
+      {label ? <Label>{label}</Label> :  props.isShowLabel && <Label>Date</Label>}
 
       <StyledDatePicker
         onClick={() => {
@@ -49,7 +56,7 @@ const Datepicker = (props) => {
 
       {showPopOver && (
         <React.Fragment>
-          <PopOverDiv>
+          <StyledPopOver>
             <Calendar
               width='100%'
               color={$primaryColor}
@@ -61,10 +68,10 @@ const Datepicker = (props) => {
               locale={locales.enUS} 
               date={new Date(newDate)}
             />
-          </PopOverDiv>
+          </StyledPopOver>
         </React.Fragment>
       )}
-    </Div>
+    </PixelFlexBox>
   )
 }
 const StyledDatePicker = styled.div`
@@ -91,13 +98,8 @@ const Label = styled.div`
   background: linear-gradient(rgb(255, 255, 255) 52%, transparent 48);
   color: rgb(115, 115, 115);
 `
-const Div = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  position: relative;
-`
-const PopOverDiv = styled(Popover)`
+
+const StyledPopOver = styled(Popover)`
   max-width: 500px;
   border: none;
   box-shadow: -3px 4px 11px 2px rgba(169, 169, 169, 0.8);
