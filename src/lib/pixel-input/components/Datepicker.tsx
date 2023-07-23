@@ -55,7 +55,6 @@ const Datepicker = (props) => {
               color={$primaryColor}
               onChange={(date) => {
                 setShowPopOver(false)
-                console.log(date)
                 props.onChange(date)
                 setNewDate(moment(date).format('DD MMM YYYY'))
               }}
