@@ -269,6 +269,8 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
                   rest={rest}
                   showResetDate={false}
                   showClose={false}
+                  label={label}
+                  placeholder={placeholder}
                   inputId={name}
                   onChange={onChange}
                   onDateChange={(data) =>

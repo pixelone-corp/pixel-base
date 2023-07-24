@@ -31,8 +31,7 @@ const StyledPixelImageContainer = styled.div`
 
 export const PixelProfile = React.forwardRef<HTMLDivElement, NAMEHEREProps>(
   ({ user, ...rest }, ref) => {
-    console.clear()
-    console.log(user.firstName.split('')[0])
+
 
     function getRandomColor() {
       // Generate a random color
