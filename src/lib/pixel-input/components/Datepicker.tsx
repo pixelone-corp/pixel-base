@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import styled from 'styled-components'
-import moment  from 'moment'
+import moment from 'moment'
 import { Calendar } from 'react-date-range'
 import { $primaryColor } from '../../styleGuide'
 import { Popover } from 'react-bootstrap'
@@ -11,18 +11,18 @@ import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 import * as locales from 'react-date-range/dist/locale'
 import PixelFlexBox from '../../pixel-flex-box/pixel-flex-box'
 
-
 const Datepicker = (props) => {
-  console.log(props.label)
-  console.log(props.placeholder)
+
   const [newDate, setNewDate] = useState(moment().format('DD MMM YYYY'))
   const [showPopOver, setShowPopOver] = useState(false)
-  const [label, setLabel] = useState("")
+  const [label, setLabel] = useState('')
 
   const datePickerRef = useRef<HTMLDivElement>(null)
-  useEffect(()=>{ if(props.label == props.placeholder){
-    setLabel(props.label )
-  }},[props.label,props.placeholder])
+  useEffect(() => {
+    if (props.label == props.placeholder) {
+      setLabel(props.label)
+    }
+  }, [props.label, props.placeholder])
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
@@ -38,12 +38,16 @@ const Datepicker = (props) => {
 
     return () => {
       document.removeEventListener('mousedown', handleDocumentClick)
-    }
+    }     
   }, [])
 
   return (
-    <PixelFlexBox justifyContent="flex-end" ref={datePickerRef}>
-      {label ? <Label>{label}</Label> :  props.isShowLabel && <Label>Date</Label>}
+    <PixelFlexBox justifyContent='flex-end' ref={datePickerRef}>
+      {label ? (
+        <Label>{label}</Label>
+      ) : (
+        props.isShowLabel && <Label>Date</Label>
+      )}
 
       <StyledDatePicker
         onClick={() => {
@@ -65,7 +69,7 @@ const Datepicker = (props) => {
                 props.onChange(date)
                 setNewDate(moment(date).format('DD MMM YYYY'))
               }}
-              locale={locales.enUS} 
+              locale={locales.enUS}
               date={new Date(newDate)}
             />
           </StyledPopOver>
