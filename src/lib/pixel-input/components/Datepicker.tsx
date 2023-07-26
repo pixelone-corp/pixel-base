@@ -42,7 +42,7 @@ const Datepicker = (props) => {
   }, [])
 
   return (
-    <PixelFlexBox justifyContent='flex-end' ref={datePickerRef}>
+    <PixelFlexBox justifyContent='flex-end' style={{marginBottom:'40px'}} ref={datePickerRef}>
       {label ? (
         <Label>{label}</Label>
       ) : (
