@@ -18,12 +18,14 @@ export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   isShowCheckbox?: boolean
   isShowRadio?: boolean
   onSelectedOptions: any
+  isShowOptionContainer?: boolean
 }
 interface OptionsData {
   value: string
   label: string
   disabled?: boolean
-  checked: boolean
+  checked?: boolean
+  isChecked?: boolean
 }
 const getGroupedValue = (options, value) => {
   let groupedValue = ''
@@ -83,6 +85,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       isShowCheckbox = true,
       isShowRadio = false,
       onSelectedOptions = false,
+      isShowOptionContainer = false,
       ...rest
     },
     ref
@@ -206,7 +209,6 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(false)
       setDropdownPosition({
         ...dropdownPosition,
-
         left: '-500px'
       })
     }
@@ -234,27 +236,6 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(true)
 
       setSelectedOption(option.value)
-    }
-
-    const handleCheckboxClick = (option) => {
-      const isSelected = selectedOption.includes(option)
-
-      if (isSelected) {
-        setSelectedOption(selectedOption.filter((item) => item !== option))
-      } else {
-        setSelectedOption([...selectedOption, option])
-      }
-
-      const isChecked = !rest.checked
-
-      rest.onChange({
-        target: {
-          value: option.value,
-          options: [{ text: option.label }],
-          selectedIndex: 0,
-          isChecked: isChecked
-        }
-      })
     }
 
     return (
@@ -334,7 +315,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                         selectedIndex: 0
                                       }
                                     }),
-                                    setIsOptionsOpen(true)
+                                    setIsOptionsOpen(false)
                                 }}
                                 key={index}
                                 value={option.value}
@@ -343,25 +324,6 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                   option.value === value ? 'selected' : ''
                                 }
                               >
-                                {isShowRadio && (
-                                  <CustomCheck
-                                    type='radio'
-                                    aria-label='radio 1'
-                                    checked={option.value === selectedOption}
-                                    onChange={() => handleRadioClick(option)}
-                                    paddingRight='5px'
-                                  />
-                                )}
-
-                                {isShowCheckbox && (
-                                  <CustomCheck
-                                    aria-label='option 1'
-                                    checked={selectedOption.includes(option)}
-                                    onChange={() => handleCheckboxClick(option)}
-                                    paddingRight='5px'
-                                  />
-                                )}
-
                                 {option.label}
                               </Options>
                             )
@@ -417,7 +379,9 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                   selectedIndex: 0
                                 }
                               })
-                            setIsOptionsOpen(true)
+                            isShowCheckbox || isShowRadio
+                              ? setIsOptionsOpen(true)
+                              : setIsOptionsOpen(false)
                           }}
                         >
                           {isShowRadio && (
@@ -433,8 +397,13 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                           {isShowCheckbox && (
                             <CustomCheck
                               aria-label='option 1'
-                              checked={selectedOption.includes(option)}
-                              onChange={() => handleCheckboxClick(option)}
+                              checked={option.isChecked}
+                              onChange={() =>
+                                onSelectedOptions({
+                                  ...option,
+                                  isChecked: !option.isChecked
+                                })
+                              }
                               paddingRight='5px'
                             />
                           )}

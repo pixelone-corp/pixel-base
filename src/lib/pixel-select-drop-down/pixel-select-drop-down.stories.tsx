@@ -2,7 +2,6 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import PixelDropDown from './pixel-select-drop-down'
-import PixelButton from '../pixel-button/pixel-button'
 import PixelProfile from '../pixel-user-profile/pixel-user-profile'
 import PixelTag from '../pixel-tag/pixel-tag'
 
@@ -16,6 +15,47 @@ export default {
 
 const Template: ComponentStory<typeof PixelDropDown> = (args) => {
   const [value, setValue] = React.useState('')
+  const [checkedValue, setCheckedValue] = React.useState([
+    {
+      value: '1',
+      label: 'Option 1',
+      isChecked: false
+    },
+    {
+      value: '2',
+      label: 'Option 2',
+      isChecked: false
+    },
+    {
+      value: '3',
+      label: 'option 3',
+      isChecked: false
+    },
+    {
+      value: '4',
+      label: 'Option 4',
+      isChecked: false
+    },
+
+    {
+      value: '5',
+      label: 'Option 5',
+      isChecked: false
+    },
+
+    {
+      value: '6',
+      label: 'Option 6',
+      isChecked: false
+    },
+
+    {
+      value: '7',
+      label: 'Option 7',
+      isChecked: false
+    }
+  ])
+
   const onChangeHandler = (e) => {
     setValue(e.target.value)
   }
@@ -25,7 +65,17 @@ const Template: ComponentStory<typeof PixelDropDown> = (args) => {
       <PixelDropDown
         value={value}
         {...args}
+        options={!args.isgrouped && checkedValue}
         placeholder='Pixel DropDown'
+        onSelectedOptions={(option) => {
+          setCheckedValue((prevState) =>
+            prevState.map((item) =>
+              item.value === option.value
+                ? { ...item, isChecked: option.isChecked }
+                : item
+            )
+          )
+        }}
         required
       />
     </React.Fragment>
@@ -170,46 +220,7 @@ Grouped.args = {
 export const Checkbox = Template.bind({})
 Checkbox.args = {
   label: 'PixelDropDown',
-  options: [
-    {
-      value: '1',
-      label: 'Option 1',
-      isChecked: false
-    },
-    {
-      value: '2',
-      label: 'Option 2',
-      isChecked: false
-    },
-    {
-      value: '3',
-      label: 'option 3',
-      isChecked: false
-    },
-    {
-      value: '4',
-      label: 'Option 4',
-      isChecked: false
-    },
-
-    {
-      value: '5',
-      label: 'Option 5',
-      isChecked: false
-    },
-
-    {
-      value: '6',
-      label: 'Option 6',
-      isChecked: false
-    },
-
-    {
-      value: '7',
-      label: 'Option 7',
-      isChecked: false
-    }
-  ],
+  options: [],
   isShowCheckbox: true,
   isShowRedio: false
 }
@@ -217,39 +228,7 @@ Checkbox.args = {
 export const Radio = Template.bind({})
 Radio.args = {
   label: 'PixelDropDown',
-  options: [
-    {
-      value: '1',
-      label: 'Option 1'
-    },
-    {
-      value: '2',
-      label: 'Option 2'
-    },
-    {
-      value: '3',
-      label: 'option 3'
-    },
-    {
-      value: '4',
-      label: 'Option 4'
-    },
-
-    {
-      value: '5',
-      label: 'Option 5'
-    },
-
-    {
-      value: '6',
-      label: 'Option 6'
-    },
-
-    {
-      value: '7',
-      label: 'Option 7'
-    }
-  ],
+  options: [],
   isShowCheckbox: false,
   isShowRadio: true
 }
