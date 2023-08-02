@@ -42,7 +42,7 @@ export const PixelDate = React.forwardRef<HTMLDivElement, PixelDateProps>(
       </StyledPopover>
     );
     const PixelDate = (
-      <StyledDate dashed={showFullDatePopover} data-tag='allowRowEvents' className={className} style={style} size={size}>
+      <StyledDate dashed={showFullDatePopover} className={className} style={style} size={size}>
         {moment(value).format(formats[format] || 'DD/MM/YYYY')}
       </StyledDate>
     )
@@ -64,4 +64,5 @@ export const PixelDate = React.forwardRef<HTMLDivElement, PixelDateProps>(
 export default PixelDate
 const StyledPopover = styled(Popover)`
 padding:4px;
+box-shadow: rgba(0, 0, 0, 0.2) 2px 3px 10px;
 `
