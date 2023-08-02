@@ -1,40 +1,67 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import moment from 'moment'
-export interface PixelDateprops {
+import { Button, OverlayTrigger, Popover } from 'react-bootstrap'
+import PixelText from '../pixel-text/pixel-text'
+import PixelDiv from '../pixel-div/pixel-div'
+import { Placement } from 'react-bootstrap/esm/types'
+export interface PixelDateProps {
   className: string
   value: string
   format?: string
   size?: string
- style?: React.CSSProperties}
-const Date = styled.span`
-  ${(props: PixelDateprops) =>
+  style?: React.CSSProperties
+  popoverPlacement?: Placement
+  showFullDatePopover?: boolean
+}
+const StyledDate = styled.span<{ dashed }>`
+  ${(props: PixelDateProps) =>
     props.size &&
     css`
       font-size: ${props.size} !important;
     `}
+    border-bottom: ${(props) => props.dashed ? '1px dashed' : ''};
+    cursor:${(props) => props.dashed ? 'pointer' : ''} ;
   color: #000000;
   font-weight: 400;
-
   line-height: 100%;
+ 
+ 
 `
-const StyledPixelDate = styled.div``
+export const PixelDate = React.forwardRef<HTMLDivElement, PixelDateProps>(
+  ({ className, value = new Date, format, size, style, popoverPlacement = 'top', showFullDatePopover = true, ...rest }, ref) => {
+    const formats = {
+      'pixelStandard': 'll',
+      'dateWithTime': 'll, h:mm:ss A'
+    }
+    const popoverLeft = (
+      <StyledPopover id="popover-trigger-hover-focus" title="Popover">
+        <PixelText copyToClipboard copiedText={`${new Date(value)}`}>
+          {`${new Date(value)}`}
+        </PixelText>
+      </StyledPopover>
+    );
+    const PixelDate = (
+      <StyledDate dashed={showFullDatePopover} data-tag='allowRowEvents' className={className} style={style} size={size}>
+        {moment(value).format(formats[format] || 'DD/MM/YYYY')}
+      </StyledDate>
+    )
 
-export const PixelDate = React.forwardRef<HTMLDivElement, PixelDateprops>(
-  ({ className, value, format, size,style, ...rest }, ref) => {
     return (
-      <StyledPixelDate>
-        <Date data-tag='allowRowEvents' className={className} style={style} size={size}>
-          {moment(value).format(
-            format === 'pixelStandard'
-              ? 'll'
-              : format === 'dateWithTime'
-              ? ' ll, h:mm:ss A'
-              : 'DD/MM/YYYY'
-          )}
-        </Date>
-      </StyledPixelDate>
+      <PixelDiv>
+        {showFullDatePopover ? <OverlayTrigger
+          trigger={['click', 'focus']}
+          rootClose
+          placement={popoverPlacement}
+          overlay={popoverLeft}
+        >
+          {PixelDate}
+        </OverlayTrigger> : PixelDate}
+      </PixelDiv>
     )
   }
 )
 export default PixelDate
+const StyledPopover = styled(Popover)`
+padding:4px;
+`
