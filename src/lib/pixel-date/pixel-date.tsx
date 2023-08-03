@@ -20,49 +20,68 @@ const StyledDate = styled.span<{ dashed }>`
     css`
       font-size: ${props.size} !important;
     `}
-    border-bottom: ${(props) => props.dashed ? '1px dashed' : ''};
-    cursor:${(props) => props.dashed ? 'pointer' : ''} ;
+  border-bottom: ${(props) => (props.dashed ? '1px dashed' : '')};
+  cursor: ${(props) => (props.dashed ? 'pointer' : '')};
   color: #000000;
   font-weight: 400;
   line-height: 100%;
- 
- 
 `
 export const PixelDate = React.forwardRef<HTMLDivElement, PixelDateProps>(
-  ({ className, value = new Date, format, size, style, popoverPlacement = 'top', showFullDatePopover = true, ...rest }, ref) => {
+  (
+    {
+      className,
+      value = new Date(),
+      format,
+      size,
+      style,
+      popoverPlacement = 'top',
+      showFullDatePopover = true,
+      ...rest
+    },
+    ref
+  ) => {
     const formats = {
-      'pixelStandard': 'll',
-      'dateWithTime': 'll, h:mm:ss A'
+      pixelStandard: 'll',
+      dateWithTime: 'll, h:mm:ss A'
     }
     const popoverLeft = (
-      <StyledPopover id="popover-trigger-hover-focus" title="Popover">
+      <StyledPopover id='popover-trigger-hover-focus' title='Popover'>
         <PixelText copyToClipboard copiedText={`${new Date(value)}`}>
           {`${new Date(value)}`}
         </PixelText>
       </StyledPopover>
-    );
+    )
     const PixelDate = (
-      <StyledDate dashed={showFullDatePopover} className={className} style={style} size={size}>
+      <StyledDate
+        dashed={showFullDatePopover}
+        className={className}
+        style={style}
+        size={size}
+      >
         {moment(value).format(formats[format] || 'DD/MM/YYYY')}
       </StyledDate>
     )
 
     return (
       <PixelDiv>
-        {showFullDatePopover ? <OverlayTrigger
-          trigger={['click', 'focus']}
-          rootClose
-          placement={popoverPlacement}
-          overlay={popoverLeft}
-        >
-          {PixelDate}
-        </OverlayTrigger> : PixelDate}
+        {showFullDatePopover ? (
+          <OverlayTrigger
+            trigger={['click', 'focus']}
+            rootClose
+            placement={popoverPlacement}
+            overlay={popoverLeft}
+          >
+            {PixelDate}
+          </OverlayTrigger>
+        ) : (
+          PixelDate
+        )}
       </PixelDiv>
     )
   }
 )
 export default PixelDate
 const StyledPopover = styled(Popover)`
-padding:4px;
-box-shadow: rgba(0, 0, 0, 0.2) 2px 3px 10px;
+  padding: 4px;
+  box-shadow: rgba(0, 0, 0, 0.2) 2px 3px 10px;
 `
