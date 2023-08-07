@@ -12,7 +12,7 @@ import PixelTag from '../pixel-tag/pixel-tag'
 import PixelInput from '../pixel-input/pixel-input'
 import PixelImage from '../pixel-image/pixel-image'
 import PixelHeading from '../pixel-heading/pixel-heading'
-import PixelDropZone from '../pixel-dropzone/pixel-dropzone'
+import Droppable from './pixel-dropable'
 
 export interface PixelDraggableProps {
   className?: string
@@ -31,12 +31,14 @@ export interface PixelDraggableProps {
   id?: string
   onClick?: () => void
 }
+interface DraggableItem {
+  name: string
+  component: JSX.Element
+}
 export const PixelDraggable = React.forwardRef<
   HTMLDivElement,
   PixelDraggableProps
 >((props, ref) => {
-  const dragItem = useRef()
-  const dragOverItem = useRef()
   const LineChartOptions = {
     title: {
       text: 'Pixel Chart'
@@ -48,7 +50,7 @@ export const PixelDraggable = React.forwardRef<
 
     yAxis: {
       title: {
-        text: 'Number of Employees'
+        text: 'any of Employees'
       }
     },
 
@@ -115,7 +117,7 @@ export const PixelDraggable = React.forwardRef<
       ]
     }
   }
-  const [list, setList] = useState([
+  const [sourceList, setSourceList] = useState([
     {
       name: 'Pixel Date',
       component: <PixelDate className='pixeldate' value='20 Aug 2020' />
@@ -183,43 +185,90 @@ export const PixelDraggable = React.forwardRef<
       )
     }
   ])
-  const dragStart = (e, position) => {
-    dragItem.current = position
-  }
+  const [destinationList, setDestinationList] = useState<DraggableItem[]>([])
 
-  const dragEnter = (e, position) => {
-    dragOverItem.current = position
-  }
+  const dragItem = useRef<any>(null)
+  const dragOverItem = useRef<any>(null)
 
-  const drop = (e) => {
-    const copyListItems = [...list]
-    const dragItemContent = copyListItems[dragItem.current]
-    copyListItems.splice(dragItem.current, 1)
-    copyListItems.splice(dragOverItem.current, 0, dragItemContent)
+  const handleDrop = (e: React.DragEvent, destinationIndex: any) => {
+    e.preventDefault()
+    const draggedItem = sourceList[dragItem.current!]
+
+    if (draggedItem) {
+      setSourceList((prevSourceList) => {
+        const updatedSourceList = [...prevSourceList]
+        updatedSourceList.splice(dragItem.current!, 1)
+        return updatedSourceList
+      })
+
+      setDestinationList((prevDestinationList) => {
+        const updatedDestinationList = [...prevDestinationList]
+        updatedDestinationList.splice(destinationIndex, 0, draggedItem)
+        return updatedDestinationList
+      })
+    }
+
     dragItem.current = null
     dragOverItem.current = null
-    setList(copyListItems)
   }
+
+  const handleDragStart = (e: React.DragEvent, sourceIndex: any) => {
+    dragItem.current = sourceIndex
+    dragOverItem.current = -1
+  }
+
+  const handleDragEnter = (e: React.DragEvent, destinationIndex: any) => {
+    e.preventDefault()
+    dragOverItem.current = destinationIndex
+  }
+
   return (
     <React.Fragment>
-      <>
-        <DivContainer {...props} ref={ref}>
-          {list &&
-            list.map((item, index) => (
+      <DivContainer>
+        <SourceContainer>
+          <ListHeading>Source List</ListHeading>
+          <Droppable
+            onDrop={(e) => handleDrop(e, destinationList.length)}
+            onDragOver={(e) => e.preventDefault()}
+          >
+            {sourceList.map((item, index) => (
               <ListText
-                key={index}
+                key={`source-${index}`}
                 draggable
-                onDragStart={(e) => dragStart(e, index)}
-                onDragEnter={(e) => dragEnter(e, index)}
-                onDragEnd={drop}
+                onDragStart={(e) => handleDragStart(e, index)}
+                onDragEnter={(e) => handleDragEnter(e, index)}
+                onDragEnd={(e) => handleDrop(e, index)}
                 onDragOver={(e) => e.preventDefault()}
               >
                 {item.name}
                 {item.component}
               </ListText>
             ))}
-        </DivContainer>
-      </>
+          </Droppable>
+        </SourceContainer>
+
+        <DestinationContainer>
+          <ListHeading>Destination List</ListHeading>
+          <Droppable
+            onDrop={(e) => handleDrop(e, sourceList.length)}
+            onDragOver={(e) => e.preventDefault()}
+          >
+            {destinationList.map((item, index) => (
+              <ListText
+                key={`destination-${index}`}
+                draggable
+                onDragStart={(e) => handleDragStart(e, -1)}
+                onDragEnter={(e) => handleDragEnter(e, index)}
+                onDragEnd={(e) => handleDrop(e, index)}
+                onDragOver={(e) => e.preventDefault()}
+              >
+                {item.name}
+                {item.component}
+              </ListText>
+            ))}
+          </Droppable>
+        </DestinationContainer>
+      </DivContainer>
     </React.Fragment>
   )
 })
@@ -229,14 +278,31 @@ const DivContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  flex-wrap: wrap;
   justify-content: space-around;
 `
+
+const SourceContainer = styled.div`
+  background-color: #e6f7ff;
+  padding: 10px;
+  margin: 10px;
+`
+
+const DestinationContainer = styled.div`
+  background-color: #f3e5f5;
+  padding: 10px;
+  margin: 10px;
+`
+
 const ListText = styled.div`
   background-color: #add9e6;
-  //   color: #fff;
   text-align: center;
   height: auto;
+  width: 100%;
   margin: 5px 0px;
+  padding: 10px;
+`
+
+const ListHeading = styled.h3`
+  text-align: center;
 `
 export default PixelDraggable
