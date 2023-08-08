@@ -20,7 +20,7 @@ display: ${(props) => (props.isShow ? "flex" : "none")};
 align-items: center;
 justify-content: space-between;
 width: 100%;
-min-height: 30px;
+min-height: 50px;
 padding: 0 10px;
 position: fixed;
 top: 0;
@@ -75,19 +75,19 @@ export const PixelBanner = React.forwardRef<
         case 'warning':
           setColorScheme({
             color: '#856404',
-            bgColor: 'rgba(255, 243, 205, 0.5)'
+            bgColor: 'rgba(255, 243, 205, 0.986)'
           });
           break;
         case 'info':
           setColorScheme({
             color: '#004085',
-            bgColor: 'rgba(204, 229, 255, 0.5)'
+            bgColor: 'rgb(204, 229, 255)'
           });
           break;
         case 'error':
           setColorScheme({
             color: '#721c24',
-            bgColor: 'rgba(248, 215, 218, 0.5);'
+            bgColor: 'rgb(248, 215, 218);'
           });
           break;
         default:
@@ -132,7 +132,7 @@ export const PixelBanner = React.forwardRef<
             <PixelIcon padding="5px 0px 0px 0px" icon={properties.icon} color={colorScheme.color} /> &nbsp;
             <PixelText multiLine customColor={colorScheme.color}>{properties.label}</PixelText>
           </PixelFlexBox>
-          {properties.isDismissible && <PixelIcon style={{ alignSelf: "flex-start" }} padding={"4px 0px 0px 0px"} icon={faXmark} fontSize={"20px"} color={colorScheme.color} onClick={() => setIsShow(false)} />}
+          {properties.isDismissible && <PixelIcon   icon={faXmark} fontSize={"20px"} color={colorScheme.color} onClick={() => setIsShow(false)} />}
         </StyledPixelBanner>
       </React.Fragment>
     )
