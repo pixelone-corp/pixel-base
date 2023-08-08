@@ -33,6 +33,7 @@ export * from './lib/pixel-banners/pixel-banner'
 export * from './lib/pixel-user-profile/pixel-user-profile'
 export * from './lib/pixel-collapse/pixel-collapse'
 export * from './lib/pixel-div/pixel-div'
+export * from './lib/pixel-tooltip/pixel-tooltip'
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'
