@@ -140,12 +140,13 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
 
           <DropdownMenu maxheight={maxheight}>
             {options?.map((data, index) => (
-              <Dropdown.Item
+              <DropDownListItem
+                isGrouped={data.children}
                 key={index}
                 disabled={data.disabled}
-                onClick={data.clickHandler}
+                onClick={!data.children && data.clickHandler}
                 onMouseEnter={() => setShow(data.label)}
-                onMouseLeave={() => setShow(false)}
+                onMouseLeave={() => setShow(false)} d
               >
                 {data.children ? '' : data.label}
                 {data.children && (
@@ -162,18 +163,20 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
 
                     <DropdownMenu maxheight={maxheight}>
                       {data.children?.map((data, i) => (
-                        <Dropdown.Item
+                        <DropDownListItem
+                          isGrouped={data.disabled}
+
                           key={i}
                           disabled={data.disabled}
                           onClick={data.clickHandler}
                         >
                           {data.formatter ? data.formatter(data) : data.label}
-                        </Dropdown.Item>
+                        </DropDownListItem>
                       ))}
                     </DropdownMenu>
                   </StyledSubDropdown>
                 )}
-              </Dropdown.Item>
+              </DropDownListItem>
             ))}
           </DropdownMenu>
         </Dropdown>
@@ -206,3 +209,23 @@ const StyledSubDropdown = styled(Dropdown)`
 
 const DropdownMenu = styled(Dropdown.Menu)``
 export default PixelDropDownMenu
+const DropDownListItem = styled(Dropdown.Item) <{ isGrouped: boolean }>`
+${props => props.isGrouped ? css`
+& >div {
+  &> button {
+    &:focus{
+    box-shadow: none;
+  }
+  }
+}
+&:active{
+  background-color: #e9ecef ;
+}
+`: css`
+  &:active{
+  background-color: ${$primaryColor} ;
+}
+`}
+
+
+`
