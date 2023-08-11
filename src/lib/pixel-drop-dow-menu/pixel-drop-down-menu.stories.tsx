@@ -19,7 +19,7 @@ const Template: ComponentStory<typeof PixelDropDown> = (args) => {
 export const Simple = Template.bind({})
 Simple.args = {
   className: 'string',
-  variant: 'outline',
+  variant: 'simple',
   size: 'lg',
   active: true,
   disabled: false,
@@ -71,6 +71,7 @@ Grouped.args = {
   size: 'lg',
   active: true,
   disabled: false,
+  isGrouped: true,
   margin: '10px',
   padding: '20px',
   tooltip: 'string',
@@ -78,20 +79,25 @@ Grouped.args = {
   options: [
     {
       label: 'Child 2',
+
       children: [
-        { label: 'Test 1' },
-        { label: 'Test 1' },
-        { label: 'Test 1' },
-        { label: 'Test 1' },
+        {
+          label: 'Test 1', clickHandler: () => {
+            console.log('testing')
+          },
+        },
+        { label: 'Test 2' },
+        { label: 'Test 323' },
+        { label: 'Test 12323' },
       ]
     },
     {
       label: 'Child 3',
       children: [
-        { label: 'Test 1' },
-        { label: 'Test 1' },
-        { label: 'Test 1' },
-        { label: 'Test 1' },
+        { label: 'Test 321' },
+        { label: 'Test 13232' },
+        { label: 'Test dfd1' },
+        { label: 'Test 1fdf' },
       ]
     },
     {

@@ -5,14 +5,14 @@ import { $primaryColor, $secondaryColor } from '../styleGuide'
 import { PixelTag } from '../pixel-tag/pixel-tag'
 export interface MenuProps {
   className?: string
-  variant?: 'outline' | 'primary' | 'secondary' | 'link' | 'tag' | string
+  variant?: 'outline' | 'simple' | 'secondary' | 'link' | 'tag' | string
   size?: 'lg' | 'sm'
   active?: boolean
   disabled?: boolean
   margin?: string
   padding?: string
   tooltip?: string
-
+  isGrouped?: boolean
   maxheight?: string
   toggleText?: boolean
   options?: OptionsData[]
@@ -24,6 +24,49 @@ interface OptionsData {
   children?: OptionsData[]
   formatter?: any
 }
+const DropDownListItem = styled(Dropdown.Item) <{ isGrouped: boolean }>`
+${props => props.isGrouped ? css`
+& >div {
+  & > div{
+  & > a {
+    &:active{
+  background-color: ${$primaryColor} ;
+}
+  }
+}
+  &> button {
+    outline: none !important;
+    border: none !important;
+    &:focus{
+    box-shadow: none;
+  }
+  }
+}
+&:active{
+  background-color: #e9ecef ;
+}
+`: css`
+  &:active{
+  background-color: ${$primaryColor} ;
+}
+`}
+ ${(props: MenuProps) =>
+    props.variant !== '' || props.variant === null &&
+    css`
+      & >div {
+  &> button {
+    background-color: none;
+    color: black;
+    &:focus{
+    box-shadow: none;
+  }
+  }
+}
+&:active{
+  background-color: #e9ecef ;
+}
+    `}
+`
 const StyledInnerLine = styled(Dropdown.Toggle)``
 const StyledPixelButton = styled(Dropdown.Toggle)`
   &:focus {
@@ -48,7 +91,7 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
       outline: none;
     `}
   ${(props: MenuProps) =>
-    props.variant === 'primary' &&
+    props.variant === 'simple' &&
     css`
       background-color: ${$primaryColor} !important;
       border-color: ${$primaryColor} !important;
@@ -103,11 +146,12 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
       toggleText = 'drop-down-button',
       options,
       active,
-      variant = 'primary',
+      variant = 'simple',
       disabled = false,
       margin = '0px',
       tooltip = false,
       maxheight = '250px',
+      isGrouped = false,
       ...rest
     },
     ref
@@ -141,12 +185,20 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
           <DropdownMenu maxheight={maxheight}>
             {options?.map((data, index) => (
               <DropDownListItem
-                isGrouped={data.children}
+                isGrouped={isGrouped}
                 key={index}
                 disabled={data.disabled}
-                onClick={!data.children && data.clickHandler}
+                onClick={(e) => {
+                  if (isGrouped) {
+                    e.stopPropagation();
+                  } else {
+                    data.clickHandler
+                  }
+                }}
+
                 onMouseEnter={() => setShow(data.label)}
                 onMouseLeave={() => setShow(false)}
+                active={false}
               >
                 {data.children ? '' : data.label}
                 {data.children && (
@@ -164,8 +216,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                     <DropdownMenu maxheight={maxheight}>
                       {data.children?.map((data, i) => (
                         <DropDownListItem
-                          isGrouped={data.disabled}
-
+                          isGrouped={isGrouped}
                           key={i}
                           disabled={data.disabled}
                           onClick={data.clickHandler}
@@ -208,24 +259,5 @@ const StyledSubDropdown = styled(Dropdown)`
 `
 
 const DropdownMenu = styled(Dropdown.Menu)``
+
 export default PixelDropDownMenu
-const DropDownListItem = styled(Dropdown.Item) <{ isGrouped: boolean }>`
-${props => props.isGrouped ? css`
-& >div {
-  &> button {
-    &:focus{
-    box-shadow: none;
-  }
-  }
-}
-&:active{
-  background-color: #e9ecef ;
-}
-`: css`
-  &:active{
-  background-color: ${$primaryColor} ;
-}
-`}
-
-
-`
