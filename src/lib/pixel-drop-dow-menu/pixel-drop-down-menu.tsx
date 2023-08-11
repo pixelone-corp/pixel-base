@@ -146,7 +146,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                 disabled={data.disabled}
                 onClick={!data.children && data.clickHandler}
                 onMouseEnter={() => setShow(data.label)}
-                onMouseLeave={() => setShow(false)} d
+                onMouseLeave={() => setShow(false)}
               >
                 {data.children ? '' : data.label}
                 {data.children && (
