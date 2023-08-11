@@ -30,7 +30,10 @@ Simple.args = {
   options: [
 
     {
-      label: 'Child 2'
+      label: 'Child 2',
+      clickHandler: () => {
+        console.log('testing')
+      },
     },
     {
       label: 'Child 3'

@@ -192,7 +192,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                   if (isGrouped) {
                     e.stopPropagation();
                   } else {
-                    data.clickHandler
+                    data.clickHandler && data.clickHandler();
                   }
                 }}
 
