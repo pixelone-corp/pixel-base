@@ -1,44 +1,41 @@
 import React from 'react'
-import Alert, { AlertProps } from 'react-bootstrap/Alert'
-import PixelDiv from '../pixel-div/pixel-div'
+import Alert from 'react-bootstrap/Alert'
 import styled from 'styled-components'
 export interface PixelAlertProps {
-  variant:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'dark'
-    | 'light'
-    | string
-  children: React.ReactNode,
-  style?: React.CSSProperties 
+  className?: string
+  variant?:
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'dark'
+  | 'light'
+  | string
+  children?: React.ReactNode
+  style?: React.CSSProperties
+  padding?: string
 }
 
 export const PixelAlert = React.forwardRef<HTMLDivElement, PixelAlertProps>(
-  (props , ref) => {
-    const { variant, children, style} = props
-    
+  (props, ref) => {
+    const { variant = 'primary', children = 'Pixel Alert', style, className, padding } = props
     return (
-      <>
-     
-          <StyledAlert
-            ref={ref}
-            variant={variant}
-            style={style}
-          >
-            {children}
-          </StyledAlert>
-        
-      </>
+      <StyledAlert
+        className={className}
+        ref={ref}
+        variant={variant}
+        style={style}
+        padding={padding}
+      >
+        {children}
+      </StyledAlert>
     )
   }
 )
+const StyledAlert = styled(Alert) <{ padding: string }>`
+padding: ${props => props.padding && props.padding}
+`
 
 export default PixelAlert
-
-const StyledAlert = styled(Alert)`
-  display:  ${(props) => props.style}
-`;
