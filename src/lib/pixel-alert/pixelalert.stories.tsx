@@ -12,11 +12,11 @@ const Template: ComponentStory<typeof PixelAlertProps> = (args) => {
 
   return (
     <React.Fragment>
-     
-        <PixelAlert {...args}>
-          Hello! Here is your Alert.
-        </PixelAlert>
-   
+
+      <PixelAlert {...args}>
+        Pixel Alert
+      </PixelAlert>
+
     </React.Fragment>
   )
 }
@@ -25,5 +25,4 @@ export const Simple = Template.bind({})
 
 Simple.args = {
   variant: 'info',
-  style: { display: 'block' } 
 }
