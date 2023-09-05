@@ -6,7 +6,6 @@ export interface PixelAudioPlayerProps {
   audioSrc: string;
 }
 
-
 const PixelAudioPlayer: React.FC<PixelAudioPlayerProps> = ({
   className,
   audioSrc = '',
@@ -23,10 +22,9 @@ const PixelAudioPlayer: React.FC<PixelAudioPlayerProps> = ({
       style={{
         borderRadius: '30px'
       }}
-      className={className}
       {...rest}
     >
-      <audio ref={audioRef} src={audioSrc} controls>
+      <audio ref={audioRef} src={audioSrc || ''} controls>
         Your browser does not support the audio element.
       </audio>
     </PixelFlexBox>

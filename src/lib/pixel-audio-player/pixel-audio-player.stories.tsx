@@ -1,6 +1,5 @@
 import React from "react";
 import { ComponentStory } from '@storybook/react';
-import audio from './IVRorderConfirmation.mp3'
 import PixelAudioPlayer from "./pixel-audio-player";
 import { Section, SectionActions } from "../common-styled-component";
 
@@ -26,7 +25,7 @@ const Template: ComponentStory<typeof PixelAudioPlayer> = (args) => {
 
 export const Simple = Template.bind({});
 Simple.args = {
-  audioSrc: audio,
+  audioSrc: null,
 }
 
 
