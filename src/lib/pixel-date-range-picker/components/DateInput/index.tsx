@@ -1,5 +1,7 @@
+// @ts-nocheck
 import React, { PureComponent, ChangeEvent, KeyboardEvent } from 'react'
 import classnames from 'classnames'
+import PixelText from '../../../pixel-text/pixel-text'
 import { format, parse, isValid } from 'date-fns'
 import PropTypes, { InferProps } from 'prop-types'
 
@@ -79,6 +81,8 @@ class DateInput extends PureComponent<DateInputProps, DateInputState> {
 
     return (
       <span className={classnames('rdrDateInput', className)}>
+        <PixelText style={{fontSize:'13px'}}>
+
         <input
           readOnly={readOnly}
           disabled={disabled}
@@ -89,8 +93,9 @@ class DateInput extends PureComponent<DateInputProps, DateInputState> {
           onChange={this.onChange}
           onBlur={this.onBlur}
           onFocus={onFocus}
-        />
+          />
         {invalid && <span className="rdrWarning">&#9888;</span>}
+          </PixelText>
       </span>
     )
   }

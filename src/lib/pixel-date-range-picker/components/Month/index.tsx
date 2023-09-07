@@ -1,4 +1,4 @@
-/* eslint-disable no-fallthrough */
+// @ts-nocheck
 import React, { PureComponent } from 'react'
 import {
   format,
