@@ -84,7 +84,7 @@ export function findNextRangeIndex(
 }
 
 export function getMonthDisplayRange(
-  date: Date,
+  date: any,
   dateOptions: Record<string, any>,
   fixedHeight: boolean,
 ): {
@@ -93,8 +93,8 @@ export function getMonthDisplayRange(
   startDateOfMonth: Date
   endDateOfMonth: Date
 } {
-  const startDateOfMonth = startOfMonth(date, dateOptions)
-  const endDateOfMonth = endOfMonth(date, dateOptions)
+  const startDateOfMonth = startOfMonth(date)
+  const endDateOfMonth = endOfMonth(date)
   const startDateOfCalendar = startOfWeek(startDateOfMonth, dateOptions)
   let endDateOfCalendar = endOfWeek(endDateOfMonth, dateOptions)
 
@@ -114,8 +114,8 @@ export function getMonthDisplayRange(
 }
 
 export function generateStyles(
-  sources: Record<string, string>[],
-): Record<string, string> {
+  sources: any,
+): any {
   if (!sources.length) return {}
   const generatedStyles = sources
     .filter((source) => Boolean(source))

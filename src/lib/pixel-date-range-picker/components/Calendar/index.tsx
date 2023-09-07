@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { PureComponent, ReactNode } from 'react'
 import ReactList from 'react-list'
 import classnames from 'classnames'
@@ -50,7 +51,7 @@ interface ScrollArea {
   enabled: boolean
   monthHeight?: number
   longMonthHeight?: number
-  calendarWidth?: number
+  calendarWidth?: any
   calendarHeight?: number
 }
 
@@ -62,7 +63,7 @@ interface CalendarProps {
   minDate?: Date
   maxDate?: Date
   date?: Date
-  onChange?: (date: Date) => void
+  onChange?:any
   onPreviewChange?: (val: Date | null) => void
   onRangeFocusChange?: (focusedRange: [number, number]) => void
   classNames?: Record<string, string>
@@ -88,7 +89,7 @@ interface CalendarProps {
   showPreview?: boolean
   displayMode?: 'dateRange' | 'date'
   color?: string
-  updateRange?: (val: Range) => void
+  updateRange?: (val: any) => void
   scroll?: ScrollArea
   direction?: 'vertical' | 'horizontal'
   startDatePlaceholder?: string
@@ -105,16 +106,18 @@ interface CalendarProps {
   calendarFocus?: 'forwards' | 'backwards'
   preventSnapRefocus?: boolean
   ariaLabels?: ariaLabelsShape
+  calendar?: any
 }
 
-class Calendar extends PureComponent<CalendarProps> {
+class Calendar extends PureComponent<CalendarProps> {    
   private dateOptions: { locale: Record<string, any>; weekStartsOn?: number }
   private styles: Record<string, any>
   private listSizeCache: Record<number, number>
   private isFirstRender: boolean
   private list: ReactList | null
+  static propTypes: any
 
-  constructor(props: CalendarProps, context: any) {
+  constructor(props: any, context: any) {
     super(props, context)
     this.dateOptions = { locale: props.locale }
     if (props.weekStartsOn !== undefined)
@@ -139,7 +142,7 @@ class Calendar extends PureComponent<CalendarProps> {
     return [...Array(12).keys()].map((i) => this.props.locale.localize.month(i))
   }
 
-  calcScrollArea(props: CalendarProps): ScrollArea {
+  calcScrollArea(props: any): ScrollArea {
     const { direction, months, scroll } = props
     if (!scroll.enabled) return { enabled: false }
 
@@ -165,7 +168,7 @@ class Calendar extends PureComponent<CalendarProps> {
   }
 
   focusToDate = (
-    date: Date,
+    date: any,
     props: CalendarProps = this.props,
     preventUnnecessary = true,
   ) => {

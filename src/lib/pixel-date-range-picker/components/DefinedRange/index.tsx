@@ -1,16 +1,21 @@
 import React, { Component, ReactNode } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import { defaultInputRanges, defaultStaticRanges } from '../../defaultRanges'
+import {
+  //  defaultInputRanges,
+    defaultStaticRanges } from '../../defaultRanges'
 import styles from '../../styles'
+// @ts-ignore
 import { rangeShape, Range, StaticRange } from '../DayCell'
 import InputRangeField from '../InputRangeField'
+import { $primaryColor } from '../../../styleGuide'
+import PixelText from '../../../pixel-text/pixel-text'
 
 interface DefinedRangeProps {
   inputRanges?: StaticRange[]
   staticRanges?: StaticRange[]
   ranges?: Range[]
-  focusedRange?: number[]
+  focusedRange?: any
   onPreviewChange?: (range?: Range) => void
   onChange?: (ranges: { [key: string]: Range }) => void
   footerContent?: ReactNode
@@ -26,6 +31,7 @@ interface DefinedRangeState {
 }
 
 class DefinedRange extends Component<DefinedRangeProps, DefinedRangeState> {
+  static propTypes: any
   constructor(props: DefinedRangeProps) {
     super(props)
     this.state = {
@@ -123,27 +129,34 @@ class DefinedRange extends Component<DefinedRangeProps, DefinedRangeState> {
                   onPreviewChange && onPreviewChange()
                 }}
               >
+                <PixelText style={{fontSize:'13px'}}>
+
                 <span tabIndex={-1} className={styles.staticRangeLabel}>
                   {labelContent}
                 </span>
+                </PixelText>
               </button>
             )
           })}
         </div>
         <div className={styles.inputRanges}>
+          <PixelText style={{fontSize:'20px'}}>
+
           {inputRanges?.map((rangeOption, i) => (
             <InputRangeField
-              key={i}
-              styles={styles}
-              label={rangeOption.label}
-              onFocus={() => this.setState({ focusedInput: i, rangeOffset: 0 })}
-              onBlur={() => this.setState({ rangeOffset: 0 })}
-              onChange={(value) =>
-                this.handleRangeChange(rangeOption.range(value, this.props))
-              }
-              value={this.getRangeOptionValue(rangeOption)}
+            key={i}
+            // @ts-ignore
+            styles={styles}
+            label={rangeOption.label}
+            onFocus={() => this.setState({ focusedInput: i, rangeOffset: 0 })}
+            onBlur={() => this.setState({ rangeOffset: 0 })}
+            onChange={(value) =>
+              this.handleRangeChange(rangeOption.range(value, this.props))
+            }
+            value={this.getRangeOptionValue(rangeOption)}
             />
-          ))}
+            ))}
+            </PixelText>
         </div>
         {footerContent}
       </div>
@@ -164,12 +177,12 @@ DefinedRange.propTypes = {
   className: PropTypes.string,
   renderStaticRangeLabel: PropTypes.func,
 }
-
+// @ts-ignore
 DefinedRange.defaultProps = {
-  inputRanges: defaultInputRanges,
+  // inputRanges: defaultInputRanges,
   staticRanges: defaultStaticRanges,
   ranges: [],
-  rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
+  rangeColors: [$primaryColor, '#3ecf8e', '#fed14c'],
   focusedRange: [0, 0],
 }
 

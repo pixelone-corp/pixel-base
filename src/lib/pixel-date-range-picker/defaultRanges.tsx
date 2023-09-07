@@ -46,51 +46,7 @@ export function createStaticRanges(ranges) {
   return ranges.map((range) => ({ ...staticRangeHandler, ...range }))
 }
 
-// export const defaultStaticRanges = createStaticRanges([
-//   {
-//     label: 'Today',
-//     range: () => ({
-//       startDate: defineds.startOfToday,
-//       endDate: defineds.endOfToday,
-//     }),
-//   },
-//   {
-//     label: 'Yesterday',
-//     range: () => ({
-//       startDate: defineds.startOfYesterday,
-//       endDate: defineds.endOfYesterday,
-//     }),
-//   },
 
-//   {
-//     label: 'Last 7 days',
-//     range: () => ({
-//       startDate: defineds.startOfWeek,
-//       endDate: defineds.endOfWeek,
-//     }),
-//   },
-//   {
-//     label: 'Last week',
-//     range: () => ({
-//       startDate: defineds.startOfLastWeek,
-//       endDate: defineds.endOfLastWeek,
-//     }),
-//   },
-//   {
-//     label: 'This Month',
-//     range: () => ({
-//       startDate: defineds.startOfMonth,
-//       endDate: defineds.endOfMonth,
-//     }),
-//   },
-//   {
-//     label: 'Last Month',
-//     range: () => ({
-//       startDate: defineds.startOfLastMonth,
-//       endDate: defineds.endOfLastMonth,
-//     }),
-//   },
-// ])
 
 export const defaultStaticRanges = createStaticRanges([
   {

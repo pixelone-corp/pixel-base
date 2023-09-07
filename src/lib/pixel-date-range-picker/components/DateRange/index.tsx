@@ -13,6 +13,7 @@ import coreStyles from '../../styles'
 import { findNextRangeIndex, generateStyles } from '../../utils'
 import Calendar from '../Calendar'
 import { rangeShape } from '../DayCell'
+import { $primaryColor } from '../../../styleGuide'
 
 interface DateRangeProps {
   ranges: any[] // Replace 'any' with the actual type of your ranges.
@@ -21,11 +22,15 @@ interface DateRangeProps {
   rangeColors?: string[]
   disabledDates?: Date[]
   onRangeFocusChange?: (focusedRange: [number, number]) => void
+  focusedRange:any
+  onChange:any
+  maxDate:any
+  className:any
 }
 
 interface DateRangeState {
   focusedRange: [number, number]
-  preview: null | {
+  preview:any| {
     range: {
       startDate: Date
       endDate: Date
@@ -36,8 +41,11 @@ interface DateRangeState {
 
 class DateRange extends Component<DateRangeProps, DateRangeState> {
   private calendar: RefObject<Calendar>
+  static propTypes: any
+  styles: any
+  static defaultProps: { classNames: {}; ranges: any[]; moveRangeOnFirstSelection: boolean; retainEndDateOnFirstSelection: boolean; rangeColors: string[]; disabledDates: any[] }
 
-  constructor(props: DateRangeProps, context: any) {
+  constructor(props: any, context: any) {
     super(props, context)
     this.state = {
       focusedRange: props.initialFocusedRange || [
@@ -50,7 +58,7 @@ class DateRange extends Component<DateRangeProps, DateRangeState> {
     this.calendar = React.createRef()
   }
 
-  calcNewSelection = (value: Date, isSingleValue = true) => {
+  calcNewSelection = (value: any, isSingleValue = true) => {
     const focusedRange = this.props.focusedRange || this.state.focusedRange
     const {
       ranges,
@@ -155,13 +163,14 @@ class DateRange extends Component<DateRangeProps, DateRangeState> {
   }
 
   updatePreview = (
-    val: null | { range: { startDate: Date; endDate: Date }; color: string },
+    val: any | { range: { startDate: Date; endDate: Date }; color: any },
   ) => {
     if (!val) {
       this.setState({ preview: null })
       return
     }
     const { rangeColors, ranges } = this.props
+    
     const focusedRange = this.props.focusedRange || this.state.focusedRange
     const color =
       ranges[focusedRange[0]]?.color || rangeColors[focusedRange[0]] || 'color' // Update with the actual default color
@@ -186,6 +195,7 @@ class DateRange extends Component<DateRangeProps, DateRangeState> {
         onChange={this.setSelection}
         updateRange={(val) => this.setSelection(val, false)}
         ref={(target) => {
+          // @ts-ignore
           this.calendar = target
         }}
       />
@@ -198,7 +208,7 @@ DateRange.defaultProps = {
   ranges: [],
   moveRangeOnFirstSelection: false,
   retainEndDateOnFirstSelection: false,
-  rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
+  rangeColors: [$primaryColor, '#3ecf8e', '#fed14c'],
   disabledDates: [],
 }
 
