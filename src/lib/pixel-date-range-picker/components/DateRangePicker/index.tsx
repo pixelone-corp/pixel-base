@@ -9,12 +9,12 @@ import DefinedRange from '../DefinedRange/index';
 interface DateRangePickerProps {
   className?: Record<string, string>;
   ranges: any[];
-  onChange: (ranges: any[]) => void;
+  onChange: (array) => void ;
   showSelectionPreview: boolean;
   moveRangeOnFirstSelection: boolean;
-  months: number;
+  months: number | undefined;
   direction: string;
-  context: object;
+  context: object |undefined;
   dateRange: unknown;
   focusedRange: number[];
   RangeColors: unknown;

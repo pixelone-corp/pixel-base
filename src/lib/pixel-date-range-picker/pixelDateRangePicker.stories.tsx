@@ -35,15 +35,11 @@ const Template: ComponentStory<typeof PixelDateRange> = (args) => {
   }
   return (
     <React.Fragment>
-      <PixelFlexBox
-        justifyContent='flex-start'
-        alignItems='center'
-        alignContent='center'
-        height='500px'
-        margin='100px'
-      >
+      {/* <PixelFlexBox
+    
+      > */}
         <PixelDateRange  onChange={handelChange} ranges={state} month={2} handelApply={onApply}  {...args} />
-      </PixelFlexBox>
+      {/* </PixelFlexBox> */}
 
     </React.Fragment>
   )
