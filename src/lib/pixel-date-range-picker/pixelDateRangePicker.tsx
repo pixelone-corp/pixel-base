@@ -21,10 +21,12 @@ export interface PixelDateRangePickerProps {
   refs?: null // locale={'enUS from locale'}
   RangeColors?: null
   style?: null
+  position:string
 }
 
 import PixelDate from '../pixel-date/pixel-date'
 import PixelButton from '../pixel-button/pixel-button'
+import { log } from 'console'
 
 const PixelDateRangePicker = React.forwardRef<
   HTMLDivElement,
@@ -42,6 +44,7 @@ const PixelDateRangePicker = React.forwardRef<
       refs,
       RangeColors,
       style,
+      position,
       ...rest
     },
     ref
@@ -68,13 +71,15 @@ const PixelDateRangePicker = React.forwardRef<
     }, [])
 
 const handelApply = () => {
+  setShowPopOver(false)
   onApply()
 }
 
+const _position = position === 'left' ?  'flex-start' : 'flex-end' 
 
     return (
       <PixelFlexBox
-        style={{ position: 'relative', justifyContent: 'flex-end' }}
+        style={{ position: 'relative', justifyContent:_position }}
         ref={datePickerRef}
       >
         <StyledDatePicker

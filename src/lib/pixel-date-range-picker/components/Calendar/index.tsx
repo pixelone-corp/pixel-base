@@ -105,7 +105,7 @@ interface CalendarProps {
   fixedHeight?: boolean
   calendarFocus?: 'forwards' | 'backwards'
   preventSnapRefocus?: boolean
-  ariaLabels?: ariaLabelsShape
+  ariaLabels?: any
   calendar?: any
 }
 
