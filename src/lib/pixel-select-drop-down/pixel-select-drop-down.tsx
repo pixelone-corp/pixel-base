@@ -261,12 +261,15 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                   inputPosition={requriedHeight() < 0}
                 >
                   <SearchPixelInput>
-                    <Search
-                      placeholder='Search'
-                      name='search'
+                     {
+                     options.length > 5 &&
+                     <Search
+                     placeholder='Search'
+                     name='search'
                       onChange={(e) => setFilterText(e.target.value)}
                       value={filterText}
-                    />
+                    /> 
+                  }
                   </SearchPixelInput>
                   <OptionalContainer>
                     {Object.keys(groupData).map((key) => {
@@ -319,12 +322,15 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                 >
                   <SearchPixelInput>
                     <InputContainer>
+                    {
+                     options.length > 5 &&
                       <Search
                         placeholder='Search'
                         name='search'
                         onChange={(e) => setFilterText(e.target.value)}
                         value={filterText}
-                      />
+                      /> 
+                    }
                       {filterText?.length > 0 && (
                         <React.Fragment>
                           {filterData(options, filterText)?.length === 0 && (

@@ -38,15 +38,14 @@ Simple.args = {
     {
       value: '1',
       label: (
-        <PixelProfile user={{ first_name: 'Saif Ur', last_name: 'Rehman',role:'Engineer',  manager:'Muhammad Usman',user_type:'FUll Time',  created_at: {
-          date: "2023-01-21 03:53:42.000000",
-         
-      },
-      profile: {  email: "jawad@pixelone.app"},
-      photo: {attachment_path: "https:\/\/storage.googleapis.com\/pixelone\/global\/default-employee-photo.png"
-    }
+        <PixelProfile user={{
+          first_name: 'Saif Ur', last_name: 'Rehman', role: 'Engineer', manager: 'Muhammad Usman', user_type: 'FUll Time', created_at: {
+            date: "2023-01-21 03:53:42.000000",
+          },
+          profile: { email: "jawad@pixelone.app" },
+          
 
-      }} />
+        }} isShowPopup={false} color={'green'} />
       )
     },
     {
