@@ -14,11 +14,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '18'
       - name: Install and Build 🔧
         run: |
           npm install -g npm@latest
           npm install
+          export NODE_OPTIONS="--openssl-legacy-provider"
           npm run build-storybook
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2

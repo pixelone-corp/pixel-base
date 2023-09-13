@@ -14,6 +14,11 @@ npm install --save pixel-base
 
 DEMO: https://pixelone-corp.github.io/pixel-base/
 
+<!-- run storybook in local using node version upper then 16 the  run these commands
+macOS & linux: export NODE_OPTIONS="--openssl-legacy-provider"
+window: $env:NODE_OPTIONS = "--openssl-legacy-provider"
+ -->
+
 ```tsx
 import React, { Component } from 'react'
 
@@ -25,6 +30,8 @@ class Example extends Component {
     return <MyComponent />
   }
 }
+
+// Note: If you are using TypeScript, make sure to add a declaration for the 'pixel-base' module in your project's type declarations
 ```
 
 ## License
