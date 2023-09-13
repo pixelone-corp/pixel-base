@@ -23,7 +23,7 @@ const PixelAudioPlayer: React.FC<PixelAudioPlayerProps> = ({
       {...rest}
     >
       <audio ref={audioRef} src={audioSrc || ''} controls>
-        Your browser does not support the audio element..
+        Your browser does not support the audio element.
       </audio>
     </PixelFlexBox>
   );
