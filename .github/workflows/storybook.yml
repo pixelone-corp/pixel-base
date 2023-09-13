@@ -15,13 +15,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '18'
-       - name: Set NODE_OPTIONS
-        run: |
-          echo "export NODE_OPTIONS='--openssl-legacy-provider'" >> $GITHUB_ENV    
       - name: Install and Build 🔧
         run: |
           npm install -g npm@latest
           npm install
+          export NODE_OPTIONS="--openssl-legacy-provider"
           npm run build-storybook
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
