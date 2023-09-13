@@ -2,12 +2,10 @@ import React from 'react';
 import PixelFlexBox from '../pixel-flex-box/pixel-flex-box';
 
 export interface PixelAudioPlayerProps {
-  className?: string;
   audioSrc: string;
 }
 
 const PixelAudioPlayer: React.FC<PixelAudioPlayerProps> = ({
-  className,
   audioSrc = '',
   ...rest
 }) => {
