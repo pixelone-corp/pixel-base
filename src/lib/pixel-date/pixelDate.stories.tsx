@@ -10,7 +10,6 @@ export default {
 } as ComponentMeta<typeof PixelDate>
 
 const Template: ComponentStory<typeof PixelDate> = (args) => {
-  console.log(args)
   return (
     <React.Fragment>
       <PixelFlexBox
