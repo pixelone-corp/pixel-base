@@ -256,6 +256,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
               <React.Fragment>
                 <Datepicker
                   ref={ref}
+                  value={value}
                   className={cn(
                     ' px-4 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
                     shadow && 'focus:shadow',
@@ -282,7 +283,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
                   onFocusChange={(focusedInput) =>
                     setShowDatePicker(focusedInput)
                   }
-                  date={value ? new Date(value) : new Date()} // Date or null
+                  // date={value ? new Date(value) : new Date()} // Date or null
                   showDatepicker={showDatePicker}
                 />
               </React.Fragment>
