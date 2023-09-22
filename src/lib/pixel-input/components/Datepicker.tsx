@@ -12,14 +12,14 @@ import * as locales from 'react-date-range/dist/locale'
 import PixelFlexBox from '../../pixel-flex-box/pixel-flex-box'
 
 const Datepicker = (props) => {
-
-  const [newDate, setNewDate] = useState(moment().format('DD MMM YYYY'))
   const [showPopOver, setShowPopOver] = useState(false)
   const [label, setLabel] = useState('')
+  const [newDate, setNewDate] = useState(moment(props.value).toDate())
 
   const datePickerRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
-    if (props.label == props.placeholder) {
+    if (props.label === props.placeholder) {
       setLabel(props.label)
     }
   }, [props.label, props.placeholder])
@@ -38,11 +38,15 @@ const Datepicker = (props) => {
 
     return () => {
       document.removeEventListener('mousedown', handleDocumentClick)
-    }     
+    }
   }, [])
 
   return (
-    <PixelFlexBox style={{marginBottom:'40px'}} justifyContent='flex-end' ref={datePickerRef}>
+    <PixelFlexBox
+      style={{ marginBottom: '40px' }}
+      justifyContent='flex-end'
+      ref={datePickerRef}
+    >
       {label ? (
         <Label>{label}</Label>
       ) : (
@@ -55,22 +59,23 @@ const Datepicker = (props) => {
         }}
       >
         <PixelIcon color='#737373' icon={faCalendar} />
-        {props.value ? props.value : newDate}
+        {props.value
+          ? moment(props.value).format('MMM DD YYYY')
+          : moment().format('MMM DD YYYY')}
       </StyledDatePicker>
 
       {showPopOver && (
         <React.Fragment>
           <StyledPopOver>
             <Calendar
-              width='100%'
               color={$primaryColor}
-              onChange={(date) => {
+              onChange={(item) => {
+                props.onChange(item)
+                setNewDate(moment(item).toDate())
                 setShowPopOver(false)
-                props.onChange(date)
-                setNewDate(moment(date).format('DD MMM YYYY'))
               }}
-              locale={locales.enUS}
-              date={new Date(newDate)}
+              locale={locales[{ enUS: 'English (United States)' }]}
+              date={newDate}
             />
           </StyledPopOver>
         </React.Fragment>

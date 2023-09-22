@@ -2,8 +2,6 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import PixelInput from './pixel-input'
-import moment from 'moment'
-import PixelTable from '../pixel-table/pixel-table'
 
 export default {
   title: 'Pixel Input',
@@ -34,7 +32,8 @@ InputAsDatePicker.args = {
   placeholder: 'Pixel Input',
   as: 'datePicker',
   showResetDate: true,
-  showClose: true
+  showClose: true,
+  value:"Mon Sep 04 2023 19:00:00 GMT+0500 (Uzbekistan Standard Time)"
 }
 export const InputAsTextArea = Template.bind({})
 InputAsTextArea.args = {
