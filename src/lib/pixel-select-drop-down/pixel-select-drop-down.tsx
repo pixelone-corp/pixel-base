@@ -75,7 +75,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       isShowLabel = true,
       disabled = false,
       customLabel = '',
-
+      onChange = () => { },
       ...rest
     },
     ref
@@ -218,7 +218,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
           ref={inputRef}
           value={value}
           required={required}
-          onChange={() => {}}
+          onChange={() => { }}
         />
         {isShowLabel && (
           <StyledLabel className={showLabel ? 'showLabell' : 'testing'}>
@@ -260,14 +260,15 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                   position={dropdownPosition}
                   inputPosition={requriedHeight() < 0}
                 >
-                  <SearchPixelInput>
-                    <Search
-                      placeholder='Search'
-                      name='search'
-                      onChange={(e) => setFilterText(e.target.value)}
-                      value={filterText}
-                    />
-                  </SearchPixelInput>
+                  {options && options?.length > 5 &&
+                    <SearchPixelInput>
+                      <Search
+                        placeholder='Search'
+                        name='search'
+                        onChange={(e) => setFilterText(e.target.value)}
+                        value={filterText}
+                      />
+                    </SearchPixelInput>}
                   <OptionalContainer>
                     {Object.keys(groupData).map((key) => {
                       if (groupData[key].length == 0) return null
@@ -278,8 +279,8 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                             return (
                               <Options
                                 onClick={() => {
-                                  rest.onChange &&
-                                    rest.onChange({
+                                  onChange &&
+                                    onChange({
                                       target: {
                                         value: option.value,
                                         options: [{ text: option.label }],
@@ -317,23 +318,24 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                   position={dropdownPosition}
                   inputPosition={requriedHeight() < 0}
                 >
-                  <SearchPixelInput>
-                    <InputContainer>
-                      <Search
-                        placeholder='Search'
-                        name='search'
-                        onChange={(e) => setFilterText(e.target.value)}
-                        value={filterText}
-                      />
-                      {filterText?.length > 0 && (
-                        <React.Fragment>
-                          {filterData(options, filterText)?.length === 0 && (
-                            <NoFoundError>No Data Found</NoFoundError>
-                          )}
-                        </React.Fragment>
-                      )}
-                    </InputContainer>
-                  </SearchPixelInput>
+                  {options && options?.length > 5 &&
+                    <SearchPixelInput>
+                      <InputContainer>
+                        <Search
+                          placeholder="Search"
+                          name="search"
+                          onChange={(e) => setFilterText(e.target.value)}
+                          value={filterText}
+                        />
+                        {filterText?.length > 0 && (
+                          <React.Fragment>
+                            {filterData(options, filterText)?.length === 0 && (
+                              <NoFoundError>No Data Found</NoFoundError>
+                            )}
+                          </React.Fragment>
+                        )}
+                      </InputContainer>
+                    </SearchPixelInput>}
 
                   <OptionalContainer>
                     {filterData(options, filterText)?.map((option, index) => {
@@ -344,8 +346,8 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                           value={option.value}
                           disabled={option.disabled}
                           onClick={() => {
-                            rest.onChange &&
-                              rest.onChange({
+                            onChange &&
+                              onChange({
                                 target: {
                                   value: option.value,
                                   options: [{ text: option.label }],
