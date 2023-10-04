@@ -26,9 +26,8 @@ export interface PixelDateRangePickerProps {
 
 import PixelDate from '../pixel-date/pixel-date'
 import PixelButton from '../pixel-button/pixel-button'
-import { log } from 'console'
 
-const PixelDateRangePicker = React.forwardRef<
+export const PixelDateRangePicker = React.forwardRef<
   HTMLDivElement,
   PixelDateRangePickerProps
 >(
