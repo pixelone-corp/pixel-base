@@ -78,7 +78,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       onChange = () => { },
       ...rest
     },
-    ref
+    ref,
   ) => {
     const [isOptionsOpen, setIsOptionsOpen] = React.useState(false)
     const [filterText, setFilterText] = React.useState('')
@@ -90,12 +90,12 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       top: 0,
       width: 0,
       x: 0,
-      y: 0
+      y: 0,
     })
     const [dropdownPosition, setDropdownPosition] = React.useState({
       top: '',
       left: '-500px',
-      width: ''
+      width: '',
     })
     const [showLabel, setShowLabel] = React.useState<any>(false)
     const toggleOptions = () => {
@@ -138,13 +138,13 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         setDropdownPosition({
           top: topPosition,
           left: `${position?.left === 0 ? '-500' : position?.left}px`,
-          width: `${position?.width}px`
+          width: `${position?.width}px`,
         })
       } else {
         setDropdownPosition({
           top: '',
           left: '-500px',
-          width: ''
+          width: '',
         })
       }
     }, [position, filterText])
@@ -155,7 +155,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(false)
       setDropdownPosition({
         ...dropdownPosition,
-        left: '-500px'
+        left: '-500px',
       })
     }
     const getValues = async () => {
@@ -199,7 +199,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(false)
       setDropdownPosition({
         ...dropdownPosition,
-        left: '-500px'
+        left: '-500px',
       })
     }
     React.useEffect(() => {
@@ -214,7 +214,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     return (
       <Mainconatiner>
         <HiddenInput
-          type='text'
+          type="text"
           ref={inputRef}
           value={value}
           required={required}
@@ -246,7 +246,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
               {getValue(
                 isgrouped ? groupOptionData : options,
                 value,
-                isgrouped
+                isgrouped,
               ) || placeholder}
             </OptionLabel>
             <FontAwesomeIcon icon={faAngleDown} />
@@ -260,15 +260,16 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                   position={dropdownPosition}
                   inputPosition={requriedHeight() < 0}
                 >
-                  {options && options?.length > 5 &&
+                  {options && options?.length > 5 && (
                     <SearchPixelInput>
                       <Search
-                        placeholder='Search'
-                        name='search'
+                        placeholder="Search"
+                        name="search"
                         onChange={(e) => setFilterText(e.target.value)}
                         value={filterText}
                       />
-                    </SearchPixelInput>}
+                    </SearchPixelInput>
+                  )}
                   <OptionalContainer>
                     {Object.keys(groupData).map((key) => {
                       if (groupData[key].length == 0) return null
@@ -284,13 +285,13 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                       target: {
                                         value: option.value,
                                         options: [{ text: option.label }],
-                                        selectedIndex: 0
-                                      }
+                                        selectedIndex: 0,
+                                      },
                                     }),
                                     setIsOptionsOpen(false)
                                   setDropdownPosition({
                                     ...dropdownPosition,
-                                    left: '-500px'
+                                    left: '-500px',
                                   })
                                 }}
                                 key={index}
@@ -318,7 +319,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                   position={dropdownPosition}
                   inputPosition={requriedHeight() < 0}
                 >
-                  {options && options?.length > 5 &&
+                  {options && options?.length > 5 && (
                     <SearchPixelInput>
                       <InputContainer>
                         <Search
@@ -335,10 +336,11 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                           </React.Fragment>
                         )}
                       </InputContainer>
-                    </SearchPixelInput>}
+                    </SearchPixelInput>
+                  )}
 
                   <OptionalContainer>
-                    {filterData(options, filterText)?.map((option, index) => {
+                    {options && options.length > 0 ? <React.Fragment>   {filterData(options, filterText)?.map((option, index) => {
                       return (
                         <Option
                           key={index}
@@ -352,20 +354,23 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                   value: option.value,
                                   options: [{ text: option.label }],
                                   label: option.label,
-                                  selectedIndex: 0
-                                }
+                                  selectedIndex: 0,
+                                },
                               })
                             setIsOptionsOpen(false)
                             setDropdownPosition({
                               ...dropdownPosition,
-                              left: '-500px'
+                              left: '-500px',
                             })
                           }}
                         >
                           {option.label}
                         </Option>
                       )
-                    })}
+                    })}</React.Fragment> : <Option>
+                      No data available
+                    </Option>}
+
                   </OptionalContainer>
                 </DropDownList>
               </React.Fragment>
@@ -375,7 +380,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         {error !== '' && <Error>{error}</Error>}
       </Mainconatiner>
     )
-  }
+  },
 )
 const Mainconatiner = styled.div`
   width: 100%;
