@@ -10,45 +10,42 @@ import { faArrowRight, faCalendar } from '@fortawesome/free-solid-svg-icons'
 import PixelFlexBox from '../pixel-flex-box/pixel-flex-box'
 
 export interface PixelDateRangePickerProps {
-  onChange?: (Array) => void
-  handelApply?: () => void
+  onChange?: (item: any) => void
+  onApply?: () => void
   ranges?: any
   month?: number
   className?: string
   context?: null
   dateRange?: null
-  props?: null
+  dateProps?: null
   refs?: null // locale={'enUS from locale'}
   RangeColors?: null
   style?: null
-  position:string
+  position?: string
 }
 
 import PixelDate from '../pixel-date/pixel-date'
 import PixelButton from '../pixel-button/pixel-button'
-import { log } from 'console'
 
-const PixelDateRangePicker = React.forwardRef<
+export const PixelDateRangePicker = React.forwardRef<
   HTMLDivElement,
   PixelDateRangePickerProps
 >(
-  (
-    {
-      onChange,
+  (props, ref) => {
+    const {
+      onChange = () => { },
       ranges,
       month,
       onApply,
-            context,
+      context,
       dateRange,
-      props,
+      dateProps,
       refs,
       RangeColors,
       style,
-      position,
+      position = 'right',
       ...rest
-    },
-    ref
-  ) => {
+    } = props
     const [showPopOver, setShowPopOver] = useState(false)
 
     const datePickerRef = useRef<HTMLDivElement>(null)
@@ -70,16 +67,18 @@ const PixelDateRangePicker = React.forwardRef<
       }
     }, [])
 
-const handelApply = () => {
-  setShowPopOver(false)
-  onApply()
-}
+    const handelApply = () => {
+      setShowPopOver(false)
+      onApply()
+    }
 
-const _position = position === 'left' ?  'flex-start' : 'flex-end' 
-
+    const _position = position === 'left' ? 'flex-start' : 'flex-end'
+    const handleChange = (item) => {
+      onChange(item)
+    }
     return (
       <PixelFlexBox
-        style={{ position: 'relative', justifyContent:_position }}
+        style={{ position: 'relative', justifyContent: _position }}
         ref={datePickerRef}
       >
         <StyledDatePicker
@@ -109,7 +108,9 @@ const _position = position === 'left' ?  'flex-start' : 'flex-end'
         {showPopOver && (
           <StyledPopOver>
             <DateRangePicker
-              onChange={onChange}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               showSelectionPreview={false}
               moveRangeOnFirstSelection={false}
               months={month}
@@ -117,7 +118,7 @@ const _position = position === 'left' ?  'flex-start' : 'flex-end'
               direction='horizontal'
               context={context}
               dateRange={dateRange}
-              props={props}
+              props={dateProps}
               refs={refs} // locale={'enUS from locale'}
               RangeColors={RangeColors}
               style={style}

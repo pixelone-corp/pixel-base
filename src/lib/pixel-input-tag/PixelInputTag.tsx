@@ -4,6 +4,7 @@ import { $primaryColor } from '../styleGuide'
 import { PixelIcon } from '../pixel-button-icon/pixel-icon'
 import ClickOutside from 'rechat-react-click-outside'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import PixelText from '../pixel-text/pixel-text'
 
 export interface InputTagProps {
   className?: string
@@ -19,6 +20,7 @@ export interface InputTagProps {
   isAllClearable?: boolean
   isShowLabel?: boolean
   inputLabel?: string
+  error?: string
 }
 export interface options {
   label: string
@@ -78,10 +80,10 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
       isAllClearable = true,
       isShowLabel = true,
       inputLabel = 'label',
-
+      error = '',
       ...rest
     },
-    ref
+    ref,
   ) => {
     const [filterText, setFilterText] = React.useState('')
     const [localTags, setLocalTags] = React.useState(tags)
@@ -95,7 +97,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
       handleTagDelete &&
         handleTagDelete({
           label: localTags.find((t) => t.value === value).label,
-          value: value
+          value: value,
         })
     }
     const handleSearch = (key) => {
@@ -108,7 +110,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
               const value = inputTagref.current.value
               const tag = {
                 label: value,
-                value: value
+                value: value,
               }
               setLocalTags([...localTags, tag])
               handleTagAdd(tag)
@@ -139,7 +141,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
         handleTagAdd &&
           handleTagAdd({
             label: option.label,
-            value: option.value
+            value: option.value,
           })
       }
 
@@ -153,7 +155,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
     const filterData = (options, filterText) => {
       if (filterText) {
         return options.filter((option) =>
-          option.label.toLowerCase().includes(filterText.toLowerCase())
+          option.label.toLowerCase().includes(filterText.toLowerCase()),
         )
       }
       return options
@@ -274,15 +276,16 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
                     clearAll && clearAll()
                   }}
                 >
-                  <PixelIcon fontSize='28px' icon={faXmark} />
+                  <PixelIcon fontSize="28px" icon={faXmark} />
                 </ClearAll>
               )}
             </React.Fragment>
           )}
         </Container>
+        {error !== '' && <PixelText customColor={'rgb(255 0 0 / 64%)'}>{error}</PixelText>}
       </ClickOutside>
     )
-  }
+  },
 )
 const ClearAll = styled.div`
   width: 5%;

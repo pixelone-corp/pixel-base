@@ -2,14 +2,13 @@
 import React, { useState } from 'react'
 
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import PixelDateRange from './pixelDateRangePicker'
-import PixelFlexBox from '../pixel-flex-box/pixel-flex-box'
+import { PixelDateRangePicker } from '../../index'
 import { addDays } from 'date-fns'
 export default {
   title: 'Pixel DatePicker',
-  component: PixelDateRange
-} as ComponentMeta<typeof PixelDateRange>
-const Template: ComponentStory<typeof PixelDateRange> = (args) => {
+  component: PixelDateRangePicker
+} as ComponentMeta<typeof PixelDateRangePicker>
+const Template: ComponentStory<typeof PixelDateRangePicker> = (args) => {
   const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -33,20 +32,21 @@ const Template: ComponentStory<typeof PixelDateRange> = (args) => {
   }
   return (
     <React.Fragment>
-      <PixelDateRange
-        onChange={handelChange}
+      <PixelDateRangePicker
+        onChange={(e) => {
+          handelChange(e)
+        }}
         ranges={state}
         month={2}
         onApply={onApply}
         position='right'
-        {...args}
+        // {...args}
+        value={new Date()}
+        format='dateWithTime'
+        size='15px'
       />
     </React.Fragment>
   )
 }
 export const Simple = Template.bind({})
-Simple.args = {
-  value: new Date(),
-  format: 'dateWithTime',
-  size: '15px'
-}
+
