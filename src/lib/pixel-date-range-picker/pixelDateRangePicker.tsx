@@ -159,7 +159,7 @@ const StyledDatePicker = styled.div`
   justify-content: flex-start;
   align-items: center;
   background-color: #f7f7f7 !important;
-  position: absolute;
+  position: relative;
 `
 const LabelLeft = styled.div`
   position: absolute;
