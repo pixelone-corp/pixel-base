@@ -6,7 +6,7 @@ import { PixelDateRangePicker } from '../../index'
 import { addDays } from 'date-fns'
 import { log } from 'console'
 export default {
-  title: 'Pixel DatePicker',
+  title: 'Pixel DateRangePicker',
   component: PixelDateRangePicker
 } as ComponentMeta<typeof PixelDateRangePicker>
 const Template: ComponentStory<typeof PixelDateRangePicker> = (args) => {
