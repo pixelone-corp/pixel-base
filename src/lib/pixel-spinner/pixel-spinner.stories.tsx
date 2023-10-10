@@ -5,19 +5,13 @@ import PixelSpinner from './pixel-spinner'
 export default {
   title: 'Pixel Spinner',
   component: PixelSpinner,
-  decorators: [
-    (Story) => (
-      <React.Fragment>
-        <PixelSpinner isShow={true} />
-      </React.Fragment>
-    )
-  ]
+ 
 } as ComponentMeta<typeof PixelSpinner>
 
 const Template: ComponentStory<typeof PixelSpinner> = (args) => {
   return (
     <React.Fragment>
-      <PixelSpinner isShow={true} />
+      <PixelSpinner isShow={true} size='60px'/>
     </React.Fragment>
   )
 }

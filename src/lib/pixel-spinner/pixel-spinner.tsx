@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components'
 
 export interface PixelSpinnerProps {
   isShow?: boolean
+  size?: string
   ref?: React.Ref<HTMLDivElement>
 }
 
@@ -11,6 +12,19 @@ const spin = keyframes`
   100% { transform: rotate(360deg); }
 `
 
+
+export const PixelSpinner = React.forwardRef<
+  HTMLButtonElement,
+  PixelSpinnerProps
+>((props, ref) => {
+  const { isShow, size } = props
+
+  return (
+    <StyledPixelSpinner isShow={isShow}  ref={ref}>
+      <Spinner size={size} />
+    </StyledPixelSpinner>
+  )
+})
 const StyledPixelSpinner = styled.div<{ isShow: boolean }>`
   display: ${(props) => (props.isShow ? 'flex' : 'none')};
   align-items: center;
@@ -19,29 +33,16 @@ const StyledPixelSpinner = styled.div<{ isShow: boolean }>`
   min-height: 100%;
   position: absolute;
   z-index: 230;
-  background-color: #ffffff67;
+  background-color: #00000047;
 `
 
-const Spinner = styled.span`
-  width: 20px;
-  height: 20px;
-  border: 4px solid rgba(0, 0, 0, 0.3);
+const Spinner = styled.span<{ size: string }>`
+  width: ${(props) => (props.size ? props.size : '40px')};
+  height: ${(props) => (props.size ? props.size : '40px')};
+  border: 5px solid rgba(0, 0, 0, 0.3);
   border-radius: 50%;
-  border-top: 4px solid #db01f9;
+  border-top: 5px solid #db01f9;
   animation: ${spin} 1s linear infinite;
 `
-
-export const PixelSpinner = React.forwardRef<
-  HTMLButtonElement,
-  PixelSpinnerProps
->((props, ref) => {
-  const { isShow } = props
-
-  return (
-    <StyledPixelSpinner isShow={isShow} ref={ref}>
-      <Spinner />
-    </StyledPixelSpinner>
-  )
-})
 
 export default PixelSpinner
