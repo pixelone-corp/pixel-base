@@ -37,6 +37,7 @@ export * from './lib/pixel-audio-player/pixel-audio-player'
 export * from './lib/pixel-tooltip/pixel-tooltip'
 export * from './lib/pixel-alert/pixel-alert'
 export * from './lib/pixel-date-range-picker/pixelDateRangePicker'
+export * from './lib/pixel-spinner/pixel-spinner'
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'
