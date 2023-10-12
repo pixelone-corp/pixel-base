@@ -4,28 +4,29 @@ import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { PixelDateRangePicker } from '../../index'
 import { addDays } from 'date-fns'
+import { log } from 'console'
 export default {
-  title: 'Pixel DatePicker',
+  title: 'Pixel DateRangePicker',
   component: PixelDateRangePicker
 } as ComponentMeta<typeof PixelDateRangePicker>
 const Template: ComponentStory<typeof PixelDateRangePicker> = (args) => {
-  const [state, setState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
-      key: 'selection'
-    }
-  ])
+  const [state, setState] = useState({
+    start_date: new Date(),
+    end_date: addDays(new Date(), 7)
+  })
 
   interface DateRangeItem {
-    selection: {
-      startDate: Date
-      endDate: Date
-      key: string
-    }
+    startDate: Date
+    endDate: Date
+    key: string
   }
-  const handelChange = (item: DateRangeItem) => {
-    setState([item.selection])
+  const handelChange = (item:any) => {
+    
+    setState({
+      ...state,
+      start_date: item.range1.startDate,
+      end_date: item.range1.endDate
+    })
   }
   const onApply = () => {
     alert('this is applied funtion')
@@ -41,7 +42,6 @@ const Template: ComponentStory<typeof PixelDateRangePicker> = (args) => {
         onApply={onApply}
         position='right'
         // {...args}
-        value={new Date()}
         format='dateWithTime'
         size='15px'
       />
@@ -49,4 +49,3 @@ const Template: ComponentStory<typeof PixelDateRangePicker> = (args) => {
   )
 }
 export const Simple = Template.bind({})
-
