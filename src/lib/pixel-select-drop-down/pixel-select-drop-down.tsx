@@ -94,7 +94,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     })
     const [dropdownPosition, setDropdownPosition] = React.useState({
       top: '',
-      left: '-500px',
+      left: '-5000px',
       width: '',
     })
     const [showLabel, setShowLabel] = React.useState<any>(false)
@@ -143,7 +143,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       } else {
         setDropdownPosition({
           top: '',
-          left: '-500px',
+          left: '-5000px',
           width: '',
         })
       }
@@ -155,7 +155,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(false)
       setDropdownPosition({
         ...dropdownPosition,
-        left: '-500px',
+        left: '-5000px',
       })
     }
     const getValues = async () => {
@@ -199,7 +199,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(false)
       setDropdownPosition({
         ...dropdownPosition,
-        left: '-500px',
+        left: '-5000px',
       })
     }
     React.useEffect(() => {
@@ -291,7 +291,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                     setIsOptionsOpen(false)
                                   setDropdownPosition({
                                     ...dropdownPosition,
-                                    left: '-500px',
+                                    left: '-5000px',
                                   })
                                 }}
                                 key={index}
@@ -360,7 +360,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                             setIsOptionsOpen(false)
                             setDropdownPosition({
                               ...dropdownPosition,
-                              left: '-500px',
+                              left: '-5000px',
                             })
                           }}
                         >
