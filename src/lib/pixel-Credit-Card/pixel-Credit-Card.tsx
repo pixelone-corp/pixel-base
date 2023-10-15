@@ -153,7 +153,6 @@ export function PixelCreditCards(props: PixelCreditCardsProps) {
     const date = typeof CardInfo?.expiry === 'number' ? CardInfo?.expiry.toString() : CardInfo?.expiry
     let month = ''
     let year = ''
-console.log(date)
     if (date?.includes('/')) {
       ;[month, year] = date?.split('/')
     } else if (date?.length) {
