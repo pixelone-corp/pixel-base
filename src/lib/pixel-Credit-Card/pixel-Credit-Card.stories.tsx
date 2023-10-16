@@ -14,10 +14,10 @@ const Template: ComponentStory<typeof PixelCreditCard> = (args) => {
       <PixelCreditCard
         CardInfo={{
           expiry: '02/19',
-          // name: 'Master',
+          name: 'Jani',
+          card_type: 'mastercard',
           focused: 'name',
-          number: 5555555555554444,
-          // placeholders: 'Add Number',
+          number: 4444 ,
           preview: true,
           short_name: 'Mezaan Bank',
           locale: {

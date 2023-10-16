@@ -41,8 +41,8 @@ const Template: ComponentStory<typeof PixelDateRangePicker> = (args) => {
         month={2}
         onApply={onApply}
         position='right'
-        // {...args}
-        // format='dateWithTime'
+        {...args}
+        format='dateWithTime'
         size='15px'
       />
     </React.Fragment>
