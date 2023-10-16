@@ -1,6 +1,5 @@
 import React from 'react'
-
-import './styles.scss'
+import './index.css'
 export interface CallbackArgument {
   issuer: string
   maxLength: number
