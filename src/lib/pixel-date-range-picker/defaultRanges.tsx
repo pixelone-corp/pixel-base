@@ -29,6 +29,8 @@ const defineds = {
   endOfLastMonth: endOfMonth(addMonths(new Date(), -1)),
   startOfLastYear: startOfYear(addYears(new Date(), -1)),
   endOfLastYear: endOfYear(addYears(new Date(), -1)),
+  startOfThisYear: startOfYear(addYears(new Date(), 0)),
+  endOfThisYear: endOfYear(addYears(new Date(), 1)),
 }
 
 const staticRangeHandler = {
@@ -96,6 +98,13 @@ export const defaultStaticRanges = createStaticRanges([
     range: () => ({
       startDate: defineds.startOfLastYear,
       endDate: defineds.endOfLastYear,
+    }),
+  },
+  {
+    label: 'This Year',
+    range: () => ({
+      startDate: defineds.startOfThisYear,
+      endDate: defineds.endOfToday,
     }),
   },
 ]);
