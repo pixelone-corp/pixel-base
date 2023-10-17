@@ -20,14 +20,14 @@ const Template: ComponentStory<typeof PixelDateRangePicker> = (args) => {
     endDate: Date
     key: string
   }
-  const handelChange = (item:any) => {
+  // const handelChange = (item:any) => {
     
-    setState({
-      ...state,
-      start_date: item.range1.startDate,
-      end_date: item.range1.endDate
-    })
-  }
+  //   setState({
+  //     ...state,
+  //     start_date: item?.range1?.startDate,
+  //     end_date: item?.range1?.endDate
+  //   })
+  // }
   const onApply = () => {
     alert('this is applied funtion')
   }
@@ -35,7 +35,15 @@ const Template: ComponentStory<typeof PixelDateRangePicker> = (args) => {
     <React.Fragment>
       <PixelDateRangePicker
         onChange={(e) => {
-          handelChange(e)
+          // handelChange(e)
+          alert('thsi is alert')
+          console.log(e);
+          
+          setState({
+            ...state,
+            start_date: e.target.value?.range1?.startDate,
+            end_date: item?.range1?.endDate
+          })
         }}
         ranges={state}
         month={2}
