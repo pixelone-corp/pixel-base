@@ -2,6 +2,7 @@
 import React, { PureComponent, ReactNode } from 'react'
 import ReactList from 'react-list'
 import classnames from 'classnames'
+import PixelText from '../../../pixel-text/pixel-text'
 import {
   addMonths,
   subMonths,
@@ -19,7 +20,7 @@ import {
   isSameMonth,
   differenceInDays,
   min,
-  max,
+  max
 } from 'date-fns'
 import defaultLocale from 'date-fns/locale/en-US'
 import PropTypes from 'prop-types'
@@ -29,11 +30,12 @@ import coreStyles from '../../styles'
 import {
   calcFocusDate,
   generateStyles,
-  getMonthDisplayRange,
+  getMonthDisplayRange
 } from '../../utils'
 import DateInput from '../DateInput/index'
 import { rangeShape } from '../DayCell'
 import Month from '../Month'
+import PixelFlexBox from '../../../pixel-flex-box/pixel-flex-box'
 
 interface Range {
   startDate: Date
@@ -60,15 +62,15 @@ interface CalendarProps {
   showMonthAndYearPickers?: boolean
   disabledDates?: Date[]
   disabledDay?: (date: Date) => boolean
-  minDate?: Date
-  maxDate?: Date
-  date?: Date
-  onChange?:any
+  minDate?: Date | null |  undefined
+  maxDate?: Date | null |  undefined
+  date?: Date | null |  undefined
+  onChange?: any | null |  undefined
   onPreviewChange?: (val: Date | null) => void
   onRangeFocusChange?: (focusedRange: [number, number]) => void
   classNames?: Record<string, string>
   locale?: Record<string, any>
-  shownDate?: Date
+  shownDate?: Date | undefined
   onShownDateChange?: (date: Date) => void
   ranges?: Range[]
   preview?: {
@@ -97,7 +99,7 @@ interface CalendarProps {
   navigatorRenderer?: (
     focusedDate: Date,
     changeShownDate: (value: number, mode: string) => void,
-    props: CalendarProps,
+    props: CalendarProps
   ) => ReactNode
   rangeColors?: string[]
   editableDateInputs?: boolean
@@ -109,7 +111,7 @@ interface CalendarProps {
   calendar?: any
 }
 
-class Calendar extends PureComponent<CalendarProps> {    
+class Calendar extends PureComponent<CalendarProps> {
   private dateOptions: { locale: Record<string, any>; weekStartsOn?: number }
   private styles: Record<string, any>
   private listSizeCache: Record<number, number>
@@ -132,9 +134,9 @@ class Calendar extends PureComponent<CalendarProps> {
       drag: {
         status: false,
         range: { startDate: null, endDate: null },
-        disablePreview: false,
+        disablePreview: false
       },
-      scrollArea: this.calcScrollArea(props),
+      scrollArea: this.calcScrollArea(props)
     }
   }
 
@@ -154,7 +156,7 @@ class Calendar extends PureComponent<CalendarProps> {
         longMonthHeight: longMonthHeight || 260,
         calendarWidth: 'auto',
         calendarHeight:
-          (scroll.calendarHeight || longMonthHeight || 240) * months,
+          (scroll.calendarHeight || longMonthHeight || 240) * months
       }
     }
     return {
@@ -163,20 +165,20 @@ class Calendar extends PureComponent<CalendarProps> {
       calendarWidth:
         (scroll.calendarWidth || scroll.monthWidth || 332) * months,
       monthHeight: longMonthHeight || 300,
-      calendarHeight: longMonthHeight || 300,
+      calendarHeight: longMonthHeight || 300
     }
   }
 
   focusToDate = (
     date: any,
     props: CalendarProps = this.props,
-    preventUnnecessary = true,
+    preventUnnecessary = true
   ) => {
     if (!props.scroll.enabled) {
       if (preventUnnecessary && props.preventSnapRefocus) {
         const focusedDateDiff = differenceInCalendarMonths(
           date,
-          this.state.focusedDate,
+          this.state.focusedDate
         )
         const isAllowedForward =
           props.calendarFocus === 'forwards' && focusedDateDiff >= 0
@@ -195,7 +197,7 @@ class Calendar extends PureComponent<CalendarProps> {
     const targetMonthIndex = differenceInCalendarMonths(
       date,
       props.minDate,
-      this.dateOptions,
+      this.dateOptions
     )
     const visibleMonths = this.list!.getVisibleRange()
     if (preventUnnecessary && visibleMonths.includes(targetMonthIndex)) return
@@ -208,7 +210,7 @@ class Calendar extends PureComponent<CalendarProps> {
     const newProps = props.scroll.enabled
       ? {
           ...props,
-          months: this.list!.getVisibleRange().length,
+          months: this.list!.getVisibleRange().length
         }
       : props
     const newFocus = calcFocusDate(this.state.focusedDate, newProps)
@@ -223,7 +225,7 @@ class Calendar extends PureComponent<CalendarProps> {
     const preview = {
       startDate: val,
       endDate: val,
-      color: this.props.color || '',
+      color: this.props.color || ''
     }
     this.setState({ preview })
   }
@@ -238,7 +240,7 @@ class Calendar extends PureComponent<CalendarProps> {
   componentDidUpdate(prevProps: CalendarProps) {
     const propMapper: Record<string, string> = {
       dateRange: 'ranges',
-      date: 'date',
+      date: 'date'
     }
     const targetProp = propMapper[this.props.displayMode || '']
     if (this.props[targetProp!] !== prevProps[targetProp!]) {
@@ -253,7 +255,7 @@ class Calendar extends PureComponent<CalendarProps> {
       if (this.props.weekStartsOn !== undefined)
         this.dateOptions.weekStartsOn = this.props.weekStartsOn
       this.setState({
-        monthNames: this.getMonthNames(),
+        monthNames: this.getMonthNames()
       })
     }
 
@@ -269,7 +271,7 @@ class Calendar extends PureComponent<CalendarProps> {
       monthOffset: () => addMonths(focusedDate, value),
       setMonth: () => setMonth(focusedDate, value),
       setYear: () => setYear(focusedDate, value),
-      set: () => value as unknown as Date,
+      set: () => value as unknown as Date
     }
 
     const newDate = min([max([modeMapper[mode](), minDate]), maxDate])
@@ -302,14 +304,14 @@ class Calendar extends PureComponent<CalendarProps> {
   renderMonthAndYear = (
     focusedDate: Date,
     changeShownDate: (value: number, mode: string) => void,
-    props: CalendarProps,
+    props: CalendarProps
   ) => {
     const {
       showMonthArrow,
       minDate,
       maxDate,
       showMonthAndYearPickers,
-      ariaLabels,
+      ariaLabels
     } = props
     const upperYearLimit = (
       maxDate || Calendar.defaultProps!.maxDate
@@ -325,7 +327,7 @@ class Calendar extends PureComponent<CalendarProps> {
       >
         {showMonthArrow ? (
           <button
-            type="button"
+            type='button'
             className={classnames(styles.nextPrevButton, styles.prevButton)}
             onClick={() => changeShownDate(-1, 'monthOffset')}
             aria-label={ariaLabels.prevButton}
@@ -341,14 +343,20 @@ class Calendar extends PureComponent<CalendarProps> {
                 onChange={(e) =>
                   changeShownDate(
                     e.target.value as unknown as number,
-                    'setMonth',
+                    'setMonth'
                   )
                 }
                 aria-label={ariaLabels.monthPicker}
               >
                 {this.state.monthNames.map((monthName, i) => (
                   <option key={i} value={i}>
-                    {monthName}
+                    {/* {console.log(monthName)} */}
+                    {/* <PixelFlexBox justifyContent='flex-start'> */}
+
+                    {/* <PixelText> */}
+                      {monthName}
+                    {/* </PixelText> */}
+                    {/* </PixelFlexBox> */}
                   </option>
                 ))}
               </select>
@@ -360,7 +368,7 @@ class Calendar extends PureComponent<CalendarProps> {
                 onChange={(e) =>
                   changeShownDate(
                     e.target.value as unknown as number,
-                    'setYear',
+                    'setYear'
                   )
                 }
                 aria-label={ariaLabels.yearPicker}
@@ -386,7 +394,7 @@ class Calendar extends PureComponent<CalendarProps> {
         )}
         {showMonthArrow ? (
           <button
-            type="button"
+            type='button'
             className={classnames(styles.nextPrevButton, styles.nextButton)}
             onClick={() => changeShownDate(1, 'monthOffset')}
             aria-label={ariaLabels.nextButton}
@@ -404,7 +412,7 @@ class Calendar extends PureComponent<CalendarProps> {
       <div className={this.styles.weekDays}>
         {eachDayOfInterval({
           start: startOfWeek(now, this.dateOptions),
-          end: endOfWeek(now, this.dateOptions),
+          end: endOfWeek(now, this.dateOptions)
         }).map((day, i) => (
           <span className={this.styles.weekDay} key={i}>
             {format(day, this.props.weekdayDisplayFormat, this.dateOptions)}
@@ -424,7 +432,7 @@ class Calendar extends PureComponent<CalendarProps> {
       editableDateInputs,
       startDatePlaceholder,
       endDatePlaceholder,
-      ariaLabels,
+      ariaLabels
     } = this.props
 
     const defaultColor = rangeColors[focusedRange[0]] || color
@@ -447,7 +455,7 @@ class Calendar extends PureComponent<CalendarProps> {
               <DateInput
                 className={classnames(styles.dateDisplayItem, {
                   [styles.dateDisplayItemActive]:
-                    focusedRange[0] === i && focusedRange[1] === 0,
+                    focusedRange[0] === i && focusedRange[1] === 0
                 })}
                 readOnly={!editableDateInputs}
                 disabled={range.disabled}
@@ -466,7 +474,7 @@ class Calendar extends PureComponent<CalendarProps> {
               <DateInput
                 className={classnames(styles.dateDisplayItem, {
                   [styles.dateDisplayItemActive]:
-                    focusedRange[0] === i && focusedRange[1] === 1,
+                    focusedRange[0] === i && focusedRange[1] === 1
                 })}
                 readOnly={!editableDateInputs}
                 disabled={range.disabled}
@@ -497,8 +505,8 @@ class Calendar extends PureComponent<CalendarProps> {
         drag: {
           status: true,
           range: { startDate: date, endDate: date },
-          disablePreview: true,
-        },
+          disablePreview: true
+        }
       })
     } else {
       onChange && onChange(date)
@@ -517,12 +525,12 @@ class Calendar extends PureComponent<CalendarProps> {
     }
     const newRange = {
       startDate: this.state.drag.range.startDate,
-      endDate: date,
+      endDate: date
     }
     if (displayMode !== 'dateRange' || isSameDay(newRange.startDate, date)) {
       this.setState(
         { drag: { status: false, range: {} } },
-        () => onChange && onChange(date),
+        () => onChange && onChange(date)
       )
     } else {
       this.setState({ drag: { status: false, range: {} } }, () => {
@@ -538,8 +546,8 @@ class Calendar extends PureComponent<CalendarProps> {
       drag: {
         status: drag.status,
         range: { startDate: drag.range.startDate, endDate: date },
-        disablePreview: true,
-      },
+        disablePreview: true
+      }
     })
   }
 
@@ -572,7 +580,7 @@ class Calendar extends PureComponent<CalendarProps> {
       color,
       navigatorRenderer,
       className,
-      preview,
+      preview
     } = this.props
     const { scrollArea, focusedDate } = this.state
     const isVertical = direction === 'vertical'
@@ -580,7 +588,7 @@ class Calendar extends PureComponent<CalendarProps> {
 
     const ranges = this.props.ranges.map((range, i) => ({
       ...range,
-      color: range.color || rangeColors[i] || color,
+      color: range.color || rangeColors[i] || color
     }))
     return (
       <div
@@ -600,12 +608,12 @@ class Calendar extends PureComponent<CalendarProps> {
                 this.styles.infiniteMonths,
                 isVertical
                   ? this.styles.monthsVertical
-                  : this.styles.monthsHorizontal,
+                  : this.styles.monthsHorizontal
               )}
               onMouseLeave={() => onPreviewChange && onPreviewChange()}
               style={{
                 width: scrollArea!.calendarWidth! + 11,
-                height: scrollArea!.calendarHeight! + 11,
+                height: scrollArea!.calendarHeight! + 11
               }}
               onScroll={this.handleScroll}
             >
@@ -613,10 +621,10 @@ class Calendar extends PureComponent<CalendarProps> {
                 length={differenceInCalendarMonths(
                   endOfMonth(maxDate!),
                   addDays(startOfMonth(minDate!), -1),
-                  this.dateOptions,
+                  this.dateOptions
                 )}
                 treshold={500}
-                type="variable"
+                type='variable'
                 ref={(target) => (this.list = target)}
                 itemSizeEstimator={this.estimateMonthSize}
                 axis={isVertical ? 'y' : 'x'}
@@ -644,7 +652,7 @@ class Calendar extends PureComponent<CalendarProps> {
                           ? { height: this.estimateMonthSize(index) }
                           : {
                               height: scrollArea!.monthHeight!,
-                              width: this.estimateMonthSize(index),
+                              width: this.estimateMonthSize(index)
                             }
                       }
                       showMonthName
@@ -661,7 +669,7 @@ class Calendar extends PureComponent<CalendarProps> {
               this.styles.months,
               isVertical
                 ? this.styles.monthsVertical
-                : this.styles.monthsHorizontal,
+                : this.styles.monthsHorizontal
             )}
           >
             {new Array(this.props.months!).fill(null).map((_, i) => {
@@ -669,7 +677,7 @@ class Calendar extends PureComponent<CalendarProps> {
               if (this.props.calendarFocus === 'backwards') {
                 monthStep = subMonths(
                   this.state.focusedDate,
-                  this.props.months! - 1 - i,
+                  this.props.months! - 1 - i
                 )
               }
               return (
@@ -721,7 +729,7 @@ Calendar.defaultProps = {
   ranges: [],
   preview: null,
   scroll: {
-    enabled: false,
+    enabled: false
   },
   direction: 'vertical',
   months: 1,
@@ -734,30 +742,32 @@ Calendar.defaultProps = {
     nextButton: 'Next Month',
     monthPicker: 'Choose month',
     yearPicker: 'Choose year',
-    dateInput: [],
-  },
+    dateInput: []
+  }
 }
+
+// import PropTypes from 'prop-types';
 
 Calendar.propTypes = {
   showMonthArrow: PropTypes.bool,
   showMonthAndYearPickers: PropTypes.bool,
-  disabledDates: PropTypes.arrayOf(PropTypes.date),
+  disabledDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)), // Use instanceOf for date objects
   disabledDay: PropTypes.func,
-  minDate: PropTypes.date,
-  maxDate: PropTypes.date,
-  date: PropTypes.date,
+  minDate: PropTypes.any, // It seems minDate should be a function
+  maxDate: PropTypes.any, // It seems maxDate should be a function
+  date: PropTypes.func, // It seems date should be a function
   onChange: PropTypes.func,
   onPreviewChange: PropTypes.func,
   onRangeFocusChange: PropTypes.func,
   classNames: PropTypes.objectOf(PropTypes.string),
   locale: PropTypes.objectOf(PropTypes.any),
-  shownDate: PropTypes.date,
+  shownDate: PropTypes.func, // It seems shownDate should be a function
   onShownDateChange: PropTypes.func,
-  ranges: PropTypes.arrayOf(rangeShape),
+  ranges: PropTypes.arrayOf(PropTypes.shape({})), // You need to define shape for range objects
   preview: PropTypes.shape({
-    startDate: PropTypes.date,
-    endDate: PropTypes.date,
-    color: PropTypes.string,
+    startDate: PropTypes.instanceOf(Date),
+    endDate: PropTypes.instanceOf(Date),
+    color: PropTypes.string
   }),
   dateDisplayFormat: PropTypes.string,
   monthDisplayFormat: PropTypes.string,
@@ -778,7 +788,7 @@ Calendar.propTypes = {
     monthHeight: PropTypes.number,
     longMonthHeight: PropTypes.number,
     calendarWidth: PropTypes.number,
-    calendarHeight: PropTypes.number,
+    calendarHeight: PropTypes.number
   }),
   direction: PropTypes.string,
   startDatePlaceholder: PropTypes.string,
@@ -798,10 +808,11 @@ Calendar.propTypes = {
     dateInput: PropTypes.arrayOf(
       PropTypes.shape({
         startDate: PropTypes.string,
-        endDate: PropTypes.string,
-      }),
-    ),
-  }),
-}
+        endDate: PropTypes.string
+      })
+    )
+  })
+};
+
 
 export default Calendar

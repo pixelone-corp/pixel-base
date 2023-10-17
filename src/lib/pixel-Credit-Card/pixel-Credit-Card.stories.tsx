@@ -1,21 +1,21 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import PixelCreditCard from './pixel-Credit-Card'
+import {PixelCreditCards} from '../../index'
 
 export default {
   title: 'Pixel Credit Card',
-  component: PixelCreditCard
-} as ComponentMeta<typeof PixelCreditCard>
+  component: PixelCreditCards
+} as ComponentMeta<typeof PixelCreditCards>
 
-const Template: ComponentStory<typeof PixelCreditCard> = (args) => {
+const Template: ComponentStory<typeof PixelCreditCards> = (args) => {
   return (
     <React.Fragment>
-      <PixelCreditCard
+      <PixelCreditCards
         CardInfo={{
           expiry: '02/19',
           name: 'Jani',
-          card_type: 'mastercard',
+          card_type: 'american-express',
           focused: 'name',
           number: 4444 ,
           preview: true,
