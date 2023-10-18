@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { discover, visa, amex, masterCard } from './images'
+import PixelIcon from '../pixel-button-icon/pixel-icon'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export interface CallbackArgument {
   issuer: string
@@ -10,8 +12,6 @@ export interface CallbackArgument {
 export type Focused = 'name' | 'number' | 'expiry' | 'cvc' | ''
 
 export interface PixelCreditCardsProps {
-  callback?: ((type: CallbackArgument, isValid: boolean) => void) | undefined
-
   CardInfo: {
     acceptedCards?: ReadonlyArray<string> | undefined
     cvc?: string | number
@@ -26,17 +26,20 @@ export interface PixelCreditCardsProps {
     preview?: boolean | undefined
     card_type?: string | undefined
   }
+  onApply?: () => void
 }
 
 export function PixelCreditCards(props: PixelCreditCardsProps) {
-  const { CardInfo } = props
+  const { CardInfo, onApply } = props
   const [cardIssuer, setCardIssuer] = React.useState('')
   console.log(cardIssuer)
 
   React.useEffect(() => {
     setCardIssuer(CardInfo?.card_type || 'mastercard')
   }, [CardInfo?.card_type])
-
+  const handelApply = () => {
+    onApply()
+  }
   const cardExpiry = React.useMemo(() => {
     const date =
       typeof CardInfo?.expiry === 'number'
@@ -80,16 +83,59 @@ export function PixelCreditCards(props: PixelCreditCardsProps) {
             <CardExpiry>{cardExpiry}</CardExpiry>
           </CardValidityExpiry>
           <CardShortName>{CardInfo?.short_name}</CardShortName>
+          <StyledDiv  onClick={()=>{onApply()}}>
+            <Tooltip>Delete</Tooltip>
+            <PixelIcon
+              style={{ zIndex: '4444444444444' }}
+              tooltip='Delete'
+              icon={faTrash}
+            />
+          </StyledDiv>
         </CardFront>
       </CardContainer>
     </Card>
   )
 }
+
 const Card = styled.div`
   margin: 0 auto;
   perspective: 1000px;
   width: 290px;
 `
+
+const StyledDiv = styled.button`
+  margin: 25px;
+  z-index: 44444444444;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  display: none;
+  border: none;
+  ${Card}:hover & {
+    display: flex;
+  }
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #c4a3ce6e;
+`
+const Tooltip = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  top: 5px;
+  left: 30;
+  white-space: nowrap;
+  font-size: 12px;
+
+  ${StyledDiv}:hover & {
+    display: block;
+  }
+`
+
 const CardShortName = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
@@ -157,7 +203,6 @@ const CardContainer = styled.div<{ cardIssuer }>`
 `
 const CardFront = styled.div<{ cardIssuer }>`
   backface-visibility: hidden;
-  /* background:linear-gradient(25deg, #0f509e, #1399cd);  */
   background: ${(props) =>
     props.cardIssuer === 'visa'
       ? 'linear-gradient(25deg, #0f509e, #1399cd)'
@@ -213,7 +258,6 @@ const CardLogo = styled.div<{ cardIssuer: string }>`
 
 const CardBackground = styled.div<{ cardIssuer: string }>`
   background: linear-gradient(25deg, #0f509e, #1399cd);
-
   height: 200%;
   position: absolute;
   top: -60%;

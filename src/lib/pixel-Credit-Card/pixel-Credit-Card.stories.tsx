@@ -7,15 +7,18 @@ export default {
   title: 'Pixel Credit Card',
   component: PixelCreditCards
 } as ComponentMeta<typeof PixelCreditCards>
-
+function onApply(){
+  alert('This is Applied Function')
+}
 const Template: ComponentStory<typeof PixelCreditCards> = (args) => {
   return (
     <React.Fragment>
       <PixelCreditCards
+        
         CardInfo={{
           expiry: '02/19',
           name: 'Jani',
-          card_type: 'masterCard',
+          card_type: 'visa',
           focused: 'name',
           number: 4444 ,
           preview: true,
@@ -27,6 +30,7 @@ const Template: ComponentStory<typeof PixelCreditCards> = (args) => {
             name: 'YOUR NAME HERE'
           }
         }}
+        onApply={onApply}
         {...args}
       />
     </React.Fragment>

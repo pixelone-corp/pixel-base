@@ -172,10 +172,12 @@ export const PixelDateRangePicker = React.forwardRef<
 
 const StyledDatePicker = styled.div`
   height: 40px;
-  width:15%;
-  max-width: 15%;
+  /* width:15%; */
+  /* max-width: 15%; */
   min-width: 260px;
-  /* padding: 10px 10px 10px 10px; */
+  padding: 0px 20px 0px 0px;
+  min-height:40px;
+  max-height:40px;
   cursor: pointer;
   gap: 10px;
   border: 1px solid #dee2e6 !important;
