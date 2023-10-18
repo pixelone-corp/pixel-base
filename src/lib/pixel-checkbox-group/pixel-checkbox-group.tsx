@@ -1,8 +1,6 @@
 import React, { InputHTMLAttributes } from "react";
 import { Form } from "react-bootstrap";
-import { FormCheckType } from "react-bootstrap/esm/FormCheck";
 import styled from "styled-components";
-
 interface Option {
   label: string;
   value: string;
@@ -13,10 +11,11 @@ interface Option {
 export interface CheckboxGroupProps
   extends InputHTMLAttributes<HTMLInputElement> {
   className: string;
+  style?:React.CSSProperties;
+  direction?: 'row'| 'column';
   options: Option[];
   label: string;
 }
-
 const StyledPixelCheckboxGroup = styled.div`
   display: flex;
   flex-direction: row;
@@ -26,10 +25,9 @@ const StyledPixelCheckboxGroup = styled.div`
   align-content: flex-start;
   gap: 10px;
 `;
-
-const StyledGroup = styled(Form.Group)`
+const StyledGroup = styled(Form.Group) <{direction:'row' | 'column' }>`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props ) => props.direction};
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: flex-start;
@@ -39,16 +37,15 @@ const StyledGroup = styled(Form.Group)`
     cursor: pointer;
   }
 `;
-
 export const PixelCheckboxGroup = React.forwardRef<
   HTMLInputElement,
   CheckboxGroupProps
->(({ className, label, options, onChange, ...rest }, ref) => {
+>(({ className, label, options,style, direction='row', onChange, ...rest }, ref) => {
   const id = `checkbox-group-${Math.random().toString(36).substr(2, 9)}`;
   return (
     <StyledPixelCheckboxGroup>
       {label && <label>{label}</label>}
-      <StyledGroup>
+      <StyledGroup  direction={direction} style={style}>
         {options.map((option) => (
           <Form.Check
             key={option.value}

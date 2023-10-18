@@ -97,7 +97,7 @@ export const PixelDateRangePicker = React.forwardRef<
   }
   return (
     <PixelFlexBox
-      style={{ position: 'relative', justifyContent: _position }}
+      style={{ width:'auto', position: 'relative', justifyContent: _position }}
       ref={datePickerRef}
     >
       <StyledDatePicker
@@ -172,9 +172,9 @@ export const PixelDateRangePicker = React.forwardRef<
 
 const StyledDatePicker = styled.div`
   height: 40px;
-  width: 100%;
-  max-width: 240px;
-  min-width: 240px;
+  width:15%;
+  max-width: 15%;
+  min-width: 260px;
   /* padding: 10px 10px 10px 10px; */
   cursor: pointer;
   gap: 10px;
