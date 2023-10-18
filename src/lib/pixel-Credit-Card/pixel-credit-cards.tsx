@@ -206,9 +206,9 @@ const CardFront = styled.div<{ cardIssuer }>`
   background: ${(props) =>
     props.cardIssuer === 'visa'
       ? 'linear-gradient(25deg, #0f509e, #1399cd)'
-      : props.cardIssuer === 'american-express'
+      : props.cardIssuer === 'amex'
       ? 'linear-gradient(25deg, #308c67, #a3f2cf)'
-      : props.cardIssuer === 'masterCard'
+      : props.cardIssuer === 'master'
       ? 'linear-gradient(25deg, #fbfbfb, #e8e9e5)'
       : props.cardIssuer === 'discover'
       ? 'linear-gradient(25deg, #fff, #eee)'
@@ -218,9 +218,9 @@ const CardFront = styled.div<{ cardIssuer }>`
   color: ${(props) =>
     props.cardIssuer == 'visa'
       ? '#fff'
-      : props.cardIssuer === 'american-express'
+      : props.cardIssuer === 'amex'
       ? '#fff'
-      : props.cardIssuer === 'masterCard'
+      : props.cardIssuer === 'master'
       ? '#555'
       : props.cardIssuer === 'discover'
       ? '#555'
@@ -249,9 +249,9 @@ const CardLogo = styled.div<{ cardIssuer: string }>`
       ? `url(${discover})`
       : props.cardIssuer === 'visa'
       ? `url(${visa})`
-      : props.cardIssuer == 'masterCard'
+      : props.cardIssuer == 'master'
       ? `url(${masterCard})`
-      : props.cardIssuer == 'american-express'
+      : props.cardIssuer == 'amex'
       ? `url(${amex})`
       : 'visa'};
 `
