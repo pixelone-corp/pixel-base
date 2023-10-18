@@ -1,13 +1,10 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-
 import PixelCheckBoxGroup from './pixel-checkbox-group'
-
 export default {
   title: 'Pixel Checkbox Group',
   component: PixelCheckBoxGroup,
 } as ComponentMeta<typeof PixelCheckBoxGroup>
-
 const Template: ComponentStory<typeof PixelCheckBoxGroup> = (args) => {
   return (
     <React.Fragment>
@@ -18,6 +15,7 @@ const Template: ComponentStory<typeof PixelCheckBoxGroup> = (args) => {
 export const Simple = Template.bind({})
 Simple.args = {
   label: 'PixelCheckBoxGroup',
+  direction:'column',
   options: [
     {
       value: '1',
