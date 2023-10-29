@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { discover, visa, amex, masterCard } from './images'
 import PixelIcon from '../pixel-button-icon/pixel-icon'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCreditCard, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { ButtonToolbar, OverlayTrigger, Tooltip } from 'react-bootstrap'
+import {} from '@fortawesome/free-regular-svg-icons'
 
 export interface CallbackArgument {
   issuer: string
@@ -27,10 +29,12 @@ export interface PixelCreditCardsProps {
     card_type?: string | undefined
   }
   onApply?: () => void
+  setCardAsDefault?: () => void
+  isDefault?: boolean
 }
 
 export function PixelCreditCards(props: PixelCreditCardsProps) {
-  const { CardInfo, onApply } = props
+  const { CardInfo, onApply, setCardAsDefault, isDefault } = props
   const [cardIssuer, setCardIssuer] = React.useState('')
   console.log(cardIssuer)
 
@@ -68,7 +72,12 @@ export function PixelCreditCards(props: PixelCreditCardsProps) {
 
     return `${month}/${year}`
   }, [CardInfo?.expiry])
-
+  const tooltip = <Tooltip id='tooltip'>Delete</Tooltip>
+  const tooltipDefault = (
+    <Tooltip id='tooltip'>
+      {isDefault ? 'Default Card' : 'Set As Default Card'}
+    </Tooltip>
+  )
   return (
     <Card>
       <CardContainer cardIssuer={cardIssuer}>
@@ -82,16 +91,42 @@ export function PixelCreditCards(props: PixelCreditCardsProps) {
             <CardValidity>{CardInfo?.locale?.valid}</CardValidity>
             <CardExpiry>{cardExpiry}</CardExpiry>
           </CardValidityExpiry>
+
           <CardShortName>{CardInfo?.short_name}</CardShortName>
-          <StyledDiv  onClick={()=>{onApply()}}>
-            <Tooltip>Delete</Tooltip>
-            <PixelIcon
-              style={{ zIndex: '4444444444444' }}
-              tooltip='Delete'
-              icon={faTrash}
-            />
-          </StyledDiv>
+          <ButtonToolbar>
+            <OverlayTrigger placement='top' overlay={tooltipDefault}>
+              <div
+                onClick={() => {
+                  setCardAsDefault()
+                }}
+                style={{ position: 'relative', top: '5px', left: '10px' }}
+              >
+                <StyledPixelIcon
+                  isDefault={isDefault}
+                  tooltip={<Tooltip id='tooltip'>{}</Tooltip>}
+                  placement='bottom'
+                  style={{ position: 'relative' }}
+                  icon={faCreditCard}
+                />
+              </div>
+            </OverlayTrigger>
+          </ButtonToolbar>
         </CardFront>
+        <ButtonToolbar>
+          <OverlayTrigger placement='top' overlay={tooltip}>
+            <StyledDiv
+              onClick={() => {
+                onApply()
+              }}
+            >
+              <Styled_PixelIcon
+                style={{ zIndex: '4444444444444' }}
+                tooltip='Delete'
+                icon={faTrash}
+              />
+            </StyledDiv>
+          </OverlayTrigger>
+        </ButtonToolbar>
       </CardContainer>
     </Card>
   )
@@ -104,45 +139,40 @@ const Card = styled.div`
 `
 
 const StyledDiv = styled.button`
-  margin: 25px;
+  margin: 5px 0 0 5px;
   z-index: 44444444444;
   cursor: pointer;
-  height: 40px;
-  width: 40px;
-  display: none;
+  height: 25px;
+  width: 30px;
+  display: flex;
   border: none;
-  ${Card}:hover & {
-    display: flex;
-  }
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  background: #c4a3ce6e;
-`
-const Tooltip = styled.div`
-  display: none;
+  background: transparent;
   position: absolute;
-  background-color: #333;
-  color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  top: 5px;
-  left: 30;
-  white-space: nowrap;
-  font-size: 12px;
-
+  bottom: 5px;
+  right: 5px;
+`
+const Styled_PixelIcon = styled(PixelIcon)`
+  color: #df77ff9a;
   ${StyledDiv}:hover & {
-    display: block;
+    color: #c300ff;
   }
 `
-
+const StyledPixelIcon = styled(PixelIcon)<{ isDefault }>`
+  color: ${(props) => (props.isDefault ?'#df77ff9a' : '#000')};
+  &:hover{
+    color: #c300ff;
+  }
+`
 const CardShortName = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   height: 26.3636363636px;
   left: 10%;
   position: absolute;
-  top: 10%;
+  top: 12%;
   width: 145px;
 `
 const CardValidity = styled.div`
