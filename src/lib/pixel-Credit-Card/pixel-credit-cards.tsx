@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { discover, visa, amex, masterCard } from './images'
 import PixelIcon from '../pixel-button-icon/pixel-icon'
-import { faCreditCard, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCreditCard, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { ButtonToolbar, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import {} from '@fortawesome/free-regular-svg-icons'
 
@@ -95,11 +95,12 @@ export function PixelCreditCards(props: PixelCreditCardsProps) {
           <CardShortName>{CardInfo?.short_name}</CardShortName>
           <ButtonToolbar>
             <OverlayTrigger placement='top' overlay={tooltipDefault}>
-              <div
+              <StyledIconContainer
+                isDefault={isDefault}
                 onClick={() => {
                   setCardAsDefault()
                 }}
-                style={{ position: 'relative', top: '5px', left: '10px' }}
+                style={{ position: 'absolute', top: '0', right: '40px' }}
               >
                 <StyledPixelIcon
                   isDefault={isDefault}
@@ -108,7 +109,7 @@ export function PixelCreditCards(props: PixelCreditCardsProps) {
                   style={{ position: 'relative' }}
                   icon={faCreditCard}
                 />
-              </div>
+              </StyledIconContainer>
             </OverlayTrigger>
           </ButtonToolbar>
         </CardFront>
@@ -122,7 +123,7 @@ export function PixelCreditCards(props: PixelCreditCardsProps) {
               <Styled_PixelIcon
                 style={{ zIndex: '4444444444444' }}
                 tooltip='Delete'
-                icon={faTrash}
+                icon={faXmark}
               />
             </StyledDiv>
           </OverlayTrigger>
@@ -137,8 +138,28 @@ const Card = styled.div`
   perspective: 1000px;
   width: 290px;
 `
+const StyledIconContainer = styled.button`
+  margin: 5px 0 0 5px;
+  z-index: 44444444444;
+  cursor: pointer;
+  height: 25px;
+  width: 30px;
+  display: ${(props) => (props.isDefault ? 'flex' : 'none')};
+  border: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #faeaff76;
+  position: absolute;
+  ${Card}:hover & {
+    display: flex;
+  }
+  top: 0;
+  right: 5px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+`
 
-const StyledDiv = styled.button`
+const StyledDiv = styled.button<{ isDefault }>`
   margin: 5px 0 0 5px;
   z-index: 44444444444;
   cursor: pointer;
@@ -149,10 +170,12 @@ const StyledDiv = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  background: transparent;
+  background: #faeaff76;
   position: absolute;
-  bottom: 5px;
+  top: 0;
   right: 5px;
+
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 `
 const Styled_PixelIcon = styled(PixelIcon)`
   color: #df77ff9a;
@@ -161,8 +184,8 @@ const Styled_PixelIcon = styled(PixelIcon)`
   }
 `
 const StyledPixelIcon = styled(PixelIcon)<{ isDefault }>`
-  color: ${(props) => (props.isDefault ?'#df77ff9a' : '#000')};
-  &:hover{
+  color: ${(props) => (props.isDefault ? '#c300ff' : '#df77ff9a')};
+  &:hover {
     color: #c300ff;
   }
 `
@@ -205,7 +228,6 @@ const CardName = styled.div`
   opacity: 0.5;
   transition: opacity 0.3s;
   opacity: 0.8 !important;
-
   font-weight: 700;
   opacity: 1 !important;
 `
@@ -241,7 +263,8 @@ const CardFront = styled.div<{ cardIssuer }>`
       : props.cardIssuer === 'master'
       ? 'linear-gradient(25deg, #fbfbfb, #e8e9e5)'
       : props.cardIssuer === 'discover'
-      ? 'linear-gradient(25deg, #fff, #eee)'
+      ? // ? 'linear-gradient(25deg, #fff, #eee)'
+        '  linear-gradient(90deg, #23233F 0%, #3A3D63 20%, #8C80A1 50%, #3A3D63 80%, #23233F 100%);'
       : 'none'};
 
   border-radius: 14.5px;
@@ -253,7 +276,7 @@ const CardFront = styled.div<{ cardIssuer }>`
       : props.cardIssuer === 'master'
       ? '#555'
       : props.cardIssuer === 'discover'
-      ? '#555'
+      ? '#dedede'
       : 'none'};
   height: 100%;
   left: 0;
