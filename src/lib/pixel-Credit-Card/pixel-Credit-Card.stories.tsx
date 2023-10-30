@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof PixelCreditCards> = (args) => {
         CardInfo={{
           expiry: '02/19',
           name: 'Jani',
-          card_type: 'amex',
+          card_type: 'visa',
           focused: 'name',
           number: 4444 ,
           preview: true,
@@ -30,6 +30,7 @@ const Template: ComponentStory<typeof PixelCreditCards> = (args) => {
             name: 'YOUR NAME HERE'
           }
         }}
+        isDefault={false}
         onApply={onApply}
         {...args}
       />
