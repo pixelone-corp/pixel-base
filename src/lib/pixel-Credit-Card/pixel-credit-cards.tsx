@@ -36,7 +36,6 @@ export interface PixelCreditCardsProps {
 export function PixelCreditCards(props: PixelCreditCardsProps) {
   const { CardInfo, onApply, setCardAsDefault, isDefault } = props
   const [cardIssuer, setCardIssuer] = React.useState('')
-  console.log(cardIssuer)
 
   React.useEffect(() => {
     setCardIssuer(CardInfo?.card_type || 'mastercard')
