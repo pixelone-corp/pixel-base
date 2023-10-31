@@ -31,18 +31,17 @@ export interface PixelCreditCardsProps {
   onApply?: () => void
   setCardAsDefault?: () => void
   isDefault?: boolean
+  isDeleteAble?: boolean
 }
 
 export function PixelCreditCards(props: PixelCreditCardsProps) {
-  const { CardInfo, onApply, setCardAsDefault, isDefault } = props
+  const { CardInfo, onApply, setCardAsDefault, isDefault, isDeleteAble } = props
   const [cardIssuer, setCardIssuer] = React.useState('')
 
   React.useEffect(() => {
     setCardIssuer(CardInfo?.card_type || 'mastercard')
   }, [CardInfo?.card_type])
-  const handelApply = () => {
-    onApply()
-  }
+
   const cardExpiry = React.useMemo(() => {
     const date =
       typeof CardInfo?.expiry === 'number'
@@ -92,14 +91,21 @@ export function PixelCreditCards(props: PixelCreditCardsProps) {
           </CardValidityExpiry>
 
           <CardShortName>{CardInfo?.short_name}</CardShortName>
-          <ButtonToolbar>
+          <ButtonToolbar
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              paddingRight: '5px',
+              alignItems: 'center',
+              gap: '5px'
+            }}
+          >
             <OverlayTrigger placement='top' overlay={tooltipDefault}>
               <StyledIconContainer
                 isDefault={isDefault}
                 onClick={() => {
                   setCardAsDefault()
                 }}
-                style={{ position: 'absolute', top: '0', right: '40px' }}
               >
                 <StyledPixelIcon
                   isDefault={isDefault}
@@ -110,23 +116,23 @@ export function PixelCreditCards(props: PixelCreditCardsProps) {
                 />
               </StyledIconContainer>
             </OverlayTrigger>
+            {!isDefault && isDeleteAble && (
+              <OverlayTrigger placement='top' overlay={tooltip}>
+                <StyledDiv
+                  onClick={() => {
+                    onApply()
+                  }}
+                >
+                  <Styled_PixelIcon
+                    style={{ zIndex: '4444444444444' }}
+                    tooltip='Delete'
+                    icon={faXmark}
+                  />
+                </StyledDiv>
+              </OverlayTrigger>
+            )}
           </ButtonToolbar>
         </CardFront>
-        <ButtonToolbar>
-          <OverlayTrigger placement='top' overlay={tooltip}>
-            <StyledDiv
-              onClick={() => {
-                onApply()
-              }}
-            >
-              <Styled_PixelIcon
-                style={{ zIndex: '4444444444444' }}
-                tooltip='Delete'
-                icon={faXmark}
-              />
-            </StyledDiv>
-          </OverlayTrigger>
-        </ButtonToolbar>
       </CardContainer>
     </Card>
   )
@@ -149,12 +155,9 @@ const StyledIconContainer = styled.button`
   align-items: center;
   border-radius: 5px;
   background: #faeaff76;
-  position: absolute;
   ${Card}:hover & {
     display: flex;
   }
-  top: 0;
-  right: 5px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 `
 
@@ -170,9 +173,6 @@ const StyledDiv = styled.button<{ isDefault }>`
   align-items: center;
   border-radius: 5px;
   background: #faeaff76;
-  position: absolute;
-  top: 0;
-  right: 5px;
 
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 `

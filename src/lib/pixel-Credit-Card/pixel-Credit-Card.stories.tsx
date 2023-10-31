@@ -30,7 +30,8 @@ const Template: ComponentStory<typeof PixelCreditCards> = (args) => {
             name: 'YOUR NAME HERE'
           }
         }}
-        isDefault={false}
+        isDefault={true}
+        isDeleteAble={true}
         onApply={onApply}
         {...args}
       />
