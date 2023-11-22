@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useRef, useState } from 'react'
 import DateRangePicker from './components/DateRangePicker/index'
 import 'react-date-range/dist/styles.css'
@@ -16,19 +15,19 @@ export interface PixelDateRangePickerProps {
   ranges?: any
   month?: number
   className?: string
-  context?: null
-  dateRange?: null
-  dateProps?: null
-  refs?: null // locale={'enUS from locale'}
-  RangeColors?: null
-  style?: null
+  context?: any
+  dateRange?: any
+  dateProps?: any
+  refs?: any // locale={'enUS from locale'}
+  RangeColors?: any
+  style?: any
   position?: string
+  format?: string
+  size?: string
 }
 
 import PixelDate from '../pixel-date/pixel-date'
 import PixelButton from '../pixel-button/pixel-button'
-import { log } from 'console'
-
 export const PixelDateRangePicker = React.forwardRef<
   HTMLDivElement,
   PixelDateRangePickerProps
@@ -48,11 +47,11 @@ export const PixelDateRangePicker = React.forwardRef<
     ...rest
   } = props
   const [showPopOver, setShowPopOver] = useState(false)
-  
+
   const [range, setRange] = useState([
     {
       startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      endDate: addDays(new Date(), 7)
     }
   ])
   useEffect(() => {
@@ -97,7 +96,7 @@ export const PixelDateRangePicker = React.forwardRef<
   }
   return (
     <PixelFlexBox
-      style={{ width:'auto', position: 'relative', justifyContent: _position }}
+      style={{ width: 'auto', position: 'relative', justifyContent: _position }}
       ref={datePickerRef}
     >
       <StyledDatePicker
@@ -137,7 +136,7 @@ export const PixelDateRangePicker = React.forwardRef<
           <DateRangePicker
             onChange={(e) => {
               handleChange(e)
-            }}
+            } }
             showSelectionPreview={false}
             moveRangeOnFirstSelection={false}
             months={month}
@@ -148,8 +147,9 @@ export const PixelDateRangePicker = React.forwardRef<
             props={dateProps}
             refs={refs} // locale={'enUS from locale'}
             RangeColors={RangeColors}
-            style={style}
-          />
+            style={style} 
+            // focusedRange={[]}        
+             />
           <PixelFlexBox
             padding='10px'
             height='auto'
@@ -176,8 +176,8 @@ const StyledDatePicker = styled.div`
   /* max-width: 15%; */
   min-width: 260px;
   padding: 0px 20px 0px 0px;
-  min-height:40px;
-  max-height:40px;
+  min-height: 40px;
+  max-height: 40px;
   cursor: pointer;
   gap: 10px;
   border: 1px solid #dee2e6 !important;

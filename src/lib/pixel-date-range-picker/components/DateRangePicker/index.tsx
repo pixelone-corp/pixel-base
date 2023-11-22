@@ -16,7 +16,6 @@ interface DateRangePickerProps {
   direction: string;
   context: object |undefined;
   dateRange: unknown;
-  focusedRange: number[];
   RangeColors: unknown;
   style:unknown
 }

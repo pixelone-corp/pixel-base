@@ -138,7 +138,11 @@ class Calendar extends PureComponent<CalendarProps> {
       },
       scrollArea: this.calcScrollArea(props)
     }
+    setTimeout(()=>{
+      this.state.monthNames = this.getMonthNames()
+    },1000)
   }
+  
 
   getMonthNames() {
     return [...Array(12).keys()].map((i) => this.props.locale.localize.month(i))
@@ -350,13 +354,7 @@ class Calendar extends PureComponent<CalendarProps> {
               >
                 {this.state.monthNames.map((monthName, i) => (
                   <option key={i} value={i}>
-                    {/* {console.log(monthName)} */}
-                    {/* <PixelFlexBox justifyContent='flex-start'> */}
-
-                    {/* <PixelText> */}
                       {monthName}
-                    {/* </PixelText> */}
-                    {/* </PixelFlexBox> */}
                   </option>
                 ))}
               </select>
