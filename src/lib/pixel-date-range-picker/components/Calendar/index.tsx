@@ -62,10 +62,10 @@ interface CalendarProps {
   showMonthAndYearPickers?: boolean
   disabledDates?: Date[]
   disabledDay?: (date: Date) => boolean
-  minDate?: Date | null |  undefined
-  maxDate?: Date | null |  undefined
-  date?: Date | null |  undefined
-  onChange?: any | null |  undefined
+  minDate?: Date | null | undefined
+  maxDate?: Date | null | undefined
+  date?: Date | null | undefined
+  onChange?: any | null | undefined
   onPreviewChange?: (val: Date | null) => void
   onRangeFocusChange?: (focusedRange: [number, number]) => void
   classNames?: Record<string, string>
@@ -138,16 +138,28 @@ class Calendar extends PureComponent<CalendarProps> {
       },
       scrollArea: this.calcScrollArea(props)
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.state.monthNames = this.getMonthNames()
-    },1000)
+    }, 1000)
   }
-  
 
   getMonthNames() {
     return [...Array(12).keys()].map((i) => this.props.locale.localize.month(i))
   }
-
+  monthsNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
   calcScrollArea(props: any): ScrollArea {
     const { direction, months, scroll } = props
     if (!scroll.enabled) return { enabled: false }
@@ -352,11 +364,17 @@ class Calendar extends PureComponent<CalendarProps> {
                 }
                 aria-label={ariaLabels.monthPicker}
               >
-                {this.state.monthNames.map((monthName, i) => (
-                  <option key={i} value={i}>
-                      {monthName}
-                  </option>
-                ))}
+                {this.state.monthNames
+                  ? this.state.monthNames.map((monthName, i) => (
+                      <option key={i} value={i}>
+                        {monthName}
+                      </option>
+                    ))
+                  : this.monthsNames.map((monthName, i) => (
+                      <option key={i} value={i}>
+                        {monthName}
+                      </option>
+                    ))}
               </select>
             </span>
             <span className={styles.monthAndYearDivider} />
@@ -810,7 +828,6 @@ Calendar.propTypes = {
       })
     )
   })
-};
-
+}
 
 export default Calendar
