@@ -107,7 +107,7 @@ export default React.memo(({ children }: any) => {
 
     Loading.init({
       className: 'notiflix-loading',
-      zindex: 9999999999999999,
+      zindex: 99999999999999999,
       backgroundColor: 'rgba(0,0,0,0.8)',
       rtl: false,
       fontFamily: 'Poppins',
@@ -126,7 +126,7 @@ export default React.memo(({ children }: any) => {
     Confirm.init({
       className: 'notiflix-confirm',
       width: '300px',
-      zindex: 4003,
+      zindex: 99999999999999998,
       position: 'center',
       distance: '10px',
       backgroundColor: '#f8f8f8',

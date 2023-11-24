@@ -364,7 +364,7 @@ class Calendar extends PureComponent<CalendarProps> {
                 }
                 aria-label={ariaLabels.monthPicker}
               >
-                {this.state.monthNames
+                {this.state.monthNames.length != 0
                   ? this.state.monthNames.map((monthName, i) => (
                       <option key={i} value={i}>
                         {monthName}
