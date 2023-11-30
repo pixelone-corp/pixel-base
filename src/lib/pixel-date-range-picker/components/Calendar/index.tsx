@@ -152,9 +152,7 @@ class Calendar extends PureComponent<CalendarProps> {
       },
       scrollArea: this.calcScrollArea(props)
     }
-    setTimeout(() => {
-      this.state.monthNames = this.getMonthNames()
-    }, 1000)
+   
   }
 
   getMonthNames() {
@@ -271,9 +269,9 @@ class Calendar extends PureComponent<CalendarProps> {
       this.dateOptions = { locale: this.props.locale }
       if (this.props.weekStartsOn !== undefined)
         this.dateOptions.weekStartsOn = this.props.weekStartsOn
-      this.setState({
-        monthNames: this.getMonthNames()
-      })
+      // this.setState({
+      //   monthNames: this.getMonthNames()
+      // })
     }
 
     if (!shallowEqualObjects(prevProps.scroll, this.props.scroll)) {
@@ -367,7 +365,7 @@ class Calendar extends PureComponent<CalendarProps> {
               >
                 {this.state.monthNames.map((monthName, i) => (
                       <option key={i} value={i}>
-                        <PixelText>{monthName}</PixelText>
+                        {monthName}
                       </option>
                     ))
                 }
