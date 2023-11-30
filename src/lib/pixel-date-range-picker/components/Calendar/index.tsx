@@ -129,21 +129,21 @@ class Calendar extends PureComponent<CalendarProps> {
     this.isFirstRender = true
     this.list = null
     this.state = {
-      monthNames:[
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ],
-      // monthNames: this.getMonthNames(),
+  //     monthNames:[
+  //   'January',
+  //   'February',
+  //   'March',
+  //   'April',
+  //   'May',
+  //   'June',
+  //   'July',
+  //   'August',
+  //   'September',
+  //   'October',
+  //   'November',
+  //   'December'
+  // ],
+      monthNames: this.getMonthNames(),
       focusedDate: calcFocusDate(null, props),
       drag: {
         status: false,
@@ -367,7 +367,7 @@ class Calendar extends PureComponent<CalendarProps> {
               >
                 {this.state.monthNames.map((monthName, i) => (
                       <option key={i} value={i}>
-                        {monthName}
+                        <PixelText>{monthName}</PixelText>
                       </option>
                     ))
                 }

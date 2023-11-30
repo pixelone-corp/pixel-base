@@ -1,10 +1,10 @@
 {
-  "name": "pixel-base",
+  "name": "pixel-base1",
   "version": "1.6.0",
   "description": "Common UI components for web.pixelone.app, Based on React Bootstrap",
   "author": "muffrank",
   "license": "MIT",
-  "repository": "https://github.com/pixelone-corp/pixel-base",
+  "repository": "https://github.com/zeeshansaqib/pixel-base1",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
@@ -27,7 +27,7 @@
     "deploy-storybook": "gh-pages -d docs",
     "build-storybook": "build-storybook -o docs"
   },
-  "homepage": "https://pixelone-corp.github.io/pixel-base/",
+  "homepage": "https://github.com/zeeshansaqib/pixel-base1",
   "peerDependencies": {
     "@datepicker-react/styled": "^2.8.4",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
