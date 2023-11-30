@@ -362,18 +362,18 @@ class Calendar extends PureComponent<CalendarProps> {
                 }
                 aria-label={ariaLabels.monthPicker}
               >
-                <option value='0'>January</option>
-                <option value='1'>February</option>
-                <option value='2'>March</option>
-                <option value='3'>April</option>
-                <option value='4'>May</option>
-                <option value='5'>June</option>
-                <option value='6'>July</option>
-                <option value='7'>August</option>
-                <option value='8'>September</option>
-                <option value='9'>October</option>
-                <option value='10'>November</option>
-                <option value='11'>December</option>
+                <option value='0'>checkksdsf</option>
+                <option value='1'>dssdf</option>
+                <option value='2'>sdf</option>
+                <option value='3'>sdfdsf</option>
+                <option value='4'>sdfdsfds</option>
+                <option value='5'>dsfdsf</option>
+                <option value='6'>sdfdsfd</option>
+                <option value='7'>sfdsfdsf</option>
+                <option value='8'>fdsfdsfsd</option>
+                <option value='9'>dsdsfs</option>
+                <option value='10'>dsfdsfdsfssfds</option>
+                <option value='11'>Decfsdsfsdfdsfdsfsdember</option>
               </select>
             </span>
             <span className={styles.monthAndYearDivider} />
