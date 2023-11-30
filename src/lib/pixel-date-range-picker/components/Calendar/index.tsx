@@ -129,7 +129,8 @@ class Calendar extends PureComponent<CalendarProps> {
     this.isFirstRender = true
     this.list = null
     this.state = {
-      monthNames: this.getMonthNames(),
+      monthNames: monthsNames,
+      // monthNames: this.getMonthNames(),
       focusedDate: calcFocusDate(null, props),
       drag: {
         status: false,
