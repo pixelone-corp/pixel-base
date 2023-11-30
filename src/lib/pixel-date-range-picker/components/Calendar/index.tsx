@@ -130,19 +130,19 @@ class Calendar extends PureComponent<CalendarProps> {
     this.list = null
     this.state = {
       monthNames:[
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
-      ],
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ],
       // monthNames: this.getMonthNames(),
       focusedDate: calcFocusDate(null, props),
       drag: {
@@ -365,17 +365,12 @@ class Calendar extends PureComponent<CalendarProps> {
                 }
                 aria-label={ariaLabels.monthPicker}
               >
-                {this.state.monthNames.length != 0
-                  ? this.state.monthNames.map((monthName, i) => (
+                {this.state.monthNames.map((monthName, i) => (
                       <option key={i} value={i}>
                         {monthName}
                       </option>
                     ))
-                  : this.monthsNames.map((monthName, i) => (
-                      <option key={i} value={i}>
-                        {monthName}
-                      </option>
-                    ))}
+                }
               </select>
             </span>
             <span className={styles.monthAndYearDivider} />
