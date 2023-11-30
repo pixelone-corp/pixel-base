@@ -129,7 +129,20 @@ class Calendar extends PureComponent<CalendarProps> {
     this.isFirstRender = true
     this.list = null
     this.state = {
-      monthNames: monthsNames,
+      monthNames:[
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ],
       // monthNames: this.getMonthNames(),
       focusedDate: calcFocusDate(null, props),
       drag: {
@@ -147,20 +160,7 @@ class Calendar extends PureComponent<CalendarProps> {
   getMonthNames() {
     return [...Array(12).keys()].map((i) => this.props.locale.localize.month(i))
   }
-  monthsNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ]
+  
   calcScrollArea(props: any): ScrollArea {
     const { direction, months, scroll } = props
     if (!scroll.enabled) return { enabled: false }
