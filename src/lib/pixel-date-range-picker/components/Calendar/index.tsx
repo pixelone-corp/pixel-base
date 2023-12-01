@@ -138,28 +138,13 @@ class Calendar extends PureComponent<CalendarProps> {
       },
       scrollArea: this.calcScrollArea(props)
     }
-    setTimeout(() => {
-      this.state.monthNames = this.getMonthNames()
-    }, 1000)
+ 
   }
 
   getMonthNames() {
     return [...Array(12).keys()].map((i) => this.props.locale.localize.month(i))
   }
-  monthsNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ]
+
   calcScrollArea(props: any): ScrollArea {
     const { direction, months, scroll } = props
     if (!scroll.enabled) return { enabled: false }
@@ -270,9 +255,9 @@ class Calendar extends PureComponent<CalendarProps> {
       this.dateOptions = { locale: this.props.locale }
       if (this.props.weekStartsOn !== undefined)
         this.dateOptions.weekStartsOn = this.props.weekStartsOn
-      this.setState({
-        monthNames: this.getMonthNames()
-      })
+      // this.setState({
+      //   monthNames: this.getMonthNames()
+      // })
     }
 
     if (!shallowEqualObjects(prevProps.scroll, this.props.scroll)) {
@@ -364,17 +349,18 @@ class Calendar extends PureComponent<CalendarProps> {
                 }
                 aria-label={ariaLabels.monthPicker}
               >
-                {this.state.monthNames.length != 0
-                  ? this.state.monthNames.map((monthName, i) => (
-                      <option key={i} value={i}>
-                        {monthName}
-                      </option>
-                    ))
-                  : this.monthsNames.map((monthName, i) => (
-                      <option key={i} value={i}>
-                        {monthName}
-                      </option>
-                    ))}
+                <option value='0'>January</option>
+                <option value='1'>February</option>
+                <option value='2'>March</option>
+                <option value='3'>April</option>
+                <option value='4'>May</option>
+                <option value='5'>June</option>
+                <option value='6'>July</option>
+                <option value='7'>August</option>
+                <option value='8'>September</option>
+                <option value='9'>October</option>
+                <option value='10'>November</option>
+                <option value='11'>December</option>
               </select>
             </span>
             <span className={styles.monthAndYearDivider} />
