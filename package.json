@@ -89,6 +89,7 @@
     "prettier": "^2.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.0.5",
+    "read-pkg": "^9.0.1",
     "sass": "^1.53.0",
     "sass-loader": "10.1.1",
     "style-loader": "2.0.0",
