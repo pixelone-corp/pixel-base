@@ -1,10 +1,9 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 import { PixelCommentBox } from './pixel-comment-box';
 
 export default {
-  title: 'Pixel Components/CommentBox',
+  title: 'Pixel Comment Box',
   component: PixelCommentBox, 
 } as ComponentMeta<typeof PixelCommentBox>;
 
@@ -21,7 +20,7 @@ Simple.args = {
   data: [
     {
       created_by: 'Ali',
-      comment_text: 'Hello1',
+      comment_text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ipsum itaque repellat omnis fugit corporis fugiat eos, veritatis neque ipsam quibusdam minima ab quisquam earum sit quidem officia illum obcaecati quod magni minus. Sit similique eum esse sint qui debitis. ',
       created_at: '11-10-2024',
     },
     {
