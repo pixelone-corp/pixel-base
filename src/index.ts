@@ -39,6 +39,7 @@ export * from './lib/pixel-alert/pixel-alert'
 export * from './lib/pixel-date-range-picker/pixelDateRangePicker'
 export * from './lib/pixel-spinner/pixel-spinner'
 export * from './lib/pixel-Credit-Card/pixel-credit-cards'
+export * from './lib/pixel-comment-box/pixel-comment-box'
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'
