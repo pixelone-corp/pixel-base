@@ -1,47 +1,49 @@
-import React from "react";
+import React from 'react'
 import PixelText from '../pixel-text/pixel-text'
 import styled from 'styled-components'
-import moment from "moment";
-import { SectionContent } from "../common-styled-component";
+import moment from 'moment'
+import { SectionContent } from '../common-styled-component'
 export interface PixelCommentBoxProps {
-  data:[{ 
-    created_by?: string;
-    comment_text?: string;
-    created_at?: string;
- }]
+  data: [
+    {
+      created_by?: string
+      comment_text?: string
+      created_at?: string
+    }
+  ]
 }
-export const PixelCommentBox = React.forwardRef<HTMLInputElement, PixelCommentBoxProps>(
-  (  {
-   data,
-    ...rest
-  }, ref) => {
-    return (
-      
-      <CommentContainer>
+export const PixelCommentBox = React.forwardRef<
+  HTMLInputElement,
+  PixelCommentBoxProps
+>(({ data, ...rest }, ref) => {
+  return (
+    <CommentContainer>
       {data?.map((commentData, index) => (
-        <SectionContent style={{minHeight:'auto'}}>
-        <CommentSection key={index}>
-          <CommentSectionUpper>
-            <Commentator>{commentData.created_by}</Commentator>
-            <PixelText
-              variant="light"
-              textSize="11px"
-              style={{ fontWeight: '400', paddingTop: '5px',color: "rgba(0, 0, 0, 0.84)"}}
-            >
-              {moment(commentData.created_at).fromNow()}
-            </PixelText>
-          </CommentSectionUpper>
-          <CommentSectionLower>
-            <Comment>{commentData.comment_text}</Comment>
-          </CommentSectionLower>
-        </CommentSection>
-          </SectionContent>
+        <SectionContent style={{ minHeight: 'auto' }}>
+          <CommentSection key={index}>
+            <CommentSectionUpper>
+              <Commentator>{commentData.created_by}</Commentator>
+              <PixelText
+                variant='light'
+                textSize='11px'
+                style={{
+                  fontWeight: '400',
+                  paddingTop: '5px',
+                  color: 'rgba(0, 0, 0, 0.84)'
+                }}
+              >
+                {moment(commentData.created_at).fromNow()}
+              </PixelText>
+            </CommentSectionUpper>
+            <CommentSectionLower>
+              <Comment>{commentData.comment_text}</Comment>
+            </CommentSectionLower>
+          </CommentSection>
+        </SectionContent>
       ))}
     </CommentContainer>
-
-    );
-  }
-);
+  )
+})
 const CommentContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,7 +61,7 @@ const CommentSection = styled.div`
   margin-left: 5px;
 `
 const CommentSectionUpper = styled.div`
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -80,5 +82,4 @@ const Comment = styled.div`
   color: #525252;
 `
 
-
-export default PixelCommentBox;
+export default PixelCommentBox
