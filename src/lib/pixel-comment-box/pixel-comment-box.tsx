@@ -19,7 +19,7 @@ export const PixelCommentBox = React.forwardRef<HTMLInputElement, PixelCommentBo
       
       <CommentContainer>
       {data?.map((commentData, index) => (
-        <SectionContent>
+        <SectionContent style={{minHeight:'auto'}}>
         <CommentSection key={index}>
           <CommentSectionUpper>
             <Commentator>{commentData.created_by}</Commentator>
