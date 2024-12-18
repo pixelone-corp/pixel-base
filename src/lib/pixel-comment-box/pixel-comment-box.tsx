@@ -4,13 +4,11 @@ import styled from 'styled-components'
 import moment from 'moment'
 import { SectionContent } from '../common-styled-component'
 export interface PixelCommentBoxProps {
-  data: [
-    {
-      created_by?: string
-      comment_text?: string
-      created_at?: string
-    }
-  ]
+  data: Array<{
+    created_by?: string
+    comment_text?: string
+    created_at?: string
+  }>
 }
 export const PixelCommentBox = React.forwardRef<
   HTMLInputElement,
@@ -18,29 +16,33 @@ export const PixelCommentBox = React.forwardRef<
 >(({ data, ...rest }, ref) => {
   return (
     <CommentContainer>
-      {data?.map((commentData, index) => (
-        <SectionContent style={{ minHeight: 'auto' }}>
-          <CommentSection key={index}>
-            <CommentSectionUpper>
-              <Commentator>{commentData.created_by}</Commentator>
-              <PixelText
-                variant='light'
-                textSize='11px'
-                style={{
-                  fontWeight: '400',
-                  paddingTop: '5px',
-                  color: 'rgba(0, 0, 0, 0.84)'
-                }}
-              >
-                {moment(commentData.created_at).fromNow()}
-              </PixelText>
-            </CommentSectionUpper>
-            <CommentSectionLower>
-              <Comment>{commentData.comment_text}</Comment>
-            </CommentSectionLower>
-          </CommentSection>
-        </SectionContent>
-      ))}
+      {Array.isArray(data) && data.length != 0 ? (
+        data?.map((commentData, index) => (
+          <SectionContent style={{ minHeight: 'auto' }}>
+            <CommentSection key={index}>
+              <CommentSectionUpper>
+                <Commentator>{commentData.created_by}</Commentator>
+                <PixelText
+                  variant='light'
+                  textSize='11px'
+                  style={{
+                    fontWeight: '400',
+                    paddingTop: '5px',
+                    color: 'rgba(0, 0, 0, 0.84)'
+                  }}
+                >
+                  {moment(commentData.created_at).fromNow()}
+                </PixelText>
+              </CommentSectionUpper>
+              <CommentSectionLower>
+                <Comment>{commentData.comment_text}</Comment>
+              </CommentSectionLower>
+            </CommentSection>
+          </SectionContent>
+        ))
+      ) : (
+        <CommentContainerofNoData>No Comments</CommentContainerofNoData>
+      )}
     </CommentContainer>
   )
 })
@@ -80,6 +82,19 @@ const Comment = styled.div`
   font-weight: 400;
   line-height: 1.5;
   color: #525252;
+`
+const CommentContainerofNoData = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  border-radius: 10px;
+  gap: 5px;
+  margin: auto;
+  width: 100%;
+  background-color: aqua;
+  font-weight: 700;
 `
 
 export default PixelCommentBox
