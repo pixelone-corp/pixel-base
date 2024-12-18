@@ -15,7 +15,9 @@ const Template: ComponentStory<typeof PixelCommentBox> = (args) => {
   )
 }
 
+export const NoData = Template.bind({})
 export const Simple = Template.bind({})
+NoData.args = { data: [] }
 Simple.args = {
   data: [
     {
