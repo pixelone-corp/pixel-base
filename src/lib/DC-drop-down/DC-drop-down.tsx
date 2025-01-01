@@ -1,8 +1,8 @@
 import React, { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
-export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
+export interface DCDropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   className?: string
   options?: OptionsData[]
   error?: string
@@ -20,6 +20,11 @@ interface OptionsData {
   label: string
   disabled?: boolean
 }
+import {
+  $DCprimaryActiveColor,
+  $DCprimaryColor,
+  $DCprimaryShadowColor
+} from '../styleGuide'
 const getGroupedValue = (options, value) => {
   let groupedValue = ''
   Object.keys(options).forEach((group) => {
@@ -61,7 +66,7 @@ const filterGroupedData = (options, filterText) => {
   return options
 }
 
-export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
+export const DCDropDown = React.forwardRef<HTMLDivElement, DCDropDownProps>(
   (
     {
       className,
@@ -158,11 +163,11 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         left: '-5000px'
       })
     }
-    const getValues = async () => {
-      return new Promise((resolve) => {
-        resolve(value)
-      })
-    }
+    // const getValues = async () => {
+    //   return new Promise((resolve) => {
+    //     resolve(value)
+    //   })
+    // }
 
     React.useEffect(() => {
       const parent = toggleRef.current?.closest('form')
@@ -208,9 +213,9 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         window.removeEventListener('scroll', handleScroll)
       }
     }, [])
-    const truncate = (label, max) => {
-      return label?.length > max ? label.substr(0, max - 1) + '...' : label
-    }
+    // const truncate = (label, max) => {
+    //   return label?.length > max ? label.substr(0, max - 1) + '...' : label
+    // }
     return (
       <Mainconatiner>
         <HiddenInput
@@ -220,11 +225,11 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
           required={required}
           onChange={() => {}}
         />
-        {isShowLabel && (
+        {/* {isShowLabel && (
           <StyledLabel className={showLabel ? 'showLabell' : 'testing'}>
             {truncate(customLabel !== '' ? customLabel : placeholder, 25)}
           </StyledLabel>
-        )}
+        )} */}
         <DropDown
           ref={toggleRef}
           {...rest}
@@ -241,7 +246,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
             }}
           >
             <OptionLabel
-              color={isgrouped ? '#000' : showLabel ? '' : '#6c757d'}
+              color={isgrouped ? '#000' : showLabel ? '' : '#A1A3B5'}
             >
               {getValue(
                 isgrouped ? groupOptionData : options,
@@ -249,7 +254,19 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                 isgrouped
               ) || placeholder}
             </OptionLabel>
-            <FontAwesomeIcon icon={faAngleDown} />
+            {isOptionsOpen ? (
+              <FontAwesomeIcon
+                color='#787C9E'
+                width={'10px'}
+                icon={faAngleUp}
+              />
+            ) : (
+              <FontAwesomeIcon
+                color='#787C9E'
+                width={'10px'}
+                icon={faAngleDown}
+              />
+            )}
           </Toggler>
           <React.Fragment>
             {isgrouped ? (
@@ -396,13 +413,24 @@ const Mainconatiner = styled.div`
   flex-direction: column;
   position: relative;
 `
-const Toggler = styled.div<{ disable: boolean }>`
+const Toggler = styled.button<{ disable: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.375rem 0.75rem;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
+  &:focus {
+    border: 1px solid ${$DCprimaryColor};
+    box-shadow: 0 0 5px 0 ${$DCprimaryShadowColor};
+  }
+  background-color: #fff;
+  border: 1px solid #d2d4e4;
+  border-radius: 0.375rem;
+  display: inline-flex;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  min-height: 2.75rem;
+  overflow: hidden;
+  padding: 0.5625rem 18px;
+  width: 100%;
   cursor: ${(props) => (props.disable ? 'not-allowed' : 'pointer')};
   background: ${(props) => (props.disable ? '#f7f7f7' : 'none')};
 `
@@ -435,11 +463,17 @@ const DropDownList = styled.div<{
     props.inputPosition ? 'column-reverse' : 'column'};
   opacity: ${(props) => (props.display ? 1 : 0)};
   background-color: #fff;
-  border: 1px solid #ced4da;
   width: ${(props) => props.position.width};
   position: fixed;
   top: ${(props) => props.position?.top};
   left: ${(props) => props.position?.left};
+  background-color: #fff;
+  border-radius: 0.375rem;
+  box-shadow: 0 2px 12px -1px rgba(67, 71, 107, 0.2);
+  overflow: hidden;
+
+  will-change: visibility;
+  word-break: break-all;
   z-index: 99;
 `
 const Option = styled.div`
@@ -495,7 +529,7 @@ const SearchPixelInput = styled.div`
 const Search = styled.input`
   background-color: #ffffff !important;
   width: 100%;
-  border: 1px solid #ced4da;
+  border: 1px solid #dbe2e9;
   padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
   /* box-sizeing: border-box; */
@@ -526,23 +560,23 @@ const HiddenInput = styled.input`
   opacity: 0;
 `
 
-const StyledLabel = styled.div`
-  &.showLabell {
-    background: linear-gradient(180deg, #fff 52%, transparent 48%);
-    top: -8px;
-    opacity: 1;
-    left: 13px;
-    z-index: 1;
-  }
-  font-weight: 400;
-  opacity: 0;
-  color: #737373;
-  position: absolute;
-  width: auto;
-  top: -10px;
-  left: '15px';
-  font-size: 11px;
-  transition: all 0.2s ease-in-out;
-  border-radius: 4px !important;
-`
-export default PixelDropDown
+// const StyledLabel = styled.div`
+//   &.showLabell {
+//     background: linear-gradient(180deg, #fff 52%, transparent 48%);
+//     top: -8px;
+//     opacity: 1;
+//     left: 13px;
+//     z-index: 1;
+//   }
+//   font-weight: 400;
+//   opacity: 0;
+//   color: #737373;
+//   position: absolute;
+//   width: auto;
+//   top: -10px;
+//   left: '15px';
+//   font-size: 11px;
+//   transition: all 0.2s ease-in-out;
+//   border-radius: 4px !important;
+// `
+export default DCDropDown

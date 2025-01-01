@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import  PixelDateRangePicker  from './pixelDateRangePicker'
+import PixelDateRangePicker from './pixelDateRangePicker'
 import { addDays } from 'date-fns'
 export default {
   title: 'Pixel DateRangePicker',
@@ -12,22 +12,20 @@ const Template: ComponentStory<typeof PixelDateRangePicker> = (args) => {
     end_date: addDays(new Date(), 7)
   })
 
-
-
   const onApply = () => {
     alert('this is applied funtion')
   }
   return (
     <React.Fragment>
       <PixelDateRangePicker
-        onChange={(e:any) => {
+        onChange={(e: any) => {
           alert('thsi si alert')
-          console.log(e);
-          // setState({
-          //   ...state,
-          //   start_date: e.target.value?.range1?.startDate,
-          //   end_date: item?.range1?.endDate
-          // })
+          console.log(e)
+          setState({
+            ...state,
+            start_date: e.target.value?.range1?.startDate,
+            end_date: e?.range1?.endDate
+          })
         }}
         ranges={state}
         month={2}

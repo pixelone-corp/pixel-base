@@ -1,4 +1,19 @@
 let $primaryColor: string = '#9b02fd'
+let $DCprimaryColor: string = '#5f38f9'
+let $DCprimaryShadowColor: string = 'rgba(95, 56, 249, .2);'
+let $DCprimaryActiveColor: string = '#4c2dc7'
+let $DCsecondaryColor: string = '#374151'
+let $DCsecondaryActiveColor: string = '#2c3441'
+let $DCSuccessColor: string = '#2dc58c'
+let $DCWarningColor: string = '#f2bc16'
+let $DCDangerColor: string = '#df3c4e'
+let $DCInfoColor: string = '#478ffc'
+let $DCLightColor: string = '#e5e7eb'
+let $DCSuccessActiveColor: string = '#249e70'
+let $DCWarningActiveColor: string = '#f5c945'
+let $DCDangerActiveColor: string = '#b2303e'
+let $DCInfoActiveColor: string = '#3972ca'
+let $DCLightActiveColor: string = '#b7b9bc'
 let $secondaryColor: string = '#db01f9'
 const $textColor: string = '#171717'
 const $standardFontSize: string = '16px'
@@ -101,6 +116,21 @@ const $textColorWithAlpha = (op: string) => addAlpha($textColor, op)
 
 export {
   changeTheme,
+  $DCprimaryColor,
+  $DCprimaryShadowColor,
+  $DCsecondaryColor,
+  $DCSuccessColor,
+  $DCWarningColor,
+  $DCDangerColor,
+  $DCInfoColor,
+  $DCLightColor,
+  $DCSuccessActiveColor,
+  $DCWarningActiveColor,
+  $DCDangerActiveColor,
+  $DCInfoActiveColor,
+  $DCLightActiveColor,
+  $DCprimaryActiveColor,
+  $DCsecondaryActiveColor,
   $primaryColor,
   $secondaryColor,
   $primaryWithAlpha,
