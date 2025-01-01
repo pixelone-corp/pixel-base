@@ -40,6 +40,9 @@ export * from './lib/pixel-date-range-picker/pixelDateRangePicker'
 export * from './lib/pixel-spinner/pixel-spinner'
 export * from './lib/pixel-Credit-Card/pixel-credit-cards'
 export * from './lib/pixel-comment-box/pixel-comment-box'
+export * from './lib/DC-input/DC-input'
+export * from './lib/DC-button/DC-button'
+export * from './lib/DC-drop-down/DC-drop-down'
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'

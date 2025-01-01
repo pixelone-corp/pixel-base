@@ -16,7 +16,9 @@ DEMO: https://pixelone-corp.github.io/pixel-base/
 
 <!-- run storybook in local using node version upper then 16 the  run these commands
 macOS & linux: export NODE_OPTIONS="--openssl-legacy-provider"
-window: $env:NODE_OPTIONS = "--openssl-legacy-provider"
+window:-
+i-PowerShell: $env:NODE_OPTIONS = "--openssl-legacy-provider"
+ii-GitBash: export NODE_OPTIONS="--openssl-legacy-provider" 
  -->
 
 ```tsx

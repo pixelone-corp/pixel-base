@@ -5,10 +5,10 @@ import 'react-date-range/dist/theme/default.css'
 import styled from 'styled-components'
 import { Popover } from 'react-bootstrap'
 import { PixelIcon } from '../../lib/pixel-button-icon/pixel-icon'
-import { faArrowRight, faCalendar } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import PixelFlexBox from '../pixel-flex-box/pixel-flex-box'
 import { addDays } from 'date-fns'
-
+import calendar from './calendaar.svg'
 export interface PixelDateRangePickerProps {
   onChange?: (item: any) => void
   onApply?: () => void
@@ -28,6 +28,7 @@ export interface PixelDateRangePickerProps {
 
 import PixelDate from '../pixel-date/pixel-date'
 import PixelButton from '../pixel-button/pixel-button'
+import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons'
 export const PixelDateRangePicker = React.forwardRef<
   HTMLDivElement,
   PixelDateRangePickerProps
@@ -104,14 +105,15 @@ export const PixelDateRangePicker = React.forwardRef<
           setShowPopOver(!showPopOver)
         }}
       >
-        <text style={{ fontSize: '0.8vw' }}>
+        {/* <text style={{ fontSize: '0.8vw' }}>
           <LabelLeft>{'Start Date'}</LabelLeft>
         </text>
         <text style={{ fontSize: '0.8vw' }}>
           <Label>{'End Date'}</Label>
-        </text>
-        <PixelIcon color='#737373' icon={faCalendar} />
-        <text style={{ fontSize: '0.7vw' }}>
+        </text> */}
+        {/* <PixelIcon color='#737373' icon={faCalendarWeek} /> */}
+        <img src={calendar} alt='' height={'60%'} />
+        <text style={{ fontSize: '1rem', color: '#2b2b2b' }}>
           <PixelDate
             showFullDatePopover={false}
             className={'datewithtime'}
@@ -121,7 +123,7 @@ export const PixelDateRangePicker = React.forwardRef<
         </text>
         <PixelIcon color='#737373' icon={faArrowRight} />
 
-        <text style={{ fontSize: '0.7vw' }}>
+        <text style={{ fontSize: '1rem', color: '#2b2b2b' }}>
           <PixelDate
             showFullDatePopover={false}
             className={'datewithtime'}
@@ -136,7 +138,7 @@ export const PixelDateRangePicker = React.forwardRef<
           <DateRangePicker
             onChange={(e) => {
               handleChange(e)
-            } }
+            }}
             showSelectionPreview={false}
             moveRangeOnFirstSelection={false}
             months={month}
@@ -147,9 +149,9 @@ export const PixelDateRangePicker = React.forwardRef<
             props={dateProps}
             refs={refs} // locale={'enUS from locale'}
             RangeColors={RangeColors}
-            style={style} 
-            // focusedRange={[]}        
-             />
+            style={style}
+            // focusedRange={[]}
+          />
           <PixelFlexBox
             padding='10px'
             height='auto'
@@ -162,7 +164,9 @@ export const PixelDateRangePicker = React.forwardRef<
             >
               Close
             </PixelButton>
-            <PixelButton onClick={handelApply}>Apply</PixelButton>
+            <PixelButton size='sm' onClick={handelApply}>
+              Apply
+            </PixelButton>
           </PixelFlexBox>
         </StyledPopOver>
       )}
@@ -175,18 +179,20 @@ const StyledDatePicker = styled.div`
   /* width:15%; */
   /* max-width: 15%; */
   min-width: 260px;
-  padding: 0px 20px 0px 0px;
+  padding: 0px 20px;
+  /* padding: 0px 20px 0px 0px; */
   min-height: 40px;
   max-height: 40px;
   cursor: pointer;
   gap: 10px;
   border: 1px solid #dee2e6 !important;
   color: '#737373';
-  border-radius: 5px;
+  border-radius: 2px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: #f7f7f7 !important;
+  /* background-color: #f7f7f7 !important; */
+  background-color: #ffffff !important;
   position: relative;
 `
 const LabelLeft = styled.div`
