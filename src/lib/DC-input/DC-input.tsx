@@ -6,6 +6,7 @@ import styled, { css } from 'styled-components'
 
 import DCDatepicker from './components/DCDatepicker'
 import Input from './components/Input'
+import PasswordInput from './components/passwordInput'
 
 export interface DCProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
@@ -212,7 +213,13 @@ export const DCInput = React.forwardRef<HTMLInputElement, DCProps>(
                 showDatepicker={showDatePicker}
               />
             </React.Fragment>
-          ) : (
+          ) : as === 'password' ? (
+            <PasswordInput
+              value={value}
+              onChange={onChange}
+              placeholder={placeholder}
+            />
+          ) : as == 'textarea' ? (
             <Input
               showsearchicon={showsearchicon}
               placeholder={placeholder}
@@ -246,6 +253,8 @@ export const DCInput = React.forwardRef<HTMLInputElement, DCProps>(
               aria-invalid={error ? 'true' : 'false'}
               rest={rest}
             />
+          ) : (
+            <></>
           )}
         </React.Fragment>
 
