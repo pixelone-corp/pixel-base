@@ -1,6 +1,5 @@
 import React from 'react'
-import { FormControl } from 'react-bootstrap'
-import { $DCprimaryColor, $secondaryWithAlpha } from '../../styleGuide'
+import { $DCprimaryColor } from '../../styleGuide'
 import styled, { css } from 'styled-components'
 const Input = (props) => {
   return (

@@ -39,8 +39,8 @@ InputAsTextArea.args = {
   placeholder: 'DC Input AS TextArea',
   as: 'textarea'
 }
-export const password = Template.bind({})
-InputAsTextArea.args = {
+export const Password = Template.bind({})
+Password.args = {
   placeholder: 'DC Input password',
   as: 'password'
 }
