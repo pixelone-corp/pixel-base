@@ -54,7 +54,7 @@ const StyledPixelButton = styled(Button)`
   }
   margin: ${(props: DCButtonProps) => props.margin || '0px'};
   padding: ${(props: DCButtonProps) =>
-    props.padding ? props.padding : '9px 18px'};
+    props.padding ? props.padding : '9px 18px'} !important;
   font-weight: 400;
   line-height: 1.5rem;
   border-radius: 0.375rem;
@@ -62,9 +62,9 @@ const StyledPixelButton = styled(Button)`
   color: #fff !important;
 
   background-color: ${$DCsecondaryColor};
-  &:hover {
+  /* &:hover {
     background-color: ${$DCsecondaryActiveColor} !important;
-  }
+  } */
   a {
     color: white;
     text-decoration: none;
@@ -174,10 +174,10 @@ const StyledPixelButton = styled(Button)`
       &:active a,
       &:focus,
       &:focus a {
-        color: ${$secondaryColor} !important;
+        color: ${$DCprimaryActiveColor} !important;
       }
       a {
-        color: ${$DCprimaryColor} !important;
+        color: ${$DCprimaryActiveColor} !important;
       }
     `}
 
@@ -269,18 +269,7 @@ const StyledPixelButton = styled(Button)`
       /* color: ${$DCprimaryColor}; */
       padding: ${(props: DCButtonProps) =>
         props.padding || '15px 22px !important'};
-      border-radius: 0.75rem;
-      &:hover,
-      &:hover a,
-      &:active,
-      &:active a,
-      &:focus,
-      /* &:focus a {
-        color: ${$secondaryColor} !important;
-      }
-      a {
-        color: ${$DCprimaryColor} !important;
-      } */
+      border-radius: 0.75rem !important;
     `}
 
     ${(props: DCButtonProps) =>
@@ -293,21 +282,9 @@ const StyledPixelButton = styled(Button)`
     ${(props: DCButtonProps) =>
     props.size == 'sm' &&
     css`
-      /* color: ${$DCprimaryColor}; */
       padding: ${(props: DCButtonProps) =>
         props.padding || '2px 12px !important'};
       border-radius: 0.25rem;
-      &:hover,
-      &:hover a,
-      &:active,
-      &:active a,
-      &:focus,
-      /* &:focus a {
-        color: ${$secondaryColor} !important;
-      }
-      a {
-        color: ${$DCprimaryColor} !important;
-      } */
     `}
 
     ${(props: DCButtonProps) =>
