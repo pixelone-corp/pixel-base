@@ -219,42 +219,42 @@ export const DCInput = React.forwardRef<HTMLInputElement, DCProps>(
               onChange={onChange}
               placeholder={placeholder}
             />
-          ) : as == 'textarea' ? (
-            <Input
-              showsearchicon={showsearchicon}
-              placeholder={placeholder}
-              id={name}
-              name={name}
-              type={type}
-              ref={ref}
-              className={
-                noPadding
-                  ? cn(
-                      'px-1 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
-                      shadow && 'focus:shadow',
-                      variantClasses[variant],
-                      sizeClasses[dimension],
-                      disabled && 'bg-gray-100 cursor-not-allowed',
-                      inputClassName
-                    )
-                  : cn(
-                      'px-4 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
-                      shadow && 'focus:shadow',
-                      variantClasses[variant],
-                      sizeClasses[dimension],
-                      disabled && 'bg-gray-100 cursor-not-allowed',
-                      inputClassName
-                    )
-              }
-              disabled={disabled}
-              value={value}
-              spellCheck='false'
-              onChange={onChange}
-              aria-invalid={error ? 'true' : 'false'}
-              rest={rest}
-            />
           ) : (
-            <></>
+            as == 'textarea' && (
+              <Input
+                showsearchicon={showsearchicon}
+                placeholder={placeholder}
+                id={name}
+                name={name}
+                type={type}
+                ref={ref}
+                className={
+                  noPadding
+                    ? cn(
+                        'px-1 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
+                        shadow && 'focus:shadow',
+                        variantClasses[variant],
+                        sizeClasses[dimension],
+                        disabled && 'bg-gray-100 cursor-not-allowed',
+                        inputClassName
+                      )
+                    : cn(
+                        'px-4 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
+                        shadow && 'focus:shadow',
+                        variantClasses[variant],
+                        sizeClasses[dimension],
+                        disabled && 'bg-gray-100 cursor-not-allowed',
+                        inputClassName
+                      )
+                }
+                disabled={disabled}
+                value={value}
+                spellCheck='false'
+                onChange={onChange}
+                aria-invalid={error ? 'true' : 'false'}
+                rest={rest}
+              />
+            )
           )}
         </React.Fragment>
 

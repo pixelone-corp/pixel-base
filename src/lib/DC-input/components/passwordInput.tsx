@@ -47,7 +47,7 @@ const PasswordInput = (props) => {
     const newPassword = e.target.value
     setPassword(newPassword)
     evaluateStrength(newPassword)
-    if (props.onChange) onChange(e)
+    if (props.onChange) props.onChange(e)
   }
 
   return (
