@@ -66,7 +66,6 @@ const PasswordInput = (props) => {
         disabled={props.disabled}
         spellCheck={props.spellCheck}
         aria-invalid={props.error}
-        height={props.height}
         {...props.rest}
       />
       <PasswordStrength
