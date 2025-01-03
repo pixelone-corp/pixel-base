@@ -102,13 +102,15 @@ const PasswordInputContainer = styled.div`
 
 const PasswordStrength = styled.div`
   margin-top: 10px;
-  font-weight: bold;
+  font-weight: 500;
   cursor: pointer;
   position: relative;
   position: absolute;
+  font-size: 12px;
   right: 10px;
-  top: -5px;
+  top: 1px;
 `
+
 const DCPasswordInput = styled.input`
   &:focus {
     border: none;
@@ -185,9 +187,9 @@ const PasswordTooltip = styled.div`
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  top: 40px;
-  right: 0;
-  width: 250px;
+  top: 35px;
+  right: -10px;
+  width: 260px;
   z-index: 10;
 `
 
