@@ -2,7 +2,6 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import PixelDropDown from './DC-drop-down'
-import PixelButton from '../pixel-button/pixel-button'
 import PixelProfile from '../pixel-user-profile/pixel-user-profile'
 import PixelTag from '../pixel-tag/pixel-tag'
 
