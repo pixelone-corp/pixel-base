@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import DCRightPanel from "./DC-right-panel";
 
 export default {
-  title: "Pixel Right Panel",
+  title: "DC Right Panel",
   component: DCRightPanel,
 } as ComponentMeta<typeof DCRightPanel>
 

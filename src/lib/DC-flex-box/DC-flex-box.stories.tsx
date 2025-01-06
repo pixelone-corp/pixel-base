@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import DCFlexBox from './DC-flex-box'
 
 export default {
-  title: 'Pixel Flex Box',
+  title: 'DC Flex Box',
   component: DCFlexBox
 } as ComponentMeta<typeof DCFlexBox>
 
