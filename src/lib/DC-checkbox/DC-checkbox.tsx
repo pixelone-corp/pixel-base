@@ -10,34 +10,40 @@ export interface DCCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   onChange: () => void
   name: string
   label: string
-  size?: 'sm' | 'lg'
+  checkboxSize?: 'sm' | 'lg'
 }
-const StyledDCCheckbox = styled.div<{ size }>`
+const StyledDCCheckbox = styled.div<{ checkboxSize }>`
   display: flex;
   flex-direction: row;
   /* flex-wrap: nowrap; */
   justify-content: flex-start;
   align-items: center;
-  ${({ size }) =>
-    size === 'sm' &&
+  ${({ checkboxSize }) =>
+    checkboxSize === 'sm' &&
     `
    align-items: flex-end;
   `}
 
-  ${({ size }) =>
-    size === 'lg' &&
+  ${({ checkboxSize }) =>
+    checkboxSize === 'lg' &&
     `
    align-items: flex-end;
   `}
   align-content: flex-start;
   /* gap: 10px; */
 `
-const StyledCheckBoxLabel = styled(Form.Check.Label)`
-  font-size: 1rem;
+const StyledCheckBoxLabel = styled(Form.Check.Label)<{ checkboxSize }>`
+  //for sm 14px for lg 18px otherwise 16px
+  font-size: ${({ checkboxSize }) => {
+    if (checkboxSize === 'sm') return '0.875rem !important' // 14px
+    if (checkboxSize === 'lg') return '1.125rem !important' // 18px
+    return '1rem' // 16px (default)
+  }};
+
   line-height: 1.75rem;
   padding-left: 0.75rem;
 `
-const StyledCheckBox = styled(Form.Check.Input)<{ props }>`
+const StyledCheckBox = styled(Form.Check.Input)<{ checkboxSize }>`
   border-radius: 0.25em;
   -webkit-appearance: none;
   appearance: none;
@@ -48,13 +54,11 @@ const StyledCheckBox = styled(Form.Check.Input)<{ props }>`
   border: 2px solid #d2d4e4;
   height: 1.25rem;
   width: 1.25rem;
-  height: ${(props) => props.size === 'sm' && '1rem'};
-  width: ${(props) => props.size === 'sm' && '1rem'};
-  height: ${(props) => props.size === 'lg' && '1.5rem'};
-  width: ${(props) => props.size === 'lg' && '1.5rem'};
+  height: ${(props) => props.checkboxSize === 'sm' && '1rem'};
+  width: ${(props) => props.checkboxSize === 'sm' && '1rem'};
+  height: ${(props) => props.checkboxSize === 'lg' && '1.5rem'};
+  width: ${(props) => props.checkboxSize === 'lg' && '1.5rem'};
   margin-top: 0.21rem;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
   vertical-align: top;
   :focus {
     border-color: #977dfb;
@@ -69,7 +73,7 @@ const StyledCheckBox = styled(Form.Check.Input)<{ props }>`
 export const DCCheckbox = React.forwardRef<HTMLInputElement, DCCheckboxProps>(
   (props) => {
     return (
-      <StyledDCCheckbox size={props.size}>
+      <StyledDCCheckbox checkboxSize={props.checkboxSize}>
         <Form.Check
           type={'checkbox'}
           name={props.name}
@@ -84,11 +88,13 @@ export const DCCheckbox = React.forwardRef<HTMLInputElement, DCCheckboxProps>(
             checked={props.checked}
             onChange={props.onChange}
             name={props.name}
-            size={props.size}
+            checkboxSize={props.checkboxSize}
           />
         </Form.Check>
         {props.label && (
-          <StyledCheckBoxLabel>{props.label}</StyledCheckBoxLabel>
+          <StyledCheckBoxLabel checkboxSize={props.checkboxSize}>
+            {props.label}
+          </StyledCheckBoxLabel>
         )}
       </StyledDCCheckbox>
     )
