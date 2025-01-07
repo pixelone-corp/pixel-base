@@ -7,6 +7,21 @@ export interface DCPageProps {
   flexDirection: string
   alignItems: string
   justifyContent: string
+  children: React.ReactNode
+  padding: string
+  margin: string
+  border: string
+  borderRadious: string
+  boxShadow: string
+  backgroundColor: string
+  position: string
+  top: string
+  bottom: string
+  left: string
+  right: string
+  
+  style: React.CSSProperties
+
 }
 
 export function DCPage(props: DCPageProps) {

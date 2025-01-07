@@ -18,6 +18,10 @@ export interface DCRightPanelProps {
   backgroundColor?: string
   padding?: string
   margin?: string
+  border?: string
+  borderRadious?: string
+  boxShadow?: string
+  style?: React.CSSProperties
 }
 export const DCRightPanel = React.forwardRef<HTMLDivElement, DCRightPanelProps>(
   (props, ref) => {
@@ -40,6 +44,10 @@ export const DCRightPanel = React.forwardRef<HTMLDivElement, DCRightPanelProps>(
           backgroundColor={props.backgroundColor}
           padding={props.padding}
           margin={props.margin}
+          border={props.border}
+          borderRadious={props.borderRadious}
+          style={props.style}
+          boxShadow={props.boxShadow}
           ref={ref}
         >
           {props.children}
