@@ -19,8 +19,6 @@ const Template: ComponentStory<typeof DCSwitch> = (args) => {
             {...args}
             value={checked}
             onChange={(e) => {
-              console.log(e.target.checked)
-
               setChecked(e.target.checked)
             }}
             label={checked ? 'ON' : 'OFF'}

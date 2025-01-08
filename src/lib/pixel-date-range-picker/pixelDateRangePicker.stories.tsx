@@ -19,8 +19,6 @@ const Template: ComponentStory<typeof PixelDateRangePicker> = (args) => {
     <React.Fragment>
       <PixelDateRangePicker
         onChange={(e: any) => {
-          alert('thsi si alert')
-          console.log(e)
           setState({
             ...state,
             start_date: e.target.value?.range1?.startDate,
