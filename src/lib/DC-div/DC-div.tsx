@@ -16,6 +16,10 @@ export interface DCDivProps {
   margin?: string
   style?: React.CSSProperties
   id?: string
+  border?: string
+  borderRadious?: string
+  boxShadow?: string
+
   onClick?: () => void
 }
 export const DCDiv = React.forwardRef<HTMLDivElement, DCDivProps>(
@@ -56,6 +60,10 @@ const DivContainer = styled.div<
   background-color: ${(props) => props.backgroundColor};
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
+  border: ${(props) => props.border};
+  border-radius: ${(props) => props.borderRadious};
+  box-shadow: ${(props) => props.boxShadow};
+  
 `
 
 export default DCDiv

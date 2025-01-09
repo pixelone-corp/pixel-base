@@ -18,6 +18,11 @@ export interface DCLeftPanelProps {
   backgroundColor?: string
   padding?: string
   margin?: string
+  border?: string
+  borderRadious?: string
+  boxShadow?: string
+  style?: React.CSSProperties
+
 }
 export const DCLeftPanel = React.forwardRef<HTMLDivElement, DCLeftPanelProps>(
   (props, ref) => {
@@ -40,6 +45,10 @@ export const DCLeftPanel = React.forwardRef<HTMLDivElement, DCLeftPanelProps>(
           backgroundColor={props.backgroundColor}
           padding={props.padding}
           margin={props.margin}
+          border={props.border}
+          borderRadious = {props.borderRadious}
+          style={props.style}
+          boxShadow={props.boxShadow}
           ref={ref}
         >
           {props.children}

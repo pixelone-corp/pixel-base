@@ -39,13 +39,16 @@ export interface DCFlexBoxProps {
   backgroundColor?: string
   padding?: string
   margin?: string
+  border?: string
+  borderRadious?: string
+  boxShadow?: string
   style?: React.CSSProperties
 }
 export const DCFlexBox = React.forwardRef<HTMLDivElement, DCFlexBoxProps>(
   (props, ref) => {
     return (
       <React.Fragment>
-        <FlexBoxContainer {...props} ref={ref}>
+        <FlexBoxContainer style={props?.style} {...props} ref={ref}>
           {props.children}
         </FlexBoxContainer>
       </React.Fragment>
@@ -80,6 +83,10 @@ const FlexBoxContainer = styled.div<
   background-color: ${(props) => props.backgroundColor};
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
+  border: ${(props) => props.border};
+  border-radius: ${(props) => props.borderRadious};
+  box-shadow: ${(props) => props.boxShadow};
+  
 `
 
 export default DCFlexBox

@@ -7,6 +7,20 @@ export interface DCPageProps {
   flexDirection: string
   alignItems: string
   justifyContent: string
+  children: React.ReactNode
+  padding: string
+  margin: string
+  border: string
+  borderRadious: string
+  boxShadow: string
+  backgroundColor: string
+  position: string
+  top: string
+  bottom: string
+  left: string
+  right: string
+
+  style: React.CSSProperties
 }
 
 export function DCPage(props: DCPageProps) {
@@ -34,6 +48,40 @@ const DCPageContainer = styled.div<{ props }>`
   flex-direction: ${(props) => {
     props.flexDirection ? props.flexDirection : 'center'
   }};
+  padding: ${(props) => {
+    props.padding ? props.padding : '0px'
+  }};
+  margin: ${(props) => {
+    props.margin ? props.margin : '0px'
+  }};
+  border: ${(props) => {
+    props.border ? props.border : 'none'
+  }};
+  border-radius: ${(props) => {
+    props.borderRadious ? props.borderRadious : '0px'
+  }};
+  box-shadow: ${(props) => {
+    props.boxShadow ? props.boxShadow : 'none'
+  }};
+  background-color: ${(props) => {
+    props.backgroundColor ? props.backgroundColor : 'none'
+  }};
+  position: ${(props) => {
+    props.position ? props.position : 'none'
+  }};
+  top: ${(props) => {
+    props.top ? props.top : 'none'
+  }};
+  bottom: ${(props) => {
+    props.bottom ? props.bottom : 'none'
+  }};
+  left: ${(props) => {
+    props.left ? props.left : 'none'
+  }};
+  right: ${(props) => {
+    props.right ? props.right : 'none'
+  }};
+  ${(props) => props.style}
 `
 
 export default DCPage

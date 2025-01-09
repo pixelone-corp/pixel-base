@@ -51,6 +51,8 @@ export * from './lib/DC-top-bar/DC-top-bar'
 export * from './lib/DC-right-panel/DC-right-panel'
 export * from './lib/DC-page/DC-page'
 export * from './lib/DC-checkbox/DC-checkbox'
+export * from './lib/DC-switch/DC-switch'
+export * from './lib/DC-text/DC-text'
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'
