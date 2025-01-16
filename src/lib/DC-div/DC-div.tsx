@@ -19,8 +19,11 @@ export interface DCDivProps {
   border?: string
   borderRadious?: string
   boxShadow?: string
-
+  hoverStyle?: React.CSSProperties
   onClick?: () => void
+  ref?: React.Ref<HTMLDivElement>
+  after?: React.ReactNode
+  before?: React.ReactNode
 }
 export const DCDiv = React.forwardRef<HTMLDivElement, DCDivProps>(
   (props, ref) => {
@@ -47,6 +50,12 @@ const DivContainer = styled.div<
     | 'backgroundColor'
     | 'padding'
     | 'margin'
+    | 'hoverStyle'
+    | 'border'
+    | 'borderRadious'
+    | 'boxShadow'
+    | 'after'
+    | 'before'
   >
 >`
   display: block;
@@ -63,7 +72,15 @@ const DivContainer = styled.div<
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadious};
   box-shadow: ${(props) => props.boxShadow};
-  
+  :hover {
+    ${(props) => props.hoverStyle}
+  }
+  :after {
+    content: ${(props) => props.after};
+  }
+  :before {
+    content: ${(props) => props.before};
+  }
 `
 
 export default DCDiv

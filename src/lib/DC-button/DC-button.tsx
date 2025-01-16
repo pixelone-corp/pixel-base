@@ -45,9 +45,13 @@ export interface DCButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   padding?: string
   tooltip?: string
   children?: React.ReactNode
+  background?: string
+  style?: React.CSSProperties
+  color?: string
+  border?: string
 }
 
-const StyledPixelButton = styled(Button)`
+const StyledPixelButton = styled(Button)<{ props }>`
   &:focus {
     outline: none !important;
     box-shadow: none !important;
@@ -65,6 +69,7 @@ const StyledPixelButton = styled(Button)`
   /* &:hover {
     background-color: ${$DCsecondaryActiveColor} !important;
   } */
+
   a {
     color: white;
     text-decoration: none;
@@ -293,6 +298,12 @@ const StyledPixelButton = styled(Button)`
       background-color: ${$DCprimaryActiveColor} !important;
       border-color: ${$DCprimaryActiveColor} !important;
     `}
+    background: ${(props: DCButtonProps) =>
+    props.background && `${props.background} !important `};
+  color: ${(props: DCButtonProps) =>
+    props.color && `${props.color} !important `};
+  border: ${(props: DCButtonProps) =>
+    props.border && `${props.border} !important `};
 `
 
 export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
@@ -305,6 +316,7 @@ export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
       disabled = false,
       margin = '0px',
       tooltip = false,
+      background,
       ...rest
     } = props
 
@@ -318,6 +330,7 @@ export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
             <StyledPixelButton
               aria-pressed={active}
               variant={variant}
+              background={props.background}
               ref={ref}
               className={className}
               disabled={disabled}
@@ -331,6 +344,9 @@ export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
           <StyledPixelButton
             active={active}
             variant={variant}
+            background={background}
+            color={props.color}
+            border={props.border}
             ref={ref}
             className={className}
             disabled={disabled}

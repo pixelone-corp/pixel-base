@@ -14,7 +14,7 @@ const StyledDCTopBar = styled.div`
   background-color: #fff;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: stretch;
+  align-items: center;
   align-content: stretch;
   align-items: center;
   padding: 0 20px;

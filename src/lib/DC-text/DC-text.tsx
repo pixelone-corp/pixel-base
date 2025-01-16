@@ -23,14 +23,23 @@ export interface DCTextProps {
   style?: React.CSSProperties
   fontSize?: string
   fontWeight?: string
-  color?:string
+  color?: string
+  textAlignment?: string
+  margin?: string
+  padding?: string
 }
 
 const StyledDCText = styled.div``
-const Text = styled.div<{ color: string }>`
+const Text = styled.div<{
+  color: string
+  variant: string
+  textSize: string
+  textAlignment: string
+}>`
   font-size: ${(props: DCTextProps) => props.textSize};
   max-width: 100%;
   width: 100%;
+  text-align: ${(props: DCTextProps) => props.textAlignment};
   color: ${(props) => props.color};
   &.h1 {
     font-size: 24px !important;
@@ -114,7 +123,9 @@ export const DCText = React.forwardRef<HTMLDivElement, DCTextProps>(
       copiedText = 'copiedText',
       fontSize,
       fontWeight,
-
+      textAlignment,
+      margin,
+      padding,
       ...rest
     },
     ref
@@ -147,7 +158,12 @@ export const DCText = React.forwardRef<HTMLDivElement, DCTextProps>(
             >
               <div>
                 <Text
+                  fontSize={fontSize}
+                  fontWeight={fontWeight}
+                  padding={padding}
+                  margin={margin}
                   data-tag='allowRowEvents'
+                  textAlignment={textAlignment}
                   className={`${className} ${multiLine ? 'multiLine' : ''}`}
                   ref={ref}
                   {...rest}
