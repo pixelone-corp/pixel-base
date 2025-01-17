@@ -86,7 +86,20 @@ const FlexBoxContainer = styled.div<
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadious};
   box-shadow: ${(props) => props.boxShadow};
-  
+  cursor: ${(props) => props.cursor};
+  display: ${(props) => props.display};
+  opacity: ${(props) => props.opacity};
+  visibility: ${(props) => props.visibility};
+  transform-origin: ${(props) => props.transformOrigin};
+  transform-style: ${(props) => props.transformStyle};
+  perspective: ${(props) => props.perspective};
+  perspective-origin: ${(props) => props.perspectiveOrigin};
+  backface-visibility: ${(props) => props.backfaceVisibility};
+  transform: ${(props) => props.transform};
+  transition: ${(props) => props.transition};
+  animation: ${(props) => props.animation};
+  //more props
+  z-index: ${(props) => props.zIndex};
 `
 
 export default DCFlexBox

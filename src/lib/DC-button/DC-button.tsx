@@ -49,6 +49,26 @@ export interface DCButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   style?: React.CSSProperties
   color?: string
   border?: string
+  //add more props
+
+  //add more props
+  overflow?: string
+  zIndex?: number
+  cursor?: string
+  display?: string
+  opacity?: number
+  visibility?: string
+  transformOrigin?: string
+  //add more props
+  borderRadious?: string
+  boxShadow?: string
+  hoverStyle?: React.CSSProperties
+  //add animation
+  transition?: string
+  transform?: string
+  animation?: string
+  after?: string
+  before?: string
 }
 
 const StyledPixelButton = styled(Button)<{ props }>`
@@ -265,9 +285,6 @@ const StyledPixelButton = styled(Button)<{ props }>`
       }
     `}
 
-
-  
-
     ${(props: DCButtonProps) =>
     props.size == 'lg' &&
     css`
@@ -304,6 +321,35 @@ const StyledPixelButton = styled(Button)<{ props }>`
     props.color && `${props.color} !important `};
   border: ${(props: DCButtonProps) =>
     props.border && `${props.border} !important `};
+  //add more props
+  //add more props
+  overflow: ${(props: DCButtonProps) => props.overflow || 'visible'};
+  z-index: ${(props: DCButtonProps) => props.zIndex || 'auto'};
+  cursor: ${(props: DCButtonProps) => props.cursor || 'auto'};
+  display: ${(props: DCButtonProps) => props.display || 'block'};
+  opacity: ${(props: DCButtonProps) => props.opacity || '1'};
+  visibility: ${(props: DCButtonProps) => props.visibility || 'visible'};
+  transform-origin: ${(props: DCButtonProps) =>
+    props.transformOrigin || 'center'};
+  //add more props
+  //add more props
+  border-radius: ${(props: DCButtonProps) => props.borderRadious || '0.375rem'};
+  box-shadow: ${(props: DCButtonProps) => props.boxShadow || 'none'};
+  //make the hover !important
+  &:hover {
+    ${(props: DCButtonProps) => props.hoverStyle}
+  }
+  ::after {
+    ${(props: DCButtonProps) => props.after}
+  }
+  ::before {
+    ${(props: DCButtonProps) => props.before}
+  }
+
+  //add animation
+  transition: ${(props: DCButtonProps) => props.transition};
+  transform: ${(props: DCButtonProps) => props.transform};
+  animation: ${(props: DCButtonProps) => props.animation};
 `
 
 export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
@@ -328,6 +374,7 @@ export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
             overlay={<Tooltip id={`tooltip-${'top'}`}>{tooltip}</Tooltip>}
           >
             <StyledPixelButton
+              {...props}
               aria-pressed={active}
               variant={variant}
               background={props.background}
@@ -342,6 +389,7 @@ export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
           </OverlayTrigger>
         ) : (
           <StyledPixelButton
+            {...props}
             active={active}
             variant={variant}
             background={background}

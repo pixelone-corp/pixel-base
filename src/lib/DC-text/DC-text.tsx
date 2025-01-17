@@ -27,6 +27,25 @@ export interface DCTextProps {
   textAlignment?: string
   margin?: string
   padding?: string
+  //add more text props
+  textEllipsis?: boolean
+  textOverflow?: string
+  textTransform?: string
+  textDecoration?: string
+  letterSpacing?: string
+  lineHeight?: string
+  wordSpacing?: string
+  whiteSpace?: string
+  wordBreak?: string
+  wordWrap?: string
+  textAlign?: string
+  textIndent?: string
+  textShadow?: string
+  textUnderlinePosition?: string
+  textOrientation?: string
+  textRendering?: string
+  textJustify?: string
+  textStroke?: string
 }
 
 const StyledDCText = styled.div``
@@ -105,6 +124,27 @@ const Text = styled.div<{
         word-break: normal;
       }
     `}
+    margin: ${(props: DCTextProps) => props.margin};
+  padding: ${(props: DCTextProps) => props.padding};
+  //add more text props
+  text-overflow: ${(props: DCTextProps) => props.textOverflow};
+  text-transform: ${(props: DCTextProps) => props.textTransform};
+  text-decoration: ${(props: DCTextProps) => props.textDecoration};
+  letter-spacing: ${(props: DCTextProps) => props.letterSpacing};
+  line-height: ${(props: DCTextProps) => props.lineHeight};
+  word-spacing: ${(props: DCTextProps) => props.wordSpacing};
+  white-space: ${(props: DCTextProps) => props.whiteSpace};
+  word-break: ${(props: DCTextProps) => props.wordBreak};
+  word-wrap: ${(props: DCTextProps) => props.wordWrap};
+  text-align: ${(props: DCTextProps) => props.textAlign};
+  text-indent: ${(props: DCTextProps) => props.textIndent};
+  text-shadow: ${(props: DCTextProps) => props.textShadow};
+  text-underline-position: ${(props: DCTextProps) =>
+    props.textUnderlinePosition};
+  text-orientation: ${(props: DCTextProps) => props.textOrientation};
+  text-rendering: ${(props: DCTextProps) => props.textRendering};
+  text-justify: ${(props: DCTextProps) => props.textJustify};
+  //add storek
 `
 export const DCText = React.forwardRef<HTMLDivElement, DCTextProps>(
   (

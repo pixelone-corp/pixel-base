@@ -53,6 +53,10 @@ export * from './lib/DC-page/DC-page'
 export * from './lib/DC-checkbox/DC-checkbox'
 export * from './lib/DC-switch/DC-switch'
 export * from './lib/DC-text/DC-text'
+export * from './lib/dc-icon/dc-icon'
+export * from './lib/dc-ul/dc-ul'
+export * from './lib/dc-li/dc-li'
+
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
 } from './lib/pixel-factory/pixel-factory'
