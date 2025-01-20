@@ -19,7 +19,7 @@ import {
 } from '../styleGuide'
 import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import './index.scss'
-export interface DCButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface DcButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
   variant?:
     | 'outline-primary'
@@ -45,15 +45,39 @@ export interface DCButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   padding?: string
   tooltip?: string
   children?: React.ReactNode
+  background?: string
+  style?: React.CSSProperties
+  color?: string
+  border?: string
+  //add more props
+
+  //add more props
+  overflow?: string
+  zIndex?: number
+  cursor?: string
+  display?: string
+  opacity?: number
+  visibility?: string
+  transformOrigin?: string
+  //add more props
+  borderRadious?: string
+  boxShadow?: string
+  hoverStyle?: React.CSSProperties
+  //add animation
+  transition?: string
+  transform?: string
+  animation?: string
+  after?: string
+  before?: string
 }
 
-const StyledPixelButton = styled(Button)`
+const StyledPixelButton = styled(Button)<{ props }>`
   &:focus {
     outline: none !important;
     box-shadow: none !important;
   }
-  margin: ${(props: DCButtonProps) => props.margin || '0px'};
-  padding: ${(props: DCButtonProps) =>
+  margin: ${(props: DcButtonProps) => props.margin || '0px'};
+  padding: ${(props: DcButtonProps) =>
     props.padding ? props.padding : '9px 18px'} !important;
   font-weight: 400;
   line-height: 1.5rem;
@@ -65,6 +89,7 @@ const StyledPixelButton = styled(Button)`
   /* &:hover {
     background-color: ${$DCsecondaryActiveColor} !important;
   } */
+
   a {
     color: white;
     text-decoration: none;
@@ -73,7 +98,7 @@ const StyledPixelButton = styled(Button)`
     }
   }
 
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'primary' &&
     css`
       background-color: ${$DCprimaryColor} !important;
@@ -89,7 +114,7 @@ const StyledPixelButton = styled(Button)`
       }
     `}
 
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'success' &&
     css`
       background-color: ${$DCSuccessColor} !important;
@@ -103,7 +128,7 @@ const StyledPixelButton = styled(Button)`
       }
     `}
 
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'warning' &&
     css`
       background-color: ${$DCWarningColor} !important;
@@ -117,7 +142,7 @@ const StyledPixelButton = styled(Button)`
       }
     `}
     
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'danger' &&
     css`
       background-color: ${$DCDangerColor} !important;
@@ -131,7 +156,7 @@ const StyledPixelButton = styled(Button)`
       }
     `}
 
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'info' &&
     css`
       background-color: ${$DCInfoColor} !important;
@@ -145,7 +170,7 @@ const StyledPixelButton = styled(Button)`
       }
     `}
 
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'light' &&
     css`
       background-color: ${$DCLightColor} !important;
@@ -160,14 +185,14 @@ const StyledPixelButton = styled(Button)`
       }
     `}
 
-    ${(props: DCButtonProps) =>
+    ${(props: DcButtonProps) =>
     props.variant === 'link' &&
     css`
       background-color: transparent !important;
       border-color: transparent;
       text-decoration: none;
       color: ${$DCprimaryColor} !important;
-      padding: ${(props: DCButtonProps) => props.padding || '0.375rem 0.75rem'};
+      padding: ${(props: DcButtonProps) => props.padding || '0.375rem 0.75rem'};
       &:hover,
       &:hover a,
       &:active,
@@ -181,7 +206,7 @@ const StyledPixelButton = styled(Button)`
       }
     `}
 
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'outline-primary' &&
     css`
       background-color: transparent;
@@ -194,7 +219,7 @@ const StyledPixelButton = styled(Button)`
         background-color: ${$DCprimaryColor} !important;
       }
     `}
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'outline-secondary' &&
     css`
       background-color: transparent;
@@ -207,7 +232,7 @@ const StyledPixelButton = styled(Button)`
         background-color: ${$DCsecondaryActiveColor} !important;
       }
     `}
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'outline-success' &&
     css`
       background-color: transparent;
@@ -220,7 +245,7 @@ const StyledPixelButton = styled(Button)`
         background-color: ${$DCSuccessActiveColor} !important;
       }
     `}
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'outline-danger' &&
     css`
       background-color: transparent;
@@ -233,7 +258,7 @@ const StyledPixelButton = styled(Button)`
         background-color: ${$DCDangerActiveColor} !important;
       }
     `}
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'outline-warning' &&
     css`
       background-color: transparent;
@@ -246,7 +271,7 @@ const StyledPixelButton = styled(Button)`
         background-color: ${$DCWarningActiveColor} !important;
       }
     `}
-  ${(props: DCButtonProps) =>
+  ${(props: DcButtonProps) =>
     props.variant === 'outline-info' &&
     css`
       background-color: transparent;
@@ -260,42 +285,74 @@ const StyledPixelButton = styled(Button)`
       }
     `}
 
-
-  
-
-    ${(props: DCButtonProps) =>
+    ${(props: DcButtonProps) =>
     props.size == 'lg' &&
     css`
       /* color: ${$DCprimaryColor}; */
-      padding: ${(props: DCButtonProps) =>
+      padding: ${(props: DcButtonProps) =>
         props.padding || '15px 22px !important'};
       border-radius: 0.75rem !important;
     `}
 
-    ${(props: DCButtonProps) =>
+    ${(props: DcButtonProps) =>
     props.active &&
     css`
       background-color: ${$DCprimaryActiveColor} !important;
       border-color: ${$DCprimaryActiveColor} !important;
     `}
 
-    ${(props: DCButtonProps) =>
+    ${(props: DcButtonProps) =>
     props.size == 'sm' &&
     css`
-      padding: ${(props: DCButtonProps) =>
+      padding: ${(props: DcButtonProps) =>
         props.padding || '2px 12px !important'};
       border-radius: 0.25rem;
     `}
 
-    ${(props: DCButtonProps) =>
+    ${(props: DcButtonProps) =>
     props.active &&
     css`
       background-color: ${$DCprimaryActiveColor} !important;
       border-color: ${$DCprimaryActiveColor} !important;
     `}
+    background: ${(props: DcButtonProps) =>
+    props.background && `${props.background} !important `};
+  color: ${(props: DcButtonProps) =>
+    props.color && `${props.color} !important `};
+  border: ${(props: DcButtonProps) =>
+    props.border && `${props.border} !important `};
+  //add more props
+  //add more props
+  overflow: ${(props: DcButtonProps) => props.overflow || 'visible'};
+  z-index: ${(props: DcButtonProps) => props.zIndex || 'auto'};
+  cursor: ${(props: DcButtonProps) => props.cursor || 'auto'};
+  display: ${(props: DcButtonProps) => props.display || 'block'};
+  opacity: ${(props: DcButtonProps) => props.opacity || '1'};
+  visibility: ${(props: DcButtonProps) => props.visibility || 'visible'};
+  transform-origin: ${(props: DcButtonProps) =>
+    props.transformOrigin || 'center'};
+  //add more props
+  //add more props
+  border-radius: ${(props: DcButtonProps) => props.borderRadious || '0.375rem'};
+  box-shadow: ${(props: DcButtonProps) => props.boxShadow || 'none'};
+  //make the hover !important
+  &:hover {
+    ${(props: DcButtonProps) => props.hoverStyle}
+  }
+  ::after {
+    ${(props: DcButtonProps) => props.after}
+  }
+  ::before {
+    ${(props: DcButtonProps) => props.before}
+  }
+
+  //add animation
+  transition: ${(props: DcButtonProps) => props.transition};
+  transform: ${(props: DcButtonProps) => props.transform};
+  animation: ${(props: DcButtonProps) => props.animation};
 `
 
-export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
+export const DcButton = React.forwardRef<HTMLButtonElement, DcButtonProps>(
   (props, ref) => {
     const {
       className,
@@ -305,6 +362,7 @@ export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
       disabled = false,
       margin = '0px',
       tooltip = false,
+      background,
       ...rest
     } = props
 
@@ -316,8 +374,10 @@ export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
             overlay={<Tooltip id={`tooltip-${'top'}`}>{tooltip}</Tooltip>}
           >
             <StyledPixelButton
+              {...props}
               aria-pressed={active}
               variant={variant}
+              background={props.background}
               ref={ref}
               className={className}
               disabled={disabled}
@@ -329,8 +389,12 @@ export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
           </OverlayTrigger>
         ) : (
           <StyledPixelButton
+            {...props}
             active={active}
             variant={variant}
+            background={background}
+            color={props.color}
+            border={props.border}
             ref={ref}
             className={className}
             disabled={disabled}
@@ -344,4 +408,4 @@ export const DCButton = React.forwardRef<HTMLButtonElement, DCButtonProps>(
     )
   }
 )
-export default DCButton
+export default DcButton

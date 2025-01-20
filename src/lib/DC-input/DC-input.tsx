@@ -8,7 +8,7 @@ import DCDatepicker from './components/DCDatepicker'
 import Input from './components/Input'
 import PasswordInput from './components/passwordInput'
 
-export interface DCProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface DcProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
   inputClassName?: string
   label?: string
@@ -56,7 +56,7 @@ const PixelInputContainer = styled.div`
       overflow: visible !important;
       & > * {
         input {
-          ${(props: DCProps) =>
+          ${(props: DcProps) =>
             props.invalid === true &&
             css`
               color: red !important;
@@ -130,7 +130,7 @@ const sizeClasses = {
   big: 'h-14'
 }
 
-export const DCInput = React.forwardRef<HTMLInputElement, DCProps>(
+export const DcInput = React.forwardRef<HTMLInputElement, DcProps>(
   (
     {
       className,
@@ -274,4 +274,4 @@ export const DCInput = React.forwardRef<HTMLInputElement, DCProps>(
   }
 )
 
-export default DCInput
+export default DcInput

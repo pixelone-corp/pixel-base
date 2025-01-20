@@ -1,20 +1,20 @@
 import React from 'react'
 import { ComponentStory } from '@storybook/react'
 
-import { DCText } from './DC-text'
+import { DcText } from './dc-text'
 import { Section, SectionActions } from '../common-styled-component'
 
 export default {
   title: 'DC Text',
-  component: DCText
+  component: DcText
 }
 
-const Template: ComponentStory<typeof DCText> = (args) => {
+const Template: ComponentStory<typeof DcText> = (args) => {
   return (
     <React.Fragment>
       <Section>
         <SectionActions>
-          <DCText {...args}>Pixel Text</DCText>
+          <DcText {...args}>Dc Text</DcText>
         </SectionActions>
       </Section>
     </React.Fragment>

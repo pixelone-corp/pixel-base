@@ -1,18 +1,18 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import DCInput from './DC-input'
+import DcInput from './dc-input'
 
 export default {
   title: 'DC Input',
-  component: DCInput
-} as ComponentMeta<typeof DCInput>
-const Template: ComponentStory<typeof DCInput> = (args) => {
+  component: DcInput
+} as ComponentMeta<typeof DcInput>
+const Template: ComponentStory<typeof DcInput> = (args) => {
   const [value, setValue] = React.useState('')
 
   return (
     <React.Fragment>
-      <DCInput
+      <DcInput
         {...args}
         onChange={(e) => {
           setValue(e.target.value)

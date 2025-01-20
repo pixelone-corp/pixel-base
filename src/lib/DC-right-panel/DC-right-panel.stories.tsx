@@ -1,19 +1,19 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import React from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import DCRightPanel from "./DC-right-panel";
+import DcRightPanel from './dc-right-panel'
 
 export default {
-  title: "DC Right Panel",
-  component: DCRightPanel,
-} as ComponentMeta<typeof DCRightPanel>
+  title: 'DC Right Panel',
+  component: DcRightPanel
+} as ComponentMeta<typeof DcRightPanel>
 
-const Template:ComponentStory<typeof DCRightPanel> = (args) => {
-  return(
+const Template: ComponentStory<typeof DcRightPanel> = (args) => {
+  return (
     <React.Fragment>
-      <DCRightPanel {...args} />
+      <DcRightPanel {...args} />
     </React.Fragment>
   )
 }
 
-export const RightPanel = Template.bind({});
+export const RightPanel = Template.bind({})

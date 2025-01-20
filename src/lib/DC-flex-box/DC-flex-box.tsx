@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export interface DCFlexBoxProps {
+export interface DcFlexBoxProps {
   flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse' | string
   flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | string
   justifyContent?:
@@ -44,7 +44,7 @@ export interface DCFlexBoxProps {
   boxShadow?: string
   style?: React.CSSProperties
 }
-export const DCFlexBox = React.forwardRef<HTMLDivElement, DCFlexBoxProps>(
+export const DCFlexBox = React.forwardRef<HTMLDivElement, DcFlexBoxProps>(
   (props, ref) => {
     return (
       <React.Fragment>
@@ -58,7 +58,7 @@ export const DCFlexBox = React.forwardRef<HTMLDivElement, DCFlexBoxProps>(
 
 const FlexBoxContainer = styled.div<
   Pick<
-    DCFlexBoxProps,
+    DcFlexBoxProps,
     | 'flexDirection'
     | 'flexWrap'
     | 'justifyContent'
@@ -86,7 +86,20 @@ const FlexBoxContainer = styled.div<
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadious};
   box-shadow: ${(props) => props.boxShadow};
-  
+  cursor: ${(props) => props.cursor};
+  display: ${(props) => props.display};
+  opacity: ${(props) => props.opacity};
+  visibility: ${(props) => props.visibility};
+  transform-origin: ${(props) => props.transformOrigin};
+  transform-style: ${(props) => props.transformStyle};
+  perspective: ${(props) => props.perspective};
+  perspective-origin: ${(props) => props.perspectiveOrigin};
+  backface-visibility: ${(props) => props.backfaceVisibility};
+  transform: ${(props) => props.transform};
+  transition: ${(props) => props.transition};
+  animation: ${(props) => props.animation};
+  //more props
+  z-index: ${(props) => props.zIndex};
 `
 
 export default DCFlexBox

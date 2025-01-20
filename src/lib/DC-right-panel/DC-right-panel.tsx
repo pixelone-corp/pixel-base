@@ -1,6 +1,6 @@
 import React from 'react'
-import DCFlexBox from '../DC-flex-box/DC-flex-box'
-export interface DCRightPanelProps {
+import DcFlexBox from '../dc-flex-box/dc-flex-box'
+export interface DcRightPanelProps {
   flexDirection?: string
   flexWrap?: string
   justifyContent?: string
@@ -23,11 +23,11 @@ export interface DCRightPanelProps {
   boxShadow?: string
   style?: React.CSSProperties
 }
-export const DCRightPanel = React.forwardRef<HTMLDivElement, DCRightPanelProps>(
+export const DcRightPanel = React.forwardRef<HTMLDivElement, DcRightPanelProps>(
   (props, ref) => {
     return (
       <React.Fragment>
-        <DCFlexBox
+        <DcFlexBox
           flexDirection={props.flexDirection}
           flexWrap={props.flexWrap}
           justifyContent={props.justifyContent}
@@ -51,10 +51,10 @@ export const DCRightPanel = React.forwardRef<HTMLDivElement, DCRightPanelProps>(
           ref={ref}
         >
           {props.children}
-        </DCFlexBox>
+        </DcFlexBox>
       </React.Fragment>
     )
   }
 )
 
-export default DCRightPanel
+export default DcRightPanel

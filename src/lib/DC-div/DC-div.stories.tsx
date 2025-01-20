@@ -1,17 +1,17 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import DCDiv from './DC-div'
+import DcDiv from './dc-div'
 
 export default {
   title: 'DC Div',
-  component: DCDiv
-} as ComponentMeta<typeof DCDiv>
+  component: DcDiv
+} as ComponentMeta<typeof DcDiv>
 
-const Template: ComponentStory<typeof DCDiv> = (args) => {
+const Template: ComponentStory<typeof DcDiv> = (args) => {
   return (
     <React.Fragment>
-      <DCDiv {...args} />
+      <DcDiv {...args} />
     </React.Fragment>
   )
 }

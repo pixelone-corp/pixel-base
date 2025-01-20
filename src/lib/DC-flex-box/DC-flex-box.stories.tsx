@@ -1,17 +1,17 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import DCFlexBox from './DC-flex-box'
+import DcFlexBox from './dc-flex-box'
 
 export default {
   title: 'DC Flex Box',
-  component: DCFlexBox
-} as ComponentMeta<typeof DCFlexBox>
+  component: DcFlexBox
+} as ComponentMeta<typeof DcFlexBox>
 
-const Template: ComponentStory<typeof DCFlexBox> = (args) => {
+const Template: ComponentStory<typeof DcFlexBox> = (args) => {
   return (
     <React.Fragment>
-      <DCFlexBox {...args} />
+      <DcFlexBox {...args} />
     </React.Fragment>
   )
 }

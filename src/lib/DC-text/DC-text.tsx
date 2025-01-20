@@ -6,7 +6,7 @@ import PixelFlexBox from '../pixel-flex-box/pixel-flex-box'
 import PixelIcon from '../pixel-button-icon/pixel-icon'
 import { faCheckDouble } from '@fortawesome/free-solid-svg-icons'
 import { faPaste } from '@fortawesome/free-regular-svg-icons'
-export interface DCTextProps {
+export interface DcTextProps {
   className?: string | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   multiLine?: boolean
   charLimit?: number
@@ -23,14 +23,42 @@ export interface DCTextProps {
   style?: React.CSSProperties
   fontSize?: string
   fontWeight?: string
-  color?:string
+  color?: string
+  textAlignment?: string
+  margin?: string
+  padding?: string
+  //add more text props
+  textEllipsis?: boolean
+  textOverflow?: string
+  textTransform?: string
+  textDecoration?: string
+  letterSpacing?: string
+  lineHeight?: string
+  wordSpacing?: string
+  whiteSpace?: string
+  wordBreak?: string
+  wordWrap?: string
+  textAlign?: string
+  textIndent?: string
+  textShadow?: string
+  textUnderlinePosition?: string
+  textOrientation?: string
+  textRendering?: string
+  textJustify?: string
+  textStroke?: string
 }
 
 const StyledDCText = styled.div``
-const Text = styled.div<{ color: string }>`
-  font-size: ${(props: DCTextProps) => props.textSize};
+const Text = styled.div<{
+  color: string
+  variant: string
+  textSize: string
+  textAlignment: string
+}>`
+  font-size: ${(props: DcTextProps) => props.textSize};
   max-width: 100%;
   width: 100%;
+  text-align: ${(props: DcTextProps) => props.textAlignment};
   color: ${(props) => props.color};
   &.h1 {
     font-size: 24px !important;
@@ -62,33 +90,33 @@ const Text = styled.div<{ color: string }>`
     white-space: pre-line !important;
     word-break: normal;
   }
-  ${(props: DCTextProps) =>
+  ${(props: DcTextProps) =>
     props.variant === 'light' &&
     css`
-      font-size: ${(props: DCTextProps) => props.textSize || '12px'};
-      color: ${(props: DCTextProps) => props.customColor || '#a3a3a3'};
+      font-size: ${(props: DcTextProps) => props.textSize || '12px'};
+      color: ${(props: DcTextProps) => props.customColor || '#a3a3a3'};
       &.multiLine {
         display: inline-block;
         white-space: pre-line !important;
         word-break: normal;
       }
     `}
-  ${(props: DCTextProps) =>
+  ${(props: DcTextProps) =>
     props.variant === 'pixelPrimary' &&
     css`
-      font-size: ${(props: DCTextProps) => props.textSize || '16px'};
-      color: ${(props: DCTextProps) => props.customColor || $primaryColor};
+      font-size: ${(props: DcTextProps) => props.textSize || '16px'};
+      color: ${(props: DcTextProps) => props.customColor || $primaryColor};
       &.multiLine {
         display: inline-block;
         white-space: pre-line !important;
         word-break: normal;
       }
     `}
-    ${(props: DCTextProps) =>
+    ${(props: DcTextProps) =>
     props.variant === 'dark' &&
     css`
-      font-size: ${(props: DCTextProps) => props.textSize || '16px'};
-      color: ${(props: DCTextProps) => props.customColor || '#000000'};
+      font-size: ${(props: DcTextProps) => props.textSize || '16px'};
+      color: ${(props: DcTextProps) => props.customColor || '#000000'};
       font-weight: 700;
       &.multiLine {
         display: inline-block;
@@ -96,8 +124,29 @@ const Text = styled.div<{ color: string }>`
         word-break: normal;
       }
     `}
+    margin: ${(props: DcTextProps) => props.margin};
+  padding: ${(props: DcTextProps) => props.padding};
+  //add more text props
+  text-overflow: ${(props: DcTextProps) => props.textOverflow};
+  text-transform: ${(props: DcTextProps) => props.textTransform};
+  text-decoration: ${(props: DcTextProps) => props.textDecoration};
+  letter-spacing: ${(props: DcTextProps) => props.letterSpacing};
+  line-height: ${(props: DcTextProps) => props.lineHeight};
+  word-spacing: ${(props: DcTextProps) => props.wordSpacing};
+  white-space: ${(props: DcTextProps) => props.whiteSpace};
+  word-break: ${(props: DcTextProps) => props.wordBreak};
+  word-wrap: ${(props: DcTextProps) => props.wordWrap};
+  text-align: ${(props: DcTextProps) => props.textAlign};
+  text-indent: ${(props: DcTextProps) => props.textIndent};
+  text-shadow: ${(props: DcTextProps) => props.textShadow};
+  text-underline-position: ${(props: DcTextProps) =>
+    props.textUnderlinePosition};
+  text-orientation: ${(props: DcTextProps) => props.textOrientation};
+  text-rendering: ${(props: DcTextProps) => props.textRendering};
+  text-justify: ${(props: DcTextProps) => props.textJustify};
+  //add storek
 `
-export const DCText = React.forwardRef<HTMLDivElement, DCTextProps>(
+export const DcText = React.forwardRef<HTMLDivElement, DcTextProps>(
   (
     {
       className,
@@ -114,7 +163,9 @@ export const DCText = React.forwardRef<HTMLDivElement, DCTextProps>(
       copiedText = 'copiedText',
       fontSize,
       fontWeight,
-
+      textAlignment,
+      margin,
+      padding,
       ...rest
     },
     ref
@@ -147,7 +198,12 @@ export const DCText = React.forwardRef<HTMLDivElement, DCTextProps>(
             >
               <div>
                 <Text
+                  fontSize={fontSize}
+                  fontWeight={fontWeight}
+                  padding={padding}
+                  margin={margin}
                   data-tag='allowRowEvents'
+                  textAlignment={textAlignment}
                   className={`${className} ${multiLine ? 'multiLine' : ''}`}
                   ref={ref}
                   {...rest}
@@ -236,4 +292,4 @@ export const DCText = React.forwardRef<HTMLDivElement, DCTextProps>(
   }
 )
 
-export default DCText
+export default DcText

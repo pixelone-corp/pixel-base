@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export interface DCDivProps {
+export interface DcDivProps {
   className?: string
   width?: string
   height?: string
@@ -19,10 +19,45 @@ export interface DCDivProps {
   border?: string
   borderRadious?: string
   boxShadow?: string
-
+  hoverStyle?: React.CSSProperties
   onClick?: () => void
+  ref?: React.Ref<HTMLDivElement>
+  after?: React.ReactNode
+  before?: React.ReactNode
+  //add animation
+  transition?: string
+  transform?: string
+  animation?: string
+  animationDuration?: string
+  animationDelay?: string
+  animationIterationCount?: string
+  animationDirection?: string
+  animationFillMode?: string
+  animationTimingFunction?: string
+  animationPlayState?: string
+  keyframes?: string
+  animationName?: string
+  animationDelayFunction?: string
+  animationEndFunction?: string
+  animationIterationFunction?: string
+  animationStartFunction?: string
+  animationIterationStartFunction?: string
+  animationIterationEndFunction?: string
+  animationIterationCancelFunction?: string
+  animationCancelFunction?: string
+  overflow?: string
+  zIndex?: number
+  cursor?: string
+  display?: string
+  opacity?: number
+  visibility?: string
+  transformOrigin?: string
+  transformStyle?: string
+  perspective?: string
+  perspectiveOrigin?: string
+  backfaceVisibility?: string
 }
-export const DCDiv = React.forwardRef<HTMLDivElement, DCDivProps>(
+export const DcDiv = React.forwardRef<HTMLDivElement, DcDivProps>(
   (props, ref) => {
     return (
       <React.Fragment>
@@ -36,7 +71,7 @@ export const DCDiv = React.forwardRef<HTMLDivElement, DCDivProps>(
 
 const DivContainer = styled.div<
   Pick<
-    DCDivProps,
+    DcDivProps,
     | 'width'
     | 'height'
     | 'position'
@@ -47,6 +82,35 @@ const DivContainer = styled.div<
     | 'backgroundColor'
     | 'padding'
     | 'margin'
+    | 'hoverStyle'
+    | 'border'
+    | 'borderRadious'
+    | 'boxShadow'
+    | 'after'
+    | 'before'
+    //add animation
+    | 'transition'
+    | 'transform'
+    | 'animation'
+    | 'animationDuration'
+    | 'animationDelay'
+    | 'animationIterationCount'
+    | 'animationDirection'
+    | 'animationFillMode'
+    | 'animationTimingFunction'
+    | 'animationPlayState'
+    | 'animationName'
+    | 'overflow'
+    | 'zIndex'
+    | 'cursor'
+    | 'display'
+    | 'opacity'
+    | 'visibility'
+    | 'transformOrigin'
+    | 'transformStyle'
+    | 'perspective'
+    | 'perspectiveOrigin'
+    | 'backfaceVisibility'
   >
 >`
   display: block;
@@ -63,7 +127,41 @@ const DivContainer = styled.div<
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadious};
   box-shadow: ${(props) => props.boxShadow};
-  
+  :hover {
+    ${(props) => props.hoverStyle}
+  }
+  :after {
+    content: ${(props) => props.after};
+  }
+  :before {
+    content: ${(props) => props.before};
+  }
+
+  //add animation
+  transition: ${(props) => props.transition};
+  transform: ${(props) => props.transform};
+  animation: ${(props) => props.animation};
+  animation-duration: ${(props) => props.animationDuration};
+  animation-delay: ${(props) => props.animationDelay};
+  animation-iteration-count: ${(props) => props.animationIterationCount};
+  animation-direction: ${(props) => props.animationDirection};
+  animation-fill-mode: ${(props) => props.animationFillMode};
+  animation-timing-function: ${(props) => props.animationTimingFunction};
+  animation-play-state: ${(props) => props.animationPlayState};
+  animation-name: ${(props) => props.animationName};
+
+  //add overflow
+  overflow: ${(props) => props.overflow};
+  z-index: ${(props) => props.zIndex};
+  cursor: ${(props) => props.cursor};
+  display: ${(props) => props.display};
+  opacity: ${(props) => props.opacity};
+  visibility: ${(props) => props.visibility};
+  transform-origin: ${(props) => props.transformOrigin};
+  transform-style: ${(props) => props.transformStyle};
+  perspective: ${(props) => props.perspective};
+  perspective-origin: ${(props) => props.perspectiveOrigin};
+  backface-visibility: ${(props) => props.backfaceVisibility};
 `
 
-export default DCDiv
+export default DcDiv

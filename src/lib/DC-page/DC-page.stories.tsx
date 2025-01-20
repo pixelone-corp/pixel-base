@@ -1,17 +1,17 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import DCPage from './DC-page'
+import DcPage from './dc-page'
 
 export default {
   title: 'DC Page',
-  component: DCPage
-} as ComponentMeta<typeof DCPage>
+  component: DcPage
+} as ComponentMeta<typeof DcPage>
 
-const Template: ComponentStory<typeof DCPage> = (args) => {
+const Template: ComponentStory<typeof DcPage> = (args) => {
   return (
     <React.Fragment>
-      <DCPage {...args} />
+      <DcPage {...args} />
     </React.Fragment>
   )
 }

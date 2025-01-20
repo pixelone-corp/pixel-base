@@ -1,14 +1,14 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import DCTopBar from '../DC-top-bar/DC-top-bar'
-import DCBreadcrumbs from './DC-breadcrumbs'
+import DcTopBar from '../dc-top-bar/dc-top-bar'
+import DcBreadcrumbs from './dc-breadcrumbs'
 
 export default {
   title: 'DC Breadcrumbs',
-  component: DCBreadcrumbs
-} as ComponentMeta<typeof DCBreadcrumbs>
+  component: DcBreadcrumbs
+} as ComponentMeta<typeof DcBreadcrumbs>
 
-const Template: ComponentStory<typeof DCBreadcrumbs> = (args) => {
+const Template: ComponentStory<typeof DcBreadcrumbs> = (args) => {
   const breadcrumbs = [
     {
       name: 'Home',
@@ -25,9 +25,9 @@ const Template: ComponentStory<typeof DCBreadcrumbs> = (args) => {
   ]
   return (
     <React.Fragment>
-      <DCTopBar className='abc'>
-        <DCBreadcrumbs {...args} data={breadcrumbs} />
-      </DCTopBar>
+      <DcTopBar isMobile={false} className={''}>
+        <DcBreadcrumbs {...args} data={breadcrumbs} />
+      </DcTopBar>
     </React.Fragment>
   )
 }
