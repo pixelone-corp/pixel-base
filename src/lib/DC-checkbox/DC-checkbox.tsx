@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes } from 'react'
 import { Form } from 'react-bootstrap'
 import styled from 'styled-components'
 
-export interface DCCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface DcCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   type: 'chekbox'
   value: string
   disabled: boolean
@@ -12,7 +12,7 @@ export interface DCCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
   checkboxSize?: 'sm' | 'lg'
 }
-const StyledDCCheckbox = styled.div<{ checkboxSize }>`
+const StyledDcCheckbox = styled.div<{ checkboxSize }>`
   display: flex;
   flex-direction: row;
   /* flex-wrap: nowrap; */
@@ -70,10 +70,10 @@ const StyledCheckBox = styled(Form.Check.Input)<{ checkboxSize }>`
   }
 `
 
-export const DCCheckbox = React.forwardRef<HTMLInputElement, DCCheckboxProps>(
+export const DcCheckbox = React.forwardRef<HTMLInputElement, DcCheckboxProps>(
   (props) => {
     return (
-      <StyledDCCheckbox checkboxSize={props.checkboxSize}>
+      <StyledDcCheckbox checkboxSize={props.checkboxSize}>
         <Form.Check
           type={'checkbox'}
           name={props.name}
@@ -96,8 +96,8 @@ export const DCCheckbox = React.forwardRef<HTMLInputElement, DCCheckboxProps>(
             {props.label}
           </StyledCheckBoxLabel>
         )}
-      </StyledDCCheckbox>
+      </StyledDcCheckbox>
     )
   }
 )
-export default DCCheckbox
+export default DcCheckbox

@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { BrowserView, MobileView } from 'react-device-detect'
 
-export interface DCTopBarProps {
+export interface DcTopBarProps {
   className: string
   children: any
   isMobile: boolean
@@ -110,7 +110,7 @@ const StyledDCTopBar = styled.div`
   text-align: ${(props) => props.textAlignment};
 `
 
-export const DCTopBar = React.forwardRef<HTMLDivElement, DCTopBarProps>(
+export const DcTopBar = React.forwardRef<HTMLDivElement, DcTopBarProps>(
   ({ className, children, ...rest }, ref) => {
     return (
       <React.Fragment>
@@ -128,4 +128,4 @@ export const DCTopBar = React.forwardRef<HTMLDivElement, DCTopBarProps>(
     )
   }
 )
-export default DCTopBar
+export default DcTopBar

@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
-export interface DCDropDownProps extends InputHTMLAttributes<HTMLDivElement> {
+export interface DcDropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   className?: string
   options?: OptionsData[]
   error?: string
@@ -66,7 +66,7 @@ const filterGroupedData = (options, filterText) => {
   return options
 }
 
-export const DCDropDown = React.forwardRef<HTMLDivElement, DCDropDownProps>(
+export const DcDropDown = React.forwardRef<HTMLDivElement, DcDropDownProps>(
   (
     {
       className,
@@ -579,4 +579,4 @@ const HiddenInput = styled.input`
 //   transition: all 0.2s ease-in-out;
 //   border-radius: 4px !important;
 // `
-export default DCDropDown
+export default DcDropDown

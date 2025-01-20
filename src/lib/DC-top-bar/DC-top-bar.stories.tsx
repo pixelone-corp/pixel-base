@@ -1,19 +1,19 @@
 import React from 'react'
 import { ComponentStory } from '@storybook/react'
 
-import DCTopBar from './DC-top-bar'
+import DcTopBar from './dc-top-bar'
 
 export default {
   title: 'DC Top Bar',
-  component: DCTopBar
+  component: DcTopBar
 }
 
-const Template: ComponentStory<typeof DCTopBar> = (args) => {
+const Template: ComponentStory<typeof DcTopBar> = (args) => {
   return (
     <React.Fragment>
-      <DCTopBar {...args}>Pixel Top Bar</DCTopBar>
+      <DcTopBar {...args}>Pixel Top Bar</DcTopBar>
     </React.Fragment>
   )
 }
 
-export const DCTopBarStory = Template.bind({})
+export const DcTopBarStory = Template.bind({})

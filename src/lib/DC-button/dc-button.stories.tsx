@@ -1,17 +1,17 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import PixelButton from './DC-button'
+import DcButton from './dc-button'
 
 export default {
   title: 'DC Button',
-  component: PixelButton
-} as ComponentMeta<typeof PixelButton>
+  component: DcButton
+} as ComponentMeta<typeof DcButton>
 
-const Template: ComponentStory<typeof PixelButton> = (args) => {
+const Template: ComponentStory<typeof DcButton> = (args) => {
   return (
     <React.Fragment>
-      <PixelButton {...args}>DC Button</PixelButton>
+      <DcButton {...args}>DC Button</DcButton>
     </React.Fragment>
   )
 }

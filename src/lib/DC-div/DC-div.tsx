@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export interface DCDivProps {
+export interface DcDivProps {
   className?: string
   width?: string
   height?: string
@@ -57,7 +57,7 @@ export interface DCDivProps {
   perspectiveOrigin?: string
   backfaceVisibility?: string
 }
-export const DCDiv = React.forwardRef<HTMLDivElement, DCDivProps>(
+export const DcDiv = React.forwardRef<HTMLDivElement, DcDivProps>(
   (props, ref) => {
     return (
       <React.Fragment>
@@ -71,7 +71,7 @@ export const DCDiv = React.forwardRef<HTMLDivElement, DCDivProps>(
 
 const DivContainer = styled.div<
   Pick<
-    DCDivProps,
+    DcDivProps,
     | 'width'
     | 'height'
     | 'position'
@@ -164,4 +164,4 @@ const DivContainer = styled.div<
   backface-visibility: ${(props) => props.backfaceVisibility};
 `
 
-export default DCDiv
+export default DcDiv

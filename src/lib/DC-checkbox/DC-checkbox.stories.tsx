@@ -1,15 +1,15 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import DCCheckBox from './DC-checkbox'
+import DcCheckBox from './dc-checkbox'
 
 // Component Metadata
 export default {
   title: 'DC Checkbox',
-  component: DCCheckBox
-} as ComponentMeta<typeof DCCheckBox>
+  component: DcCheckBox
+} as ComponentMeta<typeof DcCheckBox>
 
 // Template
-const Template: ComponentStory<typeof DCCheckBox> = (args) => {
+const Template: ComponentStory<typeof DcCheckBox> = (args) => {
   const [check, setCheck] = React.useState(args.checked || false)
 
   const onChange = () => {
@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof DCCheckBox> = (args) => {
 
   return (
     <React.Fragment>
-      <DCCheckBox {...args} checked={check} onChange={onChange} />
+      <DcCheckBox {...args} checked={check} onChange={onChange} />
     </React.Fragment>
   )
 }

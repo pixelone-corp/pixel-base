@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export interface DCFlexBoxProps {
+export interface DcFlexBoxProps {
   flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse' | string
   flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | string
   justifyContent?:
@@ -44,7 +44,7 @@ export interface DCFlexBoxProps {
   boxShadow?: string
   style?: React.CSSProperties
 }
-export const DCFlexBox = React.forwardRef<HTMLDivElement, DCFlexBoxProps>(
+export const DCFlexBox = React.forwardRef<HTMLDivElement, DcFlexBoxProps>(
   (props, ref) => {
     return (
       <React.Fragment>
@@ -58,7 +58,7 @@ export const DCFlexBox = React.forwardRef<HTMLDivElement, DCFlexBoxProps>(
 
 const FlexBoxContainer = styled.div<
   Pick<
-    DCFlexBoxProps,
+    DcFlexBoxProps,
     | 'flexDirection'
     | 'flexWrap'
     | 'justifyContent'

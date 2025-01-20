@@ -1,21 +1,21 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import DCSwitch from './DC-switch'
+import DcSwitch from './dc-switch'
 import { Section, SectionActions } from '../common-styled-component/section'
 
 export default {
   title: 'DC Switch',
-  component: DCSwitch
-} as ComponentMeta<typeof DCSwitch>
+  component: DcSwitch
+} as ComponentMeta<typeof DcSwitch>
 
-const Template: ComponentStory<typeof DCSwitch> = (args) => {
+const Template: ComponentStory<typeof DcSwitch> = (args) => {
   const [checked, setChecked] = React.useState(true)
   return (
     <React.Fragment>
       <Section>
         <SectionActions>
-          <DCSwitch
+          <DcSwitch
             {...args}
             value={checked}
             onChange={(e) => {

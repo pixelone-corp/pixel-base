@@ -6,12 +6,12 @@ import { BrowserView, MobileView } from 'react-device-detect'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
 
-export interface DCBreadcrumbsProps {
+export interface DcBreadcrumbsProps {
   className: string
   data: any
 }
 
-const StyledDCBreadcrumbs = styled(Breadcrumb)`
+const StyledDcBreadcrumbs = styled(Breadcrumb)`
   ol {
     margin: 0;
   }
@@ -56,14 +56,14 @@ const StyledDCBreadcrumbs = styled(Breadcrumb)`
   }
 `
 
-export const DCBreadcrumbs = React.forwardRef<
+export const DcBreadcrumbs = React.forwardRef<
   HTMLDivElement,
-  DCBreadcrumbsProps
+  DcBreadcrumbsProps
 >(({ className, data, ...rest }, ref) => {
   return (
     <React.Fragment>
       <BrowserView>
-        <StyledDCBreadcrumbs>
+        <StyledDcBreadcrumbs>
           {data.length &&
             data.map((item, index) => (
               <Breadcrumb.Item
@@ -75,10 +75,10 @@ export const DCBreadcrumbs = React.forwardRef<
                 {item.name}
               </Breadcrumb.Item>
             ))}
-        </StyledDCBreadcrumbs>
+        </StyledDcBreadcrumbs>
       </BrowserView>
       <MobileView>
-        <StyledDCBreadcrumbs>
+        <StyledDcBreadcrumbs>
           <Row>
             {data.length > 2 && (
               <React.Fragment>
@@ -96,7 +96,7 @@ export const DCBreadcrumbs = React.forwardRef<
               {data[data.length - 1].name}
             </Breadcrumb.Item>
           </Row>
-        </StyledDCBreadcrumbs>
+        </StyledDcBreadcrumbs>
       </MobileView>
     </React.Fragment>
   )
@@ -107,4 +107,4 @@ const Row = styled.div`
   align-items: center;
   justify-content: flex-start;
 `
-export default DCBreadcrumbs
+export default DcBreadcrumbs

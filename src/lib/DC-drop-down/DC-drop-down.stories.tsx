@@ -1,19 +1,19 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import PixelDropDown from './DC-drop-down'
+import DcDropDown from './dc-drop-down'
 import PixelProfile from '../pixel-user-profile/pixel-user-profile'
 import PixelTag from '../pixel-tag/pixel-tag'
 
 export default {
   title: 'DC Dropdown',
-  component: PixelDropDown,
+  component: DcDropDown,
   argTypes: {
     backgroundColor: { control: 'color' }
   }
-} as ComponentMeta<typeof PixelDropDown>
+} as ComponentMeta<typeof DcDropDown>
 
-const Template: ComponentStory<typeof PixelDropDown> = (args) => {
+const Template: ComponentStory<typeof DcDropDown> = (args) => {
   const [value, setValue] = React.useState('')
   const onChangeHandler = (e) => {
     setValue(e.target.value)
@@ -21,12 +21,7 @@ const Template: ComponentStory<typeof PixelDropDown> = (args) => {
   args.onChange = onChangeHandler
   return (
     <React.Fragment>
-      <PixelDropDown
-        value={value}
-        {...args}
-        placeholder='DC DropDown'
-        required
-      />
+      <DcDropDown value={value} {...args} placeholder='DC DropDown' required />
     </React.Fragment>
   )
 }
