@@ -10,79 +10,109 @@ export interface DcTabsProps {
   activeTab: any
   handleChange: (value: any) => void
   variant?: 'default' | 'pills' | 'pills-column'
+  scrollStep?: number // New prop for scroll sensitivity
 }
 
-export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
-  ({ className, tabs, activeTab, handleChange, variant, ...rest }, ref) => {
-    const scrollable = React.useRef<HTMLUListElement>(null)
-    const [scrollX, setScrollX] = React.useState(0)
-    const [scrollEnd, setScrollEnd] = React.useState(true)
+export const DcTabs = React.memo(
+  React.forwardRef<HTMLDivElement, DcTabsProps>(
+    (
+      {
+        className,
+        tabs,
+        activeTab,
+        handleChange,
+        variant = 'default',
+        scrollStep = 50,
+        ...rest
+      },
+      ref
+    ) => {
+      const scrollable = React.useRef<HTMLUListElement>(null)
+      const [scrollX, setScrollX] = React.useState(0)
+      const [scrollEnd, setScrollEnd] = React.useState(true)
 
-    const slide = (shift: number) => {
-      if (scrollable.current) {
-        scrollable.current.scrollLeft += shift
-        setScrollX(scrollable.current.scrollLeft)
-        setScrollEnd(
-          Math.floor(
-            scrollable.current.scrollWidth - scrollable.current.scrollLeft
-          ) <= scrollable.current.offsetWidth
-        )
+      const updateScroll = React.useCallback(() => {
+        if (scrollable.current) {
+          setScrollX(scrollable.current.scrollLeft)
+          setScrollEnd(
+            Math.floor(
+              scrollable.current.scrollWidth - scrollable.current.scrollLeft
+            ) <= scrollable.current.offsetWidth
+          )
+        }
+      }, [])
+
+      const slide = React.useCallback(
+        (shift: number) => {
+          if (scrollable.current) {
+            scrollable.current.scrollLeft += shift
+            updateScroll()
+          }
+        },
+        [updateScroll]
+      )
+
+      React.useEffect(() => {
+        updateScroll()
+      }, [tabs, updateScroll])
+
+      const handleKeyDown = (
+        e: React.KeyboardEvent<HTMLLIElement>,
+        value: any
+      ) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          handleChange(value)
+        }
       }
-    }
 
-    const scrollCheck = () => {
-      if (scrollable.current) {
-        setScrollX(scrollable.current.scrollLeft)
-        setScrollEnd(
-          Math.floor(
-            scrollable.current.scrollWidth - scrollable.current.scrollLeft
-          ) <= scrollable.current.offsetWidth
-        )
-      }
-    }
-
-    React.useEffect(() => {
-      scrollCheck()
-    }, [tabs])
-
-    return (
-      <TabsContainer
-        variant={variant}
-        className={className}
-        ref={ref}
-        {...rest}
-      >
-        {scrollX !== 0 && (
-          <Arrow onClick={() => slide(-50)}>
-            <FontAwesomeIcon icon={faLessThan} />
-          </Arrow>
-        )}
-        <Tabs variant={variant} ref={scrollable} onScroll={scrollCheck}>
-          {tabs.map((item) => (
-            <Tab
-              variant={variant}
-              key={item.value}
-              className={activeTab === item.value ? 'active' : ''}
-              onClick={() => handleChange(item.value)}
-            >
-              <TabContent
+      return (
+        <TabsContainer
+          variant={variant}
+          className={className}
+          ref={ref}
+          {...rest}
+        >
+          {scrollX > 0 && (
+            <Arrow onClick={() => slide(-scrollStep)} aria-label='Scroll Left'>
+              <FontAwesomeIcon icon={faLessThan} />
+            </Arrow>
+          )}
+          <Tabs
+            variant={variant}
+            ref={scrollable}
+            onScroll={updateScroll}
+            role='tablist'
+          >
+            {tabs.map((item) => (
+              <Tab
                 variant={variant}
+                key={item.value}
                 className={activeTab === item.value ? 'active' : ''}
+                onClick={() => handleChange(item.value)}
+                onKeyDown={(e) => handleKeyDown(e, item.value)}
+                role='tab'
+                aria-selected={activeTab === item.value}
+                tabIndex={activeTab === item.value ? 0 : -1}
               >
-                {item.icon && <TabIcon>{item.icon}</TabIcon>}
-                {item.label}
-              </TabContent>
-            </Tab>
-          ))}
-        </Tabs>
-        {!scrollEnd && (
-          <Arrow onClick={() => slide(50)}>
-            <FontAwesomeIcon icon={faGreaterThan} />
-          </Arrow>
-        )}
-      </TabsContainer>
-    )
-  }
+                <TabContent
+                  variant={variant}
+                  className={activeTab === item.value ? 'active' : ''}
+                >
+                  {item.icon && <TabIcon>{item.icon}</TabIcon>}
+                  {item.label}
+                </TabContent>
+              </Tab>
+            ))}
+          </Tabs>
+          {!scrollEnd && (
+            <Arrow onClick={() => slide(scrollStep)} aria-label='Scroll Right'>
+              <FontAwesomeIcon icon={faGreaterThan} />
+            </Arrow>
+          )}
+        </TabsContainer>
+      )
+    }
+  )
 )
 
 const TabsContainer = styled.div<{
@@ -90,12 +120,13 @@ const TabsContainer = styled.div<{
 }>`
   display: flex;
   align-items: center;
+  position: relative;
 `
 
 const Tabs = styled.ul<{ variant?: 'default' | 'pills' | 'pills-column' }>`
   display: flex;
   list-style: none;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
@@ -104,64 +135,35 @@ const Tabs = styled.ul<{ variant?: 'default' | 'pills' | 'pills-column' }>`
   &::-webkit-scrollbar {
     display: none;
   }
-  border-bottom: 1px solid #e5e7eb;
+
   ${(props) =>
-    props.variant === 'default' &&
+    props.variant === 'pills-column' &&
     css`
-      border-radius: 5px;
-      overflow: hidden;
-      /* border-bottom: none;
-       */
-      /* margin-bottom: 1px; */
-    `}
-  ${(props) =>
-    props.variant === 'pills' &&
-    css`
-      border-bottom: none;
+      flex-direction: column;
+      overflow-x: hidden;
     `}
 `
 
 const Tab = styled.li<{ variant?: 'default' | 'pills' | 'pills-column' }>`
   flex: 0 0 auto;
   cursor: pointer;
-  padding-right: 32px;
-  //add variant default
-  ${(props) =>
-    props.variant === 'default' &&
-    css`
-      padding: 0px !important;
-    `}
+  padding: 0 16px;
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid ${$primaryColor};
+    outline-offset: 2px;
+  }
 
   &.active > div {
     animation: borderColorFade 0.3s ease-in-out, colorFade 0.1s ease-in-out;
   }
+
   ${(props) =>
     props.variant === 'pills' &&
     css`
-      padding: 0px !important;
+      padding: 0;
     `}
-
-  &.active > div {
-    animation: borderColorFade 0.3s ease-in-out, colorFade 0.1s ease-in-out;
-  }
-
-  @keyframes borderColorFade {
-    from {
-      border-bottom-color: transparent;
-    }
-    to {
-      border-bottom-color: #5f38f9;
-    }
-  }
-
-  @keyframes colorFade {
-    from {
-      color: #787c9e;
-    }
-    to {
-      color: #5f38f9;
-    }
-  }
 `
 
 const TabContent = styled.div<{
@@ -176,40 +178,18 @@ const TabContent = styled.div<{
 
   &.active {
     color: #5f38f9;
-    border-bottom: 2px solid #5f38f9;
+    border-bottom-color: #5f38f9;
   }
-  //on variant default
-  ${(props) =>
-    props.variant === 'default' &&
-    css`
-      padding: 9px 18px;
-      &:hover,
-      &.active {
-        color: #24214b;
-        /* background-color: #5f38f9; */
-        border-radius: 0.375rem 0.375rem 0 0 !important;
-        padding: 9px 18px !important;
-        border: 1px solid #e5e7eb !important;
-        /* border-bottom: 2px solid #fff !important; */
-        /* border-bottom: 2px solid #5f38f9; */
-      }
-    `}
+
   ${(props) =>
     props.variant === 'pills' &&
     css`
-      padding: 9px 18px;
-      border: none;
-      &:hover {
-        color: #24214b;
-      }
+      color: #787c9e;
+      border-radius: 0.375rem;
+      padding: 10px;
       &.active {
         color: #fff;
         background-color: #5f38f9;
-        border-radius: 0.375rem !important;
-        /* padding: 10px 20px !important; */
-        border: 1px solid #e5e7eb !important;
-        /* border-bottom: 2px solid #fff !important; */
-        /* border-bottom: 2px solid #5f38f9; */
       }
     `}
 `
@@ -229,11 +209,15 @@ const Arrow = styled.button`
   &:hover {
     color: #5f38f9;
   }
+
+  &:focus-visible {
+    outline: 2px solid ${$primaryColor};
+    outline-offset: 2px;
+  }
 `
 
 const TabIcon = styled.div`
-  margin-right: 10px;
-  color: ${$primaryColor};
+  margin-right: 8px;
 `
 
 export default DcTabs

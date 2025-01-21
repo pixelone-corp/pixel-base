@@ -51,6 +51,8 @@ export interface DcTopBarProps {
 const StyledDCTopBar = styled.div`
   width: 100%;
   height: 60px;
+  font-size: 0.875rem;
+  color: #2e314a;
   display: flex;
   background-color: #fff;
   flex-direction: row;
@@ -61,6 +63,9 @@ const StyledDCTopBar = styled.div`
   padding: 0 20px;
   border-bottom: 1px solid #e8e7ec;
   box-shadow: 0 1px 0 rgba(232, 231, 236, 0.5);
+  font-weight: 400;
+  line-height: 1.375rem;
+
   justify-content: space-between;
   min-height: 3.75rem;
   padding: 0.5rem;
