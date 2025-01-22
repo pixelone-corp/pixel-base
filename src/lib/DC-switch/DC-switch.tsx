@@ -4,7 +4,6 @@ import { $DCprimaryColor } from '../styleGuide'
 import check from './assets/check.svg'
 import disablecheck from './assets/disableCheck.svg'
 import disablecross from './assets/disableCross.svg'
-import DCDiv from '../DC-div/DC-div'
 import DCFlexBox from '../DC-flex-box/DC-flex-box'
 
 export interface DCSwitchProps
