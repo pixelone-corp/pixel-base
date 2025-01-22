@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import DcFlexBox from './dc-flex-box'
+import DcFlexBox from './DC-flex-box'
 
 export default {
   title: 'DC Flex Box',

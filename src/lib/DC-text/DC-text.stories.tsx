@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory } from '@storybook/react'
 
-import { DcText } from './dc-text'
+import { DcText } from './DC-text'
 import { Section, SectionActions } from '../common-styled-component'
 
 export default {

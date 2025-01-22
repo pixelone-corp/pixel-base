@@ -1,6 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import DcCheckBox from './dc-checkbox'
+import DcCheckBox from './DC-checkbox'
 
 // Component Metadata
 export default {
