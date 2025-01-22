@@ -130,7 +130,7 @@ const sizeClasses = {
   big: 'h-14'
 }
 
-export const DcInput = React.forwardRef<HTMLInputElement, DcProps>(
+const DcInput = React.forwardRef<HTMLInputElement, DcProps>(
   (
     {
       className,
