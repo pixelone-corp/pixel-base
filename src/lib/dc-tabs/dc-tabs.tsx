@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { $primaryColor } from '../styleGuide'
+import { $DCprimaryColor, $primaryColor } from '../styleGuide'
 import { faGreaterThan, faLessThan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -69,7 +69,14 @@ export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
                 variant={variant}
                 className={activeTab === item.value ? 'active' : ''}
               >
-                {item.icon && <TabIcon>{item.icon}</TabIcon>}
+                {item.icon && (
+                  <TabIcon
+                    variant={variant}
+                    className={activeTab === item.value ? 'active' : ''}
+                  >
+                    {item.icon}
+                  </TabIcon>
+                )}
                 {item.label}
               </TabContent>
             </Tab>
@@ -171,12 +178,13 @@ const TabContent = styled.div<{
   align-items: center;
   padding: 10px 0;
   color: #787c9e;
-  border-bottom: 2px solid transparent;
+  border-bottom: 2px solid white;
   transition: color 0.3s ease-in-out, border-bottom-color 0.1s ease-in-out;
 
   &.active {
     color: #5f38f9;
-    border-bottom: 2px solid #5f38f9;
+    border-bottom: 2px solid #ffffff;
+    /* border-bottom: 2px solid #5f38f9; */
   }
   //on variant default
   ${(props) =>
@@ -189,7 +197,9 @@ const TabContent = styled.div<{
         /* background-color: #5f38f9; */
         border-radius: 0.375rem 0.375rem 0 0 !important;
         padding: 9px 18px !important;
-        border: 1px solid #e5e7eb !important;
+        border-top: 1px solid #e5e7eb !important;
+        border-left: 1px solid #e5e7eb !important;
+        border-right: 1px solid #e5e7eb !important;
         /* border-bottom: 2px solid #fff !important; */
         /* border-bottom: 2px solid #5f38f9; */
       }
@@ -231,9 +241,16 @@ const Arrow = styled.button`
   }
 `
 
-const TabIcon = styled.div`
+const TabIcon = styled.div<{ variant?: 'default' | 'pills' | 'pills-column' }>`
   margin-right: 10px;
-  color: ${$primaryColor};
+  color: ${$DCprimaryColor};
+  ${(props) =>
+    props.variant === 'pills' &&
+    css`
+      &.active {
+        color: #fff !important;
+      }
+    `}
 `
 
 export default DcTabs
