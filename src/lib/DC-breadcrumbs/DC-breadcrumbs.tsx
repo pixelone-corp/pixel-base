@@ -9,9 +9,10 @@ import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
 export interface DcBreadcrumbsProps {
   className: string
   data: any
+  fontSize?: string
 }
 
-const StyledDcBreadcrumbs = styled(Breadcrumb)`
+const StyledDcBreadcrumbs = styled(Breadcrumb)<{ fontSize?: string }>`
   ol {
     margin: 0;
   }
@@ -24,11 +25,13 @@ const StyledDcBreadcrumbs = styled(Breadcrumb)`
       color: #43476b;
       font-weight: 500;
       font-size: 0.75rem;
+      font-size: ${(props) => props.fontSize};
     }
     &.active {
       color: #787c9e;
       font-weight: 500;
       font-size: 0.75rem;
+      font-size: ${(props) => props.fontSize};
       &:before {
         opacity: 0.6 !important;
       }
@@ -59,11 +62,11 @@ const StyledDcBreadcrumbs = styled(Breadcrumb)`
 export const DcBreadcrumbs = React.forwardRef<
   HTMLDivElement,
   DcBreadcrumbsProps
->(({ className, data, ...rest }, ref) => {
+>(({ className, data, fontSize, ...rest }, ref) => {
   return (
     <React.Fragment>
       <BrowserView>
-        <StyledDcBreadcrumbs>
+        <StyledDcBreadcrumbs fontSize={fontSize}>
           {data.length &&
             data.map((item, index) => (
               <Breadcrumb.Item
