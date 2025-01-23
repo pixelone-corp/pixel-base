@@ -9,11 +9,15 @@ export interface DcTabsProps {
   tabs: { value: any; label: string; icon?: React.ReactNode }[]
   activeTab: any
   handleChange: (value: any) => void
-  variant?: 'default' | 'pills' | 'pills-column'
+  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills'
+  size?: 'sm' | 'md' | 'lg'
 }
 
 export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
-  ({ className, tabs, activeTab, handleChange, variant, ...rest }, ref) => {
+  (
+    { className, tabs, activeTab, handleChange, variant, size, ...rest },
+    ref
+  ) => {
     const scrollable = React.useRef<HTMLUListElement>(null)
     const [scrollX, setScrollX] = React.useState(0)
     const [scrollEnd, setScrollEnd] = React.useState(true)
@@ -48,6 +52,7 @@ export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
     return (
       <TabsContainer
         variant={variant}
+        size={size}
         className={className}
         ref={ref}
         {...rest}
@@ -66,6 +71,7 @@ export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
               onClick={() => handleChange(item.value)}
             >
               <TabContent
+                size={size}
                 variant={variant}
                 className={activeTab === item.value ? 'active' : ''}
               >
@@ -86,13 +92,17 @@ export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
 )
 
 const TabsContainer = styled.div<{
-  variant?: 'default' | 'pills' | 'pills-column'
+  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills'
+  size?: 'sm' | 'md' | 'lg'
 }>`
   display: flex;
+  /* height: 40px; */
   align-items: center;
 `
 
-const Tabs = styled.ul<{ variant?: 'default' | 'pills' | 'pills-column' }>`
+const Tabs = styled.ul<{
+  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills'
+}>`
   display: flex;
   list-style: none;
   overflow-x: scroll;
@@ -113,6 +123,11 @@ const Tabs = styled.ul<{ variant?: 'default' | 'pills' | 'pills-column' }>`
       /* border-bottom: none;
        */
       /* margin-bottom: 1px; */
+    `}
+  ${(props) =>
+    props.variant === 'outline-pills' &&
+    css`
+      border-bottom: none;
     `}
   ${(props) =>
     props.variant === 'pills' &&
@@ -140,6 +155,12 @@ const Tab = styled.li<{ variant?: 'default' | 'pills' | 'pills-column' }>`
     css`
       padding: 0px !important;
     `}
+  ${(props) =>
+    props.variant === 'outline-pills' &&
+    css`
+      padding: 0px !important;
+    `}
+
 
   &.active > div {
     animation: borderColorFade 0.3s ease-in-out, colorFade 0.1s ease-in-out;
@@ -165,11 +186,19 @@ const Tab = styled.li<{ variant?: 'default' | 'pills' | 'pills-column' }>`
 `
 
 const TabContent = styled.div<{
-  variant?: 'default' | 'pills' | 'pills-column'
+  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills'
+  size?: 'sm' | 'md' | 'lg'
 }>`
+  font-size: ${(props) =>
+    props.size === 'sm' ? '0.75rem' : props.size == 'md' ? '0.875rem' : '1rem'};
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: ${(props) =>
+    props.size === 'sm'
+      ? ' 2px 8px'
+      : props.size === 'md'
+      ? '5px 10px'
+      : '9px 18px'};
   color: #787c9e;
   border-bottom: 2px solid transparent;
   transition: color 0.3s ease-in-out, border-bottom-color 0.1s ease-in-out;
@@ -182,7 +211,12 @@ const TabContent = styled.div<{
   ${(props) =>
     props.variant === 'default' &&
     css`
-      padding: 9px 18px;
+      padding: ${(props) =>
+        props.size === 'sm'
+          ? ' 2px 8px'
+          : props.size === 'md'
+          ? '5px 10px'
+          : '9px 18px'};
       border-top: 1px solid transparent;
       border-right: 1px solid transparent;
       border-left: 1px solid transparent;
@@ -191,20 +225,28 @@ const TabContent = styled.div<{
       &:hover,
       &.active {
         color: #24214b;
-        /* background-color: #5f38f9; */
         border-radius: 0.375rem 0.375rem 0 0 !important;
-        padding: 9px 18px !important;
-        border-top: 1px solid #e5e7eb !important;
-        border-right: 1px solid #e5e7eb !important;
-        border-left: 1px solid #e5e7eb !important; /* border-bottom: 2px solid #fff !important; */
-        border-bottom: none; /* border-bottom: 2px solid #fff !important; */
-        /* border-bottom: 2px solid #5f38f9; */
-      }
+        padding: ${(props) =>
+          props.size === 'sm'
+            ? ' 2px 8px'
+            : props.size === 'md'
+            ? '5px 10px'
+            : '9px 18px'};
+        border-top: 1px solid #d1d5db !important;
+        border-right: 1px solid #d1d5db !important;
+        border-left: 1px solid #d1d5db !important; 
+        border-bottom: none; 
+       
     `}
   ${(props) =>
     props.variant === 'pills' &&
     css`
-      padding: 9px 18px;
+      padding: ${(props) =>
+        props.size === 'sm'
+          ? ' 2px 8px'
+          : props.size === 'md'
+          ? '5px 10px'
+          : '9px 18px'};
       border: none;
       &:hover {
         color: #24214b;
@@ -213,10 +255,28 @@ const TabContent = styled.div<{
         color: #fff;
         background-color: #5f38f9;
         border-radius: 0.375rem !important;
-        /* padding: 10px 20px !important; */
+      }
+    `}
+    ${(props) =>
+    props.variant === 'outline-pills' &&
+    css`
+      padding: ${(props) =>
+        props.size === 'sm'
+          ? ' 2px 8px'
+          : props.size === 'md'
+          ? '5px 10px'
+          : '9px 18px'};
 
-        /* border-bottom: 2px solid #fff !important; */
-        /* border-bottom: 2px solid #5f38f9; */
+      border: 1px solid transparent;
+      &:hover {
+        color: #24214b;
+      }
+      &.active {
+        color: #5f38f9;
+        background-color: #ffffff;
+        border-radius: 0.375rem !important;
+
+        border: 1px solid #5f38f9;
       }
     `}
 `
