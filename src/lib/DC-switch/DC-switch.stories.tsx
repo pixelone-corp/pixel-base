@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import DcSwitch from './dc-switch'
+import DcSwitch from './DC-switch'
 import { Section, SectionActions } from '../common-styled-component/section'
 
 export default {

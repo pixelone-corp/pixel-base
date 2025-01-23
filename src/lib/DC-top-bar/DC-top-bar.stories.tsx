@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory } from '@storybook/react'
 
-import DcTopBar from './dc-top-bar'
+import DcTopBar from './DC-top-bar'
 
 export default {
   title: 'DC Top Bar',

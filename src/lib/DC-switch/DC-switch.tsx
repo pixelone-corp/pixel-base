@@ -4,8 +4,7 @@ import { $DCprimaryColor } from '../styleGuide'
 import check from './assets/check.svg'
 import disablecheck from './assets/disableCheck.svg'
 import disablecross from './assets/disableCross.svg'
-import DCDiv from '../dc-div/dc-div'
-import DCFlexBox from '../dc-flex-box/dc-flex-box'
+import DCFlexBox from '../DC-flex-box/DC-flex-box'
 
 export interface DCSwitchProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> {

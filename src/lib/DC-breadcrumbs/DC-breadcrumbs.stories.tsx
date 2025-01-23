@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import DcTopBar from '../dc-top-bar/dc-top-bar'
-import DcBreadcrumbs from './dc-breadcrumbs'
+import DcTopBar from '../DC-top-bar/DC-top-bar'
+import DcBreadcrumbs from './DC-breadcrumbs'
 
 export default {
   title: 'DC Breadcrumbs',

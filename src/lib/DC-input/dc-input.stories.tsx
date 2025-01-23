@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import DcInput from './dc-input'
+import DcInput from './DC-input'
 
 export default {
   title: 'DC Input',

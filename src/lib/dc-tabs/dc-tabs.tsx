@@ -189,8 +189,10 @@ const TabContent = styled.div<{
         /* background-color: #5f38f9; */
         border-radius: 0.375rem 0.375rem 0 0 !important;
         padding: 9px 18px !important;
-        border: 1px solid #e5e7eb !important;
-        /* border-bottom: 2px solid #fff !important; */
+        border-top: 1px solid #e5e7eb !important;
+        border-right: 1px solid #e5e7eb !important;
+        border-left: 1px solid #e5e7eb !important; /* border-bottom: 2px solid #fff !important; */
+        border-bottom: none; /* border-bottom: 2px solid #fff !important; */
         /* border-bottom: 2px solid #5f38f9; */
       }
     `}
@@ -207,7 +209,7 @@ const TabContent = styled.div<{
         background-color: #5f38f9;
         border-radius: 0.375rem !important;
         /* padding: 10px 20px !important; */
-        border: 1px solid #e5e7eb !important;
+
         /* border-bottom: 2px solid #fff !important; */
         /* border-bottom: 2px solid #5f38f9; */
       }

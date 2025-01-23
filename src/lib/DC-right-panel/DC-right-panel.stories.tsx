@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import DcRightPanel from './dc-right-panel'
+import DcRightPanel from './DC-right-panel'
 
 export default {
   title: 'DC Right Panel',

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import DcDiv from './dc-div'
+import DcDiv from './DC-div'
 
 export default {
   title: 'DC Div',

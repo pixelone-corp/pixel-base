@@ -1,5 +1,5 @@
 import React from 'react'
-import DcFlexBox from '../dc-flex-box/dc-flex-box'
+import DcFlexBox from '../DC-flex-box/DC-flex-box'
 export interface DcLeftPanelProps {
   flexDirection?: string
   flexWrap?: string
