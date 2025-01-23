@@ -183,6 +183,11 @@ const TabContent = styled.div<{
     props.variant === 'default' &&
     css`
       padding: 9px 18px;
+      border-top: 1px solid transparent;
+      border-right: 1px solid transparent;
+      border-left: 1px solid transparent;
+      border-bottom: none;
+
       &:hover,
       &.active {
         color: #24214b;
