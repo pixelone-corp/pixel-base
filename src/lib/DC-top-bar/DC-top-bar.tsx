@@ -52,6 +52,7 @@ const StyledDCTopBar = styled.div`
   width: 100%;
   height: 60px;
   display: flex;
+  font-size: 875rem;
   background-color: #fff;
   flex-direction: row;
   flex-wrap: nowrap;

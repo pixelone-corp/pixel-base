@@ -46,6 +46,16 @@ export interface DcTextProps {
   textRendering?: string
   textJustify?: string
   textStroke?: string
+  textStrokeWidth?: string
+  textStrokeColor?: string
+  text?: string
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  onMouseEnter?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  onMouseLeave?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  onMouseOver?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  after?: React.CSSProperties
+  before?: React.CSSProperties
+  hoverStyle?: React.CSSProperties
 }
 
 const StyledDCText = styled.div``
@@ -144,6 +154,19 @@ const Text = styled.div<{
   text-orientation: ${(props: DcTextProps) => props.textOrientation};
   text-rendering: ${(props: DcTextProps) => props.textRendering};
   text-justify: ${(props: DcTextProps) => props.textJustify};
+  font-weight: ${(props: DcTextProps) => props.fontWeight};
+  //add after
+  &:after {
+    content: ${(props: DcTextProps) => props.after};
+  }
+  //add before
+  &:before {
+    content: ${(props: DcTextProps) => props.before};
+  }
+  //add hover style
+  &:hover {
+    ${(props: DcTextProps) => props.hoverStyle};
+  }
   //add storek
 `
 export const DcText = React.forwardRef<HTMLDivElement, DcTextProps>(
