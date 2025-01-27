@@ -27,26 +27,26 @@ export interface DcInputTagProps {
   isShowLabel?: boolean
   inputLabel?: string
   error?: string
+  size?: string
 }
 export interface inputOptions {
   label: string
   value: string
 }
-const StyledPixelInputTag = styled.div`
+const StyledPixelInputTag = styled.div<{ size?: string }>`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  /* background-color: #fff; */
-
-  padding-left: 20px;
+  padding-left: ${(props) => (props.size === 'sm' ? '10px' : '20px')};
   width: 95%;
 `
-const TagInput = styled.input<{ width?: string }>`
+const TagInput = styled.input<{ width?: string; size?: string }>`
   width: ${(props) => props.width && props.width};
-  min-height: 2.75rem;
+  /* min-height: 2.75rem; */
+  min-height: ${(props) => (props.size === 'sm' ? '30px' : '44px')};
   border: none;
   outline: none;
   background-color: inherit;
@@ -55,40 +55,41 @@ const TagInput = styled.input<{ width?: string }>`
   }
 `
 
-const Tags = styled.div`
-  margin-top: 5px !important;
-  margin-bottom: 5px !important;
+const Tags = styled.div<{ size?: string }>`
+  margin-top: ${(props) => (props.size === 'sm' ? '2px' : '5px')} !important;
+  margin-bottom: ${(props) => (props.size === 'sm' ? '4px' : '5px')} !important;
   display: flex;
   flex-direction: row;
   margin: 0px 2px;
   background: ${$DCprimaryColor};
-  font-size: 12px;
-  padding: 3px 10px 5px 10px;
+  font-size: ${(props) => (props.size === 'sm' ? '10px' : '12px')} !important;
+
+  padding: ${(props) =>
+    props.size == 'sm' ? '2px 10px 3px 10px' : '3px 10px 5px 10px'};
   border-radius: 16px;
   color: white;
   font-weight: 700;
 `
 export const DcInputTag = React.forwardRef<HTMLDivElement, DcInputTagProps>(
-  (
-    {
+  (props, ref) => {
+    const {
       className,
       tags = [],
       onTagUpdate = () => {},
       options = [],
       placeholder,
-      handleTagDelete = {},
-      handleTagAdd = {},
+      handleTagDelete = () => {},
+      handleTagAdd = () => {},
       allowCustomTags = true,
-      clearAll = {},
+      clearAll = () => {},
       noDataText = 'No data found',
       isAllClearable = true,
       isShowLabel = true,
       inputLabel = '',
       error = '',
+      size,
       ...rest
-    },
-    ref
-  ) => {
+    } = props
     const [filterText, setFilterText] = React.useState('')
     const [localTags, setLocalTags] = React.useState(tags)
     const [isOptionsOpen, setIsOptionsOpen] = React.useState(false)
@@ -185,8 +186,9 @@ export const DcInputTag = React.forwardRef<HTMLDivElement, DcInputTagProps>(
         style={{ width: '100%' }}
         onClickOutside={() => setIsOptionsOpen(false)}
       >
-        <Container tabIndex={0}>
+        <Container size={size} tabIndex={0}>
           <StyledPixelInputTag
+            size={size}
             onClick={() => {
               inputTagref.current.focus()
               toggleOptions()
@@ -201,12 +203,12 @@ export const DcInputTag = React.forwardRef<HTMLDivElement, DcInputTagProps>(
               <React.Fragment>
                 {localTags?.map((tag, i) => {
                   return (
-                    <Tags key={i}>
+                    <Tags size={size} key={i}>
                       {tag.label} &nbsp;
                       <DcDiv
                         color='white'
                         hoverStyle={{ color: '#080885' }}
-                        width='10px'
+                        width={size == 'sm' ? '7px' : '12px'}
                       >
                         <DcIcon
                           color='inherit'
@@ -227,6 +229,7 @@ export const DcInputTag = React.forwardRef<HTMLDivElement, DcInputTagProps>(
             )}
 
             <TagInput
+              size={size}
               onBlur={() => {}}
               width={filterText.length > 8 ? '40%' : '40%'}
               placeholder={placeholder}
@@ -313,9 +316,9 @@ const ClearAll = styled.div`
     color: ${$DCprimaryActiveColor};
   }
 `
-const Container = styled.div`
+const Container = styled.div<{ size?: string }>`
   position: relative;
-  min-height: 38px;
+  max-height: ${(props) => (props.size === 'sm' ? '30px' : '44px')} !important;
   border-radius: 4px;
   transition: border-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
   background-color: #fff;
