@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import React from 'react'
-import { $primaryColor } from '../styleGuide'
+import { $DCprimaryColor, $primaryColor } from '../styleGuide'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 export interface DcIconProps {
@@ -79,6 +79,7 @@ export const DcIcon = React.forwardRef<HTMLButtonElement, DcIconProps>(
                 className={className}
                 icon={icon}
                 color={color}
+                width={width}
                 fontSize={fontSize}
                 onClick={() => onClick()}
                 ref={ref}
@@ -127,7 +128,7 @@ const ActionIcon = styled(FontAwesomeIcon)<
     | 'opacity'
   >
 >`
-  color: ${(props) => props.color || $primaryColor};
+  color: ${(props) => (props.color ? props.color : $DCprimaryColor)};
   font-size: ${(props) => props.fontSize || '14px'};
   cursor: pointer;
   padding: ${(props) => props.padding || '0px'};
@@ -144,7 +145,7 @@ const ActionIcon = styled(FontAwesomeIcon)<
   ${(props) => props.style}
   ${(props) => props.cursor && `cursor: ${props.cursor};`}
   //add more props
-  width: ${(props) => props.width || 'auto'};
+  width: ${(props) => (props.width ? props.width : 'auto')};
   height: ${(props) => props.height || 'auto'};
   position: ${(props) => props.position};
   top: ${(props) => props.top};
