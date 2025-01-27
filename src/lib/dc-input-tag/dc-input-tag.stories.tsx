@@ -42,6 +42,7 @@ export const Simple = Template.bind({})
 Simple.args = {
   label: 'Dc Input Tag',
   allowCustomTags: false,
+  size: 'sm',
   options: [
     {
       value: '1',

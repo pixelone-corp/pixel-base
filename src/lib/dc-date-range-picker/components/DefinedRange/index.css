@@ -1,0 +1,12 @@
+.rdrStaticRanges {
+  display: flex;
+  flex-direction: column;
+}
+
+.rdrStaticRange {
+  font-size: inherit;
+}
+
+.rdrInputRange {
+  display: flex;
+}/*# sourceMappingURL=index.css.map */
