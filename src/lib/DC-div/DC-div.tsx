@@ -56,6 +56,7 @@ export interface DcDivProps {
   perspective?: string
   perspectiveOrigin?: string
   backfaceVisibility?: string
+  color?: string
 }
 export const DcDiv = React.forwardRef<HTMLDivElement, DcDivProps>(
   (props, ref) => {
@@ -111,9 +112,11 @@ const DivContainer = styled.div<
     | 'perspective'
     | 'perspectiveOrigin'
     | 'backfaceVisibility'
+    | 'color'
   >
 >`
   display: block;
+  color: ${(props) => props.color};
   width: ${(props) => props.width || 'auto'};
   height: ${(props) => props.height || 'auto'};
   position: ${(props) => props.position};

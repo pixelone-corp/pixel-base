@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { $primaryColor } from '../styleGuide'
+import { $DCprimaryActiveColor, $primaryColor } from '../styleGuide'
 import { faGreaterThan, faLessThan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -9,7 +9,7 @@ export interface DcTabsProps {
   tabs: { value: any; label: string; icon?: React.ReactNode }[]
   activeTab: any
   handleChange: (value: any) => void
-  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills'
+  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills' | 'simple'
   size?: 'sm' | 'md' | 'lg'
 }
 
@@ -92,16 +92,15 @@ export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
 )
 
 const TabsContainer = styled.div<{
-  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills'
+  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills' | 'simple'
   size?: 'sm' | 'md' | 'lg'
 }>`
   display: flex;
-  /* height: 40px; */
   align-items: center;
 `
 
 const Tabs = styled.ul<{
-  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills'
+  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills ' | 'simple'
 }>`
   display: flex;
   list-style: none;
@@ -120,53 +119,69 @@ const Tabs = styled.ul<{
     css`
       border-radius: 5px;
       overflow: hidden;
-      /* border-bottom: none;
-       */
-      /* margin-bottom: 1px; */
     `}
+
+  ${(props) =>
+    props.variant === 'default' &&
+    css`
+      border: none !important;
+
+      overflow: hidden;
+    `}
+
   ${(props) =>
     props.variant === 'outline-pills' &&
     css`
       border-bottom: none;
     `}
+
   ${(props) =>
     props.variant === 'pills' &&
     css`
       border-bottom: none;
     `}
+
+  ${(props) =>
+    props.variant === 'simple' &&
+    css`
+      border-bottom: none;
+    `}
 `
 
-const Tab = styled.li<{ variant?: 'default' | 'pills' | 'pills-column' }>`
+const Tab = styled.li<{
+  variant?: 'default' | 'pills' | 'pills-column' | 'simple'
+}>`
   flex: 0 0 auto;
   cursor: pointer;
   padding-right: 32px;
   //add variant default
+  /* &.active > div {
+    animation: borderColorFade 0.3s ease-in-out, colorFade 0.1s ease-in-out;
+  } */
+
   ${(props) =>
     props.variant === 'default' &&
     css`
       padding: 0px !important;
     `}
 
-  &.active > div {
-    animation: borderColorFade 0.3s ease-in-out, colorFade 0.1s ease-in-out;
-  }
+  ${(props) =>
+    props.variant === 'simple' &&
+    css`
+      padding: 0px !important;
+    `}
+
   ${(props) =>
     props.variant === 'pills' &&
     css`
       padding: 0px !important;
     `}
+
   ${(props) =>
     props.variant === 'outline-pills' &&
     css`
       padding: 0px !important;
-    `}
-
-
-  &.active > div {
-    animation: borderColorFade 0.3s ease-in-out, colorFade 0.1s ease-in-out;
-  }
-
-  @keyframes borderColorFade {
+    `} /* @keyframes borderColorFade {
     from {
       border-bottom-color: transparent;
     }
@@ -182,11 +197,11 @@ const Tab = styled.li<{ variant?: 'default' | 'pills' | 'pills-column' }>`
     to {
       color: #5f38f9;
     }
-  }
+  } */
 `
 
 const TabContent = styled.div<{
-  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills'
+  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills' | 'simple'
   size?: 'sm' | 'md' | 'lg'
 }>`
   font-size: ${(props) =>
@@ -200,14 +215,11 @@ const TabContent = styled.div<{
       ? '5px 10px'
       : '9px 18px'};
   color: #787c9e;
-  border-bottom: 2px solid transparent;
-  transition: color 0.3s ease-in-out, border-bottom-color 0.1s ease-in-out;
 
   &.active {
     color: #5f38f9;
     border-bottom: 2px solid #5f38f9;
   }
-  //on variant default
   ${(props) =>
     props.variant === 'default' &&
     css`
@@ -234,10 +246,11 @@ const TabContent = styled.div<{
             : '9px 18px'};
         border-top: 1px solid #d1d5db !important;
         border-right: 1px solid #d1d5db !important;
-        border-left: 1px solid #d1d5db !important; 
-        border-bottom: none; 
-       
+        border-left: 1px solid #d1d5db !important;
+        border-bottom: none;
+      }
     `}
+
   ${(props) =>
     props.variant === 'pills' &&
     css`
@@ -257,6 +270,7 @@ const TabContent = styled.div<{
         border-radius: 0.375rem !important;
       }
     `}
+
     ${(props) =>
     props.variant === 'outline-pills' &&
     css`
@@ -277,6 +291,28 @@ const TabContent = styled.div<{
         border-radius: 0.375rem !important;
 
         border: 1px solid #5f38f9;
+      }
+    `}
+
+    ${(props) =>
+    props.variant === 'simple' &&
+    css`
+      padding: ${(props) =>
+        props.size === 'sm'
+          ? ' 2px 8px'
+          : props.size === 'md'
+          ? '5px 10px'
+          : '9px 18px'};
+
+      border: 1px solid transparent;
+      &:hover {
+        color: ${$DCprimaryActiveColor};
+      }
+      &.active {
+        color: ${$DCprimaryActiveColor};
+        background-color: #ffffff;
+        border: none;
+        font-weight: 600;
       }
     `}
 `
@@ -300,7 +336,7 @@ const Arrow = styled.button`
 
 const TabIcon = styled.div`
   margin-right: 10px;
-  color: ${$primaryColor};
+  color: 'inherit';
 `
 
 export default DcTabs

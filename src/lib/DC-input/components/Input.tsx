@@ -53,7 +53,7 @@ const DCInput = styled.input`
     css`
       padding-left: 35px !important;
     `}
-  border: .0625rem solid #E8E7CC;
+  border: .0625rem solid #d2d4e4;
   color: #43476b;
   appearance: none;
   background-clip: padding-box;
