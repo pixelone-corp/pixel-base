@@ -45,6 +45,7 @@ export const DcDateRangePicker = React.forwardRef<
     refs,
     RangeColors,
     style,
+    size,
     position = 'right',
     ...rest
   } = props
@@ -102,6 +103,7 @@ export const DcDateRangePicker = React.forwardRef<
       ref={datePickerRef}
     >
       <StyledDatePicker
+        size={size}
         onClick={() => {
           setShowPopOver(!showPopOver)
         }}
@@ -171,15 +173,15 @@ export const DcDateRangePicker = React.forwardRef<
   )
 })
 
-const StyledDatePicker = styled.div`
-  height: 40px;
+const StyledDatePicker = styled.div<{ size }>`
+  height: ${(props) => (props.size === 'sm' ? '30px' : '44px')};
   /* width:15%; */
   /* max-width: 15%; */
   min-width: 245px;
   padding: 0px 20px;
   /* padding: 0px 20px 0px 0px; */
-  min-height: 40px;
-  max-height: 40px;
+  min-height: ${(props) => (props.size === 'sm' ? '30px' : '44px')};
+  max-height: ${(props) => (props.size === 'sm' ? '30px' : '44px')};
   cursor: pointer;
   gap: 10px;
   border: 1px solid #dee2e6 !important;

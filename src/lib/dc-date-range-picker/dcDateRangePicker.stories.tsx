@@ -31,7 +31,6 @@ const Template: ComponentStory<typeof DcDateRangePicker> = (args) => {
         position='right'
         {...args}
         format='dateWithTime'
-        size='15px'
       />
     </React.Fragment>
   )
