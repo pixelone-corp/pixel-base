@@ -1,0 +1,32 @@
+.rdrDay {
+  box-sizing: inherit;
+  width: 14.2857142857%;
+  position: relative;
+  font: inherit;
+  cursor: pointer;
+}
+
+.rdrDayNumber {
+  display: block;
+  position: relative;
+}
+.rdrDayNumber span {
+  color: #1d2429;
+}
+
+.rdrDayDisabled {
+  cursor: not-allowed;
+}
+
+@supports (-ms-ime-align: auto) {
+  .rdrDay {
+    flex-basis: 14.285% !important;
+  }
+}
+.rdrSelected, .rdrInRange, .rdrStartEdge, .rdrEndEdge {
+  pointer-events: none;
+}
+
+.rdrDayStartPreview, .rdrDayInPreview, .rdrDayEndPreview {
+  pointer-events: none;
+}/*# sourceMappingURL=index.css.map */

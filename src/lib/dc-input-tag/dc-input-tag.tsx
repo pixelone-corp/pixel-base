@@ -14,9 +14,9 @@ import DcDiv from '../DC-div/DC-div'
 
 export interface DcInputTagProps {
   className?: string
-  tags?: options[]
+  tags?: inputOptions[]
   onTagUpdate?: any
-  options?: options[]
+  options?: inputOptions[]
   placeholder?: string
   allowCustomTags?: boolean
   handleTagDelete?: any
@@ -28,7 +28,7 @@ export interface DcInputTagProps {
   inputLabel?: string
   error?: string
 }
-export interface options {
+export interface inputOptions {
   label: string
   value: string
 }
