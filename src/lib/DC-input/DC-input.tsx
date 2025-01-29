@@ -35,6 +35,7 @@ export interface DcProps extends InputHTMLAttributes<HTMLInputElement> {
   isShowLabel?: boolean
   customLabel?: string
   isClearOnSelection?: boolean
+  size?: string
   onSelectedOption?: () => {}
 }
 
@@ -161,6 +162,7 @@ export const DcInput = React.forwardRef<HTMLInputElement, DcProps>(
       customLabel = '',
       isClearOnSelection = false,
       onSelectedOption = () => {},
+      size,
       ...rest
     },
     ref
@@ -232,6 +234,7 @@ export const DcInput = React.forwardRef<HTMLInputElement, DcProps>(
           ) : (
             <Input
               showsearchicon={showsearchicon}
+              size={size}
               placeholder={placeholder}
               id={name}
               name={name}

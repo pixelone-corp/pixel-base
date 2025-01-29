@@ -56,6 +56,7 @@ export interface DcTextProps {
   after?: React.CSSProperties
   before?: React.CSSProperties
   hoverStyle?: React.CSSProperties
+  minWith?: string
 }
 
 const StyledDCText = styled.div``
@@ -66,7 +67,7 @@ const Text = styled.div<{
   textAlignment: string
 }>`
   font-size: ${(props: DcTextProps) => props.textSize};
-  max-width: 100%;
+  max-width: ${(props: DcTextProps) => props.minWith};
   width: 100%;
   text-align: ${(props: DcTextProps) => props.textAlignment};
   color: ${(props) => props.color};
