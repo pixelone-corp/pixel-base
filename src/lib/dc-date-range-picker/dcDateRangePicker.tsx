@@ -191,7 +191,7 @@ export const DcDateRangePicker = React.forwardRef<
           setShowPopOver(!showPopOver)
         }}
       >
-        {showDate(range)}
+        {showDate(range, size)}
       </StyledDatePicker>
 
       {showPopOver && (
