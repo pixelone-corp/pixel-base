@@ -113,7 +113,7 @@ export const DcDateRangePicker = React.forwardRef<
       return <DateLable size={size}>Last year</DateLable>
     } else
       return (
-        <>
+        <React.Fragment>
           {' '}
           <DateLable size={size}>
             <PixelDate
@@ -136,7 +136,7 @@ export const DcDateRangePicker = React.forwardRef<
               value={ranges?.end_date || new Date()}
             />
           </DateLable>
-        </>
+        </React.Fragment>
       )
   }
 
