@@ -7,6 +7,7 @@ import styled, { css } from 'styled-components'
 import DCDatepicker from './components/DCDatepicker'
 import Input from './components/Input'
 import PasswordInput from './components/passwordInput'
+import TypeAHead from './components/TypeAHead'
 
 export interface DcProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
@@ -215,6 +216,34 @@ export const DcInput = React.forwardRef<HTMLInputElement, DcProps>(
                 showDatepicker={showDatePicker}
               />
             </React.Fragment>
+          ) : as === 'typeahead' ? (
+            <TypeAHead
+              onSelectedOption={onSelectedOption}
+              isClearOnSelection={isClearOnSelection}
+              customLabel={customLabel}
+              isShowLabel={isShowLabel}
+              placeholder={placeholder}
+              id={name}
+              name={name}
+              type={type}
+              ref={ref}
+              labelKey={labelKey}
+              className={cn(
+                'flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
+                shadow && 'focus:shadow',
+                variantClasses[variant],
+                sizeClasses[dimension],
+                disabled && 'bg-gray-100 cursor-not-allowed',
+                inputClassName
+              )}
+              disabled={disabled}
+              value={value}
+              spellCheck='false'
+              onChange={onChange}
+              invalid={invalid}
+              aria-invalid={error ? 'true' : 'false'}
+              {...rest}
+            />
           ) : as === 'password' ? (
             <PasswordInput
               value={value}

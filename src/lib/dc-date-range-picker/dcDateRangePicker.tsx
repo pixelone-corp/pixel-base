@@ -4,8 +4,14 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import styled from 'styled-components'
 import { Popover } from 'react-bootstrap'
-import PixelFlexBox from '../pixel-flex-box/pixel-flex-box'
-import { addDays } from 'date-fns'
+import {
+  addDays,
+  endOfYear,
+  isSameDay,
+  startOfDay,
+  startOfYear,
+  subYears
+} from 'date-fns'
 export interface DcDateRangePickerProps {
   onChange?: (item: any) => void
   onApply?: () => void
@@ -24,8 +30,8 @@ export interface DcDateRangePickerProps {
 }
 
 import PixelDate from '../pixel-date/pixel-date'
-
 import DcButton from '../DC-button/DC-button'
+import DCFlexBox from '../DC-flex-box/DC-flex-box'
 export const DcDateRangePicker = React.forwardRef<
   HTMLDivElement,
   DcDateRangePickerProps
@@ -65,6 +71,75 @@ export const DcDateRangePicker = React.forwardRef<
     }
   }, [ranges])
 
+  const showDate = (date) => {
+    const today = startOfDay(new Date()) // Normalize to start of today
+    const yesterday = startOfDay(addDays(today, -1))
+    const last7Days = startOfDay(addDays(today, -7))
+    const last30Days = startOfDay(addDays(today, -30))
+    const last90Days = startOfDay(addDays(today, -90))
+
+    const lastYearStart = startOfYear(subYears(today, 1)) // Jan 1 of last year
+    const lastYearEnd = endOfYear(subYears(today, 1)) // Dec 31 of last year
+
+    if (
+      isSameDay(date[0].startDate, today) &&
+      isSameDay(date[0].endDate, today)
+    ) {
+      return <DateLable size={size}>Today</DateLable>
+    } else if (
+      isSameDay(date[0].startDate, yesterday) &&
+      isSameDay(date[0].endDate, yesterday)
+    ) {
+      return <DateLable size={size}>yasterday</DateLable>
+    } else if (
+      isSameDay(date[0].startDate, last7Days) &&
+      isSameDay(date[0].endDate, today)
+    ) {
+      return <DateLable size={size}>Last 7 days</DateLable>
+    } else if (
+      isSameDay(date[0].startDate, last30Days) &&
+      isSameDay(date[0].endDate, today)
+    ) {
+      return <DateLable size={size}>Last 30 days</DateLable>
+    } else if (
+      isSameDay(date[0].startDate, last90Days) &&
+      isSameDay(date[0].endDate, today)
+    ) {
+      return <DateLable size={size}>Last 90 days</DateLable>
+    } else if (
+      isSameDay(date[0].startDate, lastYearStart) &&
+      isSameDay(date[0].endDate, lastYearEnd)
+    ) {
+      return <DateLable size={size}>Last year</DateLable>
+    } else
+      return (
+        <React.Fragment>
+          {' '}
+          <DateLable size={size}>
+            <PixelDate
+              color='rgb(43, 43, 43)'
+              style={{ fontWeight: '600' }}
+              showFullDatePopover={false}
+              className={'datewithtime'}
+              format='pixelStandard'
+              value={ranges?.start_date || new Date()}
+            />
+          </DateLable>
+          <span style={{ color: 'rgb(43, 43, 43)', fontWeight: '600' }}>-</span>
+          <DateLable size={size}>
+            <PixelDate
+              style={{ fontWeight: '600' }}
+              color='rgb(43, 43, 43)'
+              showFullDatePopover={false}
+              className={'datewithtime'}
+              format='pixelStandard'
+              value={ranges?.end_date || new Date()}
+            />
+          </DateLable>
+        </React.Fragment>
+      )
+  }
+
   const datePickerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -94,7 +169,7 @@ export const DcDateRangePicker = React.forwardRef<
     onChange(item)
   }
   return (
-    <PixelFlexBox
+    <DCFlexBox
       style={{ width: 'auto', position: 'relative', justifyContent: _position }}
       ref={datePickerRef}
     >
@@ -104,39 +179,7 @@ export const DcDateRangePicker = React.forwardRef<
           setShowPopOver(!showPopOver)
         }}
       >
-        <text
-          style={{
-            fontSize: size == 'sm' ? '12px' : '14px',
-            color: 'rgb(120, 124, 158)',
-            fontWeight: '600'
-          }}
-        >
-          <PixelDate
-            color='rgb(43, 43, 43)'
-            style={{ fontWeight: '600' }}
-            showFullDatePopover={false}
-            className={'datewithtime'}
-            format='pixelStandard'
-            value={ranges?.start_date || new Date()}
-          />
-        </text>
-        <span style={{ color: 'rgb(43, 43, 43)', fontWeight: '600' }}>-</span>
-        <text
-          style={{
-            fontSize: size == 'sm' ? '12px' : '14px',
-            color: 'rgb(120, 124, 158)',
-            fontWeight: '600'
-          }}
-        >
-          <PixelDate
-            style={{ fontWeight: '600' }}
-            color='rgb(43, 43, 43)'
-            showFullDatePopover={false}
-            className={'datewithtime'}
-            format='pixelStandard'
-            value={ranges?.end_date || new Date()}
-          />
-        </text>
+        {showDate(range)}
       </StyledDatePicker>
 
       {showPopOver && (
@@ -160,7 +203,7 @@ export const DcDateRangePicker = React.forwardRef<
             RangeColors={RangeColors}
             style={style}
           />
-          <PixelFlexBox height='auto' justifyContent='flex-end' gap='10px'>
+          <DCFlexBox height='auto' justifyContent='flex-end' gap='10px'>
             <DcButton
               size='sm'
               variant='outline-secondary'
@@ -171,20 +214,27 @@ export const DcDateRangePicker = React.forwardRef<
             <DcButton size='sm' onClick={handelApply}>
               Apply
             </DcButton>
-          </PixelFlexBox>
+          </DCFlexBox>
         </StyledPopOver>
       )}
-    </PixelFlexBox>
+    </DCFlexBox>
   )
 })
 
+const DateLable = styled.div<{ size }>`
+  font-size: ${(props) => (props.size == 'sm' ? '12px' : '14px')};
+  color: 'rgb(43, 43, 43)';
+  font-weight: '600';
+  // change font size 12px to 10px on screen size below 1400px
+  @media (max-width: 1400px) {
+    font-size: 10px !important;
+  }
+`
 const StyledDatePicker = styled.div<{ size }>`
   height: ${(props) => (props.size === 'sm' ? '30px' : '44px')};
-  /* width:15%; */
-  /* max-width: 15%; */
-  min-width: ${(props) => (props.size === 'sm' ? '172px' : '215px')};
+
+  /* min-width: ${(props) => (props.size === 'sm' ? '172px' : '215px')}; */
   padding: ${(props) => (props.size === 'sm' ? '0px 15px' : '0px 20px')};
-  /* padding: 0px 20px 0px 0px; */
   min-height: ${(props) => (props.size === 'sm' ? '30px' : '44px')};
   max-height: ${(props) => (props.size === 'sm' ? '30px' : '44px')};
   cursor: pointer;
@@ -195,7 +245,6 @@ const StyledDatePicker = styled.div<{ size }>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* background-color: #f7f7f7 !important; */
   background-color: #ffffff !important;
   position: relative;
 `
@@ -204,9 +253,8 @@ const StyledPopOver = styled(Popover)<{ size }>`
   max-width: 910px;
   padding: 10px;
   border: 1px solid #e8e7ec;
-  box-shadow: 0px 0px 7px 1px #7e7e7e38; /* box-shadow: -3px 4px 11px 2px rgba(169, 169, 169, 0.8); */
+  box-shadow: 0px 0px 7px 1px #7e7e7e38;
   top: ${(props) => (props.size === 'sm' ? '33px' : '50px')};
-  /* left: -400px; */
   display: block;
   position: absolute;
   .popover-arrow {
