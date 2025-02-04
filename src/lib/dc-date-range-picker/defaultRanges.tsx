@@ -11,7 +11,7 @@ import {
   differenceInCalendarDays,
   startOfYear,
   addYears,
-  endOfYear,
+  endOfYear
 } from 'date-fns'
 
 const defineds = {
@@ -31,6 +31,9 @@ const defineds = {
   endOfLastYear: endOfYear(addYears(new Date(), -1)),
   startOfThisYear: startOfYear(addYears(new Date(), 0)),
   endOfThisYear: endOfYear(addYears(new Date(), 1)),
+  // add last 7 days here
+  startOfLast7Days: startOfDay(addDays(new Date(), -6)),
+  endOfLast7Days: endOfDay(new Date())
 }
 
 const staticRangeHandler = {
@@ -41,74 +44,71 @@ const staticRangeHandler = {
       isSameDay(range.startDate, definedRange.startDate) &&
       isSameDay(range.endDate, definedRange.endDate)
     )
-  },
+  }
 }
 
 export function createStaticRanges(ranges) {
   return ranges.map((range) => ({ ...staticRangeHandler, ...range }))
 }
 
-
-
 export const defaultStaticRanges = createStaticRanges([
   {
     label: 'Today',
     range: () => ({
       startDate: defineds.startOfToday,
-      endDate: defineds.endOfToday,
-    }),
+      endDate: defineds.endOfToday
+    })
   },
   {
     label: 'Yesterday',
     range: () => ({
       startDate: defineds.startOfYesterday,
-      endDate: defineds.endOfYesterday,
-    }),
+      endDate: defineds.endOfYesterday
+    })
   },
   {
     label: 'Last 7 days',
     range: () => ({
-      startDate: defineds.startOfWeek,
-      endDate: defineds.endOfWeek,
-    }),
+      startDate: defineds.startOfLast7Days,
+      endDate: defineds.endOfLast7Days
+    })
   },
   {
     label: 'Last 30 Days', // Change label to "Last 30 Days"
     range: () => ({
       startDate: addDays(defineds.startOfToday, -29), // Subtract 29 days to get the last 30 days
-      endDate: defineds.endOfToday,
-    }),
+      endDate: defineds.endOfToday
+    })
   },
   {
     label: 'Last 90 Days', // Change label to "Last 90 Days"
     range: () => ({
       startDate: addDays(defineds.startOfToday, -89), // Subtract 89 days to get the last 90 days
-      endDate: defineds.endOfToday,
-    }),
+      endDate: defineds.endOfToday
+    })
   },
   {
     label: 'Last Month',
     range: () => ({
       startDate: defineds.startOfLastMonth,
-      endDate: defineds.endOfLastMonth,
-    }),
+      endDate: defineds.endOfLastMonth
+    })
   },
   {
     label: 'Last Year',
     range: () => ({
       startDate: defineds.startOfLastYear,
-      endDate: defineds.endOfLastYear,
-    }),
+      endDate: defineds.endOfLastYear
+    })
   },
   {
     label: 'This Year',
     range: () => ({
       startDate: defineds.startOfThisYear,
-      endDate: defineds.endOfToday,
-    }),
-  },
-]);
-
+      endDate: defineds.endOfToday
+    })
+  }
+])
 
 // export const defaultInputRanges = [
 //   {
