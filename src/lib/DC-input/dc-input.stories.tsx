@@ -44,3 +44,8 @@ Password.args = {
   placeholder: 'DC Input password',
   as: 'password'
 }
+export const TypeAhead = Template.bind({})
+TypeAhead.args = {
+  placeholder: 'DC Input TypeAhead',
+  as: 'typeahead'
+}

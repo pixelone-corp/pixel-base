@@ -6,10 +6,13 @@ import styled from 'styled-components'
 import { Popover } from 'react-bootstrap'
 import {
   addDays,
+  endOfMonth,
   endOfYear,
   isSameDay,
   startOfDay,
+  startOfMonth,
   startOfYear,
+  subMonths,
   subYears
 } from 'date-fns'
 export interface DcDateRangePickerProps {
@@ -71,15 +74,18 @@ export const DcDateRangePicker = React.forwardRef<
     }
   }, [ranges])
 
-  const showDate = (date) => {
+  const showDate = (date, size) => {
     const today = startOfDay(new Date()) // Normalize to start of today
     const yesterday = startOfDay(addDays(today, -1))
-    const last7Days = startOfDay(addDays(today, -7))
+    const last7Days = startOfDay(addDays(today, -6))
     const last30Days = startOfDay(addDays(today, -30))
     const last90Days = startOfDay(addDays(today, -90))
 
     const lastYearStart = startOfYear(subYears(today, 1)) // Jan 1 of last year
     const lastYearEnd = endOfYear(subYears(today, 1)) // Dec 31 of last year
+
+    const lastMonthStart = startOfMonth(subMonths(today, 1)) // Start of last month
+    const lastMonthEnd = endOfMonth(subMonths(today, 1)) // End of last month
 
     if (
       isSameDay(date[0].startDate, today) &&
@@ -90,7 +96,7 @@ export const DcDateRangePicker = React.forwardRef<
       isSameDay(date[0].startDate, yesterday) &&
       isSameDay(date[0].endDate, yesterday)
     ) {
-      return <DateLable size={size}>yasterday</DateLable>
+      return <DateLable size={size}>Yesterday</DateLable>
     } else if (
       isSameDay(date[0].startDate, last7Days) &&
       isSameDay(date[0].endDate, today)
@@ -111,7 +117,12 @@ export const DcDateRangePicker = React.forwardRef<
       isSameDay(date[0].endDate, lastYearEnd)
     ) {
       return <DateLable size={size}>Last year</DateLable>
-    } else
+    } else if (
+      isSameDay(date[0].startDate, lastMonthStart) &&
+      isSameDay(date[0].endDate, lastMonthEnd)
+    ) {
+      return <DateLable size={size}>Last month</DateLable>
+    } else {
       return (
         <React.Fragment>
           {' '}
@@ -122,7 +133,7 @@ export const DcDateRangePicker = React.forwardRef<
               showFullDatePopover={false}
               className={'datewithtime'}
               format='pixelStandard'
-              value={ranges?.start_date || new Date()}
+              value={date[0].startDate || new Date()}
             />
           </DateLable>
           <span style={{ color: 'rgb(43, 43, 43)', fontWeight: '600' }}>-</span>
@@ -133,11 +144,12 @@ export const DcDateRangePicker = React.forwardRef<
               showFullDatePopover={false}
               className={'datewithtime'}
               format='pixelStandard'
-              value={ranges?.end_date || new Date()}
+              value={date[0].endDate || new Date()}
             />
           </DateLable>
         </React.Fragment>
       )
+    }
   }
 
   const datePickerRef = useRef<HTMLDivElement>(null)
@@ -223,8 +235,8 @@ export const DcDateRangePicker = React.forwardRef<
 
 const DateLable = styled.div<{ size }>`
   font-size: ${(props) => (props.size == 'sm' ? '12px' : '14px')};
-  color: 'rgb(43, 43, 43)';
-  font-weight: '600';
+  color: rgb(43, 43, 43);
+  font-weight: 600;
   // change font size 12px to 10px on screen size below 1400px
   @media (max-width: 1400px) {
     font-size: 10px !important;
