@@ -413,7 +413,7 @@ const Mainconatiner = styled.div`
   flex-direction: column;
   position: relative;
 `
-const Toggler = styled.button<{ disable: boolean }>`
+const Toggler = styled.button.attrs({ type: 'button' })<{ disable: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;

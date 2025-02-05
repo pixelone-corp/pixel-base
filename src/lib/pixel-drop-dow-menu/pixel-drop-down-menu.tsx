@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
 import styled, { css } from 'styled-components'
-import { $primaryColor, $secondaryColor } from '../styleGuide'
+import { $DCprimaryColor, $secondaryColor } from '../styleGuide'
 import { PixelTag } from '../pixel-tag/pixel-tag'
 export interface MenuProps {
   className?: string
@@ -24,48 +24,52 @@ interface OptionsData {
   children?: OptionsData[]
   formatter?: any
 }
-const DropDownListItem = styled(Dropdown.Item) <{ isGrouped: boolean }>`
-${props => props.isGrouped ? css`
-& >div {
-  & > div{
-  & > a {
-    &:active{
-  background-color: ${$primaryColor} ;
-}
-  }
-}
-  &> button {
-    outline: none !important;
-    border: none !important;
-    &:focus{
-    box-shadow: none;
-  }
-  }
-}
-&:active{
-  background-color: #e9ecef ;
-}
-`: css`
-  &:active{
-  background-color: ${$primaryColor} ;
-}
-`}
- ${(props: MenuProps) =>
-    props.variant !== '' || props.variant === null &&
-    css`
-      & >div {
-  &> button {
-    background-color: none;
-    color: black;
-    &:focus{
-    box-shadow: none;
-  }
-  }
-}
-&:active{
-  background-color: #e9ecef ;
-}
-    `}
+const DropDownListItem = styled(Dropdown.Item)<{ isGrouped: boolean }>`
+  ${(props) =>
+    props.isGrouped
+      ? css`
+          & > div {
+            & > div {
+              & > a {
+                &:active {
+                  background-color: ${$DCprimaryColor};
+                }
+              }
+            }
+            & > button {
+              outline: none !important;
+              border: none !important;
+              &:focus {
+                box-shadow: none;
+              }
+            }
+          }
+          &:active {
+            background-color: #e9ecef;
+          }
+        `
+      : css`
+          &:active {
+            background-color: ${$DCprimaryColor};
+          }
+        `}
+  ${(props: MenuProps) =>
+    props.variant !== '' ||
+    (props.variant === null &&
+      css`
+        & > div {
+          & > button {
+            background-color: none;
+            color: black;
+            &:focus {
+              box-shadow: none;
+            }
+          }
+        }
+        &:active {
+          background-color: #e9ecef;
+        }
+      `)}
 `
 const StyledInnerLine = styled(Dropdown.Toggle)``
 const StyledPixelButton = styled(Dropdown.Toggle)`
@@ -86,15 +90,15 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
     props.variant === 'outline' &&
     css`
       background-color: transparent;
-      border-color: ${$primaryColor} !important;
-      color: ${$primaryColor} !important;
+      border-color: ${$DCprimaryColor} !important;
+      color: ${$DCprimaryColor} !important;
       outline: none;
     `}
   ${(props: MenuProps) =>
     props.variant === 'simple' &&
     css`
-      background-color: ${$primaryColor} !important;
-      border-color: ${$primaryColor} !important;
+      background-color: ${$DCprimaryColor} !important;
+      border-color: ${$DCprimaryColor} !important;
       color: #fff !important;
       &:hover,
       &:active,
@@ -108,7 +112,7 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
     css`
       background-color: transparent;
       border-color: transparent;
-      color: ${$primaryColor};
+      color: ${$DCprimaryColor};
       padding: ${(props: MenuProps) => props.padding || '0.375rem 0.75rem'};
       &:hover,
       &:hover a,
@@ -119,7 +123,7 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
         color: ${$secondaryColor} !important;
       }
       a {
-        color: ${$primaryColor} !important;
+        color: ${$DCprimaryColor} !important;
       }
     `}
     ${(props: MenuProps) =>
@@ -190,12 +194,11 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                 disabled={data.disabled}
                 onClick={(e) => {
                   if (isGrouped) {
-                    e.stopPropagation();
+                    e.stopPropagation()
                   } else {
-                    data.clickHandler && data.clickHandler();
+                    data.clickHandler && data.clickHandler()
                   }
                 }}
-
                 onMouseEnter={() => setShow(data.label)}
                 onMouseLeave={() => setShow(false)}
                 active={false}
