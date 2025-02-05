@@ -75,17 +75,15 @@ export const DcDateRangePicker = React.forwardRef<
   }, [ranges])
 
   const showDate = (date, size) => {
-    const today = startOfDay(new Date()) // Normalize to start of today
+    const today = startOfDay(new Date())
     const yesterday = startOfDay(addDays(today, -1))
     const last7Days = startOfDay(addDays(today, -6))
-    const last30Days = startOfDay(addDays(today, -30))
-    const last90Days = startOfDay(addDays(today, -90))
-
-    const lastYearStart = startOfYear(subYears(today, 1)) // Jan 1 of last year
-    const lastYearEnd = endOfYear(subYears(today, 1)) // Dec 31 of last year
-
-    const lastMonthStart = startOfMonth(subMonths(today, 1)) // Start of last month
-    const lastMonthEnd = endOfMonth(subMonths(today, 1)) // End of last month
+    const last30Days = startOfDay(addDays(today, -29))
+    const last90Days = startOfDay(addDays(today, -89))
+    const lastYearStart = startOfYear(subYears(today, 1))
+    const lastYearEnd = endOfYear(subYears(today, 1))
+    const lastMonthStart = startOfMonth(subMonths(today, 1))
+    const lastMonthEnd = endOfMonth(subMonths(today, 1))
 
     if (
       isSameDay(date[0].startDate, today) &&

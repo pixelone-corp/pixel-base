@@ -42,7 +42,7 @@ const DefaultContent = styled.div`
   display: center;
   width: 200px;
   height: 150px;
-`;
+`
 
 export const PixelPopover = React.forwardRef<HTMLDivElement, PixelPopoverProps>(
   (
@@ -86,7 +86,7 @@ export const PixelPopover = React.forwardRef<HTMLDivElement, PixelPopoverProps>(
             left: 0,
             right: triggerSize.width + 8,
             bottom: 0,
-            top: -Number(triggerSize.height) / 2
+            top: 0
           }
           break
         case 'right':

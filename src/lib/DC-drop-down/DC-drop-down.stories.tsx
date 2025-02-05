@@ -18,10 +18,21 @@ const Template: ComponentStory<typeof DcDropDown> = (args) => {
   const onChangeHandler = (e) => {
     setValue(e.target.value)
   }
+  onsubmit = (e) => {
+    e.preventDefault()
+    alert('Form Submitted')
+  }
   args.onChange = onChangeHandler
   return (
     <React.Fragment>
-      <DcDropDown value={value} {...args} placeholder='DC DropDown' required />
+      <form>
+        <DcDropDown
+          value={value}
+          {...args}
+          placeholder='DC DropDown'
+          required
+        />
+      </form>
     </React.Fragment>
   )
 }
