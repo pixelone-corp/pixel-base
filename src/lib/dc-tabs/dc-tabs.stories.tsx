@@ -42,6 +42,148 @@ const tabs = [
     label: 'Tab 5',
     value: 'tab-5',
     icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
+  }
+]
+const subTabs = [
+  {
+    label: 'tab 1',
+    value: 'tab-1',
+    icon: <FontAwesomeIcon icon={faCoffee} />
+  },
+  {
+    label: 'Tab 2',
+    value: 'tab-2',
+    icon: <FontAwesomeIcon icon={faCocktail} />
+  },
+  {
+    label: 'Tab 3',
+    value: 'tab-3',
+    icon: <FontAwesomeIcon icon={faMugHot} />
+  },
+  {
+    label: 'Tab 4',
+    value: 'tab-4',
+    icon: <FontAwesomeIcon icon={faAppleWhole} />
+  },
+  {
+    label: 'Tab 5',
+    value: 'tab-5',
+    icon: <FontAwesomeIcon icon={faPaperPlane} />
   }
 ]
 const Template: ComponentStory<typeof DcTabs> = (args) => {
@@ -55,7 +197,10 @@ const Template: ComponentStory<typeof DcTabs> = (args) => {
             handleChange={(value) => {
               setActiveTab(value)
             }}
+            subTabs={subTabs}
+            withSubTabs={false}
             activeTab={activeTab}
+            size='small'
             {...args}
             tabs={tabs}
           />

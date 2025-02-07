@@ -33,7 +33,7 @@ const InputContainer = styled.div<{ size?: string; display?: string }>`
   &&::after {
     position: absolute;
     width: 25px;
-    height: 25px;
+    height: 20px;
     ${(props) =>
       props.size === 'sm' &&
       css`
@@ -45,7 +45,7 @@ const InputContainer = styled.div<{ size?: string; display?: string }>`
     background-repeat: no-repeat no-repeat;
     background-position: center center;
     background-size: cover;
-    top: 13px;
+    top: 8px;
     //add if props.size === 'sm' then top: 8px
     ${(props) =>
       props.size === 'sm' &&
