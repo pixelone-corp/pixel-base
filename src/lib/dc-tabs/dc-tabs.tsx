@@ -3,22 +3,42 @@ import styled, { css } from 'styled-components'
 import { $DCprimaryActiveColor, $primaryColor } from '../styleGuide'
 import { faGreaterThan, faLessThan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import DCFlexBox from '../DC-flex-box/DC-flex-box'
 
 export interface DcTabsProps {
   className?: string
   tabs: { value: any; label: string; icon?: React.ReactNode }[]
   activeTab: any
   handleChange: (value: any) => void
-  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills' | 'simple'
-  size?: 'sm' | 'md' | 'lg'
+  variant?:
+    | 'default'
+    | 'pills'
+    | 'pills-column'
+    | 'outline-pills'
+    | 'simple'
+    | 'sub-simple'
+  size?: 'sm' | 'md' | 'lg' | 'small'
+  withSubTabs?: boolean
+  subTabs?: { value: any; label: string }[]
 }
 
 export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
   (
-    { className, tabs, activeTab, handleChange, variant, size, ...rest },
+    {
+      className,
+      tabs,
+      activeTab,
+      handleChange,
+      variant,
+      size,
+      withSubTabs,
+      subTabs,
+      ...rest
+    },
     ref
   ) => {
     const scrollable = React.useRef<HTMLUListElement>(null)
+    const reference = React.useRef<HTMLUListElement>(null)
     const [scrollX, setScrollX] = React.useState(0)
     const [scrollEnd, setScrollEnd] = React.useState(true)
 
@@ -62,9 +82,21 @@ export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
             <FontAwesomeIcon icon={faLessThan} />
           </Arrow>
         )}
-        <Tabs variant={variant} ref={scrollable} onScroll={scrollCheck}>
+        <Tabs
+          variant={variant}
+          ref={scrollable}
+          withSubTabs={withSubTabs}
+          onScroll={scrollCheck}
+        >
           {tabs.map((item) => (
             <Tab
+              ref={reference}
+              // Apply position: relative to the active tab when withSubTabs is true
+              style={
+                withSubTabs && activeTab === item.value
+                  ? { position: 'relative' }
+                  : {}
+              }
               variant={variant}
               key={item.value}
               className={activeTab === item.value ? 'active' : ''}
@@ -78,6 +110,36 @@ export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
                 {item.icon && <TabIcon>{item.icon}</TabIcon>}
                 {item.label}
               </TabContent>
+              {/* Render sub-tabs inside the active tab */}
+              {withSubTabs && activeTab === item.value && (
+                <DCFlexBox
+                  style={{
+                    position: 'absolute',
+                    top: '50px', // Position below the active tab
+                    // left: 0,
+                    width: 'auto',
+                    zIndex: 1, // Ensure sub-tabs appear above other content
+                    background: 'white', // Add background to make sub-tabs visible
+                    border: '1px solid #ccc', // Add border for visibility
+                    padding: '10px', // Add padding for spacing
+                    display: 'flex', // Ensure sub-tabs are displayed in a row,
+                    borderRadius: '5px' // Add border radius for rounded corners
+                  }}
+                >
+                  {subTabs &&
+                    subTabs.map((subItem) => (
+                      <TabContent
+                        size={size}
+                        variant={variant}
+                        key={subItem.value}
+                        className={activeTab === 'subtabs' ? 'active' : ''}
+                        onClick={() => handleChange('subtabs')}
+                      >
+                        {subItem.label}
+                      </TabContent>
+                    ))}
+                </DCFlexBox>
+              )}
             </Tab>
           ))}
         </Tabs>
@@ -92,19 +154,33 @@ export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
 )
 
 const TabsContainer = styled.div<{
-  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills' | 'simple'
-  size?: 'sm' | 'md' | 'lg'
+  variant?:
+    | 'default'
+    | 'pills'
+    | 'pills-column'
+    | 'outline-pills'
+    | 'simple'
+    | 'sub-simple'
+  size?: 'sm' | 'md' | 'lg' | 'small'
 }>`
   display: flex;
   align-items: center;
+  overflow: visible;
 `
 
 const Tabs = styled.ul<{
-  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills ' | 'simple'
+  variant?:
+    | 'default'
+    | 'pills'
+    | 'pills-column'
+    | 'outline-pills'
+    | 'simple'
+    | 'sub-simple'
+  withSubTabs?: boolean
 }>`
   display: flex;
   list-style: none;
-  overflow-x: scroll;
+  overflow-x: ${(props) => (props.withSubTabs ? 'visible' : 'scroll')};
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
@@ -113,20 +189,12 @@ const Tabs = styled.ul<{
   &::-webkit-scrollbar {
     display: none;
   }
-  border-bottom: 1px solid #e5e7eb;
+  /* border-bottom: 1px solid #e5e7eb; */
   ${(props) =>
     props.variant === 'default' &&
     css`
       border-radius: 5px;
-      overflow: hidden;
-    `}
-
-  ${(props) =>
-    props.variant === 'default' &&
-    css`
-      border: none !important;
-
-      overflow: hidden;
+      overflow: visible; // Ensure sub-tabs are not clipped
     `}
 
   ${(props) =>
@@ -149,15 +217,13 @@ const Tabs = styled.ul<{
 `
 
 const Tab = styled.li<{
-  variant?: 'default' | 'pills' | 'pills-column' | 'simple'
+  variant?: 'default' | 'pills' | 'pills-column' | 'simple' | 'sub-simple'
+  position?: string
 }>`
   flex: 0 0 auto;
   cursor: pointer;
-  padding-right: 32px;
-  //add variant default
-  /* &.active > div {
-    animation: borderColorFade 0.3s ease-in-out, colorFade 0.1s ease-in-out;
-  } */
+  position: ${(props) => props.position};
+  /* padding-right: 32px; */
 
   ${(props) =>
     props.variant === 'default' &&
@@ -181,31 +247,28 @@ const Tab = styled.li<{
     props.variant === 'outline-pills' &&
     css`
       padding: 0px !important;
-    `} /* @keyframes borderColorFade {
-    from {
-      border-bottom-color: transparent;
-    }
-    to {
-      border-bottom-color: #5f38f9;
-    }
-  }
-
-  @keyframes colorFade {
-    from {
-      color: #787c9e;
-    }
-    to {
-      color: #5f38f9;
-    }
-  } */
+    `}
 `
 
 const TabContent = styled.div<{
-  variant?: 'default' | 'pills' | 'pills-column' | 'outline-pills' | 'simple'
-  size?: 'sm' | 'md' | 'lg'
+  variant?:
+    | 'default'
+    | 'pills'
+    | 'pills-column'
+    | 'outline-pills'
+    | 'simple'
+    | 'sub-simple'
+  size?: 'sm' | 'md' | 'lg' | 'small'
+  position?: string
 }>`
+  position: ${(props) => props.position};
   font-size: ${(props) =>
     props.size === 'sm' ? '0.75rem' : props.size == 'md' ? '0.875rem' : '1rem'};
+  ${(props) =>
+    props.size === 'small' &&
+    css`
+      font-size: 10px !important;
+    `}
   display: flex;
   align-items: center;
   padding: ${(props) =>
@@ -305,13 +368,14 @@ const TabContent = styled.div<{
           : '9px 18px'};
 
       border: 1px solid transparent;
+
       &:hover {
         color: ${$DCprimaryActiveColor};
       }
       &.active {
         color: ${$DCprimaryActiveColor};
         background-color: #ffffff;
-        border: none;
+        border-bottom: none;
         font-weight: 600;
       }
     `}

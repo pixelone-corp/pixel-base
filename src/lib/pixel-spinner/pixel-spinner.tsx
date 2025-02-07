@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+import { $DCprimaryColor } from '../styleGuide'
 
 export interface PixelSpinnerProps {
   isShow?: boolean
@@ -12,7 +13,6 @@ const spin = keyframes`
   100% { transform: rotate(360deg); }
 `
 
-
 export const PixelSpinner = React.forwardRef<
   HTMLButtonElement,
   PixelSpinnerProps
@@ -20,7 +20,7 @@ export const PixelSpinner = React.forwardRef<
   const { isShow, size } = props
 
   return (
-    <StyledPixelSpinner isShow={isShow}  ref={ref}>
+    <StyledPixelSpinner isShow={isShow} ref={ref}>
       <Spinner size={size} />
     </StyledPixelSpinner>
   )
@@ -33,15 +33,15 @@ const StyledPixelSpinner = styled.div<{ isShow: boolean }>`
   min-height: 100%;
   position: absolute;
   z-index: 230;
-  background-color: #00000047;
+  background-color: rgba(46, 49, 74, 0.4);
 `
 
 const Spinner = styled.span<{ size: string }>`
   width: ${(props) => (props.size ? props.size : '40px')};
   height: ${(props) => (props.size ? props.size : '40px')};
-  border: 5px solid rgba(0, 0, 0, 0.3);
+  border: 5px solid ${$DCprimaryColor};
   border-radius: 50%;
-  border-top: 5px solid #db01f9;
+  border-top: 5px solid transparent;
   animation: ${spin} 1s linear infinite;
 `
 
