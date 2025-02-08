@@ -14,7 +14,7 @@ export interface DcDropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   isShowLabel?: boolean
   disabled?: boolean
   customLabel: string
-  size?: string
+  dropdownSize?: string
 }
 interface OptionsData {
   value: string
@@ -82,7 +82,7 @@ export const DcDropDown = React.forwardRef<HTMLDivElement, DcDropDownProps>(
       disabled = false,
       customLabel = '',
       onChange = () => {},
-      size,
+      dropdownSize,
       ...rest
     },
     ref
@@ -239,7 +239,7 @@ export const DcDropDown = React.forwardRef<HTMLDivElement, DcDropDownProps>(
           data-value={value}
         >
           <Toggler
-            size={size}
+            dropdownSize={dropdownSize}
             disable={disabled}
             onClick={() => {
               if (disabled) {
@@ -417,7 +417,7 @@ const Mainconatiner = styled.div`
   position: relative;
 `
 const Toggler = styled.button.attrs({ type: 'button' })<{
-  size: string
+  dropdownSize: string
   disable: boolean
 }>`
   display: flex;
@@ -436,7 +436,7 @@ const Toggler = styled.button.attrs({ type: 'button' })<{
   padding: 0.5625rem 18px;
   min-height: 2.75rem;
   ${(props) =>
-    props.size === 'sm' &&
+    props.dropdownSize === 'sm' &&
     'min-height: 30px; max-height: 30px; padding: 3px 0.75rem;'}
   overflow: hidden;
   width: 100%;
