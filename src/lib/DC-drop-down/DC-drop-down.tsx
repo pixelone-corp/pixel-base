@@ -14,6 +14,7 @@ export interface DcDropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   isShowLabel?: boolean
   disabled?: boolean
   customLabel: string
+  size?: string
 }
 interface OptionsData {
   value: string
@@ -81,6 +82,7 @@ export const DcDropDown = React.forwardRef<HTMLDivElement, DcDropDownProps>(
       disabled = false,
       customLabel = '',
       onChange = () => {},
+      size,
       ...rest
     },
     ref
@@ -237,6 +239,7 @@ export const DcDropDown = React.forwardRef<HTMLDivElement, DcDropDownProps>(
           data-value={value}
         >
           <Toggler
+            size={size}
             disable={disabled}
             onClick={() => {
               if (disabled) {
@@ -413,7 +416,10 @@ const Mainconatiner = styled.div`
   flex-direction: column;
   position: relative;
 `
-const Toggler = styled.button.attrs({ type: 'button' })<{ disable: boolean }>`
+const Toggler = styled.button.attrs({ type: 'button' })<{
+  size: string
+  disable: boolean
+}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -427,9 +433,12 @@ const Toggler = styled.button.attrs({ type: 'button' })<{ disable: boolean }>`
   display: inline-flex;
   flex-wrap: wrap;
   font-size: 0.875rem;
-  min-height: 2.75rem;
-  overflow: hidden;
   padding: 0.5625rem 18px;
+  min-height: 2.75rem;
+  ${(props) =>
+    props.size === 'sm' &&
+    'min-height: 30px; max-height: 30px; padding: 3px 0.75rem;'}
+  overflow: hidden;
   width: 100%;
   cursor: ${(props) => (props.disable ? 'not-allowed' : 'pointer')};
   background: ${(props) => (props.disable ? '#f7f7f7' : 'none')};
