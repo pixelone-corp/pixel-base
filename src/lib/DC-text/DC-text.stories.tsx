@@ -2,7 +2,12 @@ import React from 'react'
 import { ComponentStory } from '@storybook/react'
 
 import { DcText } from './DC-text'
-import { Section, SectionActions } from '../common-styled-component'
+import {
+  Section,
+  SectionActions,
+  SectionContent
+} from '../common-styled-component'
+import PixelPageContainer from '../pixel-page-container/pixel-page-container'
 
 export default {
   title: 'DC Text',
@@ -11,13 +16,13 @@ export default {
 
 const Template: ComponentStory<typeof DcText> = (args) => {
   return (
-    <React.Fragment>
+    <PixelPageContainer>
       <Section>
-        <SectionActions>
+        <SectionContent>
           <DcText {...args}>Dc Text</DcText>
-        </SectionActions>
+        </SectionContent>
       </Section>
-    </React.Fragment>
+    </PixelPageContainer>
   )
 }
 
