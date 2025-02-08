@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
 import styled, { css } from 'styled-components'
-import { $DCprimaryColor, $secondaryColor } from '../styleGuide'
+import { $DCprimaryColor, $DCprimaryActiveColor } from '../styleGuide'
 import { PixelTag } from '../pixel-tag/pixel-tag'
 export interface MenuProps {
   className?: string
@@ -103,8 +103,8 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
       &:hover,
       &:active,
       &:focus {
-        background-color: ${$secondaryColor} !important;
-        border-color: ${$secondaryColor} !important;
+        background-color: ${$DCprimaryActiveColor} !important;
+        border-color: ${$DCprimaryActiveColor} !important;
       }
     `}
     ${(props: MenuProps) =>
@@ -120,7 +120,7 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
       &:active a,
       &:focus,
       &:focus a {
-        color: ${$secondaryColor} !important;
+        color: ${$DCprimaryActiveColor} !important;
       }
       a {
         color: ${$DCprimaryColor} !important;
@@ -129,8 +129,8 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
     ${(props: MenuProps) =>
     props.active &&
     css`
-      background-color: ${$secondaryColor} !important;
-      border-color: ${$secondaryColor} !important;
+      background-color: ${$DCprimaryActiveColor} !important;
+      border-color: ${$DCprimaryActiveColor} !important;
     `}
     ${(props: MenuProps) =>
     props.variant === 'tag' &&

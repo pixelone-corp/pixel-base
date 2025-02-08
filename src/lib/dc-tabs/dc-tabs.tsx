@@ -261,6 +261,7 @@ const TabContent = styled.div<{
   size?: 'sm' | 'md' | 'lg' | 'small'
   position?: string
 }>`
+  border: 1px solid lightgrey;
   position: ${(props) => props.position};
   font-size: ${(props) =>
     props.size === 'sm' ? '0.75rem' : props.size == 'md' ? '0.875rem' : '1rem'};
@@ -277,6 +278,11 @@ const TabContent = styled.div<{
       : props.size === 'md'
       ? '5px 10px'
       : '9px 18px'};
+  ${(props) =>
+    props.size === 'small' &&
+    css`
+      padding: 4px 10px;
+    `}
   color: #787c9e;
 
   &.active {
@@ -295,9 +301,22 @@ const TabContent = styled.div<{
       border-top: 1px solid transparent;
       border-right: 1px solid transparent;
       border-left: 1px solid transparent;
-      border-bottom: none;
+      border-bottom: 1px solid lightgrey;
 
-      &:hover,
+      &:hover {
+        color: #24214b;
+        border-radius: 0.375rem 0.375rem 0 0 !important;
+        padding: ${(props) =>
+          props.size === 'sm'
+            ? ' 2px 8px'
+            : props.size === 'md'
+            ? '5px 10px'
+            : '9px 18px'};
+        border-top: 1px solid #d1d5db !important;
+        border-right: 1px solid #d1d5db !important;
+        border-left: 1px solid #d1d5db !important;
+        /* border-bottom: none; */
+      }
       &.active {
         color: #24214b;
         border-radius: 0.375rem 0.375rem 0 0 !important;
@@ -360,14 +379,18 @@ const TabContent = styled.div<{
     ${(props) =>
     props.variant === 'simple' &&
     css`
+      margin-right: 5px;
+      border-radius: 4px;
       padding: ${(props) =>
         props.size === 'sm'
           ? ' 2px 8px'
           : props.size === 'md'
           ? '5px 10px'
+          : props.size === 'small'
+          ? '4px 10px'
           : '9px 18px'};
 
-      border: 1px solid transparent;
+      /* border: 1px solid transparent; */
 
       &:hover {
         color: ${$DCprimaryActiveColor};
@@ -375,7 +398,7 @@ const TabContent = styled.div<{
       &.active {
         color: ${$DCprimaryActiveColor};
         background-color: #ffffff;
-        border-bottom: none;
+        /* border-bottom: none; */
         font-weight: 600;
       }
     `}

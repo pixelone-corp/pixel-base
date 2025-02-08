@@ -26,7 +26,8 @@ const SectionContent = styled.div<{ noPadding?: boolean; isMobile?: boolean }>`
   padding: ${(props) => (props.noPadding ? '0px 0px' : '10px 20px')};
   background: #fff;
   border-radius: 5px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 7px 14px 0 rgba(65, 69, 88, 0.1),
+    0 3px 6px 0 rgba(0, 0, 0, 0.07);
   min-height: 25px;
   &.fullheight {
     min-height: 100%;
@@ -90,5 +91,5 @@ export {
   SectionActions,
   ActionIconSection,
   ButtonsGroup,
-  Link,
+  Link
 }

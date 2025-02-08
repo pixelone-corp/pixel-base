@@ -52,112 +52,112 @@ const tabs = [
     label: 'Tab 5',
     value: 'tab-5',
     icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
-  },
-  {
-    label: 'Tab 5',
-    value: 'tab-5',
-    icon: <FontAwesomeIcon icon={faPaperPlane} />
   }
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // },
+  // {
+  //   label: 'Tab 5',
+  //   value: 'tab-5',
+  //   icon: <FontAwesomeIcon icon={faPaperPlane} />
+  // }
 ]
 const subTabs = [
   {
