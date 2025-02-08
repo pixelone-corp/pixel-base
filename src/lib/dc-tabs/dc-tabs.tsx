@@ -235,6 +235,7 @@ const Tab = styled.li<{
     props.variant === 'simple' &&
     css`
       padding: 0px !important;
+      border-radius: 'none';
     `}
 
   ${(props) =>
@@ -379,6 +380,29 @@ const TabContent = styled.div<{
     ${(props) =>
     props.variant === 'simple' &&
     css`
+      padding: ${(props) =>
+        props.size === 'sm'
+          ? ' 2px 8px'
+          : props.size === 'md'
+          ? '5px 10px'
+          : props.size === 'small'
+          ? '4px 10px'
+          : '9px 18px'};
+      border: 1px solid transparent;
+
+      &:hover {
+        color: ${$DCprimaryActiveColor};
+      }
+      &.active {
+        color: ${$DCprimaryActiveColor};
+        background-color: #ffffff;
+        font-weight: 600;
+      }
+    `}
+    ${(props) =>
+    props.variant === 'sub-simple' &&
+    css`
+      border: 1px solid lightgrey;
       margin-right: 5px;
       border-radius: 4px;
       padding: ${(props) =>
@@ -390,15 +414,12 @@ const TabContent = styled.div<{
           ? '4px 10px'
           : '9px 18px'};
 
-      /* border: 1px solid transparent; */
-
       &:hover {
         color: ${$DCprimaryActiveColor};
       }
       &.active {
         color: ${$DCprimaryActiveColor};
         background-color: #ffffff;
-        /* border-bottom: none; */
         font-weight: 600;
       }
     `}
