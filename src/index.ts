@@ -62,6 +62,8 @@ export * from './lib/dc-tag/dc-tag'
 export * from './lib/dc-alert/dc-alert'
 export * from './lib/dc-input-tag/dc-input-tag'
 export * from './lib/dc-date-range-picker/dcDateRangePicker'
+export * from './lib/dc-card/dc-card'
+
 
 import PixelFactoryContext, {
   PixelFactoryContext as PixelFactory
