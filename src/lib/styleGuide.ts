@@ -1,14 +1,42 @@
+// row.dispatch_status === 'open'
+// ? $DCWarningColor
+// : row.dispatch_status === 'packaging'
+// ? $DCInfoColor
+// : row.dispatch_status === 'ready to ship'
+// ? $DCSuccessColor
+// : row.dispatch_status === 'shipped'
+// ? $DCDangerColor // Changed color for shipped
+// : $DCsecondaryColor
+// }
+// customBackgroundColor={
+// row.dispatch_status === 'open'
+// ? '#fdf7e3' // Light Yellow for Open
+// : row.dispatch_status === 'packaging'
+// ? '#d6e4ff' // Light Blue for Packaging
+// : row.dispatch_status === 'ready to ship'
+// ? '#d1fae5' // Light Green for Ready to Ship
+// : row.dispatch_status === 'shipped'
+// ? '#fce8e8' // Light Red for Shipped
+// : '#e5e7eb' // Default Background
+
 let $primaryColor: string = '#9b02fd'
 let $DCprimaryColor: string = '#5f38f9'
-let $DCprimaryShadowColor: string = 'rgba(95, 56, 249, .2);'
-let $DCprimaryActiveColor: string = '#4c2dc7'
 let $DCsecondaryColor: string = '#374151'
-let $DCsecondaryActiveColor: string = '#2c3441'
 let $DCSuccessColor: string = '#2dc58c'
 let $DCWarningColor: string = '#f2bc16'
 let $DCDangerColor: string = '#df3c4e'
 let $DCInfoColor: string = '#478ffc'
 let $DCLightColor: string = '#e5e7eb'
+let $DCprimaryLightColor: string = '#d6e4ff'
+let $DCsecondaryLightColor: string = '#374151'
+let $DCSuccessLightColor: string = '#d1fae5'
+let $DCWarningLightColor: string = '#fdf7e3'
+let $DCDangerLightColor: string = '#fce8e8'
+let $DCInfoLightColor: string = '#d6e4ff'
+let $DCLightestColor: string = '#f3f4f6'
+let $DCprimaryShadowColor: string = 'rgba(95, 56, 249, .2);'
+let $DCprimaryActiveColor: string = '#4c2dc7'
+let $DCsecondaryActiveColor: string = '#2c3441'
 let $DCSuccessActiveColor: string = '#249e70'
 let $DCWarningActiveColor: string = '#f5c945'
 let $DCDangerActiveColor: string = '#b2303e'
@@ -116,6 +144,13 @@ const $textColorWithAlpha = (op: string) => addAlpha($textColor, op)
 
 export {
   changeTheme,
+  $DCprimaryLightColor,
+  $DCsecondaryLightColor,
+  $DCSuccessLightColor,
+  $DCWarningLightColor,
+  $DCDangerLightColor,
+  $DCInfoLightColor,
+  $DCLightestColor,
   $DCprimaryColor,
   $DCprimaryShadowColor,
   $DCsecondaryColor,
