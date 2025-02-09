@@ -27,7 +27,6 @@ export interface DcTextProps {
   textAlignment?: string
   margin?: string
   padding?: string
-  //add more text props
   textEllipsis?: boolean
   textOverflow?: string
   textTransform?: string
