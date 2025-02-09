@@ -15,6 +15,7 @@ interface PixelTableProps {
 import './table.scss'
 import { PixelFactoryContext } from '../pixel-factory/pixel-factory'
 import PixelInput from '../pixel-input/pixel-input'
+import DcInput from '../DC-input/DC-input'
 
 createTheme(
   'solarized',
@@ -46,7 +47,6 @@ const StyledBootstrapTable = styled(DataTable)`
   header {
     display: none !important;
   }
- 
 `
 const StyledLoaderContainer = styled.div`
   width: 100%;
@@ -89,7 +89,7 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
       data = [],
       progressPending,
       isSearchable = false,
-      headerBackgroundColor = "#ffffff",
+      headerBackgroundColor = '#ffffff',
       customStyles = {},
       ...rest
     },
@@ -109,7 +109,8 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
 
       return (
         <SearchPixelInput isMobile={isMobile}>
-          <PixelInput
+          <DcInput
+            inputSize={'sm'}
             showsearchicon={0}
             placeholder='Search'
             name='search'
@@ -124,11 +125,10 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
         style: {
           borderBottom: '1px solid #212529',
           borderTop: '1px solid #cecece',
-          backgroundColor: headerBackgroundColor,
-        },
-      },
-
-    };
+          backgroundColor: headerBackgroundColor
+        }
+      }
+    }
     return (
       <RdtClasses>
         <StyledBootstrapTable
@@ -156,14 +156,14 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
   }
 )
 const RdtClasses = styled.div`
-   .rdt_TableHeadRow {
-   border-bottom: none;
-   width : 100%;
-   > div {
-    border-bottom: 1px solid #212529;
-    border-top: 1px solid #cecece;
+  .rdt_TableHeadRow {
+    border-bottom: none;
+    width: 100%;
+    > div {
+      border-bottom: 1px solid #212529;
+      border-top: 1px solid #cecece;
+    }
   }
-  }
- width: 100%;
-`;
+  width: 100%;
+`
 export default PixelTable
