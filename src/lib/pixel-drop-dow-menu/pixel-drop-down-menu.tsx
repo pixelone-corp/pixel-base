@@ -241,13 +241,10 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
 
 const StyledSubDropdown = styled(Dropdown)`
   width: 200px;
-
+  font-size: 12px;
   .dropdown-toggle {
     width: 100%;
-    // display: flex;
-    // flex-direction: row;
-    // justify-content: flex-start;
-    // align-items: flex-start;
+
     text-align: left;
 
     &::after {
