@@ -262,7 +262,6 @@ const TabContent = styled.div<{
   size?: 'sm' | 'md' | 'lg' | 'small'
   position?: string
 }>`
-  border: 1px solid lightgrey;
   position: ${(props) => props.position};
   font-size: ${(props) =>
     props.size === 'sm' ? '0.75rem' : props.size == 'md' ? '0.875rem' : '1rem'};
