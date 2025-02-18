@@ -76,6 +76,7 @@ const CustomInput = styled(FormControl)<{ props }>`
   background-clip: padding-box;
   border-radius: 0.375rem;
   display: block;
+  position: none;
   font-size: 0.875rem;
   font-weight: 400;
   padding: ${(props) =>

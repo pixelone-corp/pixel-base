@@ -1,24 +1,3 @@
-// row.dispatch_status === 'open'
-// ? $DCWarningColor
-// : row.dispatch_status === 'packaging'
-// ? $DCInfoColor
-// : row.dispatch_status === 'ready to ship'
-// ? $DCSuccessColor
-// : row.dispatch_status === 'shipped'
-// ? $DCDangerColor // Changed color for shipped
-// : $DCsecondaryColor
-// }
-// customBackgroundColor={
-// row.dispatch_status === 'open'
-// ? '#fdf7e3' // Light Yellow for Open
-// : row.dispatch_status === 'packaging'
-// ? '#d6e4ff' // Light Blue for Packaging
-// : row.dispatch_status === 'ready to ship'
-// ? '#d1fae5' // Light Green for Ready to Ship
-// : row.dispatch_status === 'shipped'
-// ? '#fce8e8' // Light Red for Shipped
-// : '#e5e7eb' // Default Background
-
 let $primaryColor: string = '#9b02fd'
 let $DCprimaryColor: string = '#5f38f9'
 let $DCsecondaryColor: string = '#374151'
