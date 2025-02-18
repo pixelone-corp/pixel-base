@@ -1,6 +1,6 @@
 // DcUl.tsx
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css, CSSObject } from 'styled-components'
 
 interface UlProps {
   /** Array of content for the UL */
@@ -82,6 +82,34 @@ const StyledDcUl = styled.div<{
   gap?: string
   padding?: string
   margin?: string
+  overflow?: string
+  zIndex?: number
+  cursor?: string
+  display?: string
+  opacity?: number
+  visibility?: string
+  transformOrigin?: string
+  width?: string
+  height?: string
+  position?: string
+  top?: string
+  bottom?: string
+  left?: string
+  right?: string
+  backgroundColor?: string
+  after?: React.ReactNode
+  before?: React.ReactNode
+  border?: string
+  borderRadious?: string
+  boxShadow?: string
+  hoverStyle?: React.CSSProperties
+  transition?: string
+  transform?: string
+  animation?: string
+  fontSize?: string
+  fontWeight?: string
+  color?: string
+  textAlignment?: string
 }>`
   display: flex;
   flex-direction: column;
@@ -108,17 +136,17 @@ const StyledDcUl = styled.div<{
   right: ${(props) => props.right || 'auto'};
   background-color: ${(props) => props.backgroundColor || '#090127'};
   ::after {
-    ${(props) => props.after || 'none'};
+    content: ${(props) => (props.after ? `"${props.after}"` : 'none')};
   }
   ::before {
-    ${(props) => props.before || 'none'};
+    content: ${(props) => (props.before ? `"${props.before}"` : 'none')};
   }
   //more props
   border: ${(props) => props.border || 'none'};
   border-radius: ${(props) => props.borderRadious || '0'};
   box-shadow: ${(props) => props.boxShadow || 'none'};
   :hover {
-    ${(props) => props.hoverStyle}
+    ${(props) => props.hoverStyle && css(props.hoverStyle as CSSObject)}
   }
   //add animation
   transition: ${(props) => props.transition || 'none'};

@@ -13,6 +13,7 @@ import TypeAHead from './components/TypeAHead'
 export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
   inputClassName?: string
+  invalid?: boolean
   label?: string
   name: string
   error?: string
@@ -31,7 +32,6 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   labelKey?: any
   noPadding?: boolean
   children?: any
-  invalid?: boolean
   showsearchicon?: any
   placeholder?: string
   isShowLabel?: boolean
@@ -72,7 +72,7 @@ const StyledLabel = styled.div<{ focus?: string; showsearchicon: any }>`
   transition: all 0.2s ease-in-out;
   border-radius: 4px !important;
 `
-const PixelInputContainer = styled.div`
+const PixelInputContainer = styled.div<{ invalid: boolean }>`
   position: relative;
   width: 100%;
   &.overFlowCustom {
@@ -82,7 +82,7 @@ const PixelInputContainer = styled.div`
       & > * {
         /* overflow: visible !important; */
         input {
-          ${(props: Props) =>
+          ${(props) =>
             props.invalid === true &&
             css`
               color: red !important;
@@ -268,7 +268,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
                   disabled={disabled}
                   aria-invalid={error ? 'true' : 'false'}
                   rest={rest}
-                  showResetDate={false}
+                  showResetDates={false}
                   showClose={false}
                   label={label}
                   placeholder={placeholder}
@@ -285,52 +285,6 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
                   }
                   // date={value ? new Date(value) : new Date()} // Date or null
                   showDatepicker={showDatePicker}
-                />
-              </React.Fragment>
-            ) : as === 'dateRange' ? (
-              <React.Fragment>
-                <ThemeProvider
-                  theme={{
-                    breakpoints: ['32em', '48em', '64em'],
-                    reactDatepicker: {
-                      dateRangeZIndex: -99999
-                    }
-                  }}
-                ></ThemeProvider>
-                <StyledDateRangePicker
-                  ref={ref}
-                  className={cn(
-                    ' px-4 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
-                    shadow && 'focus:shadow',
-                    variantClasses[variant],
-                    sizeClasses[dimension],
-                    disabled && 'bg-gray-100 cursor-not-allowed',
-                    inputClassName
-                  )}
-                  style={{ display: 'none' }}
-                  disabled={disabled}
-                  aria-invalid={error ? 'true' : 'false'}
-                  {...rest}
-                  showResetDate={false}
-                  showSelectedDates={false}
-                  showClose={false}
-                  exactMinBookingDays={false}
-                  rtl={false}
-                  vertical={false}
-                  inputId={name}
-                  onDatesChange={(data: any) => {
-                    onChange({
-                      startDate: data.startDate,
-                      endDate: data.endDate
-                    })
-                    setShowDatePicker(data.focusedInput)
-                  }}
-                  onFocusChange={(focusedInput) => {
-                    setShowDatePicker(focusedInput)
-                  }}
-                  focusedInput={showDatePicker}
-                  endDate={value.endDate}
-                  startDate={value.startDate}
                 />
               </React.Fragment>
             ) : as === 'typeahead' ? (

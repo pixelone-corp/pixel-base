@@ -315,7 +315,6 @@ export const DcDropDown = React.forwardRef<HTMLDivElement, DcDropDownProps>(
                                   })
                                 }}
                                 key={index}
-                                value={option.value}
                                 disabled={option.disabled}
                                 className={
                                   option.value === value ? 'selected' : ''
@@ -371,7 +370,6 @@ export const DcDropDown = React.forwardRef<HTMLDivElement, DcDropDownProps>(
                                 className={
                                   option.value === value ? 'selected' : ''
                                 }
-                                value={option.value}
                                 disabled={option.disabled}
                                 onClick={() => {
                                   onChange &&
@@ -485,14 +483,14 @@ const DropDownList = styled.div<{
   word-break: break-all;
   z-index: 99;
 `
-const Option = styled.div`
+const Option = styled.div<{ disabled?: boolean }>`
   background-color: #ffffff;
   height: 40px;
   padding: 5px 5px 5px 25px;
   max-width: 100% !important;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   &:hover {
-    background-color: #f0f4fa;
+    background-color: ${(props) => (props.disabled ? '#ffffff' : '#f0f4fa')};
   }
   &.selected {
     background-color: #136acd;

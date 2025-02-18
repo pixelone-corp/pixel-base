@@ -90,7 +90,7 @@ export const DcTabs = React.forwardRef<HTMLDivElement, DcTabsProps>(
         >
           {tabs.map((item) => (
             <Tab
-              ref={reference}
+              // ref={reference}
               // Apply position: relative to the active tab when withSubTabs is true
               style={
                 withSubTabs && activeTab === item.value
@@ -217,7 +217,13 @@ const Tabs = styled.ul<{
 `
 
 const Tab = styled.li<{
-  variant?: 'default' | 'pills' | 'pills-column' | 'simple' | 'sub-simple'
+  variant?:
+    | 'default'
+    | 'pills'
+    | 'pills-column'
+    | 'outline-pills'
+    | 'simple'
+    | 'sub-simple'
   position?: string
 }>`
   flex: 0 0 auto;
@@ -251,20 +257,24 @@ const Tab = styled.li<{
     `}
 `
 
-const TabContent = styled.div<{
-  variant?:
-    | 'default'
-    | 'pills'
-    | 'pills-column'
-    | 'outline-pills'
-    | 'simple'
-    | 'sub-simple'
-  size?: 'sm' | 'md' | 'lg' | 'small'
-  position?: string
-}>`
+const TabContent = styled.div<
+  {
+    variant?:
+      | 'default'
+      | 'pills'
+      | 'pills-column'
+      | 'outline-pills'
+      | 'simple'
+      | 'sub-simple'
+    size?: 'sm' | 'md' | 'lg' | 'small'
+    position?: string
+  } & React.HTMLAttributes<HTMLDivElement> & {
+      size?: 'sm' | 'md' | 'lg' | 'small'
+    }
+>`
   position: ${(props) => props.position};
-  font-size: ${(props) =>
-    props.size === 'sm' ? '0.75rem' : props.size == 'md' ? '0.875rem' : '1rem'};
+  font-size: ${({ size }) =>
+    size === 'sm' ? '0.75rem' : size == 'md' ? '0.875rem' : '1rem'};
   ${(props) =>
     props.size === 'small' &&
     css`
@@ -272,12 +282,8 @@ const TabContent = styled.div<{
     `}
   display: flex;
   align-items: center;
-  padding: ${(props) =>
-    props.size === 'sm'
-      ? ' 2px 8px'
-      : props.size === 'md'
-      ? '5px 10px'
-      : '9px 18px'};
+  padding: ${({ size }) =>
+    size === 'sm' ? ' 2px 8px' : size === 'md' ? '5px 10px' : '9px 18px'};
   ${(props) =>
     props.size === 'small' &&
     css`
@@ -379,12 +385,12 @@ const TabContent = styled.div<{
     ${(props) =>
     props.variant === 'simple' &&
     css`
-      padding: ${(props) =>
-        props.size === 'sm'
+      padding: ${({ size }) =>
+        size === 'sm'
           ? ' 2px 8px'
-          : props.size === 'md'
+          : size === 'md'
           ? '5px 10px'
-          : props.size === 'small'
+          : size === 'small'
           ? '4px 10px'
           : '9px 18px'};
       border: 1px solid transparent;

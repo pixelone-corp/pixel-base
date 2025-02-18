@@ -2,6 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import DcInput from './DC-input'
+import PixelDropDownMenu from '../pixel-drop-dow-menu/pixel-drop-down-menu'
 
 export default {
   title: 'DC Input',
@@ -12,6 +13,50 @@ const Template: ComponentStory<typeof DcInput> = (args) => {
 
   return (
     <React.Fragment>
+      <PixelDropDownMenu
+        className='string'
+        variant='tag'
+        size='lg'
+        margin='10px'
+        padding='20px'
+        tooltip='string'
+        options={[
+          {
+            label: 'Child 2',
+
+            children: [
+              {
+                label: 'Test 1',
+                clickHandler: () => {
+                  console.log('testing')
+                }
+              },
+              { label: 'Test 2', clickHandler: () => {} },
+              { label: 'Test 323' },
+              { label: 'Test 12323', clickHandler: () => {} }
+            ]
+          },
+          {
+            label: 'Child 3',
+            children: [
+              { label: 'Test 321' },
+              { label: 'Test 13232' },
+              { label: 'Test dfd1' },
+              { label: 'Test 1fdf' }
+            ]
+          },
+          {
+            label: 'Child 4',
+            children: [
+              { label: 'Test 1' },
+              { label: 'Test 1' },
+              { label: 'Test 1' },
+              { label: 'Test 1' }
+            ]
+          }
+        ]}
+      />
+
       <DcInput
         {...args}
         onChange={(e) => {
@@ -22,6 +67,7 @@ const Template: ComponentStory<typeof DcInput> = (args) => {
     </React.Fragment>
   )
 }
+
 export const Input = Template.bind({})
 Input.args = {
   placeholder: 'Enter email'

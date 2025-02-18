@@ -21,11 +21,6 @@ const StyledPixelTopBar = styled.div`
   align-items: center;
   padding: 0 20px;
   border-bottom: 1px solid #e6e6e6;
-  ${({ isMobile }) =>
-    isMobile &&
-    css`
-      padding-left: 50px;
-    `}
 `
 
 export const PixelTopBar = React.forwardRef<HTMLDivElement, TopBarProps>(
@@ -36,7 +31,7 @@ export const PixelTopBar = React.forwardRef<HTMLDivElement, TopBarProps>(
           <StyledPixelTopBar>{children}</StyledPixelTopBar>
         </BrowserView>
         <MobileView>
-          <StyledPixelTopBar isMobile>{children}</StyledPixelTopBar>
+          <StyledPixelTopBar></StyledPixelTopBar>
         </MobileView>
       </React.Fragment>
     )

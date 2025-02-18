@@ -48,7 +48,7 @@ export interface DcTopBarProps {
   textAlignment?: string
 }
 
-const StyledDCTopBar = styled.div`
+const StyledDCTopBar = styled.div<DcTopBarProps>`
   width: 100%;
   height: 60px;
   display: flex;
@@ -66,11 +66,6 @@ const StyledDCTopBar = styled.div`
   min-height: 3.75rem;
   padding: 0.5rem;
   z-index: 1024;
-  ${({ isMobile }) =>
-    isMobile &&
-    css`
-      padding-left: 50px;
-    `}
 
   //add more props
   padding: ${(props) => props.padding};
@@ -79,7 +74,7 @@ const StyledDCTopBar = styled.div`
   border-radius: ${(props) => props.borderRadious};
   box-shadow: ${(props) => props.boxShadow};
   :hover {
-    ${(props) => props.hoverStyle}
+    ${(props) => css(props.hoverStyle as any)}
   }
   //add animation
   transition: ${(props) => props.transition};
@@ -95,10 +90,10 @@ const StyledDCTopBar = styled.div`
   right: ${(props) => props.right};
   background-color: ${(props) => props.backgroundColor};
   :after {
-    ${(props) => props.after}
+    content: ${(props) => (props.after ? `"${props.after}"` : '""')};
   }
   :before {
-    ${(props) => props.before}
+    content: ${(props) => (props.before ? `"${props.before}"` : '""')};
   }
   //more props
   cursor: ${(props) => props.cursor};
@@ -116,12 +111,12 @@ export const DcTopBar = React.forwardRef<HTMLDivElement, DcTopBarProps>(
     return (
       <React.Fragment>
         <BrowserView>
-          <StyledDCTopBar ref={ref} {...rest}>
+          <StyledDCTopBar ref={ref} className={className} {...rest}>
             {children}
           </StyledDCTopBar>
         </BrowserView>
         <MobileView>
-          <StyledDCTopBar {...rest} isMobile>
+          <StyledDCTopBar ref={ref} className={className} {...rest} isMobile>
             {children}
           </StyledDCTopBar>
         </MobileView>

@@ -166,6 +166,7 @@ export const PixelSwitch = React.forwardRef<HTMLInputElement, SwitchProps>(
     return (
       <StyledPixelSwitch
         size={size}
+        name={rest.name}
         className={`${className} ${disabled === true && 'disable'}`}
       >
         <StyledLabel>{label}</StyledLabel>

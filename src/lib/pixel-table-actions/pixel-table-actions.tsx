@@ -1,19 +1,19 @@
-import React, { InputHTMLAttributes, useEffect } from "react";
-import styled, { css } from "styled-components";
+import React, { InputHTMLAttributes, useEffect } from 'react'
+import styled, { css } from 'styled-components'
 
-import { Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Dropdown, OverlayTrigger, Tooltip } from 'react-bootstrap'
 interface actionsData {
-  icon: any;
-  clickHandler: any;
-  title?: string;
-  disabled?: boolean;
-  type?: string;
-  options?: any;
+  icon: any
+  clickHandler: any
+  title?: string
+  disabled?: boolean
+  type?: string
+  options?: any
 }
 export interface tableActionProps extends InputHTMLAttributes<HTMLDivElement> {
-  className?: string;
-  row?: any;
-  action?: actionsData[];
+  className?: string
+  row?: any
+  action?: actionsData[]
 }
 // const NewAction = [
 //   {
@@ -28,7 +28,7 @@ const StyledPixelTableAction = styled.div`
   justify-content: flex-end;
   align-items: center;
   align-content: center;
-`;
+`
 
 const ActionItem = styled.div`
   position: relative;
@@ -42,13 +42,13 @@ const ActionItem = styled.div`
         color: grey !important;
       }
     `}
-`;
+`
 
 const isDisabled = (data, row) => {
-  return typeof data.disabled === "function"
+  return typeof data.disabled === 'function'
     ? data.disabled(row)
-    : data.disabled;
-};
+    : data.disabled
+}
 const StyledDropDownToggle = styled(Dropdown.Toggle)`
   padding: 0 !important;
   margin: 0 !important;
@@ -57,7 +57,7 @@ const StyledDropDownToggle = styled(Dropdown.Toggle)`
   &:after {
     display: none !important;
   }
-`;
+`
 export const PixelTableAction = React.forwardRef<
   HTMLDivElement,
   tableActionProps
@@ -65,23 +65,23 @@ export const PixelTableAction = React.forwardRef<
   return (
     <StyledPixelTableAction>
       {action?.map((data) => {
-        const [show, setshow] = React.useState(false);
+        const [show, setshow] = React.useState(false)
         return (
           <React.Fragment>
             <OverlayTrigger
               show={show}
-              placement={"top"}
-              overlay={<Tooltip id={`tooltip-${"top"}`}>{data.title}</Tooltip>}
+              placement={'top'}
+              overlay={<Tooltip id={`tooltip-${'top'}`}>{data.title}</Tooltip>}
             >
-              {data.type === "dropdown" ? (
+              {data.type === 'dropdown' ? (
                 <Dropdown>
                   <StyledDropDownToggle>
                     <ActionItem
                       {...rest}
-                      disabled={isDisabled(data, row)}
+                      // disabled={isDisabled(data, row)}
                       onMouseEnter={() => setshow(true)}
                       onMouseLeave={() => setshow(false)}
-                      action={action}
+                      // action={action}
                     >
                       {data.icon}
                     </ActionItem>
@@ -100,15 +100,15 @@ export const PixelTableAction = React.forwardRef<
               ) : (
                 <ActionItem
                   {...rest}
-                  disabled={isDisabled(data, row)}
+                  // disabled={isDisabled(data, row)}
                   onMouseEnter={() => setshow(true)}
                   onMouseLeave={() => setshow(false)}
-                  action={action}
+                  // action={action}
                   onClick={() => {
-                    if (isDisabled(data, row) && data.type === "dropdown")
-                      return;
-                    data.clickHandler(row);
-                    setshow(false);
+                    if (isDisabled(data, row) && data.type === 'dropdown')
+                      return
+                    data.clickHandler(row)
+                    setshow(false)
                   }}
                 >
                   {data.icon}
@@ -116,9 +116,9 @@ export const PixelTableAction = React.forwardRef<
               )}
             </OverlayTrigger>
           </React.Fragment>
-        );
+        )
       })}
     </StyledPixelTableAction>
-  );
-});
-export default PixelTableAction;
+  )
+})
+export default PixelTableAction

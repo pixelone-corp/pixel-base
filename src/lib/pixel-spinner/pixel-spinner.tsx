@@ -13,18 +13,17 @@ const spin = keyframes`
   100% { transform: rotate(360deg); }
 `
 
-export const PixelSpinner = React.forwardRef<
-  HTMLButtonElement,
-  PixelSpinnerProps
->((props, ref) => {
-  const { isShow, size } = props
+export const PixelSpinner = React.forwardRef<HTMLDivElement, PixelSpinnerProps>(
+  (props, ref) => {
+    const { isShow, size } = props
 
-  return (
-    <StyledPixelSpinner isShow={isShow} ref={ref}>
-      <Spinner size={size} />
-    </StyledPixelSpinner>
-  )
-})
+    return (
+      <StyledPixelSpinner isShow={isShow} ref={ref}>
+        <Spinner size={size} />
+      </StyledPixelSpinner>
+    )
+  }
+)
 const StyledPixelSpinner = styled.div<{ isShow: boolean }>`
   display: ${(props) => (props.isShow ? 'flex' : 'none')};
   align-items: center;

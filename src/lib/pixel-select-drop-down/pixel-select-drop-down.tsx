@@ -295,7 +295,6 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                   })
                                 }}
                                 key={index}
-                                value={option.value}
                                 disabled={option.disabled}
                                 className={
                                   option.value === value ? 'selected' : ''
@@ -351,7 +350,6 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                                 className={
                                   option.value === value ? 'selected' : ''
                                 }
-                                value={option.value}
                                 disabled={option.disabled}
                                 onClick={() => {
                                   onChange &&
@@ -442,7 +440,7 @@ const DropDownList = styled.div<{
   left: ${(props) => props.position?.left};
   z-index: 99;
 `
-const Option = styled.div`
+const Option = styled.div<{ disabled?: boolean }>`
   background-color: #ffffff;
   height: 40px;
   padding: 5px 5px 5px 25px;

@@ -25,6 +25,7 @@ interface OptionsData {
   formatter?: any
 }
 const DropDownListItem = styled(Dropdown.Item)<{ isGrouped: boolean }>`
+  position: none;
   ${(props) =>
     props.isGrouped
       ? css`
@@ -54,22 +55,22 @@ const DropDownListItem = styled(Dropdown.Item)<{ isGrouped: boolean }>`
           }
         `}
   ${(props: MenuProps) =>
-    props.variant !== '' ||
-    (props.variant === null &&
-      css`
-        & > div {
-          & > button {
-            background-color: none;
-            color: black;
-            &:focus {
-              box-shadow: none;
-            }
+    props.variant !== '' &&
+    props.variant !== null &&
+    css`
+      & > div {
+        & > button {
+          background-color: none;
+          color: black;
+          &:focus {
+            box-shadow: none;
           }
         }
-        &:active {
-          background-color: #e9ecef;
-        }
-      `)}
+      }
+      &:active {
+        background-color: #e9ecef;
+      }
+    `}
 `
 const StyledInnerLine = styled(Dropdown.Toggle)``
 const StyledPixelButton = styled(Dropdown.Toggle)`

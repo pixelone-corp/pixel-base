@@ -133,22 +133,22 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
       <RdtClasses>
         <StyledBootstrapTable
           keyField='id'
-          classes='pixeltable'
-          headerClasses='tableheader '
-          bordered={false}
+          className='pixeltable'
+          // headerClasses='tableheader '
+          // bordered={false}
           columns={columns}
           pagination={true}
           paginationPerPage={paginationPerPage}
           theme='solarized'
           data={customFilter(filterText, data)}
-          bootstrap4
+          // bootstrap4
           responsive
           subHeader={isSearchable}
           subHeaderComponent={subHeaderComponentMemo}
           progressPending={progressPending}
           progressComponent={<CustomLoader />}
           customStyles={{ ...defaultCustomStyles, ...customStyles }}
-          ref={ref}
+          // ref={ref}
           {...rest}
         />
       </RdtClasses>

@@ -40,8 +40,21 @@ export interface DcFlexBoxProps {
   padding?: string
   margin?: string
   border?: string
-  borderRadious?: string
+  borderRadius?: string
   boxShadow?: string
+  cursor?: string
+  display?: string
+  opacity?: string
+  visibility?: string
+  transformOrigin?: string
+  transformStyle?: string
+  perspective?: string
+  perspectiveOrigin?: string
+  backfaceVisibility?: string
+  transform?: string
+  transition?: string
+  animation?: string
+  zIndex?: string
   style?: React.CSSProperties
 }
 export const DCFlexBox = React.forwardRef<HTMLDivElement, DcFlexBoxProps>(
@@ -64,6 +77,33 @@ const FlexBoxContainer = styled.div<
     | 'justifyContent'
     | 'alignItems'
     | 'alignContent'
+    | 'gap'
+    | 'width'
+    | 'height'
+    | 'position'
+    | 'top'
+    | 'bottom'
+    | 'left'
+    | 'right'
+    | 'backgroundColor'
+    | 'padding'
+    | 'margin'
+    | 'border'
+    | 'boxShadow'
+    | 'borderRadius'
+    | 'cursor'
+    | 'display'
+    | 'opacity'
+    | 'visibility'
+    | 'transformOrigin'
+    | 'transformStyle'
+    | 'perspective'
+    | 'perspectiveOrigin'
+    | 'backfaceVisibility'
+    | 'transform'
+    | 'transition'
+    | 'animation'
+    | 'zIndex'
   >
 >`
   display: flex;
@@ -84,7 +124,7 @@ const FlexBoxContainer = styled.div<
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
   border: ${(props) => props.border};
-  border-radius: ${(props) => props.borderRadious};
+  border-radius: ${(props) => props.borderRadius};
   box-shadow: ${(props) => props.boxShadow};
   cursor: ${(props) => props.cursor};
   display: ${(props) => props.display};

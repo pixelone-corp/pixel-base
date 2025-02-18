@@ -29,7 +29,7 @@ const StyledPixelPageContainer = styled.div<
   >
 >`
   width: ${(props) => props.width || '100%'};
-  max-height: ${(props) => props.maxHeight || 'calc(100vh - 50px)'};
+  max-height: ${(props) => props.height || 'calc(100vh - 60px)'};
   height: ${(props) => props.height || '100%'};
   background-color: ${(props) => props.backgroundColor || '#EDF2F9'};
   padding: ${(props) => props.padding || '20px'};

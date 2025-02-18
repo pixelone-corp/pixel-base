@@ -15,8 +15,8 @@ export interface PixelDateProps {
   showFullDatePopover?: boolean
   color?: string
 }
-const StyledDate = styled.span<{ dashed; color: string }>`
-  ${(props: PixelDateProps) =>
+const StyledDate = styled.span<{ dashed; color: string; size: string }>`
+  ${(props) =>
     props.size &&
     css`
       font-size: ${props.size} !important;

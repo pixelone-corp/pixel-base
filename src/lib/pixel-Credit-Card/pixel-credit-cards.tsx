@@ -109,8 +109,7 @@ export function PixelCreditCards(props: PixelCreditCardsProps) {
               >
                 <StyledPixelIcon
                   isDefault={isDefault}
-                  tooltip={<Tooltip id='tooltip'>{}</Tooltip>}
-                  placement='bottom'
+                  tooltip=''
                   style={{ position: 'relative' }}
                   icon={faCreditCard}
                 />
@@ -119,6 +118,7 @@ export function PixelCreditCards(props: PixelCreditCardsProps) {
             {!isDefault && isDeleteAble && (
               <OverlayTrigger placement='top' overlay={tooltip}>
                 <StyledDiv
+                  isDefault={isDefault}
                   onClick={() => {
                     onApply()
                   }}
@@ -143,7 +143,7 @@ const Card = styled.div`
   perspective: 1000px;
   width: 290px;
 `
-const StyledIconContainer = styled.button`
+const StyledIconContainer = styled.button<{ isDefault: boolean }>`
   margin: 5px 0 0 5px;
   z-index: 44444444444;
   cursor: pointer;

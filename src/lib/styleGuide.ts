@@ -20,7 +20,7 @@
 // : '#e5e7eb' // Default Background
 
 let $primaryColor: string = '#9b02fd'
-let $DCprimaryColor: string = '#5f38f9'
+let $DCprimaryColor: string = 'red'
 let $DCsecondaryColor: string = '#374151'
 let $DCSuccessColor: string = '#2dc58c'
 let $DCWarningColor: string = '#f2bc16'

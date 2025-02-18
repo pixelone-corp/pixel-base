@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export interface DcDivProps {
   className?: string
@@ -19,11 +19,11 @@ export interface DcDivProps {
   border?: string
   borderRadious?: string
   boxShadow?: string
-  hoverStyle?: React.CSSProperties
+  hoverStyle?: string
   onClick?: () => void
   ref?: React.Ref<HTMLDivElement>
-  after?: React.ReactNode
-  before?: React.ReactNode
+  after?: string
+  before?: string
   //add animation
   transition?: string
   transform?: string
@@ -131,13 +131,17 @@ const DivContainer = styled.div<
   border-radius: ${(props) => props.borderRadious};
   box-shadow: ${(props) => props.boxShadow};
   :hover {
-    ${(props) => props.hoverStyle}
+    ${(props) =>
+      props.hoverStyle &&
+      css`
+        ${props.hoverStyle}
+      `}
   }
   :after {
-    content: ${(props) => props.after};
+    content: '${(props) => props.after}';
   }
   :before {
-    content: ${(props) => props.before};
+    content: '${(props) => props.before}';
   }
 
   //add animation

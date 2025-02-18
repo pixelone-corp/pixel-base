@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-import React from "react";
-import { $primaryColor } from "../styleGuide";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import React from 'react'
+import { $primaryColor } from '../styleGuide'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 export interface PixelIconProps {
   className?: string
   fontSize?: string
@@ -16,52 +16,61 @@ export interface PixelIconProps {
   padding?: string
   margin?: string
   style?: React.CSSProperties
-  children?:any
+  children?: any
 }
 
-
-export const PixelIcon = React.forwardRef<
-  HTMLButtonElement,
-  PixelIconProps>
-  ((props, ref) => {
+export const PixelIcon = React.forwardRef<HTMLButtonElement, PixelIconProps>(
+  (props, ref) => {
     const {
       className,
-      fontSize = "16px",
+      fontSize = '16px',
       color,
       icon,
       showTooltip = false,
       tooltip = 'ToolTip',
       tooltipPlacement = 'top',
-      onClick = () => { },
+      onClick = () => {},
       ...rest
-    } = props;
+    } = props
     return (
       <React.Fragment>
         {showTooltip ? (
           <OverlayTrigger
             placement={tooltipPlacement}
-            overlay={<Tooltip id={`tooltip-${tooltipPlacement}`}>{tooltip}</Tooltip>}
-          ><span> <ActionIcon className={className} icon={icon} color={color} fontSize={fontSize} onClick={() =>
-            onClick()
-          } ref={ref} {...rest} /></span>
-
+            overlay={
+              <Tooltip id={`tooltip-${tooltipPlacement}`}>{tooltip}</Tooltip>
+            }
+          >
+            <span>
+              {' '}
+              <ActionIcon
+                className={className}
+                icon={icon}
+                color={color}
+                fontSize={fontSize}
+                onClick={() => onClick()}
+                {...rest}
+              />
+            </span>
           </OverlayTrigger>
         ) : (
-          <ActionIcon className={className} icon={icon} color={color} fontSize={fontSize} onClick={() =>
-            onClick()
-          } ref={ref} {...rest} />
+          <ActionIcon
+            className={className}
+            icon={icon}
+            color={color}
+            fontSize={fontSize}
+            onClick={() => onClick()}
+            {...rest}
+          />
         )}
       </React.Fragment>
     )
-  })
+  }
+)
 
-const ActionIcon = styled(FontAwesomeIcon) <Pick<
-  PixelIconProps,
-  | 'color'
-  | 'fontSize'
-  | 'padding'
-  | 'margin'
->>`
+const ActionIcon = styled(FontAwesomeIcon)<
+  Pick<PixelIconProps, 'color' | 'fontSize' | 'padding' | 'margin'>
+>`
   color: ${(props) => props.color || $primaryColor};
   font-size: ${(props) => props.fontSize || '14px'};
   cursor: pointer;
@@ -74,5 +83,4 @@ const ActionIcon = styled(FontAwesomeIcon) <Pick<
     }
   }
 `
-export default PixelIcon;
-
+export default PixelIcon

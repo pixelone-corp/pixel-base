@@ -59,13 +59,8 @@ export interface DcTextProps {
 }
 
 const StyledDCText = styled.div``
-const Text = styled.div<{
-  color: string
-  variant: string
-  textSize: string
-  textAlignment: string
-}>`
-  font-size: ${(props: DcTextProps) => props.textSize};
+const Text = styled.div<DcTextProps>`
+  font-size: ${(props) => props.textSize};
   max-width: ${(props: DcTextProps) => props.minWith};
   width: 100%;
   text-align: ${(props: DcTextProps) => props.textAlignment};
@@ -157,15 +152,16 @@ const Text = styled.div<{
   font-weight: ${(props: DcTextProps) => props.fontWeight};
   //add after
   &:after {
-    content: ${(props: DcTextProps) => props.after};
+    content: ${(props: DcTextProps) =>
+      props.after ? `'${props.after}'` : "''"};
   }
   //add before
   &:before {
-    content: ${(props: DcTextProps) => props.before};
+    content: ${(props: DcTextProps) => `'${props.before || ''}'`};
   }
   //add hover style
   &:hover {
-    ${(props: DcTextProps) => props.hoverStyle};
+    ${(props: DcTextProps) => props.hoverStyle && css(props.hoverStyle as any)};
   }
   //add storek
 `

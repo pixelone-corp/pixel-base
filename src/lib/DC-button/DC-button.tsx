@@ -337,7 +337,7 @@ const StyledPixelButton = styled(Button)<{ props }>`
   box-shadow: ${(props: DcButtonProps) => props.boxShadow || 'none'};
   //make the hover !important
   &:hover {
-    ${(props: DcButtonProps) => props.hoverStyle}
+    ${(props: DcButtonProps) => ({ ...props.hoverStyle })}
   }
   ::after {
     ${(props: DcButtonProps) => props.after}

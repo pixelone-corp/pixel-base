@@ -50,7 +50,7 @@ const variantClasses = {
 }
 
 const PixelInputContainer = styled.div`
-  position: relative;
+  /* position: relative; */
   width: 100%;
   &.overFlowCustom {
     overflow: visible !important;
@@ -177,6 +177,7 @@ export const DcInput = React.forwardRef<HTMLInputElement, DcProps>(
     }
     return (
       <PixelInputContainer
+        name={name}
         invalid={invalid}
         className={'overFlowCustom'}
         style={parentStyle}

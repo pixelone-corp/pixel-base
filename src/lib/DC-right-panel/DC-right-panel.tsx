@@ -19,7 +19,7 @@ export interface DcRightPanelProps {
   padding?: string
   margin?: string
   border?: string
-  borderRadious?: string
+  borderRadius?: string
   boxShadow?: string
   style?: React.CSSProperties
 }
@@ -45,7 +45,7 @@ export const DcRightPanel = React.forwardRef<HTMLDivElement, DcRightPanelProps>(
           padding={props.padding}
           margin={props.margin}
           border={props.border}
-          borderRadious={props.borderRadious}
+          borderRadius={props.borderRadius}
           style={props.style}
           boxShadow={props.boxShadow}
           ref={ref}

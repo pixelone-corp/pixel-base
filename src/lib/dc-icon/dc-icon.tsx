@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import React from 'react'
 import { $DCprimaryColor, $primaryColor } from '../styleGuide'
@@ -75,28 +75,30 @@ export const DcIcon = React.forwardRef<HTMLButtonElement, DcIconProps>(
           >
             <span>
               {' '}
-              <ActionIcon
-                className={className}
-                icon={icon}
-                color={color}
-                width={width}
-                fontSize={fontSize}
-                onClick={() => onClick()}
-                ref={ref}
-                {...rest}
-              />
+              <span ref={ref}>
+                <ActionIcon
+                  className={className}
+                  icon={icon}
+                  color={color}
+                  width={width}
+                  fontSize={fontSize}
+                  onClick={() => onClick()}
+                  {...rest}
+                />
+              </span>
             </span>
           </OverlayTrigger>
         ) : (
-          <ActionIcon
-            className={className}
-            icon={icon}
-            color={color}
-            fontSize={fontSize}
-            onClick={() => onClick()}
-            ref={ref}
-            {...rest}
-          />
+          <span ref={ref}>
+            <ActionIcon
+              className={className}
+              icon={icon}
+              color={color}
+              fontSize={fontSize}
+              onClick={() => onClick()}
+              {...rest}
+            />
+          </span>
         )}
       </React.Fragment>
     )
@@ -140,9 +142,9 @@ const ActionIcon = styled(FontAwesomeIcon)<
     }
   }
   &:hover {
-    ${(props) => props.hoverStyle}
+    ${(props) => props.hoverStyle && css(props.hoverStyle as any)}
   }
-  ${(props) => props.style}
+  ${(props) => props.style && css(props.style as any)}
   ${(props) => props.cursor && `cursor: ${props.cursor};`}
   //add more props
   width: ${(props) => (props.width ? props.width : 'auto')};

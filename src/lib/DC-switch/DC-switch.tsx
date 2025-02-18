@@ -18,8 +18,12 @@ export interface DCSwitchProps
   disabled?: boolean
 }
 
-const StyledDCSwitch = styled.div<{ value; size; disabled }>`
-  ${(props: DCSwitchProps) =>
+const StyledDCSwitch = styled.div<{
+  value: boolean
+  size: any
+  disabled: boolean
+}>`
+  ${(props) =>
     props.size === 'sm' &&
     css`
       padding: 1px !important;
@@ -252,7 +256,7 @@ export const DCSwitch = React.forwardRef<HTMLInputElement, DCSwitchProps>(
             className={`${className} ${disabled === true && 'disablee'}`}
             htmlFor={id}
           ></label>
-          {endLabel && <StyledLabel>{endLabel}</StyledLabel>}
+          {endLabel && <StyledLabel size={size}>{endLabel}</StyledLabel>}
         </StyledDCSwitch>
         {label && <StyledLabel size={size}>{label}</StyledLabel>}
       </DCFlexBox>

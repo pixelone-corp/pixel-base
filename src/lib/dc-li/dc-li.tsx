@@ -1,6 +1,6 @@
 // Li.tsx
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css, StyledComponentPropsWithRef } from 'styled-components'
 
 interface LiProps {
   /** Text content for the list item */
@@ -50,6 +50,7 @@ interface LiProps {
   before?: React.ReactNode
   textDecoration?: string
   listStyleType?: string
+  fontSize?: string
 }
 
 const DcLi: React.FC<LiProps> = ({
@@ -71,7 +72,40 @@ const DcLi: React.FC<LiProps> = ({
   )
 }
 
-const StyledDcLi = styled.li<{ isActive: boolean }>`
+const StyledDcLi = styled.li<
+  StyledComponentPropsWithRef<'li'> & {
+    isActive?: boolean
+    textDecoration?: string
+    listStyleType?: string
+    fontSize?: string
+    fontWeight?: string
+    transition?: string
+    transform?: string
+    animation?: string
+    overflow?: string
+    zIndex?: number
+    cursor?: string
+    display?: string
+    opacity?: number
+    visibility?: string
+    width?: string
+    height?: string
+    position?: string
+    top?: string
+    bottom?: string
+    left?: string
+    right?: string
+    backgroundColor?: string
+    padding?: string
+    margin?: string
+    border?: string
+    borderRadious?: string
+    boxShadow?: string
+    hoverStyle?: React.CSSProperties
+    after?: React.ReactNode
+    before?: React.ReactNode
+  }
+>`
   padding: 8px 24px;
   cursor: pointer;
   color: ${(props) => (props.isActive ? ' #9b82fb' : '#f8f8f9')};
@@ -97,13 +131,13 @@ const StyledDcLi = styled.li<{ isActive: boolean }>`
   border-radius: ${(props) => props.borderRadious};
   box-shadow: ${(props) => props.boxShadow};
   :hover {
-    ${(props) => props.hoverStyle}
+    ${(props) => props.hoverStyle && css({ ...props.hoverStyle })}
   }
   :after {
-    ${(props) => props.after}
+    content: ${(props) => (props.after ? `"${props.after}"` : '""')};
   }
   :before {
-    ${(props) => props.before}
+    content: ${(props) => (props.before ? `"${props.before}"` : '""')};
   }
   //add animation
   transition: ${(props) => props.transition};

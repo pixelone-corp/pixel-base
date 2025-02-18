@@ -65,12 +65,10 @@ export const PixelImage = React.forwardRef<HTMLDivElement, PixelImageProps>(
   }
 )
 
-const ImageContainer = styled.div<
-  Pick<PixelImageProps, 'hoverStyle' | 'style'>
-  >`
-  ${(props) => props.hoverStyle};
-  ${(props) => props.style};
-`
+const ImageContainer = styled.div<{
+  hoverStyle?: React.CSSProperties
+  style?: React.CSSProperties
+}>``
 
 const ImageElement = styled.img<
   Pick<
@@ -83,7 +81,7 @@ const ImageElement = styled.img<
     | 'boxShadow'
     | 'padding'
   >
-  >`
+>`
   object-fit: ${(props) => props.objectFit};
   width: ${(props) => props.width ?? 'auto'};
   height: ${(props) => props.height ?? 'auto'};
@@ -104,7 +102,7 @@ const DummyImage = styled.img<
     | 'boxShadow'
     | 'padding'
   >
-  >`
+>`
   object-fit: ${(props) => props.objectFit};
   width: ${(props) => props.width ?? 'auto'};
   height: ${(props) => props.height ?? 'auto'};

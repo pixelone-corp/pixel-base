@@ -28,12 +28,11 @@ Simple.args = {
   tooltip: 'string',
   toggleText: 'Dropdown',
   options: [
-
     {
       label: 'Child 2',
       clickHandler: () => {
         console.log('testing')
-      },
+      }
     },
     {
       label: 'Child 3'
@@ -70,7 +69,7 @@ Simple.args = {
 export const Grouped = Template.bind({})
 Grouped.args = {
   className: 'string',
-  variant: 'outline',
+  variant: 'tag',
   size: 'lg',
   active: true,
   disabled: false,
@@ -85,13 +84,14 @@ Grouped.args = {
 
       children: [
         {
-          label: 'Test 1', clickHandler: () => {
+          label: 'Test 1',
+          clickHandler: () => {
             console.log('testing')
-          },
+          }
         },
         { label: 'Test 2' },
         { label: 'Test 323' },
-        { label: 'Test 12323' },
+        { label: 'Test 12323' }
       ]
     },
     {
@@ -100,79 +100,88 @@ Grouped.args = {
         { label: 'Test 321' },
         { label: 'Test 13232' },
         { label: 'Test dfd1' },
-        { label: 'Test 1fdf' },
+        { label: 'Test 1fdf' }
       ]
     },
     {
-      label: 'Child 4', children: [
+      label: 'Child 4',
+      children: [
         { label: 'Test 1' },
         { label: 'Test 1' },
         { label: 'Test 1' },
-        { label: 'Test 1' },
+        { label: 'Test 1' }
       ]
     },
     {
-      label: 'Child 5', children: [
+      label: 'Child 5',
+      children: [
         { label: 'Test 1' },
         { label: 'Test 1' },
         { label: 'Test 1' },
-        { label: 'Test 1' },
+        { label: 'Test 1' }
       ]
     },
     {
-      label: 'Child 6', children: [
+      label: 'Child 6',
+      children: [
         { label: 'Test 1' },
         { label: 'Test 1' },
         { label: 'Test 1' },
-        { label: 'Test 1' },
+        { label: 'Test 1' }
       ]
     },
     {
-      label: 'Child 7', children: [
+      label: 'Child 7',
+      children: [
         { label: 'Test 1' },
         { label: 'Test 1' },
         { label: 'Test 1' },
-        { label: 'Test 1' },
+        { label: 'Test 1' }
       ]
     },
     {
-      label: 'Child 8', children: [
+      label: 'Child 8',
+      children: [
         { label: 'Test 1' },
         { label: 'Test 1' },
         { label: 'Test 1' },
-        { label: 'Test 1' },
+        { label: 'Test 1' }
       ]
     },
     {
-      label: 'Child 9', children: [
+      label: 'Child 9',
+      children: [
         { label: 'Test 1' },
         { label: 'Test 1' },
         { label: 'Test 1' },
-        { label: 'Test 1' },
+        { label: 'Test 1' }
       ]
     },
     {
-      label: 'Child 10', children: [
+      label: 'Child 10',
+      children: [
         { label: 'Test 1' },
         { label: 'Test 1' },
         { label: 'Test 1' },
-        { label: 'Test 1' },
+        { label: 'Test 1' }
       ]
     },
     {
-      label: 'Child 11', children: [
+      label: 'Child 11',
+      children: [
         { label: 'Test 1' },
         { label: 'Test 1' },
         { label: 'Test 1' },
-        { label: 'Test 1' },
+        { label: 'Test 1' }
       ]
     },
     {
-      label: 'Child 12', children: [
+      label: 'Child 12',
+      children: [
         { label: 'Test 1' },
         { label: 'Test 1' },
         { label: 'Test 1' },
-        { label: 'Test 1' },
+        { label: 'Test 1' }
       ]
     }
   ]

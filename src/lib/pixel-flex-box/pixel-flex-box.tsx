@@ -5,28 +5,28 @@ export interface PixelFlexBoxProps {
   flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse' | string
   flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | string
   justifyContent?:
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly'
-  | string
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly'
+    | string
   alignItems?:
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'baseline'
-  | 'stretch'
-  | string
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'baseline'
+    | 'stretch'
+    | string
   alignContent?:
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'space-between'
-  | 'space-around'
-  | 'stretch'
-  | string
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'stretch'
+    | string
   gap?: string
   width?: string
   height?: string
@@ -61,8 +61,19 @@ const FlexBoxContainer = styled.div<
     | 'justifyContent'
     | 'alignItems'
     | 'alignContent'
+    | 'gap'
+    | 'width'
+    | 'height'
+    | 'position'
+    | 'top'
+    | 'left'
+    | 'right'
+    | 'backgroundColor'
+    | 'padding'
+    | 'bottom'
+    | 'margin'
   >
-  >`
+>`
   display: flex;
   flex-direction: ${(props) => props.flexDirection || 'row'};
   flex-wrap: ${(props) => props.flexWrap || 'nowrap'};

@@ -26,62 +26,34 @@ export interface DCPageProps {
 export function DCPage(props: DCPageProps) {
   return (
     <React.Fragment>
-      <DCPageContainer props={props}></DCPageContainer>
+      <DCPageContainer {...props}></DCPageContainer>
     </React.Fragment>
   )
 }
 
-const DCPageContainer = styled.div<{ props }>`
-  height: ${(props) => {
-    props.height ? props.height : '100%'
-  }};
-  width: ${(props) => {
-    props.width ? props.width : '100%'
-  }};
+const DCPageContainer = styled.div<DCPageProps>`
+  height: ${(props) => (props.height ? props.height : '100%')};
+  width: ${(props) => (props.width ? props.width : '100%')};
   display: flex;
-  justify-content: ${(props) => {
-    props.justifyContent ? props.justifyContent : 'center'
-  }};
-  align-items: ${(props) => {
-    props.alignItems ? props.alignItems : 'center'
-  }};
-  flex-direction: ${(props) => {
-    props.flexDirection ? props.flexDirection : 'center'
-  }};
-  padding: ${(props) => {
-    props.padding ? props.padding : '0px'
-  }};
-  margin: ${(props) => {
-    props.margin ? props.margin : '0px'
-  }};
-  border: ${(props) => {
-    props.border ? props.border : 'none'
-  }};
-  border-radius: ${(props) => {
-    props.borderRadious ? props.borderRadious : '0px'
-  }};
-  box-shadow: ${(props) => {
-    props.boxShadow ? props.boxShadow : 'none'
-  }};
-  background-color: ${(props) => {
-    props.backgroundColor ? props.backgroundColor : 'none'
-  }};
-  position: ${(props) => {
-    props.position ? props.position : 'none'
-  }};
-  top: ${(props) => {
-    props.top ? props.top : 'none'
-  }};
-  bottom: ${(props) => {
-    props.bottom ? props.bottom : 'none'
-  }};
-  left: ${(props) => {
-    props.left ? props.left : 'none'
-  }};
-  right: ${(props) => {
-    props.right ? props.right : 'none'
-  }};
-  ${(props) => props.style}
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : 'center'};
+  align-items: ${(props) => (props.alignItems ? props.alignItems : 'center')};
+  flex-direction: ${(props) =>
+    props.flexDirection ? props.flexDirection : 'center'};
+  padding: ${(props) => (props.padding ? props.padding : '0px')};
+  margin: ${(props) => (props.margin ? props.margin : '0px')};
+  border: ${(props) => (props.border ? props.border : 'none')};
+  border-radius: ${(props) =>
+    props.borderRadious ? props.borderRadious : '0px'};
+  box-shadow: ${(props) => (props.boxShadow ? props.boxShadow : 'none')};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : 'none'};
+  position: ${(props) => (props.position ? props.position : 'none')};
+  top: ${(props) => (props.top ? props.top : 'none')};
+  bottom: ${(props) => (props.bottom ? props.bottom : 'none')};
+  left: ${(props) => (props.left ? props.left : 'none')};
+  right: ${(props) => (props.right ? props.right : 'none')};
+  ${(props) => ({ ...props.style })}
 `
 
 export default DCPage
