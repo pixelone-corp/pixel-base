@@ -50,7 +50,6 @@ const variantClasses = {
 }
 
 const PixelInputContainer = styled.div`
-  position: relative;
   width: 100%;
   &.overFlowCustom {
     overflow: visible !important;
