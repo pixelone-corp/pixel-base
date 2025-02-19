@@ -25,6 +25,7 @@ interface OptionsData {
   formatter?: any
 }
 const DropDownListItem = styled(Dropdown.Item)<{ isGrouped: boolean }>`
+  inset: 0px 0px auto auto;
   ${(props) =>
     props.isGrouped
       ? css`
@@ -71,7 +72,9 @@ const DropDownListItem = styled(Dropdown.Item)<{ isGrouped: boolean }>`
         }
       `)}
 `
-const StyledInnerLine = styled(Dropdown.Toggle)``
+const StyledInnerLine = styled(Dropdown.Toggle)`
+  font-size: 12px;
+`
 const StyledPixelButton = styled(Dropdown.Toggle)`
   &:focus {
     outline: none !important;
@@ -186,7 +189,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
             )}
           </StyledPixelButton>
 
-          <DropdownMenu maxheight={maxheight}>
+          <DropdownMenu maxheight={maxheight} placement='bottom-end'>
             {options?.map((data, index) => (
               <DropDownListItem
                 isGrouped={isGrouped}
@@ -216,7 +219,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                       {data.formatter ? data.formatter(data) : data.label}
                     </StyledInnerLine>
 
-                    <DropdownMenu maxheight={maxheight}>
+                    <DropdownMenuSub maxheight={maxheight}>
                       {data.children?.map((data, i) => (
                         <DropDownListItem
                           isGrouped={isGrouped}
@@ -227,7 +230,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                           {data.formatter ? data.formatter(data) : data.label}
                         </DropDownListItem>
                       ))}
-                    </DropdownMenu>
+                    </DropdownMenuSub>
                   </StyledSubDropdown>
                 )}
               </DropDownListItem>
@@ -258,6 +261,12 @@ const StyledSubDropdown = styled(Dropdown)`
   }
 `
 
-const DropdownMenu = styled(Dropdown.Menu)``
+const DropdownMenu = styled(Dropdown.Menu)`
+  max-width: 200px;
+  inset: 0px 0px auto auto !important;
+`
+const DropdownMenuSub = styled(Dropdown.Menu)`
+  inset: 0px 0px auto auto !important;
+`
 
 export default PixelDropDownMenu

@@ -49,7 +49,8 @@ const variantClasses = {
   line: 'ps-0 border-b border-border-base rounded-none focus:border-accent'
 }
 
-const PixelInputContainer = styled.div`
+const PixelInputContainer = styled.div<{ as: string }>`
+  position: relative;
   width: 100%;
   &.overFlowCustom {
     overflow: visible !important;
