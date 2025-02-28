@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Heatmap from '../src/index'
 
-const HeatMap = ({ data, xLabels, yLabels, cellStyle }) => {
+const DcHeatMap = ({ data, xLabels, yLabels, cellStyle }) => {
   const [tooltip, setTooltip] = useState({
     visible: false,
     content: '',
@@ -163,4 +163,4 @@ const HeatMap = ({ data, xLabels, yLabels, cellStyle }) => {
   )
 }
 
-export default HeatMap
+export default DcHeatMap
