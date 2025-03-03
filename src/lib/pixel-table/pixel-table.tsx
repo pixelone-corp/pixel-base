@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { isBrowser, isMobile } from 'react-device-detect'
 
-import DataTable, { createTheme } from 'react-data-table-component'
+import DataTable, { createTheme } from '../ReactDataTable/index'
+
 interface PixelTableProps {
   columns: any
   data: any
@@ -123,8 +124,10 @@ export const PixelTable = React.forwardRef<HTMLTableElement, PixelTableProps>(
     const defaultCustomStyles = {
       headCells: {
         style: {
-          borderBottom: '1px solid #212529',
-          borderTop: '1px solid #cecece',
+          borderBottom: 'none',
+          borderTop: 'none',
+          // borderBottom: '1px solid #212529',
+          // borderTop: '1px solid #cecece',
           backgroundColor: headerBackgroundColor
         }
       }
@@ -160,8 +163,10 @@ const RdtClasses = styled.div`
     border-bottom: none;
     width: 100%;
     > div {
-      border-bottom: 1px solid #212529;
-      border-top: 1px solid #cecece;
+      border-bottom: none;
+      border-top: none;
+      /* border-bottom: 1px solid #212529;
+      border-top: 1px solid #cecece; */
     }
   }
   width: 100%;

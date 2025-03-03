@@ -1,12 +1,10 @@
 import React from 'react'
-import DcHeatMap from './dc-heatmap'
-
+import Heatmap from './dc-heatmap'
 export default {
-  title: 'DcHeatMap',
-  component: DcHeatMap
+  title: 'CustomHeatMap',
+  component: Heatmap
 }
-
-const Template = (args) => <DcHeatMap {...args} />
+const Template = (args) => <Heatmap {...args} />
 
 function generateRandomData(rows = 24, columns = 7, min = 1, max = 250) {
   const data = Array.from({ length: rows }, () =>
