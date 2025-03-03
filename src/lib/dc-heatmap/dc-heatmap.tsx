@@ -1,7 +1,25 @@
-import React, { useState } from 'react'
-import Heatmap from '../src/index'
+import React, { useRef, useState } from 'react'
+import Heatmap from '../HeatMapGrid/index'
+import { Clock, Package } from 'lucide-react'
+import './globals.css'
 
-const HeatMap = ({ data, xLabels, yLabels, cellStyle }) => {
+import { Calendar } from 'lucide-react'
+
+const DcHeatMap = ({
+  data,
+  xLabels,
+  yLabels,
+  cellStyle,
+
+  tooltipTitle = 'Order Details',
+  tooltipValueLabel = 'Orders',
+  tooltipDayLabel = 'Day',
+  tooltipTimeLabel = 'Time',
+  className = '',
+  cellSize = 40,
+  showValues = true,
+  colorScale
+}) => {
   const [tooltip, setTooltip] = useState({
     visible: false,
     content: '',
@@ -24,11 +42,19 @@ const HeatMap = ({ data, xLabels, yLabels, cellStyle }) => {
     })
   }
 
-  console.log(tooltip.content)
-
   const handleMouseLeave = () => {
-    setTooltip({ visible: false, content: '', x: 0, y: 0 })
+    setTooltip({
+      visible: false,
+      content: '',
+      value: 0,
+      xLabels: '',
+      yLabels: '',
+      x: 0,
+      y: 0
+    })
   }
+  const arrowRef = useRef(null)
+  const tooltipRef = useRef(null)
 
   return (
     <div style={{ width: '100%', overflowX: 'auto' }}>
@@ -67,100 +93,71 @@ const HeatMap = ({ data, xLabels, yLabels, cellStyle }) => {
       />
       {tooltip.visible && (
         <div
+          ref={tooltipRef}
+          className='z-50 animate-fadeIn'
           style={{
-            position: 'fixed',
-            top: tooltip.y + 10,
-            left: tooltip.x + 10,
-            backgroundColor: '#e7f8ffd1',
-            color: '#070707',
-            padding: '10px',
-            borderRadius: '5px',
-            boxShadow: '0 0 10px rgba(163, 163, 163, 0.219)',
-            // fontSize: '14px',
-            fontWeight: '600',
-            lineHeight: '1.5',
-            whiteSpace: 'pre-line',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            height: '130px',
-            width: '150px',
-            zIndex: 19999999999999000
+            position: 'absolute',
+            top: tooltip.y,
+            left: tooltip.x
           }}
+          role='tooltip'
+          aria-live='polite'
         >
-          {/* {tooltip.content} */}
+          {/* Tooltip pointer */}
           <div
+            ref={arrowRef}
+            className='absolute w-3 h-3 bg-white rotate-45 transform'
             style={{
-              display: 'flex',
-              justifyContent: 'center',
-              width: '100%',
-              gap: '20px'
+              top: 0,
+              left: 0,
+              right: '',
+              bottom: '',
+              boxShadow: '-2px -2px 5px rgba(0, 0, 0, 0.03)'
             }}
-          >
-            <div
-              style={{
-                fontSize: '16px',
-                width: '40%',
-                color: '#201f1f',
-                fontWeight: '600'
-              }}
-            >
-              Orders
-            </div>{' '}
-            <div style={{ width: '30%', fontWeight: '400', color: '#525252' }}>
-              {tooltip.value}
+          />
+
+          {/* Main tooltip container */}
+          <div className='bg-white rounded-lg shadow-lg overflow-hidden w-64 border border-gray-100'>
+            {/* Header */}
+            <div className='bg-primary/10 px-4 py-2 border-b border-gray-100'>
+              <h3 className='font-semibold text-primary'>{tooltipTitle}</h3>
             </div>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              width: '100%',
-              gap: '20px'
-            }}
-          >
-            {' '}
-            <div
-              style={{
-                fontSize: '16px',
-                width: '40%',
-                color: '#201f1f',
-                fontWeight: '600'
-              }}
-            >
-              Day
-            </div>{' '}
-            <div style={{ width: '30%', fontWeight: '400', color: '#525252' }}>
-              {tooltip.xLabels}
+
+            {/* Content */}
+            <div className='p-4 space-y-3'>
+              <div className='flex items-center justify-between'>
+                <div className='flex items-center gap-2 text-gray-700'>
+                  <Package size={18} className='text-primary' />
+                  <span className='font-medium'>{tooltipValueLabel}</span>
+                </div>
+                <span className='font-bold text-lg text-primary'>
+                  {tooltip.value}
+                </span>
+              </div>
+
+              <div className='flex items-center justify-between'>
+                <div className='flex items-center gap-2 text-gray-700'>
+                  <Calendar size={18} className='text-primary' />
+                  <span className='font-medium'>{tooltipDayLabel}</span>
+                </div>
+                <span className='text-gray-600'>{tooltip.xLabels}</span>
+              </div>
+
+              <div className='flex items-center justify-between'>
+                <div className='flex items-center gap-2 text-gray-700'>
+                  <Clock size={18} className='text-primary' />
+                  <span className='font-medium'>{tooltipTimeLabel}</span>
+                </div>
+                <span className='text-gray-600'>{tooltip.yLabels}</span>
+              </div>
             </div>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              width: '100%',
-              gap: '20px'
-            }}
-          >
-            <div
-              style={{
-                fontSize: '16px',
-                width: '40%',
-                color: '#201f1f',
-                fontWeight: '600'
-              }}
-            >
-              Time
-            </div>{' '}
-            <div style={{ width: '30%', fontWeight: '400', color: '#868585' }}>
-              {tooltip.yLabels}
-            </div>
+
+            {/* Footer with subtle gradient */}
+            <div className='h-1 bg-gradient-to-r from-primary/40 via-primary to-primary/60' />
           </div>
         </div>
       )}
     </div>
   )
 }
-
-export default HeatMap
+export default DcHeatMap
