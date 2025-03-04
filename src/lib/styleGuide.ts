@@ -6,8 +6,10 @@ let $DCWarningColor: string = '#f2bc16'
 let $DCDangerColor: string = '#df3c4e'
 let $DCInfoColor: string = '#478ffc'
 let $DCLightColor: string = '#e5e7eb'
+let $DCPinkLightColor: string = '#fde9f1'
+let $DCPinkColor: string = '#f24a8b'
 let $DCprimaryLightColor: string = '#d6e4ff'
-let $DCsecondaryLightColor: string = '#374151'
+let $DCsecondaryLightColor: string = '#e7e8ea'
 let $DCSuccessLightColor: string = '#d1fae5'
 let $DCWarningLightColor: string = '#fdf7e3'
 let $DCDangerLightColor: string = '#fce8e8'
@@ -123,6 +125,8 @@ const $textColorWithAlpha = (op: string) => addAlpha($textColor, op)
 
 export {
   changeTheme,
+  $DCPinkLightColor,
+  $DCPinkColor,
   $DCprimaryLightColor,
   $DCsecondaryLightColor,
   $DCSuccessLightColor,
