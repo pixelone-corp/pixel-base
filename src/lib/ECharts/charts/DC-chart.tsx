@@ -51,11 +51,11 @@ export const Chart: React.FC<DcChartProps> = ({
         return {
           ...baseOptions,
           xAxis: {
-            type: 'category',
+            type: 'category' as const,
             data: data.xAxis || []
           },
           yAxis: {
-            type: 'value'
+            type: 'value' as const
           },
           series:
             data.series?.map((series: any) => ({
@@ -71,12 +71,12 @@ export const Chart: React.FC<DcChartProps> = ({
         return {
           ...baseOptions,
           xAxis: {
-            type: 'category',
+            type: 'category' as const,
             boundaryGap: false,
             data: data.xAxis || []
           },
           yAxis: {
-            type: 'value'
+            type: 'value' as const
           },
           series:
             data.series?.map((series: any) => ({
@@ -93,11 +93,11 @@ export const Chart: React.FC<DcChartProps> = ({
         return {
           ...baseOptions,
           xAxis: {
-            type: 'category',
+            type: 'category' as const,
             data: data.xAxis || []
           },
           yAxis: {
-            type: 'value'
+            type: 'value' as const
           },
           series:
             data.series?.map((series: any) => ({
@@ -112,11 +112,11 @@ export const Chart: React.FC<DcChartProps> = ({
         return {
           ...baseOptions,
           xAxis: {
-            type: 'category',
+            type: 'category' as const,
             data: data.xAxis || []
           },
           yAxis: {
-            type: 'value'
+            type: 'value' as const
           },
           series:
             data.series?.map((series: any) => ({
@@ -145,18 +145,18 @@ export const Chart: React.FC<DcChartProps> = ({
           yAxis: data.dualYAxis
             ? [
                 {
-                  type: 'value',
+                  type: 'value' as const,
                   name: data.yAxisNames?.[0] || '',
                   ...(data.yAxisOptions?.[0] || {})
                 },
                 {
-                  type: 'value',
+                  type: 'value' as const,
                   name: data.yAxisNames?.[1] || '',
                   ...(data.yAxisOptions?.[1] || {})
                 }
               ]
             : {
-                type: 'value'
+                type: 'value' as const
               },
           series:
             data.series?.map((series: any) => ({
@@ -179,7 +179,7 @@ export const Chart: React.FC<DcChartProps> = ({
         return {
           ...baseOptions,
           xAxis: {
-            type: 'value'
+            type: 'value' as const
           },
           yAxis: {
             type: 'category',
@@ -235,7 +235,7 @@ export const Chart: React.FC<DcChartProps> = ({
             }
           },
           yAxis: {
-            type: 'category',
+            type: 'category' as const,
             data: data.yAxis || [],
             splitArea: {
               show: true
@@ -276,6 +276,7 @@ export const Chart: React.FC<DcChartProps> = ({
 
   return (
     <ReactECharts
+      // @ts-ignore
       option={chartOptions}
       style={{ height, width }}
       className={className}
