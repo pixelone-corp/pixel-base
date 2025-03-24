@@ -62,6 +62,7 @@ export const Chart: React.FC<DcChartProps> = ({
               name: series.name,
               type: 'line',
               data: series.data,
+              showSymbol: series.showSymbol || false,
               ...(series.itemStyle && { itemStyle: series.itemStyle }),
               ...(series.lineStyle && { lineStyle: series.lineStyle })
             })) || []
@@ -83,6 +84,7 @@ export const Chart: React.FC<DcChartProps> = ({
               name: series.name,
               type: 'line',
               areaStyle: {},
+              showSymbol: series.showSymbol || false,
               data: series.data,
               ...(series.itemStyle && { itemStyle: series.itemStyle }),
               ...(series.areaStyle && { areaStyle: series.areaStyle })
@@ -225,10 +227,55 @@ export const Chart: React.FC<DcChartProps> = ({
         return {
           ...baseOptions,
           tooltip: {
-            position: 'top'
+            position: 'top',
+            trigger: 'item',
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            borderColor: 'rgba(0, 0, 0, 0.1)',
+            borderWidth: 1,
+            extraCssText:
+              'box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border-radius: 8px; padding: 12px 16px; backdrop-filter: blur(4px);',
+            textStyle: {
+              color: '#333',
+              fontFamily: 'Inter, system-ui, sans-serif',
+              fontSize: 14
+            },
+            formatter:
+              data.customTooltip ||
+              ((params) => {
+                const value = params.data[2]
+                const day = data.xAxis[params.data[0]]
+                const hour = data.yAxis[params.data[1]]
+
+                // Calculate activity level
+                let activityLevel = 'Low'
+                const percentage = (value / data.max) * 100
+                if (percentage > 70) activityLevel = 'High'
+                else if (percentage > 30) activityLevel = 'Medium'
+
+                // Choose color based on activity level
+                let activityColor = '#4CAF50' // Green for high
+                if (activityLevel === 'Medium') activityColor = '#FF9800' // Orange for medium
+                if (activityLevel === 'Low') activityColor = '#2196F3' // Blue for low
+
+                return `
+                  <div style="font-weight: 600; margin-bottom: 8px; font-size: 15px; display: flex; align-items: center; gap: 6px;">
+                    <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: ${activityColor};"></span>
+                    ${day}, ${hour}
+                  </div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                    <span style="color: #666;">Value:</span>
+                    <span style="font-weight: 600;">${value}</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #666;">Activity:</span>
+                    <span style="font-weight: 500; color: ${activityColor};">${activityLevel}</span>
+                  </div>
+                `
+              }),
+            ...data.tooltipOptions
           },
           xAxis: {
-            type: 'category',
+            type: 'category' as const,
             data: data.xAxis || [],
             splitArea: {
               show: true
@@ -256,7 +303,7 @@ export const Chart: React.FC<DcChartProps> = ({
               type: 'heatmap',
               data: data.series || [],
               label: {
-                show: data.showLabel || false
+                show: data.showLabel || true
               },
               emphasis: {
                 itemStyle: {

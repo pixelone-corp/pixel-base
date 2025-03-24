@@ -83,6 +83,10 @@ export const DcDateRangePicker = React.forwardRef<
     const lastYearStart = startOfYear(subYears(today, 1))
     const lastYearEnd = endOfYear(subYears(today, 1))
     const lastMonthStart = startOfMonth(subMonths(today, 1))
+    const ThisMonthStart = startOfMonth(today)
+    const ThisYearStart = startOfYear(today)
+    const ThisYearEnd = startOfDay(new Date())
+    const ThisMonthEnd = startOfDay(new Date())
     const lastMonthEnd = endOfMonth(subMonths(today, 1))
 
     if (
@@ -120,6 +124,16 @@ export const DcDateRangePicker = React.forwardRef<
       isSameDay(date[0].endDate, lastMonthEnd)
     ) {
       return <DateLable size={size}>Last month</DateLable>
+    } else if (
+      isSameDay(date[0].startDate, ThisMonthStart) &&
+      isSameDay(date[0].endDate, ThisMonthEnd)
+    ) {
+      return <DateLable size={size}>This month</DateLable>
+    } else if (
+      isSameDay(date[0].startDate, ThisYearStart) &&
+      isSameDay(date[0].endDate, ThisYearEnd)
+    ) {
+      return <DateLable size={size}>This year</DateLable>
     } else {
       return (
         <React.Fragment>
