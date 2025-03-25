@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import DcDateRangePicker from './dcDateRangePicker'
-import { addDays } from 'date-fns'
+import { addDays, startOfMonth, startOfYear } from 'date-fns'
 
 export default {
   title: 'DC DateRangePicker',
@@ -17,7 +17,8 @@ const Template: ComponentStory<typeof DcDateRangePicker> = (args) => {
   // Set default date range to last 7 days
   useEffect(() => {
     setState({
-      start_date: new Date(addDays(new Date(), -89)),
+      start_date: startOfYear(new Date()),
+
       end_date: new Date()
     })
   }, [])
