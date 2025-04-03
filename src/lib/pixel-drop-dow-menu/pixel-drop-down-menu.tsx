@@ -3,6 +3,7 @@ import { Dropdown } from 'react-bootstrap'
 import styled, { css } from 'styled-components'
 import { $DCprimaryColor, $DCprimaryActiveColor } from '../styleGuide'
 import { PixelTag } from '../pixel-tag/pixel-tag'
+import DcTag from '../dc-tag/dc-tag'
 export interface MenuProps {
   className?: string
   variant?: 'outline' | 'simple' | 'secondary' | 'link' | 'tag' | string
@@ -150,7 +151,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
   (
     {
       className,
-      toggleText = 'drop-down-button',
+      toggleText = 'new',
       options,
       active,
       variant = 'simple',
@@ -183,7 +184,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
             {...rest}
           >
             {variant === 'tag' ? (
-              <PixelTag>{toggleText}</PixelTag>
+              <DcTag>{toggleText}</DcTag>
             ) : (
               <React.Fragment>{toggleText}</React.Fragment>
             )}
