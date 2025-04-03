@@ -262,7 +262,7 @@ const StyledSubDropdown = styled(Dropdown)`
 `
 
 const DropdownMenu = styled(Dropdown.Menu)`
-  max-width: 200px;
+  max-width: 400px;
   inset: 0px 0px auto auto !important;
 `
 const DropdownMenuSub = styled(Dropdown.Menu)`
