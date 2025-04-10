@@ -243,6 +243,7 @@ const StyledPixelButton = styled(Button)<{ props }>`
       &:hover {
         color: white !important;
         background-color: ${$DCSuccessActiveColor} !important;
+        border-color: ${$DCSuccessActiveColor} !important;
       }
     `}
   ${(props: DcButtonProps) =>
@@ -256,6 +257,7 @@ const StyledPixelButton = styled(Button)<{ props }>`
       &:hover {
         color: white !important;
         background-color: ${$DCDangerActiveColor} !important;
+        border-color: ${$DCDangerActiveColor} !important;
       }
     `}
   ${(props: DcButtonProps) =>
@@ -269,6 +271,7 @@ const StyledPixelButton = styled(Button)<{ props }>`
       &:hover {
         color: white !important;
         background-color: ${$DCWarningActiveColor} !important;
+        border-color: ${$DCWarningActiveColor} !important;
       }
     `}
   ${(props: DcButtonProps) =>
@@ -282,6 +285,7 @@ const StyledPixelButton = styled(Button)<{ props }>`
       &:hover {
         color: white !important;
         background-color: ${$DCInfoActiveColor} !important;
+        border-color: ${$DCInfoActiveColor} !important;
       }
     `}
 

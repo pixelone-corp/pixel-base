@@ -4,14 +4,14 @@ import styled, { css } from 'styled-components'
 
 export interface DcTagProps extends React.HTMLProps<HTMLDivElement> {
   className?:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'light'
-    | 'dark'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'light'
+  | 'dark'
   textColor?: string
   customBackgroundColor?: boolean
 }
@@ -54,7 +54,7 @@ const tagBgColors = {
   'partial returns': '#fbe8ea',
   'partial non monetory': '#e7e8ea',
   'partial post delivery': '#ece7fe',
-  open: '#ffab40',
+  open: '#fdf7e3',
   closed: '#fbe8ea',
   'partial ppen': '#e6f8f1',
   'partial closed': '#fbe8ea',
@@ -73,7 +73,7 @@ const tagBgColors = {
   'on-hold': '#fbe8ea',
   onlinepayment: '#e6f8f1',
   prepaid: '#e6f8f1',
-  pending: '#ff9800',
+  pending: '#fdf7e3',
   ready_to_ship: '#448aff',
   confirmed: '#e6f8f1',
   detain: '#fbe8ea',
@@ -101,7 +101,7 @@ const tagBgColors = {
   duplicate: '#e7e8ea',
   active: 'green',
   series: '#ffeb3b',
-  internal: '#ff9800',
+  internal: '#fdf7e3',
   api: 'green',
   sync: '#ffeb3b',
   manual: '#fbe8ea',
@@ -109,15 +109,15 @@ const tagBgColors = {
   ems: '#cc01fa',
   woocom: '#e6f8f1',
   wix: '#ffeb3b',
-  daraz: '#ff9800',
+  daraz: '#fdf7e3',
   gsheet: '#ece7fe',
-  TCS: '#EF9200',
+  TCS: '#fdf7e3',
   Leopard: '#FFCB05',
   'Pakistan Post': '#7c0000',
-  Laugix: '#ff9800',
+  Laugix: '#fdf7e3',
   Forrun: '#C72027',
   Trax: '#4EB86D',
-  MNP: '#F26522',
+  MNP: '#fdf7e3',
   TCSEnvio: '#2B3D4C',
   Rider: '#008AFF',
   SmartLane: '#00559F',
@@ -131,8 +131,8 @@ const tagBgColors = {
   Swyft: '#B11CCC',
   MXC: '#24478C',
   PostEx: '#000000',
-  Daraz: '#F75A08',
-  BarqRaftar: '#FF9D01'
+  Daraz: '#fdf7e3',
+  BarqRaftar: '#fdf7e3'
 }
 const tagColors = {
   'non monetory': '#343a40',
@@ -288,7 +288,7 @@ const DcTagStyled = styled.div`
   }
 `
 
-const StyledBadge = styled(Badge)<{ Bgcolor?: string }>`
+const StyledBadge = styled(Badge) <{ Bgcolor?: string }>`
   background-color: ${({ Bgcolor }) => Bgcolor || '#2e7d32'} !important;
   color: ${({ color }) => color || 'white'} !important;
   padding: 0.35rem 0.5rem;
