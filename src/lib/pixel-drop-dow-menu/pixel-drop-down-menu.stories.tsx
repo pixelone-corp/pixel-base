@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import PixelDropDown from './pixel-drop-down-menu'
 import PixelProfile from '../pixel-user-profile/pixel-user-profile'
+import { Disabled } from '../DC-button/dc-button.stories'
 
 export default {
   title: 'Pixel Dropdown Menu',
@@ -91,7 +92,7 @@ Grouped.args = {
         },
         { label: 'Test 2' },
         { label: 'Test 323' },
-        { label: 'Test 12323' }
+        { label: 'Test 12323', disabled: true }
       ]
     },
     {

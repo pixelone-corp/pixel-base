@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof DcSwitch>
 
 const Template: ComponentStory<typeof DcSwitch> = (args) => {
-  const [checked, setChecked] = React.useState(true)
+  const [checked, setChecked] = React.useState(false)
   return (
     <React.Fragment>
       <Section>
