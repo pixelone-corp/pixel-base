@@ -40,7 +40,7 @@ export const DcDateRangePicker = React.forwardRef<
   DcDateRangePickerProps
 >((props, ref) => {
   const {
-    onChange = () => {},
+    onChange = () => { },
     ranges,
     month,
     onApply,
@@ -63,7 +63,7 @@ export const DcDateRangePicker = React.forwardRef<
     }
   ])
   useEffect(() => {
-    if (ranges) {
+    if (ranges?.start_date !== '' && ranges?.end_date !== '') {
       setRange([
         {
           ...range,
@@ -71,10 +71,19 @@ export const DcDateRangePicker = React.forwardRef<
           endDate: new Date(ranges?.end_date)
         }
       ])
+    } else {
+      setRange([
+        {
+          ...range,
+          startDate: new Date(),
+          endDate: addDays(new Date(), 5)
+        }
+      ])
     }
   }, [ranges])
 
   const showDate = (date, size) => {
+
     const today = startOfDay(new Date())
     const yesterday = startOfDay(addDays(today, -1))
     const last7Days = startOfDay(addDays(today, -6))
@@ -134,6 +143,11 @@ export const DcDateRangePicker = React.forwardRef<
       isSameDay(date[0].endDate, ThisYearEnd)
     ) {
       return <DateLable size={size}>This year</DateLable>
+    } else if (
+      ranges?.start_date === '' &&
+      ranges?.end_date === ''
+    ) {
+      return <DateLable size={size}>No Date Selected</DateLable>
     } else {
       return (
         <React.Fragment>
@@ -273,7 +287,7 @@ const StyledDatePicker = styled.div<{ size }>`
   position: relative;
 `
 
-const StyledPopOver = styled(Popover)<{ size }>`
+const StyledPopOver = styled(Popover) <{ size }>`
   max-width: 910px;
   padding: 10px;
   border: 1px solid #e8e7ec;

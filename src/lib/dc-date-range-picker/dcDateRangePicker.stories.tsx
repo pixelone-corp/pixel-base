@@ -10,16 +10,16 @@ export default {
 
 const Template: ComponentStory<typeof DcDateRangePicker> = (args) => {
   const [state, setState] = useState<any>({
-    start_date: new Date(),
-    end_date: new Date()
-  })
-
+    start_date: '',
+    end_date: ''
+  }
+  )
   // Set default date range to last 7 days
   useEffect(() => {
     setState({
-      start_date: startOfYear(new Date()),
+      start_date: '',
 
-      end_date: new Date()
+      end_date: ''
     })
   }, [])
 
