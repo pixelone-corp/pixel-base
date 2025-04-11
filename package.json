@@ -1,6 +1,6 @@
 {
   "name": "pixel-base",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "description": "Common UI components for web.pixelone.app, Based on React Bootstrap",
   "author": "muffrank",
   "license": "MIT",
