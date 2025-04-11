@@ -83,7 +83,6 @@ export const DcDateRangePicker = React.forwardRef<
   }, [ranges])
 
   const showDate = (date, size) => {
-    console.log('date', date);
 
     const today = startOfDay(new Date())
     const yesterday = startOfDay(addDays(today, -1))

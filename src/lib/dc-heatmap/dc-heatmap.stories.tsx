@@ -16,7 +16,6 @@ function generateRandomData(rows = 24, columns = 7, min = 1, max = 250) {
   return data
 }
 
-console.log(generateRandomData())
 
 export const Default = Template.bind({})
 Default.args = {
