@@ -38,6 +38,8 @@ export interface DcProps extends InputHTMLAttributes<HTMLInputElement> {
   isClearOnSelection?: boolean
   inputSize?: 'sm' | 'lg'
   onSelectedOption?: () => {}
+  isShowError?: boolean
+  errorMessage?: string
 }
 
 const variantClasses = {
@@ -59,8 +61,8 @@ const PixelInputContainer = styled.div<{ as: string }>`
       & > * {
         input {
           ${(props: DcProps) =>
-            props.invalid === true &&
-            css`
+    props.invalid === true &&
+    css`
               color: red !important;
             `}
         }
@@ -162,8 +164,10 @@ export const DcInput = React.forwardRef<HTMLInputElement, DcProps>(
       isShowLabel = true,
       customLabel = '',
       isClearOnSelection = false,
-      onSelectedOption = () => {},
+      onSelectedOption = () => { },
       inputSize,
+      isShowError = false,
+      errorMessage = '',
       ...rest
     },
     ref
@@ -262,6 +266,8 @@ export const DcInput = React.forwardRef<HTMLInputElement, DcProps>(
             />
           ) : (
             <Input
+              isShowError={isShowError}
+              errorMessage={errorMessage}
               showsearchicon={showsearchicon}
               size={inputSize}
               placeholder={placeholder}
@@ -272,21 +278,21 @@ export const DcInput = React.forwardRef<HTMLInputElement, DcProps>(
               className={
                 noPadding
                   ? cn(
-                      'px-1 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
-                      shadow && 'focus:shadow',
-                      variantClasses[variant],
-                      sizeClasses[dimension],
-                      disabled && 'bg-gray-100 cursor-not-allowed',
-                      inputClassName
-                    )
+                    'px-1 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
+                    shadow && 'focus:shadow',
+                    variantClasses[variant],
+                    sizeClasses[dimension],
+                    disabled && 'bg-gray-100 cursor-not-allowed',
+                    inputClassName
+                  )
                   : cn(
-                      'px-4 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
-                      shadow && 'focus:shadow',
-                      variantClasses[variant],
-                      sizeClasses[dimension],
-                      disabled && 'bg-gray-100 cursor-not-allowed',
-                      inputClassName
-                    )
+                    'px-4 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
+                    shadow && 'focus:shadow',
+                    variantClasses[variant],
+                    sizeClasses[dimension],
+                    disabled && 'bg-gray-100 cursor-not-allowed',
+                    inputClassName
+                  )
               }
               disabled={disabled}
               value={value}

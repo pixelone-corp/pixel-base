@@ -24,7 +24,9 @@ const Template: ComponentStory<typeof DcInput> = (args) => {
 }
 export const Input = Template.bind({})
 Input.args = {
-  placeholder: 'Enter email'
+  placeholder: 'Enter email',
+  isShowError: true,
+  errorMessage: 'This field is required'
 }
 export const InputAsDatePicker = Template.bind({})
 InputAsDatePicker.args = {
