@@ -2,6 +2,7 @@ import React from "react"
 import { useState } from "react"
 import { ChevronDown, ChevronRight } from "lucide-react"
 import styled from "styled-components"
+import { $DCprimaryColor } from "../styleGuide"
 
 export interface MenuItemProps {
   id: string | number
@@ -55,6 +56,7 @@ const MenuItemButton = styled.div<MenuItemButtonProps>`
   ${(props) =>
     props.isActive &&
     `
+    border: 1px solid ${$DCprimaryColor};
     background-color: #f3f4f6;
     font-weight: 500;
   `}
@@ -146,7 +148,7 @@ const ToggleButton = styled.button<ToggleButtonProps>`
   
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #d1d5db;
+    /* box-shadow: 0 0 0 2px #d1d5db; */
   }
   
   @media (prefers-color-scheme: dark) {
@@ -154,9 +156,7 @@ const ToggleButton = styled.button<ToggleButtonProps>`
       background-color: #374151;
     }
     
-    &:focus {
-      box-shadow: 0 0 0 2px #4b5563;
-    }
+   
   }
 `
 
